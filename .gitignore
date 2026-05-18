@@ -1,0 +1,25 @@
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+.env
+.env.*
+*.log
+
+# Local Codex runtime state should never be committed.
+.codex/
+.agents/
+.openclaw/
+memories/
+reports/local/
+
+# Keep vendored third-party code out of this starter harness.
+harness/vendor/*
+!harness/vendor/.gitkeep
+

@@ -1,0 +1,91 @@
+from __future__ import annotations
+
+import py_compile
+import re
+import sys
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+REQUIRED = [
+    "README.md",
+    "README.zh-CN.md",
+    "install.ps1",
+    "harness/README.md",
+    "harness/scripts/build_skill_inventory.py",
+    "harness/scripts/harness_audit.py",
+    "harness/scripts/vendor_skill.py",
+    "skills/agent-harness-introspect/SKILL.md",
+    "templates/AGENTS.snippet.md",
+    "templates/memories/PROFILE.md",
+    "templates/memories/ACTIVE.md",
+    "templates/memories/LEARNINGS.md",
+    "templates/memories/ERRORS.md",
+    "templates/memories/FEATURE_REQUESTS.md",
+]
+
+LOCAL_USER = "Clr"
+
+FORBIDDEN_PATTERNS = [
+    r"C:\\Users\\" + LOCAL_USER,
+    r"C:/Users/" + LOCAL_USER,
+    r"\\\.codex\\vault",
+    r"/\.codex/vault",
+    r"PERSONAL_PROFILE\.md",
+    r"gho_[A-Za-z0-9_]+",
+    r"sk-[A-Za-z0-9_-]{20,}",
+    r"1649392148@qq\.com",
+]
+
+TEXT_SUFFIXES = {".md", ".ps1", ".py", ".toml", ".json", ".gitignore", ""}
+
+
+def iter_text_files() -> list[Path]:
+    files: list[Path] = []
+    for path in ROOT.rglob("*"):
+        if ".git" in path.parts:
+            continue
+        if path.is_file() and path.suffix in TEXT_SUFFIXES:
+            files.append(path)
+    return files
+
+
+def main() -> int:
+    failures: list[str] = []
+
+    for rel in REQUIRED:
+        if not (ROOT / rel).exists():
+            failures.append(f"missing required file: {rel}")
+
+    for path in [ROOT / "harness/scripts/build_skill_inventory.py", ROOT / "harness/scripts/harness_audit.py", ROOT / "harness/scripts/vendor_skill.py"]:
+        try:
+            py_compile.compile(str(path), doraise=True)
+        except py_compile.PyCompileError as exc:
+            failures.append(f"python compile failed for {path.relative_to(ROOT)}: {exc.msg}")
+
+    for path in iter_text_files():
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            failures.append(f"not utf-8: {path.relative_to(ROOT)}")
+            continue
+        for pattern in FORBIDDEN_PATTERNS:
+            if re.search(pattern, text):
+                failures.append(f"forbidden pattern {pattern!r} in {path.relative_to(ROOT)}")
+
+    vendor_children = [path for path in (ROOT / "harness/vendor").iterdir() if path.name != ".gitkeep"]
+    if vendor_children:
+        failures.append("harness/vendor must stay empty except .gitkeep")
+
+    if failures:
+        for failure in failures:
+            print(f"FAIL: {failure}", file=sys.stderr)
+        return 1
+
+    print("OK: package validation passed")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
