@@ -7,6 +7,8 @@ BraveCow Harness Codex keeps the runtime small and observable.
 1. **Memory entry points**
    - `~/.codex/memories/PROFILE.md`
    - `~/.codex/memories/ACTIVE.md`
+   - `~/.codex/memories/MEMORY_POLICY.md`
+   - `~/.codex/memories/SESSION_LOG.md`
    - `~/.codex/memories/LEARNINGS.md`
    - `~/.codex/memories/ERRORS.md`
    - `~/.codex/memories/FEATURE_REQUESTS.md`
@@ -26,6 +28,10 @@ BraveCow Harness Codex keeps the runtime small and observable.
    - `~/.codex/agents/explorer.toml`
    - `~/.codex/agents/worker.toml`
 
+5. **Codex plugin cache visibility**
+   - `~/.codex/plugins/cache` is scanned read-only for plugin manifests and provided skills.
+   - Cache presence is reported separately from activation state.
+
 ## Operating Principles
 
 - Catalog first, activate later.
@@ -33,4 +39,4 @@ BraveCow Harness Codex keeps the runtime small and observable.
 - Keep external resources quarantined until provenance and safety are reviewed.
 - Keep private state out of Git.
 - Let each machine generate its own inventory and audit report.
-
+- Treat plugin cache entries as evidence of downloaded packages, not enabled plugins.

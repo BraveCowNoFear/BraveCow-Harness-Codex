@@ -58,7 +58,15 @@ def load_config() -> dict:
 
 
 def collect_memory_status() -> list[tuple[str, bool]]:
-    names = ["PROFILE.md", "ACTIVE.md", "LEARNINGS.md", "ERRORS.md", "FEATURE_REQUESTS.md"]
+    names = [
+        "PROFILE.md",
+        "ACTIVE.md",
+        "MEMORY_POLICY.md",
+        "SESSION_LOG.md",
+        "LEARNINGS.md",
+        "ERRORS.md",
+        "FEATURE_REQUESTS.md",
+    ]
     return [(name, (MEMORY_DIR / name).exists()) for name in names]
 
 
@@ -112,6 +120,8 @@ def render_report() -> str:
     config = load_config()
     inventory = load_inventory()
     summary = inventory.get("summary", {})
+    plugin_summary = inventory.get("plugin_summary", {})
+    plugins = inventory.get("plugins", [])
     counts = summary.get("counts", {})
     missing_links = summary.get("missing_shared_links", {})
     shared_mirrors = summary.get("shared_mirrors", {})
@@ -174,6 +184,28 @@ def render_report() -> str:
             f"- Codex skill entries: `{counts.get('codex', 0)}`",
             f"- OpenClaw skill entries: `{counts.get('openclaw', 0)}`",
             "",
+            "## Codex Plugin Cache",
+            "",
+            "Cached packages are inventory evidence, not proof that a plugin is currently enabled.",
+            "",
+            f"- Cached plugin packages: `{plugin_summary.get('packages', 0)}`",
+            f"- Plugin-provided skills: `{plugin_summary.get('skills', 0)}`",
+            f"- Packages with apps: `{plugin_summary.get('with_apps', 0)}`",
+            f"- Packages with MCP content: `{plugin_summary.get('with_mcp', 0)}`",
+            f"- Invalid plugin manifests: `{plugin_summary.get('invalid_manifests', 0)}`",
+        ]
+    )
+
+    for item in plugins:
+        skill_ids = ", ".join(item.get("skill_ids", [])) or "none"
+        lines.append(
+            f"- `{item.get('name', 'unknown')}@{item.get('version', 'unknown')}` "
+            f"from `{item.get('cache_source', 'unknown')}`; skills: `{skill_ids}`"
+        )
+
+    lines.extend(
+        [
+            "",
             "## Shared Mirrors",
             "",
             f"- Mirrored into Codex via shared path: `{len(codex_mirrors)}`",
@@ -231,4 +263,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

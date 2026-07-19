@@ -9,6 +9,8 @@ Before starting substantial tasks:
 3. Apply those preferences before analyzing the request.
 
 Write reusable entries by type:
+- Follow `%USERPROFILE%\.codex\memories\MEMORY_POLICY.md` for retention, safety, and promotion rules.
+- `%USERPROFILE%\.codex\memories\SESSION_LOG.md` for short chronological notes awaiting promotion.
 - `%USERPROFILE%\.codex\memories\LEARNINGS.md` for learnings, corrections, knowledge gaps, and best practices.
 - `%USERPROFILE%\.codex\memories\ERRORS.md` for unexpected errors and debugging notes.
 - `%USERPROFILE%\.codex\memories\FEATURE_REQUESTS.md` for missing capabilities the user wants.
@@ -23,7 +25,7 @@ Promotion rules:
 
 Harness maintenance:
 - Use the `agent-harness-introspect` skill for local Codex harness audits, skill drift checks, and safe upgrade planning.
+- Treat `%USERPROFILE%\.codex\plugins\cache` as cached package evidence, not proof that a plugin is enabled.
 - Keep private runtime state, API keys, vault files, browser sessions, and local automations out of Git.
 - Catalog third-party resources in `%USERPROFILE%\.codex\harness\vendor` before activation.
 <!-- BraveCow Harness Codex: end -->
-

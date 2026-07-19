@@ -16,6 +16,7 @@ CODEX_HOME = Path(os.environ.get("CODEX_HOME", HOME / ".codex"))
 AGENTS_HOME = Path(os.environ.get("AGENTS_HOME", HOME / ".agents"))
 OPENCLAW_HOME = Path(os.environ.get("OPENCLAW_HOME", HOME / ".openclaw"))
 SHARED_SKILLS_HOME = Path(os.environ.get("SHARED_SKILLS_HOME", AGENTS_HOME / "skills"))
+CODEX_PLUGIN_CACHE = Path(os.environ.get("CODEX_PLUGIN_CACHE", CODEX_HOME / "plugins" / "cache"))
 
 ROOTS = {
     "shared": SHARED_SKILLS_HOME,
@@ -39,6 +40,19 @@ class SkillEntry:
     description: str | None
 
 
+@dataclass
+class PluginEntry:
+    cache_source: str
+    name: str
+    version: str
+    path: str
+    manifest_path: str
+    skill_ids: list[str]
+    has_apps: bool
+    has_mcp: bool
+    manifest_error: str | None = None
+
+
 def read_text(path: Path) -> str:
     raw = path.read_bytes()
     for encoding in ("utf-8-sig", "utf-8"):
@@ -53,16 +67,24 @@ def parse_frontmatter(text: str) -> tuple[str | None, str | None]:
     if not text.startswith("---"):
         return None, None
     lines = text.splitlines()
-    name = None
-    description = None
     in_frontmatter = False
+    frontmatter: list[str] = []
     for line in lines:
         if line.strip() == "---":
             if not in_frontmatter:
                 in_frontmatter = True
                 continue
             break
-        if not in_frontmatter or ":" not in line:
+        if in_frontmatter:
+            frontmatter.append(line)
+
+    name = None
+    description = None
+    index = 0
+    while index < len(frontmatter):
+        line = frontmatter[index]
+        if line.startswith((" ", "\t")) or ":" not in line:
+            index += 1
             continue
         key, value = line.split(":", 1)
         key = key.strip()
@@ -70,7 +92,21 @@ def parse_frontmatter(text: str) -> tuple[str | None, str | None]:
         if key == "name":
             name = value or None
         elif key == "description":
+            if value in {"|", ">"}:
+                block_lines: list[str] = []
+                index += 1
+                while index < len(frontmatter):
+                    next_line = frontmatter[index]
+                    if next_line and not next_line.startswith((" ", "\t")) and ":" in next_line:
+                        break
+                    stripped = next_line.strip()
+                    if stripped:
+                        block_lines.append(stripped)
+                    index += 1
+                description = " ".join(block_lines) or None
+                continue
             description = value or None
+        index += 1
     return name, description
 
 
@@ -78,6 +114,52 @@ def iter_skill_dirs(root: Path) -> Iterable[Path]:
     if not root.exists():
         return []
     return sorted([path for path in root.iterdir() if path.is_dir()], key=lambda p: p.name.lower())
+
+
+def discover_plugin_entries() -> list[PluginEntry]:
+    if not CODEX_PLUGIN_CACHE.exists():
+        return []
+
+    entries: list[PluginEntry] = []
+    seen_packages: set[str] = set()
+    for manifest_path in sorted(CODEX_PLUGIN_CACHE.rglob("plugin.json")):
+        if manifest_path.parent.name != ".codex-plugin":
+            continue
+        package_path = manifest_path.parent.parent
+        real_package_path = os.path.realpath(package_path)
+        if real_package_path in seen_packages:
+            continue
+        seen_packages.add(real_package_path)
+
+        try:
+            manifest = json.loads(read_text(manifest_path))
+            manifest_error = None
+        except (OSError, json.JSONDecodeError) as exc:
+            manifest = {}
+            manifest_error = str(exc)
+
+        relative_parts = package_path.relative_to(CODEX_PLUGIN_CACHE).parts
+        cache_source = relative_parts[0] if relative_parts else "unknown"
+        fallback_name = relative_parts[1] if len(relative_parts) > 1 else package_path.name
+        fallback_version = relative_parts[2] if len(relative_parts) > 2 else "unknown"
+        skills_value = manifest.get("skills", "./skills/")
+        skills_path = package_path / str(skills_value)
+        skill_ids = [path.name for path in iter_skill_dirs(skills_path) if (path / "SKILL.md").exists()]
+
+        entries.append(
+            PluginEntry(
+                cache_source=cache_source,
+                name=str(manifest.get("name") or fallback_name),
+                version=str(manifest.get("version") or fallback_version),
+                path=str(package_path),
+                manifest_path=str(manifest_path),
+                skill_ids=skill_ids,
+                has_apps=bool(manifest.get("apps")),
+                has_mcp=bool(manifest.get("mcp")) or (package_path / "mcp").exists(),
+                manifest_error=manifest_error,
+            )
+        )
+    return entries
 
 
 def build_entries() -> list[SkillEntry]:
@@ -178,6 +260,20 @@ def summarize(entries: list[SkillEntry]) -> dict:
     }
 
 
+def summarize_plugins(entries: list[PluginEntry]) -> dict:
+    sources = defaultdict(int)
+    for entry in entries:
+        sources[entry.cache_source] += 1
+    return {
+        "packages": len(entries),
+        "skills": sum(len(entry.skill_ids) for entry in entries),
+        "with_apps": sum(entry.has_apps for entry in entries),
+        "with_mcp": sum(entry.has_mcp for entry in entries),
+        "invalid_manifests": sum(entry.manifest_error is not None for entry in entries),
+        "sources": dict(sorted(sources.items())),
+    }
+
+
 def write_text_atomic(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=path.parent, delete=False) as handle:
@@ -192,11 +288,14 @@ def main() -> int:
     args = parser.parse_args()
 
     entries = build_entries()
+    plugins = discover_plugin_entries()
     payload = {
         "generated_at": datetime.now(UTC).isoformat(),
-        "roots": {name: str(path) for name, path in ROOTS.items()},
+        "roots": {**{name: str(path) for name, path in ROOTS.items()}, "plugin_cache": str(CODEX_PLUGIN_CACHE)},
         "summary": summarize(entries),
+        "plugin_summary": summarize_plugins(plugins),
         "entries": [asdict(entry) for entry in entries],
+        "plugins": [asdict(entry) for entry in plugins],
     }
     write_text_atomic(args.output, json.dumps(payload, ensure_ascii=False, indent=2))
     print(f"Wrote {args.output}")

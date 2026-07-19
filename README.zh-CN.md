@@ -20,12 +20,20 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 ## 会安装什么
 
-- `~/.codex/harness`：inventory/audit 脚本和 harness 说明。
+- `~/.codex/harness`：inventory/audit 脚本和 harness 说明，包含 Codex 插件缓存可见性。
 - `~/.agents/skills/agent-harness-introspect`：共享 skill。
 - `~/.codex/skills/agent-harness-introspect`：默认创建到共享 skill 的 junction；失败时复制。
-- `~/.codex/memories`：`PROFILE.md`、`ACTIVE.md`、`LEARNINGS.md`、`ERRORS.md`、`FEATURE_REQUESTS.md` 模板。
+- `~/.codex/memories`：七个分层记忆模板，新增 `MEMORY_POLICY.md` 与 `SESSION_LOG.md`。
 - `~/.codex/agents`：`default`、`explorer`、`worker` 三个 agent profile 模板。
 - `~/.codex/AGENTS.md` 和当前 workspace 的 `AGENTS.md`：追加一段 memory/harness 入口规则。
+
+## 发布前验证
+
+```powershell
+python .\tests\validate_package.py
+python -m unittest discover -s .\tests
+powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
+```
 
 ## 常用参数
 

@@ -6,10 +6,10 @@ For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
 
 ## What It Installs
 
-- `~/.codex/harness`: portable audit and inventory scripts.
+- `~/.codex/harness`: portable audit and inventory scripts, including cached Codex plugin visibility.
 - `~/.agents/skills/agent-harness-introspect`: a skill for inspecting the local Codex harness.
 - `~/.codex/skills/agent-harness-introspect`: a junction to the shared skill when possible, otherwise a copy.
-- `~/.codex/memories`: five starter memory files.
+- `~/.codex/memories`: seven starter memory files, including a retention policy and session log.
 - `~/.codex/agents`: starter `default`, `explorer`, and `worker` profiles.
 - `AGENTS.md` snippets for the global Codex directory and, by default, the current workspace.
 
@@ -50,5 +50,6 @@ Run the package validation check before publishing changes:
 
 ```powershell
 python .\tests\validate_package.py
+python -m unittest discover -s .\tests
+powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
 ```
-

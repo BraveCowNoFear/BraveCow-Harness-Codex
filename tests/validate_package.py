@@ -20,9 +20,12 @@ REQUIRED = [
     "templates/AGENTS.snippet.md",
     "templates/memories/PROFILE.md",
     "templates/memories/ACTIVE.md",
+    "templates/memories/MEMORY_POLICY.md",
+    "templates/memories/SESSION_LOG.md",
     "templates/memories/LEARNINGS.md",
     "templates/memories/ERRORS.md",
     "templates/memories/FEATURE_REQUESTS.md",
+    "tests/smoke_install.ps1",
 ]
 
 LOCAL_USER = "Clr"

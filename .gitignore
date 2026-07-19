@@ -16,10 +16,9 @@ env/
 .codex/
 .agents/
 .openclaw/
-memories/
+/memories/
 reports/local/
 
 # Keep vendored third-party code out of this starter harness.
 harness/vendor/*
 !harness/vendor/.gitkeep
-
