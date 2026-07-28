@@ -1,6 +1,6 @@
 # Architecture
 
-BraveCow Harness Codex keeps the runtime small and observable.
+BraveCow Harness Codex keeps the runtime small, observable, and degradable.
 
 ## Layers
 
@@ -32,6 +32,18 @@ BraveCow Harness Codex keeps the runtime small and observable.
    - `~/.codex/plugins/cache` is scanned read-only for plugin manifests and provided skills.
    - Cache presence is reported separately from activation state.
 
+6. **Retrieval router**
+   - Known path: read canonical Markdown directly.
+   - Ordinary exact/substring search: local SQLite FTS5.
+   - Semantic retrieval: optional vector backend.
+   - Temporal/entity relationships: optional Graphiti backend.
+   - Every backend produces a bounded evidence pack; external-service failure falls back to Markdown/FTS5.
+
+7. **Version and update control**
+   - `harness.lock.json` records observed skill/plugin hashes, versions, paths, runtimes, and Git provenance.
+   - The lock is evidence, not auto-update authorization.
+   - Runtime, config, memory initialization, and user-data replacement are separate installer operations.
+
 ## Operating Principles
 
 - Catalog first, activate later.
@@ -40,3 +52,6 @@ BraveCow Harness Codex keeps the runtime small and observable.
 - Keep private state out of Git.
 - Let each machine generate its own inventory and audit report.
 - Treat plugin cache entries as evidence of downloaded packages, not enabled plugins.
+- Keep Markdown canonical and all retrieval databases replaceable.
+- Back up before overwriting; never let an ordinary runtime update replace user data.
+- Measure startup context, retrieval evidence, retries, and failure-degrade latency.

@@ -1,6 +1,6 @@
 ---
 name: agent-harness-introspect
-description: Audit and explain the local AI harness across Codex, shared skills, and OpenClaw. Use when the task is to upgrade the agent architecture, inspect installed skills/plugins/automations/memory, review what is active, find link drift between shared and runtime-specific skills, or prepare the next safe upgrade round.
+description: Audit or safely upgrade the local Codex/shared/OpenClaw harness, including skills, plugins, memory, automations, provenance, and runtime drift.
 ---
 
 # Agent Harness Introspect
@@ -33,11 +33,17 @@ Use this skill when the user is asking about the agent's own setup rather than a
 3. Refresh the local inventory when the answer depends on current state:
    - Run `python %USERPROFILE%\.codex\harness\scripts\build_skill_inventory.py`
    - Run `python %USERPROFILE%\.codex\harness\scripts\harness_audit.py`
-4. When a user asks to import or migrate outside resources:
+   - Read `catalog\harness.lock.json` to distinguish discoverable skills, config-enabled plugins, and cache-only packages.
+   - Treat the config runtime gate as authoritative when TOML syntax passes but the installed Codex CLI rejects a value.
+4. Retrieve memory through the cheapest sufficient path:
+   - Read a known Markdown file directly when the path or section is known.
+   - Otherwise run `python %USERPROFILE%\.codex\harness\scripts\memory_search.py "<query>"`.
+   - Use Graphiti only for temporal/entity relationship questions and only when it is already healthy; failure must fall back immediately to Markdown/FTS5.
+5. When a user asks to import or migrate outside resources:
    - Prefer cataloging first
    - Store third-party items in `%USERPROFILE%\.codex\harness\vendor\`
    - Keep them quarantined until manually reviewed
-5. Summarize:
+6. Summarize:
    - what is active now
    - what is missing or drifting
    - what is safe to upgrade immediately
@@ -48,6 +54,8 @@ Use this skill when the user is asking about the agent's own setup rather than a
 - Do not auto-edit `AGENTS.md` unless the user explicitly asks.
 - Do not auto-enable third-party code or plugins merely because they are popular.
 - Treat plugin cache entries as cached packages, not proof that they are enabled.
+- Treat `harness.lock.json` as observed provenance, not permission to auto-update.
+- Keep Markdown canonical; FTS5, vector, and graph stores are replaceable indexes.
 - Prefer shared skills in `%USERPROFILE%\.agents\skills` and runtime-specific junctions over copied duplicates.
 - If a skill or plugin comes from an external repository, preserve provenance in a manifest before activation.
 - For supply-chain-sensitive items, migrate metadata or a quarantined snapshot first, then leave activation as a separate step.

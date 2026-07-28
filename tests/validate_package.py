@@ -9,12 +9,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED = [
+    "VERSION",
     "README.md",
     "README.zh-CN.md",
     "install.ps1",
     "harness/README.md",
     "harness/scripts/build_skill_inventory.py",
     "harness/scripts/harness_audit.py",
+    "harness/scripts/config_gate.py",
+    "harness/scripts/memory_search.py",
     "harness/scripts/vendor_skill.py",
     "skills/agent-harness-introspect/SKILL.md",
     "templates/AGENTS.snippet.md",
@@ -47,7 +50,7 @@ TEXT_SUFFIXES = {".md", ".ps1", ".py", ".toml", ".json", ".gitignore", ""}
 def iter_text_files() -> list[Path]:
     files: list[Path] = []
     for path in ROOT.rglob("*"):
-        if ".git" in path.parts:
+        if any(part in {".git", ".research", "output", "__pycache__"} for part in path.parts):
             continue
         if path.is_file() and path.suffix in TEXT_SUFFIXES:
             files.append(path)

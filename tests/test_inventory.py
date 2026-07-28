@@ -39,7 +39,7 @@ class InventoryTests(unittest.TestCase):
             original_cache = inventory.CODEX_PLUGIN_CACHE
             try:
                 inventory.CODEX_PLUGIN_CACHE = cache
-                entries = inventory.discover_plugin_entries()
+                entries = inventory.discover_plugin_entries({"sample-plugin@test-source"})
             finally:
                 inventory.CODEX_PLUGIN_CACHE = original_cache
 
@@ -48,6 +48,36 @@ class InventoryTests(unittest.TestCase):
             self.assertEqual(entries[0].skill_ids, ["sample-skill"])
             self.assertTrue(entries[0].has_apps)
             self.assertFalse(entries[0].has_mcp)
+            self.assertTrue(entries[0].enabled_by_config)
+            self.assertEqual(entries[0].state, "enabled-by-config")
+
+    def test_build_lock_deduplicates_runtime_mirrors(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            skill_dir = Path(temp_dir) / "skill"
+            skill_dir.mkdir()
+            skill_md = skill_dir / "SKILL.md"
+            skill_md.write_text("---\nname: sample\nversion: 1.0.0\n---\n", encoding="utf-8")
+            digest = inventory.sha256_file(skill_md)
+            entries = [
+                inventory.SkillEntry(
+                    runtime=runtime,
+                    skill_id="sample",
+                    path=str(skill_dir),
+                    real_path=str(skill_dir.resolve()),
+                    is_link=runtime != "shared",
+                    link_target=[str(skill_dir.resolve())] if runtime != "shared" else [],
+                    has_skill_md=True,
+                    name="sample",
+                    description=None,
+                    declared_version="1.0.0",
+                    content_sha256=digest,
+                    state="discoverable",
+                )
+                for runtime in ("shared", "codex")
+            ]
+            lock = inventory.build_lock(entries, [], "2026-01-01T00:00:00Z")
+            self.assertEqual(len(lock["skills"]), 1)
+            self.assertEqual(lock["skills"][0]["runtimes"], ["codex", "shared"])
 
 
 if __name__ == "__main__":

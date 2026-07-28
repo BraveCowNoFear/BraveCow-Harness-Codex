@@ -18,6 +18,8 @@ env/
 .openclaw/
 /memories/
 reports/local/
+/.research/
+/output/
 
 # Keep vendored third-party code out of this starter harness.
 harness/vendor/*

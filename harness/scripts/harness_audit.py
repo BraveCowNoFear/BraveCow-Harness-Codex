@@ -2,9 +2,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import sqlite3
 import time
 from datetime import UTC, datetime
 from pathlib import Path
+
+try:
+    from .config_gate import check_config
+    from .memory_search import update_index
+except ImportError:  # direct script execution
+    from config_gate import check_config
+    from memory_search import update_index
 
 try:
     import tomllib
@@ -19,7 +27,9 @@ MEMORY_DIR = CODEX_HOME / "memories"
 AGENTS_DIR = CODEX_HOME / "agents"
 AUTOMATIONS_DIR = CODEX_HOME / "automations"
 INVENTORY_PATH = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
+LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
 VENDOR_DIR = CODEX_HOME / "harness" / "vendor"
+MEMORY_INDEX_PATH = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
 DEFAULT_OUTPUT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
 
 
@@ -55,6 +65,29 @@ def load_config() -> dict:
         return tomllib.loads(read_text(CONFIG_PATH))
     except Exception as exc:  # noqa: BLE001
         return {"config_error": str(exc)}
+
+
+def load_lock() -> dict:
+    if not LOCK_PATH.exists():
+        return {}
+    try:
+        return json.loads(read_text(LOCK_PATH))
+    except json.JSONDecodeError:
+        return {"lock_error": "invalid JSON"}
+
+
+def collect_memory_index_status() -> dict:
+    try:
+        result = update_index(MEMORY_DIR, MEMORY_INDEX_PATH)
+        connection = sqlite3.connect(MEMORY_INDEX_PATH)
+        try:
+            result["total_chunks"] = connection.execute("SELECT count(*) FROM memory_fts").fetchone()[0]
+        finally:
+            connection.close()
+        result["status"] = "ready"
+        return result
+    except (OSError, sqlite3.Error) as exc:
+        return {"status": "error", "diagnostic": str(exc)[:300]}
 
 
 def collect_memory_status() -> list[tuple[str, bool]]:
@@ -118,11 +151,15 @@ def collect_unmanifested_vendor_dirs() -> list[str]:
 
 def render_report() -> str:
     config = load_config()
+    config_gate = check_config(CONFIG_PATH, run_runtime=True)
     inventory = load_inventory()
+    lock = load_lock()
+    memory_index = collect_memory_index_status()
     summary = inventory.get("summary", {})
     plugin_summary = inventory.get("plugin_summary", {})
     plugins = inventory.get("plugins", [])
     counts = summary.get("counts", {})
+    valid_counts = summary.get("valid_counts", {})
     missing_links = summary.get("missing_shared_links", {})
     shared_mirrors = summary.get("shared_mirrors", {})
     shadowed_shared = summary.get("shadowed_shared_skills", {})
@@ -153,13 +190,26 @@ def render_report() -> str:
         f"- Reasoning effort: `{config.get('model_reasoning_effort', 'unknown')}`",
         f"- Approval policy: `{config.get('approval_policy', 'unknown')}`",
         f"- Sandbox mode: `{config.get('sandbox_mode', 'unknown')}`",
+        f"- Config syntax gate: `{config_gate.get('syntax', 'unknown')}`",
+        f"- Config runtime gate: `{config_gate.get('runtime', 'unknown')}`",
+        f"- Codex CLI: `{config_gate.get('codex_version', 'unknown')}`",
     ]
     if config.get("config_error"):
         lines.append(f"- Config read error: `{config['config_error']}`")
+    if config_gate.get("diagnostic"):
+        lines.append(f"- Config gate diagnostic: `{config_gate['diagnostic']}`")
 
     lines.extend(["", "## Memory Entry Points", ""])
     for name, exists in collect_memory_status():
         lines.append(f"- `{name}`: {'present' if exists else 'missing'}")
+    lines.extend(
+        [
+            f"- SQLite FTS5 index: `{memory_index.get('status', 'unknown')}`",
+            f"- Indexed Markdown files: `{memory_index.get('scanned', 0)}`",
+            f"- Indexed sections: `{memory_index.get('total_chunks', 0)}`",
+            f"- Incremental updates this run: `{memory_index.get('updated', 0)}`",
+        ]
+    )
 
     lines.extend(["", "## Agent Profiles", ""])
     profiles = collect_agent_profiles()
@@ -183,6 +233,13 @@ def render_report() -> str:
             f"- Shared skills: `{counts.get('shared', 0)}`",
             f"- Codex skill entries: `{counts.get('codex', 0)}`",
             f"- OpenClaw skill entries: `{counts.get('openclaw', 0)}`",
+            f"- Valid shared skills: `{valid_counts.get('shared', 0)}`",
+            f"- Valid Codex skills: `{valid_counts.get('codex', 0)}`",
+            f"- Valid OpenClaw skills: `{valid_counts.get('openclaw', 0)}`",
+            f"- Unique discoverable real paths: `{summary.get('unique_discoverable_real_paths', 0)}`",
+            f"- Entries declaring a version: `{summary.get('declared_version_count', 0)}`",
+            f"- Harness lock skills: `{len(lock.get('skills', []))}`",
+            f"- Harness lock plugins: `{len(lock.get('plugins', []))}`",
             "",
             "## Codex Plugin Cache",
             "",
@@ -193,6 +250,8 @@ def render_report() -> str:
             f"- Packages with apps: `{plugin_summary.get('with_apps', 0)}`",
             f"- Packages with MCP content: `{plugin_summary.get('with_mcp', 0)}`",
             f"- Invalid plugin manifests: `{plugin_summary.get('invalid_manifests', 0)}`",
+            f"- Enabled by config: `{plugin_summary.get('enabled_by_config', 0)}`",
+            f"- Cache-only packages: `{plugin_summary.get('cache_only', 0)}`",
         ]
     )
 
@@ -200,7 +259,8 @@ def render_report() -> str:
         skill_ids = ", ".join(item.get("skill_ids", [])) or "none"
         lines.append(
             f"- `{item.get('name', 'unknown')}@{item.get('version', 'unknown')}` "
-            f"from `{item.get('cache_source', 'unknown')}`; skills: `{skill_ids}`"
+            f"from `{item.get('cache_source', 'unknown')}`; state: `{item.get('state', 'unknown')}`; "
+            f"skills: `{skill_ids}`"
         )
 
     lines.extend(
@@ -243,6 +303,8 @@ def render_report() -> str:
             "- Keep private runtime state out of Git.",
             "- Prefer shared skills and runtime junctions over copied duplicates.",
             "- Catalog external resources before activation.",
+            "- Use Markdown plus SQLite FTS5 as the default local memory path; keep graph/vector retrieval optional.",
+            "- Treat the generated harness lock as observation evidence, not authorization to auto-update.",
             "- Treat this report as local state, not a portable artifact.",
         ]
     )

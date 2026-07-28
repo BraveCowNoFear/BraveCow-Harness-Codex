@@ -1,6 +1,6 @@
 # BraveCow Harness Codex
 
-BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先 harness 安装包。它把一套可审计的本机控制层装到新机器上：skills 管理、memory 文件、agent profiles、harness inventory/audit 脚本，以及一个专门检查 harness 的 skill。
+BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先控制层：它提供 Skill/插件启用态盘点、来源锁、安全更新边界、Markdown + SQLite FTS5 本地记忆检索、agent profiles 和审计报告。
 
 它不是把某台电脑的 `.codex` 原样打包。它不会包含 API key、浏览器登录态、vault、个人资料、自动化任务、插件缓存或第三方 vendor 源码。
 
@@ -20,7 +20,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 ## 会安装什么
 
-- `~/.codex/harness`：inventory/audit 脚本和 harness 说明，包含 Codex 插件缓存可见性。
+- `~/.codex/harness`：inventory、来源锁、配置语义门、FTS5 检索与审计脚本。
 - `~/.agents/skills/agent-harness-introspect`：共享 skill。
 - `~/.codex/skills/agent-harness-introspect`：默认创建到共享 skill 的 junction；失败时复制。
 - `~/.codex/memories`：七个分层记忆模板，新增 `MEMORY_POLICY.md` 与 `SESSION_LOG.md`。
@@ -41,12 +41,30 @@ powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
 # 不改当前目录的 AGENTS.md
 powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoWorkspaceAgents
 
-# 覆盖更新已有模板和脚本
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -Force
+# 只预览，不写文件
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
+
+# 更新运行时代码和受管 AGENTS 片段；绝不覆盖已有记忆
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
+
+# 高危、显式替换用户数据；覆盖前自动备份
+powershell -ExecutionPolicy Bypass -File .\install.ps1 -ReplaceUserData
 
 # 不创建 junction，直接复制 skill
 powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoJunctions
 ```
+
+`-InitializeMemory` 只创建缺失的记忆文件。兼容参数 `-Force` 现在只等价于 `-UpdateRuntime -MigrateConfig`，不会替换 memory 或其他用户数据。所有被覆盖的受管文件会先备份到 `~/.codex/harness/backups/`。
+
+## 记忆检索
+
+Markdown 永远是可信源。已知路径直接读取，普通查询优先走本机 SQLite FTS5：
+
+```powershell
+python "$env:USERPROFILE\.codex\harness\scripts\memory_search.py" "Edge 浏览器规则"
+```
+
+Graphiti/向量库只作为时间关系或语义查询的可选索引；服务故障不得阻塞普通任务。
 
 ## 给朋友的最短用法
 
