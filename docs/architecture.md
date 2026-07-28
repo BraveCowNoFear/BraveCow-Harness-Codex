@@ -40,8 +40,9 @@ BraveCow Harness Codex keeps the runtime small, observable, and degradable.
    - Every backend produces a bounded evidence pack; external-service failure falls back to Markdown/FTS5.
 
 7. **Version and update control**
-   - `harness.lock.json` records observed skill/plugin hashes, versions, paths, runtimes, and Git provenance.
+   - `harness.lock.json` schema v2 records observed skill/plugin hashes, resolved packages, component source/installed versions, Git remote/branch/commit, license evidence, verification status, local patches, and rollback refs.
    - The lock is evidence, not auto-update authorization.
+   - A semantic change preserves one previous snapshot for deterministic weekly/local diffing; timestamps alone do not create drift.
    - Runtime, config, memory initialization, and user-data replacement are separate installer operations.
 
 ## Operating Principles
@@ -52,6 +53,8 @@ BraveCow Harness Codex keeps the runtime small, observable, and degradable.
 - Keep private state out of Git.
 - Let each machine generate its own inventory and audit report.
 - Treat plugin cache entries as evidence of downloaded packages, not enabled plugins.
+- Resolve one package per logical plugin using remote-install markers first and exact config ids second; retain older cache entries for rollback.
 - Keep Markdown canonical and all retrieval databases replaceable.
+- Validate durable-memory candidates for reuse, source, scope, confidence, expiry, conflicts, and secrets before any human-approved write.
 - Back up before overwriting; never let an ordinary runtime update replace user data.
 - Measure startup context, retrieval evidence, retries, and failure-degrade latency.

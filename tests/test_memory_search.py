@@ -8,6 +8,12 @@ from harness.scripts import memory_search
 
 
 class MemorySearchTests(unittest.TestCase):
+    def test_query_normalization_drops_router_words(self) -> None:
+        normalized = memory_search.normalize_query("what changed before browser lifecycle rule")
+        self.assertNotIn('"what"', normalized)
+        self.assertNotIn('"before"', normalized)
+        self.assertIn('"browser"', normalized)
+
     def test_incremental_chinese_fts_search(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)

@@ -53,6 +53,12 @@ try {
     $RequiredPaths = @(
         (Join-Path $CodexHome "harness\catalog\skill-inventory.json"),
         (Join-Path $CodexHome "harness\catalog\harness.lock.json"),
+        (Join-Path $CodexHome "harness\catalog\skill-contracts.example.json"),
+        (Join-Path $CodexHome "harness\catalog\verification.example.json"),
+        (Join-Path $CodexHome "harness\scripts\memory_router.py"),
+        (Join-Path $CodexHome "harness\scripts\lock_diff.py"),
+        (Join-Path $CodexHome "harness\scripts\memory_write_gate.py"),
+        (Join-Path $CodexHome "harness\scripts\skill_contracts.py"),
         (Join-Path $CodexHome "harness\reports\agent-harness-audit.md"),
         (Join-Path $CodexHome "harness\index\memory-fts.sqlite3"),
         (Join-Path $CodexHome "memories\MEMORY_POLICY.md"),
@@ -82,12 +88,12 @@ try {
         throw "Plugin inventory fields were not generated."
     }
     $Lock = Get-Content -LiteralPath (Join-Path $CodexHome "harness\catalog\harness.lock.json") -Raw -Encoding UTF8 | ConvertFrom-Json
-    if ($Lock.schema_version -ne 1 -or $null -eq $Lock.skills) {
+    if ($Lock.schema_version -ne 2 -or $null -eq $Lock.skills -or $null -eq $Lock.components) {
         throw "Harness lock was not generated."
     }
 
     $Audit = Get-Content -LiteralPath (Join-Path $CodexHome "harness\reports\agent-harness-audit.md") -Raw -Encoding UTF8
-    if ($Audit -notlike "*## Codex Plugin Cache*" -or $Audit -notlike "*SQLite FTS5 index*" -or $Audit -notlike "*Config runtime gate*") {
+    if ($Audit -notlike "*## Codex Plugin Cache*" -or $Audit -notlike "*SQLite FTS5 index*" -or $Audit -notlike "*Config runtime gate*" -or $Audit -notlike "*Durable-memory write gate*") {
         throw "Audit report is missing the updated sections."
     }
 

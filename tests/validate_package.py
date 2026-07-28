@@ -18,6 +18,12 @@ REQUIRED = [
     "harness/scripts/harness_audit.py",
     "harness/scripts/config_gate.py",
     "harness/scripts/memory_search.py",
+    "harness/scripts/memory_router.py",
+    "harness/scripts/lock_diff.py",
+    "harness/scripts/memory_write_gate.py",
+    "harness/scripts/skill_contracts.py",
+    "harness/catalog/skill-contracts.example.json",
+    "harness/catalog/verification.example.json",
     "harness/scripts/vendor_skill.py",
     "skills/agent-harness-introspect/SKILL.md",
     "templates/AGENTS.snippet.md",
@@ -64,7 +70,15 @@ def main() -> int:
         if not (ROOT / rel).exists():
             failures.append(f"missing required file: {rel}")
 
-    for path in [ROOT / "harness/scripts/build_skill_inventory.py", ROOT / "harness/scripts/harness_audit.py", ROOT / "harness/scripts/vendor_skill.py"]:
+    for path in [
+        ROOT / "harness/scripts/build_skill_inventory.py",
+        ROOT / "harness/scripts/harness_audit.py",
+        ROOT / "harness/scripts/memory_router.py",
+        ROOT / "harness/scripts/lock_diff.py",
+        ROOT / "harness/scripts/memory_write_gate.py",
+        ROOT / "harness/scripts/skill_contracts.py",
+        ROOT / "harness/scripts/vendor_skill.py",
+    ]:
         try:
             py_compile.compile(str(path), doraise=True)
         except py_compile.PyCompileError as exc:

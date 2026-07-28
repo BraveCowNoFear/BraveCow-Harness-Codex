@@ -20,6 +20,7 @@ env/
 reports/local/
 /.research/
 /output/
+/tmp/
 
 # Keep vendored third-party code out of this starter harness.
 harness/vendor/*

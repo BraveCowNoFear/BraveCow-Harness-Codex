@@ -1,5 +1,7 @@
 # BraveCow Harness Codex
 
+当前版本：`0.5.0`。
+
 BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先控制层：它提供 Skill/插件启用态盘点、来源锁、安全更新边界、Markdown + SQLite FTS5 本地记忆检索、agent profiles 和审计报告。
 
 它不是把某台电脑的 `.codex` 原样打包。它不会包含 API key、浏览器登录态、vault、个人资料、自动化任务、插件缓存或第三方 vendor 源码。
@@ -58,13 +60,21 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoJunctions
 
 ## 记忆检索
 
-Markdown 永远是可信源。已知路径直接读取，普通查询优先走本机 SQLite FTS5：
+Markdown 永远是可信源。检索路由器会直接读取已知文件，普通查询走本机 SQLite FTS5，只有时间/实体关系问题且现有 Graphiti 端口健康时才建议交给 Graphiti：
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_search.py" "Edge 浏览器规则"
+python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "Edge 浏览器规则"
 ```
 
-Graphiti/向量库只作为时间关系或语义查询的可选索引；服务故障不得阻塞普通任务。
+返回结果受证据字符预算限制。Graphiti/向量库故障时立即回退到本机检索，不会自动启动或修复外部服务。持久记忆候选可先经过只校验、不写入的门禁：
+
+```powershell
+Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
+```
+
+`harness.lock.json` v2 会记录插件解析结果、组件源码/安装版本、Git 远端/分支/提交、许可证证据、验证状态、本地补丁和回滚点；无法确认的字段会明确标为未知，不做猜测。
+
+可选的 `skill_contracts.py` 会运行本机专属的正/负触发提示回归。仓库只附示例，不会把一台机器的激活契约静默套到另一台机器。
 
 ## 给朋友的最短用法
 

@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
 import os
+import re
 import subprocess
 import tempfile
+import urllib.parse
 from collections import defaultdict
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
@@ -64,6 +67,10 @@ class PluginEntry:
     has_mcp: bool
     plugin_id: str
     enabled_by_config: bool
+    installed_remote: bool
+    remote_plugin_id: str | None
+    resolved: bool
+    resolution_reason: str
     state: str
     manifest_sha256: str | None
     manifest_error: str | None = None
@@ -148,6 +155,22 @@ def load_enabled_plugin_ids() -> set[str]:
     }
 
 
+def load_remote_install_marker(package_path: Path) -> tuple[bool, str | None]:
+    marker_path = package_path.parent / ".codex-remote-plugin-install.json"
+    if not marker_path.exists():
+        return False, None
+    try:
+        marker = json.loads(read_text(marker_path))
+    except (OSError, json.JSONDecodeError):
+        return True, None
+    remote_id = marker.get("remote_plugin_id")
+    return True, str(remote_id) if remote_id else None
+
+
+def version_sort_key(value: str) -> tuple[tuple[int, ...], str]:
+    return tuple(int(part) for part in re.findall(r"\d+", value)), value.lower()
+
+
 def iter_skill_dirs(root: Path) -> Iterable[Path]:
     if not root.exists():
         return []
@@ -188,6 +211,7 @@ def discover_plugin_entries(enabled_plugin_ids: set[str] | None = None) -> list[
         plugin_name = str(manifest.get("name") or fallback_name)
         plugin_id = f"{plugin_name}@{cache_source}"
         enabled_by_config = plugin_id in enabled_plugin_ids
+        installed_remote, remote_plugin_id = load_remote_install_marker(package_path)
         entries.append(
             PluginEntry(
                 cache_source=cache_source,
@@ -200,11 +224,45 @@ def discover_plugin_entries(enabled_plugin_ids: set[str] | None = None) -> list[
                 has_mcp=bool(manifest.get("mcp")) or (package_path / "mcp").exists(),
                 plugin_id=plugin_id,
                 enabled_by_config=enabled_by_config,
-                state="enabled-by-config" if enabled_by_config else "cache-only",
+                installed_remote=installed_remote,
+                remote_plugin_id=remote_plugin_id,
+                resolved=False,
+                resolution_reason="unresolved",
+                state="cache-only",
                 manifest_sha256=sha256_file(manifest_path),
                 manifest_error=manifest_error,
             )
         )
+
+    by_name: dict[str, list[PluginEntry]] = defaultdict(list)
+    for entry in entries:
+        by_name[entry.name].append(entry)
+    for candidates in by_name.values():
+        remote_candidates = [entry for entry in candidates if entry.installed_remote]
+        exact_candidates = [entry for entry in candidates if entry.enabled_by_config]
+        if remote_candidates:
+            winner = max(remote_candidates, key=lambda entry: version_sort_key(entry.version))
+            winner.resolved = True
+            winner.resolution_reason = "remote-install-marker"
+            winner.state = "resolved-remote-install"
+            for entry in candidates:
+                if entry is winner:
+                    continue
+                if entry.enabled_by_config:
+                    entry.state = "superseded-config-cache"
+                    entry.resolution_reason = f"superseded-by:{winner.version}@{winner.cache_source}"
+                elif entry.installed_remote:
+                    entry.state = "superseded-remote-cache"
+                    entry.resolution_reason = f"superseded-by:{winner.version}@{winner.cache_source}"
+        elif exact_candidates:
+            winner = max(exact_candidates, key=lambda entry: version_sort_key(entry.version))
+            winner.resolved = True
+            winner.resolution_reason = "exact-config-id"
+            winner.state = "resolved-config"
+            for entry in exact_candidates:
+                if entry is not winner:
+                    entry.state = "superseded-config-cache"
+                    entry.resolution_reason = f"superseded-by:{winner.version}@{winner.cache_source}"
     return entries
 
 
@@ -333,7 +391,9 @@ def summarize_plugins(entries: list[PluginEntry]) -> dict:
         "with_mcp": sum(entry.has_mcp for entry in entries),
         "invalid_manifests": sum(entry.manifest_error is not None for entry in entries),
         "enabled_by_config": sum(entry.enabled_by_config for entry in entries),
-        "cache_only": sum(not entry.enabled_by_config for entry in entries),
+        "installed_remote": sum(entry.installed_remote for entry in entries),
+        "resolved": sum(entry.resolved for entry in entries),
+        "cache_only": sum(entry.state == "cache-only" for entry in entries),
         "sources": dict(sorted(sources.items())),
     }
 
@@ -348,28 +408,235 @@ def find_git_root(path: Path) -> Path | None:
     return None
 
 
+def git_value(root: Path, *args: str) -> str:
+    try:
+        return subprocess.run(
+            ["git", "-C", str(root), *args],
+            capture_output=True,
+            text=True,
+            timeout=5,
+            check=False,
+        ).stdout.strip()
+    except (OSError, subprocess.TimeoutExpired):
+        return ""
+
+
 def git_provenance(path: Path) -> dict[str, object]:
     root = find_git_root(path)
     if root is None:
-        return {"kind": "local", "root": "", "commit": "", "dirty": None}
+        return {
+            "kind": "local",
+            "root": "",
+            "remote_url": "",
+            "branch": "",
+            "upstream": "",
+            "commit": "",
+            "tag": "",
+            "dirty": None,
+            "ahead": None,
+            "behind": None,
+        }
     try:
-        commit = subprocess.run(
-            ["git", "-C", str(root), "rev-parse", "HEAD"],
-            capture_output=True,
-            text=True,
-            timeout=5,
-            check=False,
-        ).stdout.strip()
-        status = subprocess.run(
-            ["git", "-C", str(root), "status", "--porcelain"],
-            capture_output=True,
-            text=True,
-            timeout=5,
-            check=False,
-        ).stdout.strip()
-        return {"kind": "git", "root": str(root), "commit": commit, "dirty": bool(status)}
+        commit = git_value(root, "rev-parse", "HEAD")
+        status = git_value(root, "status", "--porcelain")
+        branch = git_value(root, "branch", "--show-current")
+        upstream = git_value(root, "rev-parse", "--abbrev-ref", "@{upstream}")
+        counts = git_value(root, "rev-list", "--left-right", "--count", "@{upstream}...HEAD") if upstream else ""
+        behind = ahead = None
+        if counts:
+            parts = counts.split()
+            if len(parts) == 2 and all(part.isdigit() for part in parts):
+                behind, ahead = int(parts[0]), int(parts[1])
+        return {
+            "kind": "git",
+            "root": str(root),
+            "remote_url": git_value(root, "remote", "get-url", "origin"),
+            "branch": branch,
+            "upstream": upstream,
+            "commit": commit,
+            "tag": git_value(root, "describe", "--tags", "--exact-match", "HEAD"),
+            "dirty": bool(status),
+            "ahead": ahead,
+            "behind": behind,
+        }
     except (OSError, subprocess.TimeoutExpired):
         return {"kind": "git", "root": str(root), "commit": "", "dirty": None}
+
+
+def discover_license(path: Path, git_root: Path | None) -> dict[str, str]:
+    search_root = git_root or path
+    candidates = []
+    if search_root.exists():
+        candidates.extend(sorted(search_root.glob("LICENSE*")))
+        candidates.extend(sorted(search_root.glob("COPYING*")))
+    for candidate in candidates:
+        if candidate.is_file():
+            return {
+                "status": "present",
+                "file": str(candidate),
+                "sha256": sha256_file(candidate) or "",
+            }
+    return {"status": "not-declared", "file": "", "sha256": ""}
+
+
+def load_verification_registry() -> dict[str, dict[str, object]]:
+    path = CODEX_HOME / "harness" / "catalog" / "verification.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(read_text(path))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    records = payload.get("records", []) if isinstance(payload, dict) else []
+    result: dict[str, dict[str, object]] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            continue
+        for key in (record.get("real_path"), record.get("id")):
+            if key:
+                result[str(key)] = record
+    return result
+
+
+def distribution_source(name: str) -> tuple[str | None, Path | None]:
+    try:
+        distribution = importlib.metadata.distribution(name)
+    except importlib.metadata.PackageNotFoundError:
+        return None, None
+    source: Path | None = None
+    direct_url_text = distribution.read_text("direct_url.json")
+    if direct_url_text:
+        try:
+            url = json.loads(direct_url_text).get("url", "")
+            if str(url).startswith("file:"):
+                source = Path(urllib.parse.unquote(urllib.parse.urlparse(str(url)).path.lstrip("/")))
+        except json.JSONDecodeError:
+            pass
+    return distribution.version, source
+
+
+def graphiti_installed_version(source_root: Path) -> str | None:
+    site_packages = source_root / "mcp_server" / ".venv" / "Lib" / "site-packages"
+    for metadata_path in sorted(site_packages.glob("graphiti_core-*.dist-info/METADATA")):
+        try:
+            for line in read_text(metadata_path).splitlines():
+                if line.startswith("Version: "):
+                    return line.split(":", 1)[1].strip()
+        except OSError:
+            continue
+    return None
+
+
+def latest_stable_tag(source_root: Path) -> str | None:
+    tags = git_value(source_root, "tag", "--list", "v*").splitlines()
+    stable = [tag for tag in tags if re.fullmatch(r"v?\d+\.\d+\.\d+", tag.strip())]
+    return max(stable, key=version_sort_key) if stable else None
+
+
+def component_declared_version(source_root: Path) -> str | None:
+    version_path = source_root / "VERSION"
+    if version_path.exists():
+        return read_text(version_path).strip() or None
+    readme_path = source_root / "README.md"
+    if readme_path.exists():
+        match = re.search(r"Current project version:\s*`([^`]+)`", read_text(readme_path), re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+    return None
+
+
+def collect_components(generated_at: str) -> list[dict[str, object]]:
+    components: list[dict[str, object]] = []
+    verification_registry = load_verification_registry()
+    browser_version, browser_source = distribution_source("browser-harness")
+    if browser_version:
+        source = browser_source or Path("")
+        provenance = git_provenance(source) if browser_source else git_provenance(Path.cwd())
+        components.append(
+            {
+                "id": "browser-harness",
+                "declared_version": browser_version,
+                "installed_version": browser_version,
+                "available_version": latest_stable_tag(source) if browser_source else None,
+                "state": "installed",
+                "source_path": str(browser_source or ""),
+                "provenance": provenance,
+                "license": discover_license(source, find_git_root(source)) if browser_source else {"status": "unknown", "file": "", "sha256": ""},
+                "last_verified": generated_at,
+                "verification": verification_registry.get("component:browser-harness", {"status": "not-recorded", "tests": [], "last_verified": None}),
+                "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or browser_version},
+            }
+        )
+
+    graphiti_root = CODEX_HOME / "memory" / "graphiti" / "graphiti"
+    if graphiti_root.exists():
+        declared_version = None
+        pyproject = graphiti_root / "pyproject.toml"
+        if pyproject.exists():
+            try:
+                declared_version = str(tomllib.loads(read_text(pyproject)).get("project", {}).get("version") or "") or None
+            except Exception:  # noqa: BLE001
+                pass
+        provenance = git_provenance(graphiti_root)
+        installed_version = graphiti_installed_version(graphiti_root)
+        components.append(
+            {
+                "id": "graphiti-core",
+                "declared_version": declared_version,
+                "installed_version": installed_version,
+                "available_version": latest_stable_tag(graphiti_root),
+                "state": "drift" if declared_version and installed_version and declared_version != installed_version else "installed",
+                "source_path": str(graphiti_root),
+                "provenance": provenance,
+                "license": discover_license(graphiti_root, graphiti_root),
+                "last_verified": generated_at,
+                "verification": verification_registry.get("component:graphiti-core", {"status": "not-recorded", "tests": [], "last_verified": None}),
+                "update_policy": "pin-and-defer-while-provider-unhealthy",
+                "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or installed_version},
+            }
+        )
+
+    meta_root = CODEX_HOME / "harness" / "vendor" / "meta-harness"
+    if meta_root.exists():
+        version = component_declared_version(meta_root)
+        provenance = git_provenance(meta_root)
+        components.append(
+            {
+                "id": "meta-harness",
+                "declared_version": version,
+                "installed_version": version,
+                "available_version": latest_stable_tag(meta_root),
+                "state": "installed",
+                "source_path": str(meta_root),
+                "provenance": provenance,
+                "license": discover_license(meta_root, meta_root),
+                "last_verified": generated_at,
+                "verification": verification_registry.get("component:meta-harness", {"status": "not-recorded", "tests": [], "last_verified": None}),
+                "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or version},
+            }
+        )
+    ecc_root = CODEX_HOME / "harness" / "vendor" / "everything-claude-code"
+    if ecc_root.exists():
+        base_version = component_declared_version(ecc_root)
+        provenance = git_provenance(ecc_root)
+        components.append(
+            {
+                "id": "everything-claude-code-active-slice",
+                "declared_version": base_version,
+                "installed_version": "v2.1.0-frontmatter-compatible",
+                "available_version": latest_stable_tag(ecc_root),
+                "state": "targeted-local-patch",
+                "source_path": str(ecc_root),
+                "active_scope": ["agent-introspection-debugging", "codebase-onboarding", "context-budget"],
+                "provenance": provenance,
+                "license": discover_license(ecc_root, ecc_root),
+                "last_verified": generated_at,
+                "verification": verification_registry.get("component:everything-claude-code-active-slice", {"status": "not-recorded", "tests": [], "last_verified": None}),
+                "update_policy": "targeted-diff-only",
+                "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or base_version},
+            }
+        )
+    return components
 
 
 def build_lock(entries: list[SkillEntry], plugins: list[PluginEntry], generated_at: str) -> dict:
@@ -380,12 +647,19 @@ def build_lock(entries: list[SkillEntry], plugins: list[PluginEntry], generated_
 
     skills = []
     provenance_cache: dict[str, dict[str, object]] = {}
+    verification_registry = load_verification_registry()
     for real_path, refs in sorted(grouped.items(), key=lambda item: item[0].lower()):
         primary = refs[0]
         root = find_git_root(Path(real_path))
         provenance_key = str(root) if root else "local"
         if provenance_key not in provenance_cache:
             provenance_cache[provenance_key] = git_provenance(Path(real_path))
+        provenance = provenance_cache[provenance_key]
+        verification = verification_registry.get(real_path) or verification_registry.get(primary.skill_id) or {
+            "status": "not-recorded",
+            "tests": [],
+            "last_verified": None,
+        }
         skills.append(
             {
                 "id": primary.skill_id,
@@ -396,12 +670,22 @@ def build_lock(entries: list[SkillEntry], plugins: list[PluginEntry], generated_
                 "runtimes": sorted({ref.runtime for ref in refs}),
                 "paths": sorted({ref.path for ref in refs}),
                 "real_path": real_path,
-                "provenance": provenance_cache[provenance_key],
+                "provenance": provenance,
+                "license": discover_license(Path(real_path), root),
+                "local_patches": {
+                    "dirty": provenance.get("dirty"),
+                    "commits_ahead": provenance.get("ahead"),
+                },
+                "verification": verification,
+                "rollback": {
+                    "kind": "git-commit" if provenance.get("commit") else "content-hash",
+                    "ref": provenance.get("commit") or primary.content_sha256,
+                },
             }
         )
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": generated_at,
         "skills": skills,
         "plugins": [
@@ -411,12 +695,19 @@ def build_lock(entries: list[SkillEntry], plugins: list[PluginEntry], generated_
                 "version": entry.version,
                 "state": entry.state,
                 "enabled_by_config": entry.enabled_by_config,
+                "installed_remote": entry.installed_remote,
+                "remote_plugin_id": entry.remote_plugin_id,
+                "resolved": entry.resolved,
+                "resolution_reason": entry.resolution_reason,
                 "cache_source": entry.cache_source,
                 "manifest_sha256": entry.manifest_sha256,
                 "path": entry.path,
+                "last_verified": generated_at,
+                "rollback": {"kind": "manifest-hash", "ref": entry.manifest_sha256},
             }
             for entry in plugins
         ],
+        "components": collect_components(generated_at),
     }
 
 
@@ -426,6 +717,21 @@ def write_text_atomic(path: Path, text: str) -> None:
         handle.write(text)
         temp_path = Path(handle.name)
     temp_path.replace(path)
+
+
+def semantic_lock_payload(payload: dict) -> dict:
+    def strip_observation_times(value):
+        if isinstance(value, dict):
+            return {
+                key: strip_observation_times(item)
+                for key, item in value.items()
+                if key not in {"generated_at", "last_verified"}
+            }
+        if isinstance(value, list):
+            return [strip_observation_times(item) for item in value]
+        return value
+
+    return strip_observation_times(payload)
 
 
 def main() -> int:
@@ -448,10 +754,16 @@ def main() -> int:
         "enabled_plugin_ids": sorted(enabled_plugin_ids),
     }
     write_text_atomic(args.output, json.dumps(payload, ensure_ascii=False, indent=2))
-    write_text_atomic(
-        args.lock_output,
-        json.dumps(build_lock(entries, plugins, generated_at), ensure_ascii=False, indent=2),
-    )
+    lock_payload = build_lock(entries, plugins, generated_at)
+    if args.lock_output.exists():
+        try:
+            previous_payload = json.loads(read_text(args.lock_output))
+        except (OSError, json.JSONDecodeError):
+            previous_payload = None
+        if previous_payload is not None and semantic_lock_payload(previous_payload) != semantic_lock_payload(lock_payload):
+            previous_path = args.lock_output.with_name("harness.lock.previous.json")
+            write_text_atomic(previous_path, json.dumps(previous_payload, ensure_ascii=False, indent=2))
+    write_text_atomic(args.lock_output, json.dumps(lock_payload, ensure_ascii=False, indent=2))
     print(f"Wrote {args.output}")
     print(f"Wrote {args.lock_output}")
     return 0

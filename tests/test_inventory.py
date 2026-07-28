@@ -49,7 +49,37 @@ class InventoryTests(unittest.TestCase):
             self.assertTrue(entries[0].has_apps)
             self.assertFalse(entries[0].has_mcp)
             self.assertTrue(entries[0].enabled_by_config)
-            self.assertEqual(entries[0].state, "enabled-by-config")
+            self.assertTrue(entries[0].resolved)
+            self.assertEqual(entries[0].state, "resolved-config")
+
+    def test_remote_install_marker_supersedes_legacy_config_cache(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            cache = Path(temp_dir)
+            legacy = cache / "openai-curated" / "github" / "old"
+            remote = cache / "openai-curated-remote" / "github" / "0.1.8"
+            for package, version in ((legacy, "0.1.6"), (remote, "0.1.8")):
+                manifest_dir = package / ".codex-plugin"
+                manifest_dir.mkdir(parents=True)
+                (manifest_dir / "plugin.json").write_text(
+                    json.dumps({"name": "github", "version": version}), encoding="utf-8"
+                )
+            (remote.parent / ".codex-remote-plugin-install.json").write_text(
+                json.dumps({"schema_version": 1, "remote_plugin_id": "plugin_remote_github"}),
+                encoding="utf-8",
+            )
+            original_cache = inventory.CODEX_PLUGIN_CACHE
+            try:
+                inventory.CODEX_PLUGIN_CACHE = cache
+                entries = inventory.discover_plugin_entries({"github@openai-curated"})
+            finally:
+                inventory.CODEX_PLUGIN_CACHE = original_cache
+
+            resolved = next(item for item in entries if item.resolved)
+            legacy_entry = next(item for item in entries if item.cache_source == "openai-curated")
+            self.assertEqual(resolved.version, "0.1.8")
+            self.assertEqual(resolved.state, "resolved-remote-install")
+            self.assertEqual(resolved.remote_plugin_id, "plugin_remote_github")
+            self.assertEqual(legacy_entry.state, "superseded-config-cache")
 
     def test_build_lock_deduplicates_runtime_mirrors(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -76,8 +106,11 @@ class InventoryTests(unittest.TestCase):
                 for runtime in ("shared", "codex")
             ]
             lock = inventory.build_lock(entries, [], "2026-01-01T00:00:00Z")
+            self.assertEqual(lock["schema_version"], 2)
             self.assertEqual(len(lock["skills"]), 1)
             self.assertEqual(lock["skills"][0]["runtimes"], ["codex", "shared"])
+            self.assertTrue(lock["skills"][0]["rollback"]["ref"])
+            self.assertIn("verification", lock["skills"][0])
 
 
 if __name__ == "__main__":

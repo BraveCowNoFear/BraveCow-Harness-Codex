@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "max_failure_percent": 5,
+  "contracts": [
+    {
+      "skill_id": "example-skill",
+      "description_any": ["reports"],
+      "positive_patterns": ["example report"]
+    }
+  ],
+  "cases": [
+    {"prompt": "Create an example report", "expected": ["example-skill"]},
+    {"prompt": "Write a poem", "expected": []}
+  ]
+}

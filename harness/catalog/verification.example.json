@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "example-skill",
+      "status": "passed",
+      "tests": ["frontmatter", "trigger-contract", "smoke"],
+      "last_verified": "2026-01-01T00:00:00Z",
+      "rollback_note": "Restore the commit or content hash recorded in harness.lock.json"
+    }
+  ]
+}

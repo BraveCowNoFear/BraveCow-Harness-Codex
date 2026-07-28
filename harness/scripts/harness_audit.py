@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sqlite3
 import time
 from datetime import UTC, datetime
@@ -9,10 +10,18 @@ from pathlib import Path
 
 try:
     from .config_gate import check_config
+    from .lock_diff import diff_locks
+    from .memory_router import route_memory
     from .memory_search import update_index
+    from .memory_write_gate import validate_candidate
+    from .skill_contracts import evaluate_contracts
 except ImportError:  # direct script execution
     from config_gate import check_config
+    from lock_diff import diff_locks
+    from memory_router import route_memory
     from memory_search import update_index
+    from memory_write_gate import validate_candidate
+    from skill_contracts import evaluate_contracts
 
 try:
     import tomllib
@@ -28,6 +37,8 @@ AGENTS_DIR = CODEX_HOME / "agents"
 AUTOMATIONS_DIR = CODEX_HOME / "automations"
 INVENTORY_PATH = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
 LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
+PREVIOUS_LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.previous.json"
+CONTRACTS_PATH = CODEX_HOME / "harness" / "catalog" / "skill-contracts.json"
 VENDOR_DIR = CODEX_HOME / "harness" / "vendor"
 MEMORY_INDEX_PATH = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
 DEFAULT_OUTPUT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
@@ -103,6 +114,75 @@ def collect_memory_status() -> list[tuple[str, bool]]:
     return [(name, (MEMORY_DIR / name).exists()) for name in names]
 
 
+def collect_router_status() -> dict:
+    try:
+        result = route_memory(
+            "what changed before the browser lifecycle rule",
+            MEMORY_DIR,
+            MEMORY_INDEX_PATH,
+            limit=1,
+            max_chars=512,
+        )
+        return result.get("decision", {})
+    except (OSError, sqlite3.Error) as exc:
+        return {"resolved": "error", "diagnostic": str(exc)[:300]}
+
+
+def collect_write_gate_status() -> dict:
+    return validate_candidate(
+        {
+            "content": "A reusable audit finding with explicit source, scope, confidence, expiry, and conflicts.",
+            "reusable": True,
+            "source": "harness self-test",
+            "scope": "global",
+            "target": "LEARNINGS.md",
+            "confidence": 1.0,
+            "expires_at": None,
+            "conflicts": [],
+        }
+    )
+
+
+def lock_coverage(lock: dict) -> dict:
+    skills = lock.get("skills", [])
+    total = len(skills)
+    provenance_complete = sum(
+        bool(item.get("content_sha256"))
+        and bool(item.get("rollback", {}).get("ref"))
+        and bool(item.get("provenance", {}).get("kind"))
+        for item in skills
+    )
+    licenses_present = sum(item.get("license", {}).get("status") == "present" for item in skills)
+    verified = sum(item.get("verification", {}).get("status") == "passed" for item in skills)
+    return {
+        "total": total,
+        "provenance_complete": provenance_complete,
+        "provenance_percent": round(provenance_complete / total * 100, 1) if total else 100.0,
+        "licenses_present": licenses_present,
+        "verified": verified,
+    }
+
+
+def collect_skill_contract_status(inventory: dict) -> dict:
+    if not CONTRACTS_PATH.exists():
+        return {"passed": False, "diagnostic": "skill-contracts.json missing"}
+    try:
+        suite = json.loads(read_text(CONTRACTS_PATH))
+        return evaluate_contracts(inventory, suite)
+    except (OSError, json.JSONDecodeError, re.error) as exc:
+        return {"passed": False, "diagnostic": str(exc)[:300]}
+
+
+def collect_lock_diff_status(lock: dict) -> dict:
+    if not PREVIOUS_LOCK_PATH.exists():
+        return {"status": "not-enough-snapshots", "total_changes": None}
+    try:
+        before = json.loads(read_text(PREVIOUS_LOCK_PATH))
+        return {"status": "ready", **diff_locks(before, lock)}
+    except (OSError, json.JSONDecodeError) as exc:
+        return {"status": "error", "diagnostic": str(exc)[:300], "total_changes": None}
+
+
 def collect_agent_profiles() -> list[str]:
     if not AGENTS_DIR.exists():
         return []
@@ -155,6 +235,11 @@ def render_report() -> str:
     inventory = load_inventory()
     lock = load_lock()
     memory_index = collect_memory_index_status()
+    router_status = collect_router_status()
+    write_gate_status = collect_write_gate_status()
+    coverage = lock_coverage(lock)
+    contract_status = collect_skill_contract_status(inventory)
+    lock_diff_status = collect_lock_diff_status(lock)
     summary = inventory.get("summary", {})
     plugin_summary = inventory.get("plugin_summary", {})
     plugins = inventory.get("plugins", [])
@@ -208,6 +293,9 @@ def render_report() -> str:
             f"- Indexed Markdown files: `{memory_index.get('scanned', 0)}`",
             f"- Indexed sections: `{memory_index.get('total_chunks', 0)}`",
             f"- Incremental updates this run: `{memory_index.get('updated', 0)}`",
+            f"- Retrieval router result: `{router_status.get('resolved', 'unknown')}`",
+            f"- Retrieval degradation latency: `{router_status.get('latency_ms', 'unknown')} ms`",
+            f"- Durable-memory write gate: `{write_gate_status.get('decision', 'unknown')}`; writes performed: `{write_gate_status.get('write_performed', False)}`",
         ]
     )
 
@@ -238,12 +326,18 @@ def render_report() -> str:
             f"- Valid OpenClaw skills: `{valid_counts.get('openclaw', 0)}`",
             f"- Unique discoverable real paths: `{summary.get('unique_discoverable_real_paths', 0)}`",
             f"- Entries declaring a version: `{summary.get('declared_version_count', 0)}`",
+            f"- Trigger contract: `{contract_status.get('failed_cases', 'unknown')}/{contract_status.get('cases', 'unknown')} failed ({contract_status.get('failure_percent', 'unknown')}%)`; passed: `{contract_status.get('passed', False)}`",
             f"- Harness lock skills: `{len(lock.get('skills', []))}`",
             f"- Harness lock plugins: `{len(lock.get('plugins', []))}`",
+            f"- Harness lock components: `{len(lock.get('components', []))}`",
+            f"- Previous-lock drift snapshot: `{lock_diff_status.get('status', 'unknown')}`; changes: `{lock_diff_status.get('total_changes', 'unknown')}`",
+            f"- Provenance + rollback coverage: `{coverage.get('provenance_complete', 0)}/{coverage.get('total', 0)} ({coverage.get('provenance_percent', 0)}%)`",
+            f"- Skills with detected license files: `{coverage.get('licenses_present', 0)}/{coverage.get('total', 0)}`",
+            f"- Skills with recorded passing verification: `{coverage.get('verified', 0)}/{coverage.get('total', 0)}`",
             "",
             "## Codex Plugin Cache",
             "",
-            "Cached packages are inventory evidence, not proof that a plugin is currently enabled.",
+            "Remote install markers and exact config ids choose one resolved package per logical plugin. Other cache entries remain rollback evidence.",
             "",
             f"- Cached plugin packages: `{plugin_summary.get('packages', 0)}`",
             f"- Plugin-provided skills: `{plugin_summary.get('skills', 0)}`",
@@ -251,6 +345,8 @@ def render_report() -> str:
             f"- Packages with MCP content: `{plugin_summary.get('with_mcp', 0)}`",
             f"- Invalid plugin manifests: `{plugin_summary.get('invalid_manifests', 0)}`",
             f"- Enabled by config: `{plugin_summary.get('enabled_by_config', 0)}`",
+            f"- Installed through remote markers: `{plugin_summary.get('installed_remote', 0)}`",
+            f"- Resolved logical plugins: `{plugin_summary.get('resolved', 0)}`",
             f"- Cache-only packages: `{plugin_summary.get('cache_only', 0)}`",
         ]
     )
@@ -260,7 +356,15 @@ def render_report() -> str:
         lines.append(
             f"- `{item.get('name', 'unknown')}@{item.get('version', 'unknown')}` "
             f"from `{item.get('cache_source', 'unknown')}`; state: `{item.get('state', 'unknown')}`; "
-            f"skills: `{skill_ids}`"
+            f"resolved: `{item.get('resolved', False)}`; reason: `{item.get('resolution_reason', 'unknown')}`; skills: `{skill_ids}`"
+        )
+
+    lines.extend(["", "## Pinned Components", ""])
+    for component in lock.get("components", []):
+        lines.append(
+            f"- `{component.get('id', 'unknown')}`: declared `{component.get('declared_version', 'unknown')}`, "
+            f"installed `{component.get('installed_version', 'unknown')}`, state `{component.get('state', 'unknown')}`, "
+            f"rollback `{component.get('rollback', {}).get('ref', 'unknown')}`"
         )
 
     lines.extend(

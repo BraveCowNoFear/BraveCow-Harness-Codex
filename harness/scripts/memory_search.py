@@ -158,7 +158,14 @@ def update_index(memory_dir: Path = DEFAULT_MEMORY_DIR, db_path: Path = DEFAULT_
 
 
 def normalize_query(query: str) -> str:
-    tokens = re.findall(r"[\w\-\.\\/:]+", query, flags=re.UNICODE)
+    stopwords = {
+        "a", "an", "and", "are", "before", "after", "changed", "did", "do", "for", "how",
+        "in", "is", "of", "on", "or", "the", "to", "was", "what", "when", "where", "why",
+    }
+    raw_tokens = re.findall(r"[\w\-\.\\/:]+", query, flags=re.UNICODE)
+    tokens = [token for token in raw_tokens if token.lower() not in stopwords]
+    if not tokens:
+        tokens = raw_tokens
     if not tokens:
         return '""'
     return " OR ".join(f'"{token.replace(chr(34), chr(34) * 2)}"' for token in tokens[:12])

@@ -24,10 +24,28 @@ Generate the audit report:
 python "$env:USERPROFILE\.codex\harness\scripts\harness_audit.py"
 ```
 
-Search canonical Markdown memory without starting external services:
+Route a memory query and receive a bounded evidence pack without starting external services:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_search.py" "query"
+python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "query"
+```
+
+Validate a durable-memory candidate without writing it:
+
+```powershell
+Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
+```
+
+To enable deterministic trigger regression, copy `skill-contracts.example.json` to `skill-contracts.json`, replace the examples with machine-relevant skills, then run:
+
+```powershell
+python "$env:USERPROFILE\.codex\harness\scripts\skill_contracts.py"
+```
+
+Each semantic inventory change preserves one previous lock snapshot. Compare it read-only (for example from a weekly task):
+
+```powershell
+python "$env:USERPROFILE\.codex\harness\scripts\lock_diff.py"
 ```
 
 Validate that the installed Codex CLI can semantically parse the current config:
@@ -44,4 +62,4 @@ python "$env:USERPROFILE\.codex\harness\scripts\vendor_skill.py" --title "Exampl
 
 Review before activation. Do not auto-enable third-party code merely because it was cataloged.
 
-Plugin cache results show what Codex downloaded. `enabled-by-config` is reported separately from `cache-only`, and neither state authorizes automatic updates.
+Plugin resolution prefers an explicit remote-install marker, then an exact enabled config id. Superseded and cache-only packages remain visible as rollback evidence. No observed state authorizes automatic updates.

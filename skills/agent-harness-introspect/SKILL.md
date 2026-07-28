@@ -33,12 +33,13 @@ Use this skill when the user is asking about the agent's own setup rather than a
 3. Refresh the local inventory when the answer depends on current state:
    - Run `python %USERPROFILE%\.codex\harness\scripts\build_skill_inventory.py`
    - Run `python %USERPROFILE%\.codex\harness\scripts\harness_audit.py`
-   - Read `catalog\harness.lock.json` to distinguish discoverable skills, config-enabled plugins, and cache-only packages.
+   - Read `catalog\harness.lock.json` to distinguish resolved remote/config plugins, superseded caches, component drift, verification state, and rollback refs.
    - Treat the config runtime gate as authoritative when TOML syntax passes but the installed Codex CLI rejects a value.
 4. Retrieve memory through the cheapest sufficient path:
    - Read a known Markdown file directly when the path or section is known.
-   - Otherwise run `python %USERPROFILE%\.codex\harness\scripts\memory_search.py "<query>"`.
+   - Otherwise run `python %USERPROFILE%\.codex\harness\scripts\memory_router.py "<query>"` and keep the evidence pack bounded.
    - Use Graphiti only for temporal/entity relationship questions and only when it is already healthy; failure must fall back immediately to Markdown/FTS5.
+   - Run `memory_write_gate.py` on any proposed durable-memory candidate; it validates but never writes.
 5. When a user asks to import or migrate outside resources:
    - Prefer cataloging first
    - Store third-party items in `%USERPROFILE%\.codex\harness\vendor\`

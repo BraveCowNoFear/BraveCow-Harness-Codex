@@ -1,5 +1,7 @@
 # BraveCow Harness Codex
 
+Current release: `0.5.0`.
+
 BraveCow Harness Codex is a Windows-first control plane for Codex Desktop. It installs auditable skill inventory, provenance locks, safe update boundaries, local Markdown/FTS5 memory retrieval, agent profiles, and harness reports without copying private runtime state.
 
 For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
@@ -52,13 +54,21 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoJunctions
 
 ## Memory Retrieval
 
-Markdown remains canonical. Exact paths are read directly; ordinary search uses the local SQLite FTS5 index:
+Markdown remains canonical. The router reads known files directly, uses SQLite FTS5 for ordinary lookup, and only hands temporal/relationship questions to Graphiti when its existing ports are healthy:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_search.py" "browser Edge rule"
+python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "browser Edge rule"
 ```
 
-Graph/vector stores remain optional indexes for temporal or relationship queries. Their failure must not block ordinary work.
+Every result is a bounded evidence pack. Vector and graph stores are optional indexes; failure falls back locally without starting or repairing services. Proposed durable writes can be checked without mutation:
+
+```powershell
+Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
+```
+
+`harness.lock.json` schema v2 records resolved plugin packages, source/installed component versions, Git remote/branch/commit, license evidence, verification state, local patches, and rollback refs. Unknown fields remain explicit instead of being guessed.
+
+Optional `skill_contracts.py` runs machine-specific positive/negative routing prompts. The repository ships an example; active contracts are local state and are not silently enabled for another machine.
 
 ## Repository Safety Model
 
