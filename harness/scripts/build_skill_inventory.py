@@ -6,6 +6,7 @@ import importlib.metadata
 import json
 import os
 import re
+import shutil
 import subprocess
 import tempfile
 import urllib.parse
@@ -37,6 +38,7 @@ ROOTS = {
 
 DEFAULT_OUTPUT = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
 DEFAULT_LOCK_OUTPUT = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
+UPSTREAM_OBSERVATIONS_PATH = CODEX_HOME / "harness" / "catalog" / "upstream-observations.json"
 
 
 @dataclass
@@ -62,6 +64,7 @@ class PluginEntry:
     version: str
     path: str
     manifest_path: str
+    skills_path: str
     skill_ids: list[str]
     has_apps: bool
     has_mcp: bool
@@ -74,6 +77,20 @@ class PluginEntry:
     state: str
     manifest_sha256: str | None
     manifest_error: str | None = None
+
+
+@dataclass
+class PluginSkillEntry:
+    catalog_id: str
+    skill_id: str
+    plugin_id: str
+    plugin_name: str
+    plugin_version: str
+    path: str
+    name: str | None
+    description: str | None
+    declared_version: str | None
+    content_sha256: str | None
 
 
 def read_text(path: Path) -> str:
@@ -219,6 +236,7 @@ def discover_plugin_entries(enabled_plugin_ids: set[str] | None = None) -> list[
                 version=str(manifest.get("version") or fallback_version),
                 path=str(package_path),
                 manifest_path=str(manifest_path),
+                skills_path=str(skills_path),
                 skill_ids=skill_ids,
                 has_apps=bool(manifest.get("apps")),
                 has_mcp=bool(manifest.get("mcp")) or (package_path / "mcp").exists(),
@@ -264,6 +282,35 @@ def discover_plugin_entries(enabled_plugin_ids: set[str] | None = None) -> list[
                     entry.state = "superseded-config-cache"
                     entry.resolution_reason = f"superseded-by:{winner.version}@{winner.cache_source}"
     return entries
+
+
+def discover_resolved_plugin_skills(plugins: list[PluginEntry]) -> list[PluginSkillEntry]:
+    entries: list[PluginSkillEntry] = []
+    for plugin in plugins:
+        if not plugin.resolved:
+            continue
+        skills_path = Path(plugin.skills_path)
+        for skill_dir in iter_skill_dirs(skills_path):
+            skill_md = skill_dir / "SKILL.md"
+            if not skill_md.exists():
+                continue
+            fields = parse_frontmatter_fields(read_text(skill_md))
+            skill_id = skill_dir.name
+            entries.append(
+                PluginSkillEntry(
+                    catalog_id=f"{plugin.name}:{skill_id}",
+                    skill_id=skill_id,
+                    plugin_id=plugin.plugin_id,
+                    plugin_name=plugin.name,
+                    plugin_version=plugin.version,
+                    path=str(skill_dir),
+                    name=fields.get("name") or None,
+                    description=fields.get("description") or None,
+                    declared_version=fields.get("version") or None,
+                    content_sha256=sha256_file(skill_md),
+                )
+            )
+    return sorted(entries, key=lambda entry: entry.catalog_id.lower())
 
 
 def build_entries() -> list[SkillEntry]:
@@ -393,6 +440,7 @@ def summarize_plugins(entries: list[PluginEntry]) -> dict:
         "enabled_by_config": sum(entry.enabled_by_config for entry in entries),
         "installed_remote": sum(entry.installed_remote for entry in entries),
         "resolved": sum(entry.resolved for entry in entries),
+        "resolved_skill_entries": sum(len(entry.skill_ids) for entry in entries if entry.resolved),
         "cache_only": sum(entry.state == "cache-only" for entry in entries),
         "sources": dict(sorted(sources.items())),
     }
@@ -498,6 +546,115 @@ def load_verification_registry() -> dict[str, dict[str, object]]:
     return result
 
 
+def load_upstream_observations(path: Path = UPSTREAM_OBSERVATIONS_PATH) -> dict[str, dict[str, object]]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(read_text(path))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    records = payload.get("records", []) if isinstance(payload, dict) else []
+    return {
+        str(record["id"]): record
+        for record in records
+        if isinstance(record, dict) and record.get("id")
+    }
+
+
+def normalized_version(value: object) -> str:
+    text = str(value or "").strip()
+    match = re.search(r"\d+(?:\.\d+)+(?:[-.][0-9A-Za-z.-]+)?", text)
+    return match.group(0) if match else text
+
+
+def observed_component_fields(record: dict[str, object] | None) -> dict[str, object]:
+    record = record or {}
+    return {
+        "available_version": record.get("available_version"),
+        "upstream": {
+            key: record.get(key)
+            for key in ("source_url", "source_ref", "source_kind", "integrity", "license", "observed_at", "stability")
+            if record.get(key) is not None
+        },
+    }
+
+
+def codex_cli_component(generated_at: str, observations: dict[str, dict[str, object]], verification: dict[str, dict[str, object]]) -> dict[str, object] | None:
+    executable = shutil.which("codex")
+    if not executable:
+        return None
+    try:
+        probe = subprocess.run(
+            [executable, "--version"], capture_output=True, text=True, timeout=8, check=False
+        )
+        installed_version = normalized_version((probe.stdout or probe.stderr).strip())
+    except (OSError, subprocess.TimeoutExpired):
+        installed_version = "unknown"
+    record = observations.get("codex-cli", {})
+    available_version = normalized_version(record.get("available_version"))
+    executable_path = Path(executable)
+    return {
+        "id": "codex-cli",
+        "declared_version": installed_version,
+        "installed_version": installed_version,
+        **observed_component_fields(record),
+        "state": "drift" if available_version and installed_version != available_version else "installed",
+        "source_path": str(executable_path),
+        "provenance": {
+            "kind": "desktop-bundled-binary",
+            "path": str(executable_path),
+            "sha256": sha256_file(executable_path),
+        },
+        "license": {
+            "status": "declared-upstream" if record.get("license") else "unknown",
+            "spdx": record.get("license", ""),
+            "source_url": record.get("source_url", ""),
+        },
+        "last_verified": generated_at,
+        "verification": verification.get("component:codex-cli", {"status": "not-recorded", "tests": [], "last_verified": None}),
+        "update_policy": "desktop-owned; never replace the bundled binary in place",
+        "rollback": {"kind": "binary-hash", "ref": sha256_file(executable_path)},
+    }
+
+
+def openclaw_component(generated_at: str, observations: dict[str, dict[str, object]], verification: dict[str, dict[str, object]]) -> dict[str, object] | None:
+    executable = shutil.which("openclaw")
+    if not executable:
+        return None
+    executable_path = Path(executable)
+    package_root = executable_path.parent / "node_modules" / "openclaw"
+    package_json = package_root / "package.json"
+    installed_version = "unknown"
+    if package_json.exists():
+        try:
+            installed_version = normalized_version(json.loads(read_text(package_json)).get("version"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    record = observations.get("openclaw", {})
+    available_version = normalized_version(record.get("available_version"))
+    return {
+        "id": "openclaw",
+        "declared_version": installed_version,
+        "installed_version": installed_version,
+        **observed_component_fields(record),
+        "state": "drift" if available_version and installed_version != available_version else "installed",
+        "source_path": str(package_root if package_root.exists() else executable_path),
+        "provenance": {
+            "kind": "npm-package",
+            "path": str(package_root if package_root.exists() else executable_path),
+            "package_json_sha256": sha256_file(package_json) if package_json.exists() else None,
+        },
+        "license": discover_license(package_root, None) if package_root.exists() else {"status": "unknown", "file": "", "sha256": ""},
+        "last_verified": generated_at,
+        "verification": verification.get("component:openclaw", {"status": "not-recorded", "tests": [], "last_verified": None}),
+        "update_policy": "audit release and back up config before package migration",
+        "rollback": {
+            "kind": "npm-version",
+            "ref": installed_version,
+        },
+    }
+
+
 def distribution_source(name: str) -> tuple[str | None, Path | None]:
     try:
         distribution = importlib.metadata.distribution(name)
@@ -548,6 +705,13 @@ def component_declared_version(source_root: Path) -> str | None:
 def collect_components(generated_at: str) -> list[dict[str, object]]:
     components: list[dict[str, object]] = []
     verification_registry = load_verification_registry()
+    upstream_observations = load_upstream_observations()
+    for component in (
+        codex_cli_component(generated_at, upstream_observations, verification_registry),
+        openclaw_component(generated_at, upstream_observations, verification_registry),
+    ):
+        if component:
+            components.append(component)
     browser_version, browser_source = distribution_source("browser-harness")
     if browser_version:
         source = browser_source or Path("")
@@ -557,7 +721,8 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "id": "browser-harness",
                 "declared_version": browser_version,
                 "installed_version": browser_version,
-                "available_version": latest_stable_tag(source) if browser_source else None,
+                "available_version": upstream_observations.get("browser-harness", {}).get("available_version") or (latest_stable_tag(source) if browser_source else None),
+                "upstream": observed_component_fields(upstream_observations.get("browser-harness"))["upstream"],
                 "state": "installed",
                 "source_path": str(browser_source or ""),
                 "provenance": provenance,
@@ -584,7 +749,8 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "id": "graphiti-core",
                 "declared_version": declared_version,
                 "installed_version": installed_version,
-                "available_version": latest_stable_tag(graphiti_root),
+                "available_version": upstream_observations.get("graphiti-core", {}).get("available_version") or latest_stable_tag(graphiti_root),
+                "upstream": observed_component_fields(upstream_observations.get("graphiti-core"))["upstream"],
                 "state": "drift" if declared_version and installed_version and declared_version != installed_version else "installed",
                 "source_path": str(graphiti_root),
                 "provenance": provenance,
@@ -605,7 +771,8 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "id": "meta-harness",
                 "declared_version": version,
                 "installed_version": version,
-                "available_version": latest_stable_tag(meta_root),
+                "available_version": upstream_observations.get("meta-harness", {}).get("available_version") or latest_stable_tag(meta_root),
+                "upstream": observed_component_fields(upstream_observations.get("meta-harness"))["upstream"],
                 "state": "installed",
                 "source_path": str(meta_root),
                 "provenance": provenance,
@@ -624,7 +791,8 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "id": "everything-claude-code-active-slice",
                 "declared_version": base_version,
                 "installed_version": "v2.1.0-frontmatter-compatible",
-                "available_version": latest_stable_tag(ecc_root),
+                "available_version": upstream_observations.get("everything-claude-code-active-slice", {}).get("available_version") or latest_stable_tag(ecc_root),
+                "upstream": observed_component_fields(upstream_observations.get("everything-claude-code-active-slice"))["upstream"],
                 "state": "targeted-local-patch",
                 "source_path": str(ecc_root),
                 "active_scope": ["agent-introspection-debugging", "codebase-onboarding", "context-budget"],
@@ -743,6 +911,7 @@ def main() -> int:
     entries = build_entries()
     enabled_plugin_ids = load_enabled_plugin_ids()
     plugins = discover_plugin_entries(enabled_plugin_ids)
+    plugin_skills = discover_resolved_plugin_skills(plugins)
     generated_at = datetime.now(UTC).isoformat()
     payload = {
         "generated_at": generated_at,
@@ -751,6 +920,7 @@ def main() -> int:
         "plugin_summary": summarize_plugins(plugins),
         "entries": [asdict(entry) for entry in entries],
         "plugins": [asdict(entry) for entry in plugins],
+        "plugin_skills": [asdict(entry) for entry in plugin_skills],
         "enabled_plugin_ids": sorted(enabled_plugin_ids),
     }
     write_text_atomic(args.output, json.dumps(payload, ensure_ascii=False, indent=2))

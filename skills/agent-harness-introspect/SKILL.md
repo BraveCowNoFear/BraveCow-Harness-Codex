@@ -1,6 +1,6 @@
 ---
 name: agent-harness-introspect
-description: Audit or safely upgrade the local Codex/shared/OpenClaw harness, including skills, plugins, memory, automations, provenance, and runtime drift.
+description: Safely audit or upgrade local Codex, shared, and OpenClaw harness state.
 ---
 
 # Agent Harness Introspect

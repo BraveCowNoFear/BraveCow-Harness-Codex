@@ -4,7 +4,7 @@ This directory is the local control plane for Codex harness maintenance.
 
 ## Layout
 
-- `catalog/`: inventory, `harness.lock.json`, plugin enabled/cache-only states, and intake metadata.
+- `catalog/`: inventory, `harness.lock.json`, resolved namespaced plugin skills, upstream observations, and intake metadata.
 - `index/`: disposable local SQLite FTS5 indexes; Markdown remains canonical.
 - `reports/`: point-in-time audit reports.
 - `scripts/`: local audit and maintenance scripts.
@@ -63,3 +63,11 @@ python "$env:USERPROFILE\.codex\harness\scripts\vendor_skill.py" --title "Exampl
 Review before activation. Do not auto-enable third-party code merely because it was cataloged.
 
 Plugin resolution prefers an explicit remote-install marker, then an exact enabled config id. Superseded and cache-only packages remain visible as rollback evidence. No observed state authorizes automatic updates.
+
+For a monthly audit, copy `upstream-observations.example.json` to the active catalog as `upstream-observations.json` and populate it only from official first-party sources. The inventory compares those observations with installed versions but never executes an upgrade.
+
+Measure the actual startup prompt without editing `config.toml`:
+
+```powershell
+python "$env:USERPROFILE\.codex\harness\scripts\measure_prompt_baseline.py"
+```

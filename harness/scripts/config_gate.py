@@ -109,6 +109,29 @@ def check_config(config_path: Path = DEFAULT_CONFIG, run_runtime: bool = True) -
         return result
 
     diagnostic = concise_diagnostic((probe.stderr or "") + "\n" + (probe.stdout or ""))
+    if parsed.get("service_tier") == "priority" and "unknown variant `priority`" in diagnostic.lower():
+        try:
+            compatibility_probe = subprocess.run(
+                [codex, "-c", 'service_tier="fast"', "features", "list"],
+                capture_output=True,
+                text=True,
+                timeout=12,
+                env=env,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            compatibility_probe = None
+        if compatibility_probe is not None and compatibility_probe.returncode == 0:
+            result.update(
+                runtime="pass-legacy-fast-alias",
+                overall="pass",
+                compatibility_service_tier="fast",
+                diagnostic=(
+                    "bundled CLI schema lags the current official config schema; "
+                    "remaining config validated with legacy service_tier=fast alias"
+                ),
+            )
+            return result
     status = "runtime-schema-mismatch" if "unknown variant" in diagnostic.lower() else "runtime-fail"
     result.update(runtime=status, overall="fail", diagnostic=diagnostic)
     return result

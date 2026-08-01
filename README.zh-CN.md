@@ -1,6 +1,6 @@
 # BraveCow Harness Codex
 
-当前版本：`0.5.0`。
+当前版本：`0.6.0`。
 
 BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先控制层：它提供 Skill/插件启用态盘点、来源锁、安全更新边界、Markdown + SQLite FTS5 本地记忆检索、agent profiles 和审计报告。
 
@@ -75,6 +75,17 @@ Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\m
 `harness.lock.json` v2 会记录插件解析结果、组件源码/安装版本、Git 远端/分支/提交、许可证证据、验证状态、本地补丁和回滚点；无法确认的字段会明确标为未知，不做猜测。
 
 可选的 `skill_contracts.py` 会运行本机专属的正/负触发提示回归。仓库只附示例，不会把一台机器的激活契约静默套到另一台机器。
+
+0.6 版把已解析的插件 Skill 按“插件名:Skill名”纳入 inventory 和触发契约，记录运行时组件的官方上游观测，并测量真实 Codex 启动 prompt。配置门禁也能精确识别旧版桌面 CLI 对 `priority` 的 schema 落后，用兼容别名 `fast` 验证其余配置，不修改用户配置。
+
+月度审计可以从仓库示例生成 `~/.codex/harness/catalog/upstream-observations.json`。每条观测必须指向官方仓库、release、tag、commit 或包完整性值；观测只是证据，绝不会授权自动升级。
+
+可用以下命令保存脱敏、可复现的运行时快照并测量 prompt 成本：
+
+```powershell
+python .\harness\scripts\export_runtime_snapshot.py --output .\reports\runtime-snapshot
+python .\harness\scripts\measure_prompt_baseline.py --output "$env:USERPROFILE\.codex\harness\catalog\prompt-baseline.json"
+```
 
 ## 给朋友的最短用法
 

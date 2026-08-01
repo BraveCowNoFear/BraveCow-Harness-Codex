@@ -21,6 +21,10 @@ def evaluate_contracts(inventory: dict, suite: dict) -> dict:
     for entry in inventory.get("entries", []):
         if entry.get("has_skill_md") and entry.get("skill_id") not in descriptions:
             descriptions[str(entry["skill_id"])] = str(entry.get("description") or "")
+    for entry in inventory.get("plugin_skills", []):
+        catalog_id = str(entry.get("catalog_id") or "")
+        if catalog_id and catalog_id not in descriptions:
+            descriptions[catalog_id] = str(entry.get("description") or "")
 
     contracts = suite.get("contracts", [])
     missing_skills: list[str] = []

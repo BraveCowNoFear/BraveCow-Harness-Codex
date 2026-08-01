@@ -55,6 +55,7 @@ try {
         (Join-Path $CodexHome "harness\catalog\harness.lock.json"),
         (Join-Path $CodexHome "harness\catalog\skill-contracts.example.json"),
         (Join-Path $CodexHome "harness\catalog\verification.example.json"),
+        (Join-Path $CodexHome "harness\catalog\upstream-observations.example.json"),
         (Join-Path $CodexHome "harness\scripts\memory_router.py"),
         (Join-Path $CodexHome "harness\scripts\lock_diff.py"),
         (Join-Path $CodexHome "harness\scripts\memory_write_gate.py"),

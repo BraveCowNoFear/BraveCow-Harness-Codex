@@ -11,7 +11,13 @@ class SkillContractTests(unittest.TestCase):
             "entries": [
                 {"skill_id": "alpha", "has_skill_md": True, "description": "Handles alpha reports."},
                 {"skill_id": "beta", "has_skill_md": True, "description": "Handles beta exports."},
-            ]
+            ],
+            "plugin_skills": [
+                {
+                    "catalog_id": "plugin:gamma",
+                    "description": "Handles gamma automation.",
+                }
+            ],
         }
         suite = {
             "schema_version": 1,
@@ -19,10 +25,16 @@ class SkillContractTests(unittest.TestCase):
             "contracts": [
                 {"skill_id": "alpha", "description_any": ["report"], "positive_patterns": ["alpha report"]},
                 {"skill_id": "beta", "description_any": ["export"], "positive_patterns": ["beta export"]},
+                {
+                    "skill_id": "plugin:gamma",
+                    "description_any": ["automation"],
+                    "positive_patterns": ["gamma automation"],
+                },
             ],
             "cases": [
                 {"prompt": "Make an alpha report", "expected": ["alpha"]},
                 {"prompt": "Write a poem", "expected": []},
+                {"prompt": "Run gamma automation", "expected": ["plugin:gamma"]},
             ],
         }
         result = evaluate_contracts(inventory, suite)

@@ -202,6 +202,7 @@ Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\import-backlog.example.js
 Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\external-round1.example.md") (Join-Path $HarnessHome "catalog\external-round1.example.md") ([bool]$UpdateRuntime) "runtime"
 Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\verification.example.json") (Join-Path $HarnessHome "catalog\verification.example.json") ([bool]$UpdateRuntime) "runtime"
 Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\skill-contracts.example.json") (Join-Path $HarnessHome "catalog\skill-contracts.example.json") ([bool]$UpdateRuntime) "runtime"
+Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\upstream-observations.example.json") (Join-Path $HarnessHome "catalog\upstream-observations.example.json") ([bool]$UpdateRuntime) "runtime"
 
 $sharedSkillSource = Join-Path $RepoRoot "skills\agent-harness-introspect"
 $sharedSkillTarget = Join-Path $SharedSkillsHome "agent-harness-introspect"

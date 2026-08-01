@@ -120,12 +120,19 @@ def export_snapshot(
             "audit_sha256": sha256_file(audit_path),
         },
     }
-    write_json(output_dir / "snapshot-manifest.json", sanitize_value(manifest, home))
+    safe_manifest = sanitize_value(manifest, home)
+    write_json(output_dir / "snapshot-manifest.json", safe_manifest)
 
-    snapshot_files = sorted(path for path in output_dir.iterdir() if path.is_file())
+    snapshot_files = sorted(
+        path for path in output_dir.iterdir() if path.is_file() and path.name != "checksums.json"
+    )
     checksums = {path.name: sha256_file(path) for path in snapshot_files}
     write_json(output_dir / "checksums.json", checksums)
-    return {"output_dir": str(output_dir), "files": sorted(checksums), "manifest": manifest}
+    return {
+        "output_dir": sanitize_text(str(output_dir), home),
+        "files": sorted([*checksums, "checksums.json"]),
+        "manifest": safe_manifest,
+    }
 
 
 def main() -> int:

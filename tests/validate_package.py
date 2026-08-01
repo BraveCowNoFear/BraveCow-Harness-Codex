@@ -26,6 +26,7 @@ REQUIRED = [
     "harness/scripts/measure_prompt_baseline.py",
     "harness/catalog/skill-contracts.example.json",
     "harness/catalog/verification.example.json",
+    "harness/catalog/upstream-observations.example.json",
     "harness/scripts/vendor_skill.py",
     "skills/agent-harness-introspect/SKILL.md",
     "templates/AGENTS.snippet.md",

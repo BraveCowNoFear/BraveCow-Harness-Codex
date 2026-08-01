@@ -1,0 +1,3250 @@
+{
+  "generated_at": "2026-08-01T10:03:42.423202+00:00",
+  "roots": {
+    "shared": "%USERPROFILE%\\.agents\\skills",
+    "codex": "%USERPROFILE%\\.codex\\skills",
+    "openclaw": "%USERPROFILE%\\.openclaw\\skills",
+    "plugin_cache": "%USERPROFILE%\\.codex\\plugins\\cache"
+  },
+  "summary": {
+    "counts": {
+      "shared": 18,
+      "codex": 50,
+      "openclaw": 25
+    },
+    "valid_counts": {
+      "shared": 18,
+      "codex": 47,
+      "openclaw": 25
+    },
+    "unique_discoverable_real_paths": 54,
+    "declared_version_count": 8,
+    "missing_shared_links": {},
+    "shared_mirrors": {
+      "agent-harness-introspect": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": false
+          }
+        ]
+      },
+      "agent-introspection-debugging": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          }
+        ]
+      },
+      "bilibili-subtitle": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": false
+          }
+        ]
+      },
+      "bilibili-video-download": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": false
+          }
+        ]
+      },
+      "browser-harness": {
+        "shared_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          }
+        ]
+      },
+      "codebase-onboarding": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          }
+        ]
+      },
+      "context-budget": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          }
+        ]
+      },
+      "find-skills": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": false
+          }
+        ]
+      },
+      "guizang-ppt-skill": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": false
+          }
+        ]
+      },
+      "harness": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          }
+        ]
+      },
+      "local-qwen-tts": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": false
+          }
+        ]
+      },
+      "nextjs-app-router-patterns": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": false
+          }
+        ]
+      },
+      "remotion-best-practices": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": false
+          }
+        ]
+      },
+      "shadcn": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": false
+          }
+        ]
+      },
+      "tailwind-design-system": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": false
+          }
+        ]
+      },
+      "text-to-speech": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": false
+          }
+        ]
+      },
+      "vercel-react-best-practices": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": false
+          }
+        ]
+      },
+      "web-design-engineer": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": false
+          }
+        ]
+      }
+    },
+    "shadowed_shared_skills": {}
+  },
+  "plugin_summary": {
+    "packages": 24,
+    "skills": 89,
+    "with_apps": 14,
+    "with_mcp": 1,
+    "invalid_manifests": 0,
+    "enabled_by_config": 14,
+    "installed_remote": 8,
+    "resolved": 19,
+    "resolved_skill_entries": 66,
+    "cache_only": 2,
+    "sources": {
+      "brave-cow-windows-tools": 1,
+      "openai-bundled": 5,
+      "openai-curated": 5,
+      "openai-curated-remote": 8,
+      "openai-primary-runtime": 5
+    }
+  },
+  "entries": [
+    {
+      "runtime": "shared",
+      "skill_id": "agent-harness-introspect",
+      "path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "agent-harness-introspect",
+      "description": "Safely audit or upgrade local Codex, shared, and OpenClaw harness state.",
+      "declared_version": null,
+      "content_sha256": "2ecb036b3ebf562c35ecad2de641573cd0ca4fc8be30aac4a8aea0f98c6e382e",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "agent-introspection-debugging",
+      "path": "%USERPROFILE%\\.agents\\skills\\agent-introspection-debugging",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging"
+      ],
+      "has_skill_md": true,
+      "name": "agent-introspection-debugging",
+      "description": "Structured self-debugging workflow for AI agent failures using capture, diagnosis, contained recovery, and introspection reports.",
+      "declared_version": null,
+      "content_sha256": "b0aaed9d0bc3b5661247fcef06ec88348eec64b05c0272dd5e38faab38c85b4f",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "bilibili-subtitle",
+      "path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "bilibili-subtitle",
+      "description": "从 Bilibili 视频提取字幕、转录无字幕视频、生成结构化摘要。触发条件：Bilibili URL (bilibili.com)、BV ID (BV1xxx)、或\"提取B站字幕\"等请求。",
+      "declared_version": null,
+      "content_sha256": "2c91031e75495ecc5badd6f1da6e84bbc59ebad19a3e0496f34e63da98fa8507",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "bilibili-video-download",
+      "path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "bilibili-video-download",
+      "description": "Execute end-to-end Bilibili downloads with yutto. Use this whenever the user wants you to actually download a Bilibili 投稿视频、番剧、课程、收藏夹、稍后再看、合集、列表 or audio for them, or wants you to install/configure yutto and complete the download instead of merely explaining commands. This skill should verify installation and FFmpeg, check auth status, collect missing required inputs such as the link and download directory, then run the download.",
+      "declared_version": null,
+      "content_sha256": "05e940a9f0d91ff14b6335fe34341a319ae6cd99db0dc6e094b206a12d146896",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "browser-harness",
+      "path": "%USERPROFILE%\\.agents\\skills\\browser-harness",
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\Documents\\Playground\\browser-harness"
+      ],
+      "has_skill_md": true,
+      "name": "browser-harness",
+      "description": "Always use browser-harness for any web interaction: automation, scraping, testing, or site/app work.",
+      "declared_version": null,
+      "content_sha256": "4cbf53edc1aa424f143cc4b44fedb838a77c1e2cf97e10236a762639c4c8a139",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "codebase-onboarding",
+      "path": "%USERPROFILE%\\.agents\\skills\\codebase-onboarding",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding"
+      ],
+      "has_skill_md": true,
+      "name": "codebase-onboarding",
+      "description": "Analyze an unfamiliar codebase and generate a structured onboarding guide with architecture map, key entry points, conventions, and a starter CLAUDE.md. Use when joining a new project or setting up Claude Code for the first time in a repo.",
+      "declared_version": null,
+      "content_sha256": "92f9c1b0d4fa8cb7ee7bcd52ee310bf2756f8755848cdb7c03e938cae6e41e65",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "context-budget",
+      "path": "%USERPROFILE%\\.agents\\skills\\context-budget",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget"
+      ],
+      "has_skill_md": true,
+      "name": "context-budget",
+      "description": "Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations.",
+      "declared_version": null,
+      "content_sha256": "1ae2a1758603130528fcbd8fd952a5f50b893c6e7bd3f5c5b473b99c9f118980",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "find-skills",
+      "path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "find-skills",
+      "description": "Discover reusable skills across installed local/shared skills, OpenSpace local or cloud registries, and the public skills ecosystem. Use when the user asks whether a skill exists, wants to extend capabilities, compare options, avoid duplicate installs, or install a new skill for a domain or workflow.",
+      "declared_version": null,
+      "content_sha256": "60e8ebc0ea80521ab34106934eb83572caf1843b23cb1846bce2321dc3c4047d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "guizang-ppt-skill",
+      "path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "guizang-ppt-skill",
+      "description": "Create a single-file horizontal Web PPT in magazine or Swiss style. Use for visually polished HTML slide decks, not ordinary PowerPoint files.",
+      "declared_version": "2.1.0-local-router",
+      "content_sha256": "2a687104f3fb2f7eccd406e86343d3d1e47b07b426fedb14b8a162363a7a0e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "harness",
+      "path": "%USERPROFILE%\\.agents\\skills\\harness",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness"
+      ],
+      "has_skill_md": true,
+      "name": "harness",
+      "description": "Design portable, repo-local agent harnesses with reusable skills, team specs, and deterministic handoff artifacts.",
+      "declared_version": null,
+      "content_sha256": "a04b344d9e59521f8c465ae62c2607e21418c38ebd84120f6a0dba41297c37bc",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "local-qwen-tts",
+      "path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "local-qwen-tts",
+      "description": "Generate publish-grade Chinese video voiceover with the local Qwen3-TTS runtime. Use when Codex needs Bilibili/tech-explainer narration, Chinese dubbing, a single master-track voiceover, voice QA, or to run/diagnose the local Qwen TTS path for video-maker projects. Prefer this over cloud ElevenLabs text-to-speech for Chinese video publishing.",
+      "declared_version": null,
+      "content_sha256": "8ad3cf2a203282b71a08c402607f6f67ff82e97efbbe7fcd9f48fc5444777a92",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "nextjs-app-router-patterns",
+      "path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "nextjs-app-router-patterns",
+      "description": "Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Server Components.",
+      "declared_version": null,
+      "content_sha256": "765c3658be4b573b9a4e79fada3a45227d836146737a4e06b4c9871891afe177",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "remotion-best-practices",
+      "path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "remotion-best-practices",
+      "description": "Best practices for Remotion - Video creation in React",
+      "declared_version": null,
+      "content_sha256": "2461d2bcaf838175d5f54167b6a894a294a5c3541cadaed53fd77e07554513ba",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "shadcn",
+      "path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "shadcn",
+      "description": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\".",
+      "declared_version": null,
+      "content_sha256": "4f3ab41955c9286633bb216a2ac346cadab28a15893427939360da67bf9eaa78",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "tailwind-design-system",
+      "path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "tailwind-design-system",
+      "description": "Build scalable design systems with Tailwind CSS v4, design tokens, component libraries, and responsive patterns. Use when creating component libraries, implementing design systems, or standardizing UI patterns.",
+      "declared_version": null,
+      "content_sha256": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "text-to-speech",
+      "path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "text-to-speech",
+      "description": "Convert text to speech using ElevenLabs voice AI. Use when generating audio from text, creating voiceovers, building voice apps, or synthesizing speech in 70+ languages.",
+      "declared_version": null,
+      "content_sha256": "b153df513ce9d8badb233cb038c6e4ed2d61a26eb58c91b611f43ca8ca6eb77c",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "vercel-react-best-practices",
+      "path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+      "declared_version": null,
+      "content_sha256": "2a54be6e7ddfabf73a53fb1d81b60f3f324ce8b3c5421a4f88b99a9310a18e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "shared",
+      "skill_id": "web-design-engineer",
+      "path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "web-design-engineer",
+      "description": "Implement or review polished visual Web interfaces with HTML/CSS/JavaScript/React, including pages, dashboards, prototypes, animations, slide decks, and data visualization. Do not use for back-end, CLI, browser automation, Playwright maintenance, or non-visual code.",
+      "declared_version": null,
+      "content_sha256": "1cc3b02f7f8abc0faf54b8e602e66c095ddb5f52633a8f6f0c01fd078f3bee3d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": ".system",
+      "path": "%USERPROFILE%\\.codex\\skills\\.system",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\.system",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": false,
+      "name": null,
+      "description": null,
+      "declared_version": null,
+      "content_sha256": null,
+      "state": "container-only"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "agent-harness-introspect",
+      "path": "%USERPROFILE%\\.codex\\skills\\agent-harness-introspect",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect"
+      ],
+      "has_skill_md": true,
+      "name": "agent-harness-introspect",
+      "description": "Safely audit or upgrade local Codex, shared, and OpenClaw harness state.",
+      "declared_version": null,
+      "content_sha256": "2ecb036b3ebf562c35ecad2de641573cd0ca4fc8be30aac4a8aea0f98c6e382e",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "agent-introspection-debugging",
+      "path": "%USERPROFILE%\\.codex\\skills\\agent-introspection-debugging",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging"
+      ],
+      "has_skill_md": true,
+      "name": "agent-introspection-debugging",
+      "description": "Structured self-debugging workflow for AI agent failures using capture, diagnosis, contained recovery, and introspection reports.",
+      "declared_version": null,
+      "content_sha256": "b0aaed9d0bc3b5661247fcef06ec88348eec64b05c0272dd5e38faab38c85b4f",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "bilibili-subtitle",
+      "path": "%USERPROFILE%\\.codex\\skills\\bilibili-subtitle",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle"
+      ],
+      "has_skill_md": true,
+      "name": "bilibili-subtitle",
+      "description": "从 Bilibili 视频提取字幕、转录无字幕视频、生成结构化摘要。触发条件：Bilibili URL (bilibili.com)、BV ID (BV1xxx)、或\"提取B站字幕\"等请求。",
+      "declared_version": null,
+      "content_sha256": "2c91031e75495ecc5badd6f1da6e84bbc59ebad19a3e0496f34e63da98fa8507",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "bilibili-summary-codex",
+      "path": "%USERPROFILE%\\.codex\\skills\\bilibili-summary-codex",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\bilibili-summary-codex",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "bilibili-summary-codex",
+      "description": "Compatibility router for the legacy Bilibili summary workflow. Use only when the user explicitly names this skill; ordinary Bilibili URLs, BV ids, subtitles, transcripts, and summaries belong to bilibili-subtitle.",
+      "declared_version": null,
+      "content_sha256": "1e957f55b8e152cef4c893c0935d3592b2f83a564bb2e7e881ba6cc425297327",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "bilibili-video-download",
+      "path": "%USERPROFILE%\\.codex\\skills\\bilibili-video-download",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-video-download"
+      ],
+      "has_skill_md": true,
+      "name": "bilibili-video-download",
+      "description": "Execute end-to-end Bilibili downloads with yutto. Use this whenever the user wants you to actually download a Bilibili 投稿视频、番剧、课程、收藏夹、稍后再看、合集、列表 or audio for them, or wants you to install/configure yutto and complete the download instead of merely explaining commands. This skill should verify installation and FFmpeg, check auth status, collect missing required inputs such as the link and download directory, then run the download.",
+      "declared_version": null,
+      "content_sha256": "05e940a9f0d91ff14b6335fe34341a319ae6cd99db0dc6e094b206a12d146896",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "browser-harness",
+      "path": "%USERPROFILE%\\.codex\\skills\\browser-harness",
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\Documents\\Playground\\browser-harness"
+      ],
+      "has_skill_md": true,
+      "name": "browser-harness",
+      "description": "Always use browser-harness for any web interaction: automation, scraping, testing, or site/app work.",
+      "declared_version": null,
+      "content_sha256": "4cbf53edc1aa424f143cc4b44fedb838a77c1e2cf97e10236a762639c4c8a139",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "claude-to-im",
+      "path": "%USERPROFILE%\\.codex\\skills\\claude-to-im",
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\claude-to-im-plus",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\Documents\\Playground\\claude-to-im-plus"
+      ],
+      "has_skill_md": true,
+      "name": "claude-to-im",
+      "description": "Bridge the current Claude Code or Codex session to Telegram, Discord, Feishu/Lark, QQ, WeChat, or DingTalk. Use to configure, start, stop, or diagnose the claude-to-im bridge and continue the session from a phone.",
+      "declared_version": null,
+      "content_sha256": "12f066c584740138318aa9ce0208e9b2e16409b889304152adc9451437339469",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "cli-creator",
+      "path": "%USERPROFILE%\\.codex\\skills\\cli-creator",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\cli-creator",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "cli-creator",
+      "description": "Build a composable CLI for Codex from API docs, an OpenAPI spec, existing curl examples, an SDK, a web app, an admin tool, or a local script. Use when the user wants Codex to create a command-line tool that can run from any repo, expose composable read/write commands, return stable JSON, manage auth, and pair with a companion skill.",
+      "declared_version": null,
+      "content_sha256": "cadfb50f883f1214654875b00c03096449ed8c365afd9bcae26d66789c28cf9e",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "codebase-onboarding",
+      "path": "%USERPROFILE%\\.codex\\skills\\codebase-onboarding",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding"
+      ],
+      "has_skill_md": true,
+      "name": "codebase-onboarding",
+      "description": "Analyze an unfamiliar codebase and generate a structured onboarding guide with architecture map, key entry points, conventions, and a starter CLAUDE.md. Use when joining a new project or setting up Claude Code for the first time in a repo.",
+      "declared_version": null,
+      "content_sha256": "92f9c1b0d4fa8cb7ee7bcd52ee310bf2756f8755848cdb7c03e938cae6e41e65",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "codex-primary-runtime",
+      "path": "%USERPROFILE%\\.codex\\skills\\codex-primary-runtime",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\codex-primary-runtime",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": false,
+      "name": null,
+      "description": null,
+      "declared_version": null,
+      "content_sha256": null,
+      "state": "container-only"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "company-values",
+      "path": "%USERPROFILE%\\.codex\\skills\\company-values",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\company-values",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "company-values",
+      "description": "Help define company values and culture for a minimalist business. Use when someone is setting up their company culture, preparing to hire, or wanting to codify what their company stands for.",
+      "declared_version": null,
+      "content_sha256": "770f712cf6387e3a87806221b393780837ff409cf938428d6b332bd748c2aaa2",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "context-budget",
+      "path": "%USERPROFILE%\\.codex\\skills\\context-budget",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget"
+      ],
+      "has_skill_md": true,
+      "name": "context-budget",
+      "description": "Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations.",
+      "declared_version": null,
+      "content_sha256": "1ae2a1758603130528fcbd8fd952a5f50b893c6e7bd3f5c5b473b99c9f118980",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "deep-research",
+      "path": "%USERPROFILE%\\.codex\\skills\\deep-research",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\deep-research",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "deep-research",
+      "description": "多 Agent 深度调研编排：将系统性网页/资料研究、竞品行业分析或批量证据任务拆成并行子目标，聚合成带来源的成品报告。用户提及深度调研、Deep/Wide Research 或多 Agent 并行调研时使用。",
+      "declared_version": null,
+      "content_sha256": "ec0e9bba16977410a7a8e3883c0d106643cb5307b71e5c3df4ca27f546cf633c",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "find-community",
+      "path": "%USERPROFILE%\\.codex\\skills\\find-community",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\find-community",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "find-community",
+      "description": "Help identify and evaluate communities to build a minimalist business around. Use when someone is looking for a business idea, trying to find their community, or wondering where to start as an entrepreneur.",
+      "declared_version": null,
+      "content_sha256": "ffb75afa28eef08dabf257878d2c55929dbd18fc0a9f0c020784b60f7703345d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "find-skills",
+      "path": "%USERPROFILE%\\.codex\\skills\\find-skills",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\find-skills"
+      ],
+      "has_skill_md": true,
+      "name": "find-skills",
+      "description": "Discover reusable skills across installed local/shared skills, OpenSpace local or cloud registries, and the public skills ecosystem. Use when the user asks whether a skill exists, wants to extend capabilities, compare options, avoid duplicate installs, or install a new skill for a domain or workflow.",
+      "declared_version": null,
+      "content_sha256": "60e8ebc0ea80521ab34106934eb83572caf1843b23cb1846bce2321dc3c4047d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "first-customers",
+      "path": "%USERPROFILE%\\.codex\\skills\\first-customers",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\first-customers",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "first-customers",
+      "description": "Create a strategy for selling to your first 100 customers using the minimalist entrepreneur playbook. Use when someone has a product and needs to find customers, or is struggling with early sales.",
+      "declared_version": null,
+      "content_sha256": "bef3c01245a6fcd0ce82888f664738d445968f0eea1dab0fdb813cc82dbee346",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "grow-sustainably",
+      "path": "%USERPROFILE%\\.codex\\skills\\grow-sustainably",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\grow-sustainably",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "grow-sustainably",
+      "description": "Evaluate business decisions through the lens of sustainable, profitable growth. Use when someone is making decisions about spending, hiring, fundraising, or scaling their business.",
+      "declared_version": null,
+      "content_sha256": "aee1f31c1128d1342fa16cfaebcd1eef85df3b87be78f09e7869a37543827e55",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "guizang-ppt-skill",
+      "path": "%USERPROFILE%\\.codex\\skills\\guizang-ppt-skill",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill"
+      ],
+      "has_skill_md": true,
+      "name": "guizang-ppt-skill",
+      "description": "Create a single-file horizontal Web PPT in magazine or Swiss style. Use for visually polished HTML slide decks, not ordinary PowerPoint files.",
+      "declared_version": "2.1.0-local-router",
+      "content_sha256": "2a687104f3fb2f7eccd406e86343d3d1e47b07b426fedb14b8a162363a7a0e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "harness",
+      "path": "%USERPROFILE%\\.codex\\skills\\harness",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness"
+      ],
+      "has_skill_md": true,
+      "name": "harness",
+      "description": "Design portable, repo-local agent harnesses with reusable skills, team specs, and deterministic handoff artifacts.",
+      "declared_version": null,
+      "content_sha256": "a04b344d9e59521f8c465ae62c2607e21418c38ebd84120f6a0dba41297c37bc",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "improve-skill",
+      "path": "%USERPROFILE%\\.codex\\skills\\improve-skill",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\improve-skill",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "improve-skill",
+      "description": "Evaluate an existing Codex skill against the current project and suggest concrete, prioritized improvements. Use when a skill feels incomplete, misses edge cases, produces weak output, or needs better fit for the current codebase.",
+      "declared_version": null,
+      "content_sha256": "f5c91e4b28f71674afbe4f968628200b86ca556420010766fda8499cce565d37",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "kiro-skill",
+      "path": "%USERPROFILE%\\.codex\\skills\\kiro-skill",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\kiro-skill",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "kiro-skill",
+      "description": "Interactive feature development workflow from idea to implementation. Creates requirements (EARS format), design documents, and implementation task lists. Use when creating feature specs, requirements documents, design documents, or implementation plans. Triggered by \"kiro\" or references to .kiro/specs/ directory.",
+      "declared_version": null,
+      "content_sha256": "a0f259622acce32c86b415553d72500c6f2ec9318f044079a155985889b82f2d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "local-qwen-tts",
+      "path": "%USERPROFILE%\\.codex\\skills\\local-qwen-tts",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\local-qwen-tts"
+      ],
+      "has_skill_md": true,
+      "name": "local-qwen-tts",
+      "description": "Generate publish-grade Chinese video voiceover with the local Qwen3-TTS runtime. Use when Codex needs Bilibili/tech-explainer narration, Chinese dubbing, a single master-track voiceover, voice QA, or to run/diagnose the local Qwen TTS path for video-maker projects. Prefer this over cloud ElevenLabs text-to-speech for Chinese video publishing.",
+      "declared_version": null,
+      "content_sha256": "8ad3cf2a203282b71a08c402607f6f67ff82e97efbbe7fcd9f48fc5444777a92",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "maoxuan-enhanced",
+      "path": "%USERPROFILE%\\.codex\\skills\\maoxuan-enhanced",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\maoxuan-enhanced",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "maoxuan-enhanced",
+      "description": "用毛泽东方法论分析复杂局面：先调查，再定位主要矛盾、力量关系与实践路径。用户明确提到毛选、毛泽东或教员视角时使用。",
+      "declared_version": "2.1.0-local-router",
+      "content_sha256": "926ead7099ba62df8d2360f0be8a68acda913531e591236fddc05c6d79805fa3",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "marketing-plan",
+      "path": "%USERPROFILE%\\.codex\\skills\\marketing-plan",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\marketing-plan",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "marketing-plan",
+      "description": "Create a minimalist marketing plan focused on building an audience through content, not ads. Use when someone has product-market fit (~100 customers) and wants to scale with marketing, or needs a content strategy.",
+      "declared_version": null,
+      "content_sha256": "3462fc4bd5e290e56c958fc0cb7230cf00cdcf74fc929a205edbec952d36fdaa",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "migrate-to-codex",
+      "path": "%USERPROFILE%\\.codex\\skills\\migrate-to-codex",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\migrate-to-codex",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "migrate-to-codex",
+      "description": "Migrate supported instruction files, skills, agents, and MCP config into Codex project and global files.",
+      "declared_version": null,
+      "content_sha256": "b41905a5b7f0bee55ac4fcd372fdd9c5f0641378e56731b34ad283e4d1bbf872",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "minimalist-entrepreneur",
+      "path": "%USERPROFILE%\\.codex\\skills\\minimalist-entrepreneur",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\minimalist-entrepreneur",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "minimalist-entrepreneur",
+      "description": "Orchestrate the full Minimalist Entrepreneur journey for turning an idea into a profitable product through community selection, idea validation, manual-first delivery, MVP scoping, first customers, pricing, marketing, sustainable growth, values, and decision reviews. Use when someone wants to turn an idea into a product quickly, iterate toward paying customers, choose the next startup step, or apply Sahil Lavingia's Minimalist Entrepreneur framework end to end.",
+      "declared_version": null,
+      "content_sha256": "dd4747838716cdf2cb628eb4ae75348acc07b322fcf6087f7f687916e966f654",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "minimalist-review",
+      "path": "%USERPROFILE%\\.codex\\skills\\minimalist-review",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\minimalist-review",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "minimalist-review",
+      "description": "Review any business decision, plan, or strategy through the minimalist entrepreneur lens. Use when someone wants a gut-check on a business decision, wants to simplify their approach, or needs to decide between options.",
+      "declared_version": null,
+      "content_sha256": "cf1ad29af278176df255d4cd7982c927206c4f8e98dcde84011fc3cc139d1094",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "mvp",
+      "path": "%USERPROFILE%\\.codex\\skills\\mvp",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\mvp",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "mvp",
+      "description": "Guide building a minimum viable product the minimalist entrepreneur way — manual first, then processized, then productized. Use when someone is ready to build their first product or struggling with scope.",
+      "declared_version": null,
+      "content_sha256": "5a40fc29075b1bea24778cfc2bb2b6c702a1fc60bb51e6ca9f407602beef5c37",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "nextjs-app-router-patterns",
+      "path": "%USERPROFILE%\\.codex\\skills\\nextjs-app-router-patterns",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns"
+      ],
+      "has_skill_md": true,
+      "name": "nextjs-app-router-patterns",
+      "description": "Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Server Components.",
+      "declared_version": null,
+      "content_sha256": "765c3658be4b573b9a4e79fada3a45227d836146737a4e06b4c9871891afe177",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "openspace-delegate-task",
+      "path": "%USERPROFILE%\\.codex\\skills\\openspace-delegate-task",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\openspace-delegate-task",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "delegate-task",
+      "description": "Delegate tasks to OpenSpace — a full-stack autonomous worker for coding, DevOps, web research, and desktop automation, backed by an extensive MCP tool and skill library. Skills auto-improve through use, reducing token consumption over time. A cloud community lets agents share and collectively evolve reusable skills.",
+      "declared_version": null,
+      "content_sha256": "b528deec284f0dce61ffe629504d84dc16a143ea0e75b4d3823bf0c81b8a5686",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "outlook-browser-email-automation",
+      "path": "%USERPROFILE%\\.codex\\skills\\outlook-browser-email-automation",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\outlook-browser-email-automation",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "outlook-browser-email-automation",
+      "description": "Browser-based Outlook Web automation for recurring mail briefings, session refresh, recent-mail extraction, actionable-email triage, and calendar event creation without Outlook COM or Microsoft Graph app registration. Use when Codex needs to run or maintain the user's Outlook email automation, merge Outlook briefing/session cron prompts, refresh a browser-backed Outlook session, summarize recent Outlook mail, or create/update Outlook calendar events from email.",
+      "declared_version": null,
+      "content_sha256": "bb24e79bcda94f05c93a450b41a99b366015596d6d8269da0878964ff2abf179",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "pdf-bilingual-translator",
+      "path": "%USERPROFILE%\\.codex\\skills\\pdf-bilingual-translator",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\pdf-bilingual-translator",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "pdf-bilingual-translator",
+      "description": "Translate one or more PDFs into polished Simplified Chinese while preserving layout, headers/footers, original figures, tables, formulas, and visual style. Use when Codex receives PDFs and the user asks for Chinese translation, bilingual technical/proper terms, LaTeX/PDF output, figure/table label translation, or strict page-by-page visual QA with subagents.",
+      "declared_version": null,
+      "content_sha256": "f80cf8a82f3e576863f33dcbde291769b35f032d12caa018c894fad40e9301ee",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "playwright",
+      "path": "%USERPROFILE%\\.codex\\skills\\playwright",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\playwright",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "playwright",
+      "description": "Use when the task involves writing, fixing, debugging, refactoring, or configuring Playwright `@playwright/test` suites, including flaky tests, locators, auth, CI, accessibility, API, visual, mobile, and multi-user flows. For one-off browser automation, use browser-harness instead.",
+      "declared_version": null,
+      "content_sha256": "6ba6cae3ef1ed3dc6e67872aaf8deafa303cb223e88b7e8ca239ca84a9bf7f39",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "pricing",
+      "path": "%USERPROFILE%\\.codex\\skills\\pricing",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\pricing",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "pricing",
+      "description": "Help figure out pricing for a product or service using minimalist entrepreneur principles. Use when someone is setting prices, considering price changes, or struggling with what to charge.",
+      "declared_version": null,
+      "content_sha256": "9a8b66fa06c2558c75cb26efcde58492462fa496e8320306698c1f4fcd5cdead",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "problem-sheet-pdf-answers",
+      "path": "%USERPROFILE%\\.codex\\skills\\problem-sheet-pdf-answers",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\problem-sheet-pdf-answers",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "problem-sheet-pdf-answers",
+      "description": "Generate fully worked English LaTeX answer PDFs for problem sheets, with detailed beginner-friendly reasoning, required diagrams/plots, strict page-by-page QA, and optional bundled HLT Engineering Tables reference lookup.",
+      "declared_version": null,
+      "content_sha256": "59ee0fc342904c81b3b43c069e6af8ab0f05030e4def2faf381dcf89a2f82b66",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "processize",
+      "path": "%USERPROFILE%\\.codex\\skills\\processize",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\processize",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "processize",
+      "description": "Turn a product idea into a manual-first process you can start delivering today. Use when you have an idea and want to figure out how to deliver value by hand before writing any code.",
+      "declared_version": null,
+      "content_sha256": "8015f396512ec198bd8a07e26931b7f9b6edf40d5ba9162456aa9498a37254ec",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "remotion-best-practices",
+      "path": "%USERPROFILE%\\.codex\\skills\\remotion-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\remotion-best-practices"
+      ],
+      "has_skill_md": true,
+      "name": "remotion-best-practices",
+      "description": "Best practices for Remotion - Video creation in React",
+      "declared_version": null,
+      "content_sha256": "2461d2bcaf838175d5f54167b6a894a294a5c3541cadaed53fd77e07554513ba",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "self-improving-for-codex",
+      "path": "%USERPROFILE%\\.codex\\skills\\self-improving-for-codex",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\self-improving-for-codex",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "self-improving-for-codex",
+      "description": "Build or maintain the Codex long-term memory loop: global AGENTS rules, PROFILE/ACTIVE and learning/error files, promotion policy, and optional refinement automation.",
+      "declared_version": null,
+      "content_sha256": "e320116213880631bdb8d403dbe62d8b2f58d8a78a60ac9c0343f4dac419330f",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "shadcn",
+      "path": "%USERPROFILE%\\.codex\\skills\\shadcn",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\shadcn"
+      ],
+      "has_skill_md": true,
+      "name": "shadcn",
+      "description": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\".",
+      "declared_version": null,
+      "content_sha256": "4f3ab41955c9286633bb216a2ac346cadab28a15893427939360da67bf9eaa78",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "spec-kit-skill",
+      "path": "%USERPROFILE%\\.codex\\skills\\spec-kit-skill",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\spec-kit-skill",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "spec-kit-skill",
+      "description": "Run GitHub Spec-Kit workflows in projects containing `.specify/`, including constitution, specification, clarification, planning, tasks, analysis, and implementation.",
+      "declared_version": "2.1.0-local-router",
+      "content_sha256": "8e12f0b83e92171dfe18deb8dfa207a66dc4c1f61fdf14baec1384d055436bce",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "tailwind-design-system",
+      "path": "%USERPROFILE%\\.codex\\skills\\tailwind-design-system",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\tailwind-design-system"
+      ],
+      "has_skill_md": true,
+      "name": "tailwind-design-system",
+      "description": "Build scalable design systems with Tailwind CSS v4, design tokens, component libraries, and responsive patterns. Use when creating component libraries, implementing design systems, or standardizing UI patterns.",
+      "declared_version": null,
+      "content_sha256": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "text-to-speech",
+      "path": "%USERPROFILE%\\.codex\\skills\\text-to-speech",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\text-to-speech"
+      ],
+      "has_skill_md": true,
+      "name": "text-to-speech",
+      "description": "Convert text to speech using ElevenLabs voice AI. Use when generating audio from text, creating voiceovers, building voice apps, or synthesizing speech in 70+ languages.",
+      "declared_version": null,
+      "content_sha256": "b153df513ce9d8badb233cb038c6e4ed2d61a26eb58c91b611f43ca8ca6eb77c",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "validate-idea",
+      "path": "%USERPROFILE%\\.codex\\skills\\validate-idea",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\validate-idea",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "validate-idea",
+      "description": "Validate a business idea using the minimalist entrepreneur framework. Use when someone has a business idea and wants to test if it's worth pursuing before building anything.",
+      "declared_version": null,
+      "content_sha256": "174055d93b272c45739b7a8dbf79c3641d4ed6a39ca63059c8b2d17dae604319",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "vercel-react-best-practices",
+      "path": "%USERPROFILE%\\.codex\\skills\\vercel-react-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices"
+      ],
+      "has_skill_md": true,
+      "name": "vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+      "declared_version": null,
+      "content_sha256": "2a54be6e7ddfabf73a53fb1d81b60f3f324ce8b3c5421a4f88b99a9310a18e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "video-maker",
+      "path": "%USERPROFILE%\\.codex\\skills\\video-maker",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\video-maker",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "video-maker",
+      "description": "Lean workflow for making Bilibili tech/science explainer videos with minimal contracts, commercial TTS narration, sidecar visualization, FFmpeg assembly, QA, and publish handoff.",
+      "declared_version": null,
+      "content_sha256": "8d62f406c8051db59d121a1400089c97dcef2a333bb2ff703aa6a92e7e93e95a",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "video-maker-local-artifacts",
+      "path": "%USERPROFILE%\\.codex\\skills\\video-maker-local-artifacts",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\video-maker-local-artifacts",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": false,
+      "name": null,
+      "description": null,
+      "declared_version": null,
+      "content_sha256": null,
+      "state": "container-only"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "web-design-engineer",
+      "path": "%USERPROFILE%\\.codex\\skills\\web-design-engineer",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\web-design-engineer"
+      ],
+      "has_skill_md": true,
+      "name": "web-design-engineer",
+      "description": "Implement or review polished visual Web interfaces with HTML/CSS/JavaScript/React, including pages, dashboards, prototypes, animations, slide decks, and data visualization. Do not use for back-end, CLI, browser automation, Playwright maintenance, or non-visual code.",
+      "declared_version": null,
+      "content_sha256": "1cc3b02f7f8abc0faf54b8e602e66c095ddb5f52633a8f6f0c01fd078f3bee3d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "weixin-thread-bridge",
+      "path": "%USERPROFILE%\\.codex\\skills\\weixin-thread-bridge",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\weixin-thread-bridge",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "weixin-thread-bridge",
+      "description": "在 Windows Codex 桌面环境中，把当前这个线程稳定桥接到微信 bot 继续对话。适用于“把该线程桥接到微信bot里”“把当前线程切到微信继续聊”“handoff weixin”“接到微信 bot”“桥接到微信”这类请求。只用于当前线程到微信的 handoff，不用于首次搭建通用 IM bridge 或其他平台。",
+      "declared_version": null,
+      "content_sha256": "386c12354d2a3ee8ea2767ab0efac888822904fd5180f3e34136f2f69f5186d8",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "codex",
+      "skill_id": "youtube-pro-codex",
+      "path": "%USERPROFILE%\\.codex\\skills\\youtube-pro-codex",
+      "real_path": "%USERPROFILE%\\.codex\\skills\\youtube-pro-codex",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "youtube-pro-codex",
+      "description": "Analyze, summarize, and extract transcripts or key moments from YouTube videos. Use when Codex needs to work from a YouTube URL for video summaries, subtitle capture, transcript cleanup, timestamp extraction, channel or video metadata checks, comment-aware analysis, or optional frame and audio extraction with local tools such as `yt-dlp` and `ffmpeg`.",
+      "declared_version": null,
+      "content_sha256": "93082cfbf4f37730dae8b4356d5150aa95a23e19f3d8a6f27f638e486609be1a",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "agent-harness-introspect",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\agent-harness-introspect",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect"
+      ],
+      "has_skill_md": true,
+      "name": "agent-harness-introspect",
+      "description": "Safely audit or upgrade local Codex, shared, and OpenClaw harness state.",
+      "declared_version": null,
+      "content_sha256": "2ecb036b3ebf562c35ecad2de641573cd0ca4fc8be30aac4a8aea0f98c6e382e",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "agent-introspection-debugging",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\agent-introspection-debugging",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging"
+      ],
+      "has_skill_md": true,
+      "name": "agent-introspection-debugging",
+      "description": "Structured self-debugging workflow for AI agent failures using capture, diagnosis, contained recovery, and introspection reports.",
+      "declared_version": null,
+      "content_sha256": "b0aaed9d0bc3b5661247fcef06ec88348eec64b05c0272dd5e38faab38c85b4f",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "agentic-coding",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\agentic-coding",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\agentic-coding",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "Agentic Coding",
+      "description": "Ship production code with AI agents through acceptance contracts, micro diffs, red green loops, and deterministic handoff checkpoints.",
+      "declared_version": "1.0.0",
+      "content_sha256": "0eae8f9c53078c8488c860e1b3c5c1485c182a8358157cb36e603d584617fedc",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "automation-workflows",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\automation-workflows",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\automation-workflows",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "automation-workflows",
+      "description": "Design and implement automation workflows to save time and scale operations as a solopreneur. Use when identifying repetitive tasks to automate, building workflows across tools, setting up triggers and actions, or optimizing existing automations. Covers automation opportunity identification, workflow design, tool selection (Zapier, Make, n8n), testing, and maintenance. Trigger on \"automate\", \"automation\", \"workflow automation\", \"save time\", \"reduce manual work\", \"automate my business\", \"no-code automation\".",
+      "declared_version": null,
+      "content_sha256": "7e2a1b38c6f3558f8f373e45eee3e70d7c2d531cbe922d36a9c24a507d8ccb43",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "bilibili-subtitle",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-subtitle",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle"
+      ],
+      "has_skill_md": true,
+      "name": "bilibili-subtitle",
+      "description": "从 Bilibili 视频提取字幕、转录无字幕视频、生成结构化摘要。触发条件：Bilibili URL (bilibili.com)、BV ID (BV1xxx)、或\"提取B站字幕\"等请求。",
+      "declared_version": null,
+      "content_sha256": "2c91031e75495ecc5badd6f1da6e84bbc59ebad19a3e0496f34e63da98fa8507",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "bilibili-video-download",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-video-download",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-video-download"
+      ],
+      "has_skill_md": true,
+      "name": "bilibili-video-download",
+      "description": "Execute end-to-end Bilibili downloads with yutto. Use this whenever the user wants you to actually download a Bilibili 投稿视频、番剧、课程、收藏夹、稍后再看、合集、列表 or audio for them, or wants you to install/configure yutto and complete the download instead of merely explaining commands. This skill should verify installation and FFmpeg, check auth status, collect missing required inputs such as the link and download directory, then run the download.",
+      "declared_version": null,
+      "content_sha256": "05e940a9f0d91ff14b6335fe34341a319ae6cd99db0dc6e094b206a12d146896",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "browser-harness",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\browser-harness",
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\Documents\\Playground\\browser-harness"
+      ],
+      "has_skill_md": true,
+      "name": "browser-harness",
+      "description": "Always use browser-harness for any web interaction: automation, scraping, testing, or site/app work.",
+      "declared_version": null,
+      "content_sha256": "4cbf53edc1aa424f143cc4b44fedb838a77c1e2cf97e10236a762639c4c8a139",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "codebase-onboarding",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\codebase-onboarding",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding"
+      ],
+      "has_skill_md": true,
+      "name": "codebase-onboarding",
+      "description": "Analyze an unfamiliar codebase and generate a structured onboarding guide with architecture map, key entry points, conventions, and a starter CLAUDE.md. Use when joining a new project or setting up Claude Code for the first time in a repo.",
+      "declared_version": null,
+      "content_sha256": "92f9c1b0d4fa8cb7ee7bcd52ee310bf2756f8755848cdb7c03e938cae6e41e65",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "context-budget",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\context-budget",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget"
+      ],
+      "has_skill_md": true,
+      "name": "context-budget",
+      "description": "Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations.",
+      "declared_version": null,
+      "content_sha256": "1ae2a1758603130528fcbd8fd952a5f50b893c6e7bd3f5c5b473b99c9f118980",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "deep-research-pro",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\deep-research-pro",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\deep-research-pro",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "deep-research-pro",
+      "description": "Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required.",
+      "declared_version": "1.0.0",
+      "content_sha256": "a780f8bbec4421982c8276c460f95d1ad82a065182409a730ba952b2dca20015",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "file-summary",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\file-summary",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\file-summary",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "file-summary",
+      "description": "Local document summary tool. Activate when user mentions \"总结文件\", \"帮我总结\", \"总结文档\", \"分析文档\" or provides a local file path (txt/docx/pdf/xlsx/xls).",
+      "declared_version": null,
+      "content_sha256": "cb6f7841d9f36a14b6c2506e01c480588294e74114040cf06133e83d16b1dfd4",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "find-skills",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\find-skills",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\find-skills"
+      ],
+      "has_skill_md": true,
+      "name": "find-skills",
+      "description": "Discover reusable skills across installed local/shared skills, OpenSpace local or cloud registries, and the public skills ecosystem. Use when the user asks whether a skill exists, wants to extend capabilities, compare options, avoid duplicate installs, or install a new skill for a domain or workflow.",
+      "declared_version": null,
+      "content_sha256": "60e8ebc0ea80521ab34106934eb83572caf1843b23cb1846bce2321dc3c4047d",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "guizang-ppt-skill",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\guizang-ppt-skill",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill"
+      ],
+      "has_skill_md": true,
+      "name": "guizang-ppt-skill",
+      "description": "Create a single-file horizontal Web PPT in magazine or Swiss style. Use for visually polished HTML slide decks, not ordinary PowerPoint files.",
+      "declared_version": "2.1.0-local-router",
+      "content_sha256": "2a687104f3fb2f7eccd406e86343d3d1e47b07b426fedb14b8a162363a7a0e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "harness",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\harness",
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness"
+      ],
+      "has_skill_md": true,
+      "name": "harness",
+      "description": "Design portable, repo-local agent harnesses with reusable skills, team specs, and deterministic handoff artifacts.",
+      "declared_version": null,
+      "content_sha256": "a04b344d9e59521f8c465ae62c2607e21418c38ebd84120f6a0dba41297c37bc",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "local-file-rag-basic",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\local-file-rag-basic",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\local-file-rag-basic",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "local-file-rag-basic",
+      "description": "High-performance local File RAG suite (Basic Edition).",
+      "declared_version": "1.0.0",
+      "content_sha256": "4adb48c25bbe1549e19ce5271b17882b2d0433c79c70695c6455db3cc1778263",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "local-qwen-tts",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\local-qwen-tts",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\local-qwen-tts"
+      ],
+      "has_skill_md": true,
+      "name": "local-qwen-tts",
+      "description": "Generate publish-grade Chinese video voiceover with the local Qwen3-TTS runtime. Use when Codex needs Bilibili/tech-explainer narration, Chinese dubbing, a single master-track voiceover, voice QA, or to run/diagnose the local Qwen TTS path for video-maker projects. Prefer this over cloud ElevenLabs text-to-speech for Chinese video publishing.",
+      "declared_version": null,
+      "content_sha256": "8ad3cf2a203282b71a08c402607f6f67ff82e97efbbe7fcd9f48fc5444777a92",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "nextjs-app-router-patterns",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\nextjs-app-router-patterns",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns"
+      ],
+      "has_skill_md": true,
+      "name": "nextjs-app-router-patterns",
+      "description": "Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Server Components.",
+      "declared_version": null,
+      "content_sha256": "765c3658be4b573b9a4e79fada3a45227d836146737a4e06b4c9871891afe177",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "obsidian",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\obsidian",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\obsidian",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "obsidian",
+      "description": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
+      "declared_version": null,
+      "content_sha256": "dc45b522a0f08fa11762b330b5355ccaca789bd645b0c450fe75026f69d728b2",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "remotion-best-practices",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\remotion-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\remotion-best-practices"
+      ],
+      "has_skill_md": true,
+      "name": "remotion-best-practices",
+      "description": "Best practices for Remotion - Video creation in React",
+      "declared_version": null,
+      "content_sha256": "2461d2bcaf838175d5f54167b6a894a294a5c3541cadaed53fd77e07554513ba",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "shadcn",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\shadcn",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\shadcn"
+      ],
+      "has_skill_md": true,
+      "name": "shadcn",
+      "description": "Manages shadcn components and projects — adding, searching, fixing, debugging, styling, and composing UI. Provides project context, component docs, and usage examples. Applies when working with shadcn/ui, component registries, presets, --preset codes, or any project with a components.json file. Also triggers for \"shadcn init\", \"create an app with --preset\", or \"switch to --preset\".",
+      "declared_version": null,
+      "content_sha256": "4f3ab41955c9286633bb216a2ac346cadab28a15893427939360da67bf9eaa78",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "summarize",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\summarize",
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\summarize",
+      "is_link": false,
+      "link_target": [],
+      "has_skill_md": true,
+      "name": "summarize",
+      "description": "Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).",
+      "declared_version": null,
+      "content_sha256": "e7cdf499cee3e4ffefdbdca842b4716796cdd983b1f11e1314f295895eeb8161",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "tailwind-design-system",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\tailwind-design-system",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\tailwind-design-system"
+      ],
+      "has_skill_md": true,
+      "name": "tailwind-design-system",
+      "description": "Build scalable design systems with Tailwind CSS v4, design tokens, component libraries, and responsive patterns. Use when creating component libraries, implementing design systems, or standardizing UI patterns.",
+      "declared_version": null,
+      "content_sha256": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "text-to-speech",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\text-to-speech",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\text-to-speech"
+      ],
+      "has_skill_md": true,
+      "name": "text-to-speech",
+      "description": "Convert text to speech using ElevenLabs voice AI. Use when generating audio from text, creating voiceovers, building voice apps, or synthesizing speech in 70+ languages.",
+      "declared_version": null,
+      "content_sha256": "b153df513ce9d8badb233cb038c6e4ed2d61a26eb58c91b611f43ca8ca6eb77c",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "vercel-react-best-practices",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\vercel-react-best-practices",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices"
+      ],
+      "has_skill_md": true,
+      "name": "vercel-react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+      "declared_version": null,
+      "content_sha256": "2a54be6e7ddfabf73a53fb1d81b60f3f324ce8b3c5421a4f88b99a9310a18e67",
+      "state": "discoverable"
+    },
+    {
+      "runtime": "openclaw",
+      "skill_id": "web-design-engineer",
+      "path": "%USERPROFILE%\\.openclaw\\skills\\web-design-engineer",
+      "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+      "is_link": true,
+      "link_target": [
+        "%USERPROFILE%\\.agents\\skills\\web-design-engineer"
+      ],
+      "has_skill_md": true,
+      "name": "web-design-engineer",
+      "description": "Implement or review polished visual Web interfaces with HTML/CSS/JavaScript/React, including pages, dashboards, prototypes, animations, slide decks, and data visualization. Do not use for back-end, CLI, browser automation, Playwright maintenance, or non-visual code.",
+      "declared_version": null,
+      "content_sha256": "1cc3b02f7f8abc0faf54b8e602e66c095ddb5f52633a8f6f0c01fd078f3bee3d",
+      "state": "discoverable"
+    }
+  ],
+  "plugins": [
+    {
+      "cache_source": "brave-cow-windows-tools",
+      "name": "windows-computer-use",
+      "version": "0.40.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\brave-cow-windows-tools\\windows-computer-use\\0.40.0",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\brave-cow-windows-tools\\windows-computer-use\\0.40.0\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\brave-cow-windows-tools\\windows-computer-use\\0.40.0\\skills",
+      "skill_ids": [
+        "windows-computer-use"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "windows-computer-use@brave-cow-windows-tools",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "0da834e0b0bf41a701f247e1044a2b4c5e213c4a9576b343aa8325c4c2308e37",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-bundled",
+      "name": "browser",
+      "version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\browser\\26.727.51351",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\browser\\26.727.51351\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\browser\\26.727.51351\\skills",
+      "skill_ids": [
+        "control-in-app-browser"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "browser@openai-bundled",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "a74d09c7cddc2148633ec880867264357781ea1896e9de9ed5555faed7518a4f",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-bundled",
+      "name": "chrome",
+      "version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\chrome\\26.727.51351",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\chrome\\26.727.51351\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\chrome\\26.727.51351\\skills",
+      "skill_ids": [
+        "control-chrome"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "chrome@openai-bundled",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "fe9b3223db2ed302a792af6ebbd9dab0cdb6b3f3d168492f741112dd86828c84",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-bundled",
+      "name": "computer-use",
+      "version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.727.51351",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.727.51351\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.727.51351\\skills",
+      "skill_ids": [
+        "computer-use"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "computer-use@openai-bundled",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "e81279cb0e9939c0edf2936b626d4c39a4a57333219d589c8e3d33758adbb50a",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-bundled",
+      "name": "sites",
+      "version": "0.1.33",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\sites\\0.1.33",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\sites\\0.1.33\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\sites\\0.1.33\\skills",
+      "skill_ids": [
+        "sites-building",
+        "sites-hosting"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "sites@openai-bundled",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "ddf5e3b16084bde31bef2dabcc1cac4f5c7dc87b4fd4db6ef9d56ffe4df9e804",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-bundled",
+      "name": "visualize",
+      "version": "1.0.16",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\visualize\\1.0.16",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\visualize\\1.0.16\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\visualize\\1.0.16\\skills",
+      "skill_ids": [
+        "visualize"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "visualize@openai-bundled",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "a6944391eafad278a811b6cbb1ccf56d3507735b29bdc6b15ec164a4be38d575",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated",
+      "name": "canva",
+      "version": "1.0.2",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\canva\\d6169bef",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\canva\\d6169bef\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\canva\\d6169bef\\skills",
+      "skill_ids": [
+        "canva-branded-presentation",
+        "canva-resize-for-all-social-media",
+        "canva-translate-design"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "canva@openai-curated",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "superseded-by:13.0.0@openai-curated-remote",
+      "state": "superseded-config-cache",
+      "manifest_sha256": "bb49107dbc73b900d936271717ab584d1cae578b0a33ae08fb1eea39d6684a66",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated",
+      "name": "github",
+      "version": "0.1.6",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\github\\d6169bef",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\github\\d6169bef\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\github\\d6169bef\\skills",
+      "skill_ids": [
+        "gh-address-comments",
+        "gh-fix-ci",
+        "github",
+        "yeet"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "github@openai-curated",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "superseded-by:0.1.8-2841cf9749ae@openai-curated-remote",
+      "state": "superseded-config-cache",
+      "manifest_sha256": "cd2f1e84da5e28239936e3867ed1cbd7e0aabae861e3c770098bed00468ef8d0",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated",
+      "name": "notion",
+      "version": "0.1.5",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\notion\\d6169bef",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\notion\\d6169bef\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\notion\\d6169bef\\skills",
+      "skill_ids": [
+        "notion-knowledge-capture",
+        "notion-meeting-intelligence",
+        "notion-research-documentation",
+        "notion-spec-to-implementation"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "notion@openai-curated",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "superseded-by:0.1.7@openai-curated-remote",
+      "state": "superseded-config-cache",
+      "manifest_sha256": "d4b1a4c5be4f3d99bac941c7b730607a47495b8173db67b3c85e5a4c0a030b15",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated",
+      "name": "outlook-calendar",
+      "version": "0.1.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-calendar\\dc902811",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-calendar\\dc902811\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-calendar\\dc902811\\skills",
+      "skill_ids": [
+        "outlook-calendar",
+        "outlook-calendar-daily-brief",
+        "outlook-calendar-free-up-time",
+        "outlook-calendar-group-scheduler",
+        "outlook-calendar-meeting-prep",
+        "outlook-calendar-shared-calendars"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "outlook-calendar@openai-curated",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "state": "cache-only",
+      "manifest_sha256": "8b7653fe3ab66373ecffbcb75ee8ea06eb02601a02d99dd029a35404ae15f282",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated",
+      "name": "outlook-email",
+      "version": "0.1.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-email\\dc902811",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-email\\dc902811\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-email\\dc902811\\skills",
+      "skill_ids": [
+        "outlook-email",
+        "outlook-email-inbox-triage",
+        "outlook-email-reply-drafting",
+        "outlook-email-shared-mailboxes",
+        "outlook-email-subscription-cleanup",
+        "outlook-email-task-extraction"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "outlook-email@openai-curated",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "state": "cache-only",
+      "manifest_sha256": "722ba083974b372e246730cf91fab6ff74ceabfd08e33acc05bb5c40d617a15e",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "app-69312da8e4dc81919370cb86fd172b6c",
+      "version": "5.0.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-69312da8e4dc81919370cb86fd172b6c\\5.0.0",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-69312da8e4dc81919370cb86fd172b6c\\5.0.0\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-69312da8e4dc81919370cb86fd172b6c\\5.0.0\\skills",
+      "skill_ids": [],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "app-69312da8e4dc81919370cb86fd172b6c@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_69312da8e4dc81919370cb86fd172b6c",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "a0da7e5306502abd070cb3b87f539db5f0031aed60dc9660e2bda3555a1e51ad",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "app-6938a94a61d881918ef32cb999ff937c",
+      "version": "1.0.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-6938a94a61d881918ef32cb999ff937c\\1.0.0",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-6938a94a61d881918ef32cb999ff937c\\1.0.0\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-6938a94a61d881918ef32cb999ff937c\\1.0.0\\skills",
+      "skill_ids": [],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "app-6938a94a61d881918ef32cb999ff937c@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_6938a94a61d881918ef32cb999ff937c",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "6c41351adba05cd2cbc930c5473b7d244dfb7b406e01fa12f2265de65ff152e8",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "canva",
+      "version": "13.0.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\canva\\13.0.0",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\canva\\13.0.0\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\canva\\13.0.0\\skills",
+      "skill_ids": [],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "canva@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_68df33b1a2d081918778431a9cfca8ba",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "bb7a7f9c438b7a1f968fda1835d4fbe9e57afece248d095df02accadce36356f",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "data-analytics",
+      "version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills",
+      "skill_ids": [
+        "analyze-data-quality",
+        "build-dashboard",
+        "build-report",
+        "create-data-context",
+        "design-kpis",
+        "gather-business-context",
+        "index",
+        "jupyter-notebooks",
+        "kpi-reporting",
+        "market-sizing",
+        "metric-diagnostics",
+        "product-business-analysis",
+        "publish-artifact-to-sites",
+        "validate-data",
+        "visualize-data"
+      ],
+      "has_apps": true,
+      "has_mcp": true,
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "Plugin_fc9843a6fb34819195d6c7802398a8a7",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "a3af158bb9ac14c316aee39371731be3e6825c135dbcbddf82bec07407d035f8",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "github",
+      "version": "0.1.8-2841cf9749ae",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\skills",
+      "skill_ids": [
+        "gh-address-comments",
+        "gh-fix-ci",
+        "github",
+        "yeet"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "github@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_1a69035c238881919c4190932b2df699",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "fa6c869b1d8207ce2cb9192956a3e468d0aeaca8e0103135458ad6c7c7e318f0",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "notion",
+      "version": "0.1.7",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\skills",
+      "skill_ids": [
+        "notion-knowledge-capture",
+        "notion-meeting-intelligence",
+        "notion-research-documentation",
+        "notion-spec-to-implementation"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "notion@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "54eacd170651f01a66df3bf986683b9a4006a79a6bf77c7650b32dcb4abad6b0",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "openai-templates",
+      "version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills",
+      "skill_ids": [
+        "artifact-template-analytics-dashboard",
+        "artifact-template-business-review",
+        "artifact-template-design-report",
+        "artifact-template-experiment-analysis",
+        "artifact-template-financial-budget",
+        "artifact-template-investment-committee-memo",
+        "artifact-template-legal-memorandum",
+        "artifact-template-market-trends-report",
+        "artifact-template-minimal-letterhead",
+        "artifact-template-operating-calendar",
+        "artifact-template-operating-review",
+        "artifact-template-project-kickoff",
+        "artifact-template-project-tracker",
+        "artifact-template-sales-pipeline",
+        "artifact-template-simple-dark-mode",
+        "artifact-template-simple-light-mode",
+        "artifact-template-strategy-memorandum",
+        "artifact-template-system-design",
+        "artifact-template-team-alignment",
+        "artifact-template-three-statement-forecast"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_2330815c823c8191941e5dc465bb899f",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "d2cbbd434a5c8123a9e1612663f0598cdd13ba71bfb55e172e8132ed9e5d4474",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-curated-remote",
+      "name": "product-design",
+      "version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills",
+      "skill_ids": [
+        "audit",
+        "design-qa",
+        "get-context",
+        "ideate",
+        "image-to-code",
+        "index",
+        "research",
+        "share",
+        "url-to-code",
+        "user-context"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "product-design@openai-curated-remote",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "Plugin_fa77aec24fc08191bc6e57f377126d76",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "state": "resolved-remote-install",
+      "manifest_sha256": "26b41873e839edcbcb0e61bb7007a70b59325d2d23fc54b150319fc8326e6463",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-primary-runtime",
+      "name": "documents",
+      "version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.731.11130",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.731.11130\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.731.11130\\skills",
+      "skill_ids": [
+        "documents"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "documents@openai-primary-runtime",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "f057de272376c9f9daab6144fc21ab6e06b233c44b945fdde2f80c36db3c386e",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-primary-runtime",
+      "name": "pdf",
+      "version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\pdf\\26.731.11130",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\pdf\\26.731.11130\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\pdf\\26.731.11130\\skills",
+      "skill_ids": [
+        "pdf"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "pdf@openai-primary-runtime",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "285f3dfd70dda59b0a13d6aa34608109e9becbcd2b48e3611481c1e8b78961f2",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-primary-runtime",
+      "name": "presentations",
+      "version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\presentations\\26.731.11130",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\presentations\\26.731.11130\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\presentations\\26.731.11130\\skills",
+      "skill_ids": [
+        "presentations"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "presentations@openai-primary-runtime",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "9ff08ff4edbf0348babec66add4707ba8772d13e7d8fb6599ae6870f944ea0f9",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-primary-runtime",
+      "name": "spreadsheets",
+      "version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.731.11130",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.731.11130\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.731.11130\\skills",
+      "skill_ids": [
+        "excel-live-control",
+        "spreadsheets"
+      ],
+      "has_apps": true,
+      "has_mcp": false,
+      "plugin_id": "spreadsheets@openai-primary-runtime",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "5bd5d3b9da13af63d334cd88f978f0fca199a5dfc72fe8c51964395fcc2efc2b",
+      "manifest_error": null
+    },
+    {
+      "cache_source": "openai-primary-runtime",
+      "name": "template-creator",
+      "version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\template-creator\\26.731.11130",
+      "manifest_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\template-creator\\26.731.11130\\.codex-plugin\\plugin.json",
+      "skills_path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\template-creator\\26.731.11130\\skills",
+      "skill_ids": [
+        "template-creator"
+      ],
+      "has_apps": false,
+      "has_mcp": false,
+      "plugin_id": "template-creator@openai-primary-runtime",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "state": "resolved-config",
+      "manifest_sha256": "0ddc6e5c8f6e2c0d6c3de8f48f0c96bf642fbc3cfd11986c28d0a79d0050fca9",
+      "manifest_error": null
+    }
+  ],
+  "plugin_skills": [
+    {
+      "catalog_id": "browser:control-in-app-browser",
+      "skill_id": "control-in-app-browser",
+      "plugin_id": "browser@openai-bundled",
+      "plugin_name": "browser",
+      "plugin_version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\browser\\26.727.51351\\skills\\control-in-app-browser",
+      "name": "control-in-app-browser",
+      "description": "Control the in-app Browser for opening, navigating, inspecting visible or interactive page state, clicking, typing, screenshots, and local web testing. It can have existing signed-in sessions. For semantic operations on linked resources, prefer a purpose-built connector, API, or CLI when available.",
+      "declared_version": null,
+      "content_sha256": "056e790e807d00d8f48308093c81caa75f2563bb1dde0e51a72a237a9a5bd1b2"
+    },
+    {
+      "catalog_id": "chrome:control-chrome",
+      "skill_id": "control-chrome",
+      "plugin_id": "chrome@openai-bundled",
+      "plugin_name": "chrome",
+      "plugin_version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\chrome\\26.727.51351\\skills\\control-chrome",
+      "name": "control-chrome",
+      "description": "Control the user's Chrome browser for tasks that depend on existing Chrome state: tabs, logged-in sessions, or extensions. Prefer purpose-built connectors, APIs, or CLIs when available.",
+      "declared_version": null,
+      "content_sha256": "b28808b67748aeb8e78d08bcce3732a468188dffd38dc6e491f9ab6b3cbfa1b9"
+    },
+    {
+      "catalog_id": "computer-use:computer-use",
+      "skill_id": "computer-use",
+      "plugin_id": "computer-use@openai-bundled",
+      "plugin_name": "computer-use",
+      "plugin_version": "26.727.51351",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.727.51351\\skills\\computer-use",
+      "name": "computer-use",
+      "description": "Control Windows apps from ChatGPT",
+      "declared_version": null,
+      "content_sha256": "0be0ff2686142b486597cbe0ad2050007a32bc0211c6c605e0a12ce9b00876ad"
+    },
+    {
+      "catalog_id": "data-analytics:analyze-data-quality",
+      "skill_id": "analyze-data-quality",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\analyze-data-quality",
+      "name": "analyze-data-quality",
+      "description": "Assess whether structured data, query results, dashboards, or analytical evidence are trustworthy enough to use. Use when the task is to check data quality, reconcile conflicting sources or metric definitions, or decide whether evidence is safe to cite.",
+      "declared_version": null,
+      "content_sha256": "9a3c994f87da0c7a8c5ce37bbf08a59fc6f5b4f368475d3d7438f622b753d5f0"
+    },
+    {
+      "catalog_id": "data-analytics:build-dashboard",
+      "skill_id": "build-dashboard",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\build-dashboard",
+      "name": "build-dashboard",
+      "description": "Build source-backed dashboards for monitoring performance, exploring drivers, or acting on product and business metrics. Use when the task needs a dashboard, scorecard, or monitoring view with clear metrics, filters, source definitions, and QA.",
+      "declared_version": null,
+      "content_sha256": "c453ef3e1187477f696aae9a68b116d0e7e0bd6f665ab03a9d1634d13482aaaa"
+    },
+    {
+      "catalog_id": "data-analytics:build-report",
+      "skill_id": "build-report",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\build-report",
+      "name": "build-report",
+      "description": "Build polished analytical reports for executive, product, business, or technical audiences. Use when the task needs a durable answer-first narrative with evidence-backed findings, visuals or tables, caveats, and source context.",
+      "declared_version": null,
+      "content_sha256": "03db47974dc400b026d9268730de1ef317b5446a7a6bc9906ad471bfb117fd22"
+    },
+    {
+      "catalog_id": "data-analytics:create-data-context",
+      "skill_id": "create-data-context",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\create-data-context",
+      "name": "create-data-context",
+      "description": "Create, update, inspect, or repair Data Analytics semantic layers. Use when the user asks to save data context or create a semantic layer that future Data Analytics work can inspect and cite.",
+      "declared_version": null,
+      "content_sha256": "b004f792fa63e639dbce197562c97230eb58250e639b6bbe926085e3a44b0c2b"
+    },
+    {
+      "catalog_id": "data-analytics:design-kpis",
+      "skill_id": "design-kpis",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\design-kpis",
+      "name": "design-kpis",
+      "description": "Design KPI frameworks, metric definitions, targets, guardrails, and measurement plans for product or business decisions. Use when success metrics, drivers, guardrails, targets, or the measurement approach need to be defined or improved.",
+      "declared_version": null,
+      "content_sha256": "fcefdecacd1d64f847fbb7c45e93a6bd49c679dff66b8966ebc74c4dc39b8f21"
+    },
+    {
+      "catalog_id": "data-analytics:gather-business-context",
+      "skill_id": "gather-business-context",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\gather-business-context",
+      "name": "gather-business-context",
+      "description": "Gather business context from connected or provided sources so downstream analysis starts with the right framing. Use when an analytical question depends on missing context, such as what a metric means, what changed recently, or which sources should be checked. If the same prompt asks for diagnosis, recommendation, or a deliverable, gather context first and continue to the focused skill.",
+      "declared_version": null,
+      "content_sha256": "e8a1e917b8c4d03248987f33ca49fb7b1d6ed533328c39a02cafcc5b88b4577c"
+    },
+    {
+      "catalog_id": "data-analytics:index",
+      "skill_id": "index",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\index",
+      "name": "index",
+      "description": "Route Data Analytics plugin-level requests and broad analytics work to the right focused workflow. Use when Data Analytics is at-mentioned, or for analytics requests involving data, metrics, dashboards, reports, charts, notebooks, spreadsheets, KPIs, market sizing, or semantic layers.",
+      "declared_version": null,
+      "content_sha256": "2239188d6ac667a9e4b546ffb441f17ac3cfe90fe7683ac68506789ef8dabeb3"
+    },
+    {
+      "catalog_id": "data-analytics:jupyter-notebooks",
+      "skill_id": "jupyter-notebooks",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\jupyter-notebooks",
+      "name": "jupyter-notebooks",
+      "description": "Create, edit, or validate reproducible SQL or Python notebooks. Use for notebooks, SQL/Python scratchpads, reproducible exploration, audit trails, or runnable companions where the analysis should be reviewable or rerunnable.",
+      "declared_version": null,
+      "content_sha256": "8303d33041a5d5ccbfbb5addbb60bd8b0559027f01a586f98b7728e58c4127ed"
+    },
+    {
+      "catalog_id": "data-analytics:kpi-reporting",
+      "skill_id": "kpi-reporting",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\kpi-reporting",
+      "name": "kpi-reporting",
+      "description": "Prepare KPI readouts, scorecards, WBR/MBR/QBR updates, and executive summaries from quantitative business or product metrics; use when the task is to report status, compare against targets, explain validated drivers, and state operating implications.",
+      "declared_version": null,
+      "content_sha256": "a4ee918f3c87af4db8bb007cf8fefec444cd47b96b76de711349f11d7232861a"
+    },
+    {
+      "catalog_id": "data-analytics:market-sizing",
+      "skill_id": "market-sizing",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\market-sizing",
+      "name": "market-sizing",
+      "description": "Estimate market, segment, or opportunity size with transparent assumptions and uncertainty. Use for TAM/SAM/SOM, sizing scenarios, or comparing the scale of possible opportunities.",
+      "declared_version": null,
+      "content_sha256": "dd353ab8c7229d3bc831234725db7d02ceeb1a889ee781103f90997879ac1951"
+    },
+    {
+      "catalog_id": "data-analytics:metric-diagnostics",
+      "skill_id": "metric-diagnostics",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\metric-diagnostics",
+      "name": "metric-diagnostics",
+      "description": "Diagnose why a metric changed or differs from expectation. Use when the task is to identify likely drivers of a metric movement, anomaly, gap, or discrepancy.",
+      "declared_version": null,
+      "content_sha256": "c9293227b592328c06cb9f6a2f23c0114ddcd1ca456a42f1ceebfe5981007314"
+    },
+    {
+      "catalog_id": "data-analytics:product-business-analysis",
+      "skill_id": "product-business-analysis",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\product-business-analysis",
+      "name": "product-business-analysis",
+      "description": "Analyze product or business data to support a decision or recommendation. Use when a decision depends on metric-backed evidence, such as choosing a direction, prioritizing an opportunity, evaluating a change, segmenting users, sizing tradeoffs, or deciding what to do next.",
+      "declared_version": null,
+      "content_sha256": "3e6b684ace151bbf777afd88fe34758b337ac0d6ff2bf332958d7a495d624a4b"
+    },
+    {
+      "catalog_id": "data-analytics:publish-artifact-to-sites",
+      "skill_id": "publish-artifact-to-sites",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\publish-artifact-to-sites",
+      "name": "publish-artifact-to-sites",
+      "description": "Publish a validated Data Analytics report or dashboard artifact through Sites. Use automatically for durable artifacts in any positively identified Work Mode when the full Sites lifecycle is callable, or in ChatGPT Desktop outside Work Mode only after an explicit Sites request or acceptance of the optional post-handoff sharing offer.",
+      "declared_version": null,
+      "content_sha256": "26b3846191d1c5237262a26da61694aa67bef38c4ed03eb3167e39f39c6f07a3"
+    },
+    {
+      "catalog_id": "data-analytics:validate-data",
+      "skill_id": "validate-data",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\validate-data",
+      "name": "validate-data",
+      "description": "Validate whether an analysis is accurate, well-supported, and ready to share or use for a decision. Use when reviewing methodology, calculations, comparisons, visuals, caveats, or conclusions.",
+      "declared_version": null,
+      "content_sha256": "7aa5c77b22b9e5bf1b054e4ab6320a12dfd5342aa6cb18f8e497b46c713be20e"
+    },
+    {
+      "catalog_id": "data-analytics:visualize-data",
+      "skill_id": "visualize-data",
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "plugin_name": "data-analytics",
+      "plugin_version": "0.2.8-13ceeea1f599",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\0.2.8-13ceeea1f599\\skills\\visualize-data",
+      "name": "visualize-data",
+      "description": "Design, build, revise, or QA quantitative charts and figures. Use when an analytical answer needs visual judgment, whether for an inline answer, report, dashboard, notebook, or artifact.",
+      "declared_version": null,
+      "content_sha256": "ff2601669022a2ef43524e0225eb4833acc03260db90b996a2d6f74fbbce7b12"
+    },
+    {
+      "catalog_id": "documents:documents",
+      "skill_id": "documents",
+      "plugin_id": "documents@openai-primary-runtime",
+      "plugin_name": "documents",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.731.11130\\skills\\documents",
+      "name": "documents",
+      "description": "Create, edit, redline, and comment on `.docx`, Word, and Google Docs-targeted document artifacts inside the container, with a strict render-and-verify workflow. Use `render_docx.py` to generate page PNGs (and optional PDF) for visual QA, then iterate until layout is flawless before delivering the final document.",
+      "declared_version": null,
+      "content_sha256": "84dd796a7834889191515ea6508abc9d6559314dd554e0345eeaa07c5e780bd5"
+    },
+    {
+      "catalog_id": "github:gh-address-comments",
+      "skill_id": "gh-address-comments",
+      "plugin_id": "github@openai-curated-remote",
+      "plugin_name": "github",
+      "plugin_version": "0.1.8-2841cf9749ae",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\skills\\gh-address-comments",
+      "name": "gh-address-comments",
+      "description": "Address actionable GitHub pull request review feedback. Use when the user wants to inspect unresolved review threads, requested changes, or inline review comments on a PR, then implement selected fixes. Use the GitHub app for PR metadata and flat comment reads, and use the bundled GraphQL script via `gh` whenever thread-level state, resolution status, or inline review context matters.",
+      "declared_version": null,
+      "content_sha256": "c1ebc337357402f7faabafe712e0c463981a65f736453efe52abd305bcb74769"
+    },
+    {
+      "catalog_id": "github:gh-fix-ci",
+      "skill_id": "gh-fix-ci",
+      "plugin_id": "github@openai-curated-remote",
+      "plugin_name": "github",
+      "plugin_version": "0.1.8-2841cf9749ae",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\skills\\gh-fix-ci",
+      "name": "gh-fix-ci",
+      "description": "Use when a user asks to debug or fix failing GitHub PR checks that run in GitHub Actions. Use the GitHub app from this plugin for PR metadata and patch context, and use `gh` for Actions check and log inspection before implementing any approved fix.",
+      "declared_version": null,
+      "content_sha256": "7621a3560d788fb221d25f9753233fe0c393c5cfe63167c88b11f027c277b1f8"
+    },
+    {
+      "catalog_id": "github:github",
+      "skill_id": "github",
+      "plugin_id": "github@openai-curated-remote",
+      "plugin_name": "github",
+      "plugin_version": "0.1.8-2841cf9749ae",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\skills\\github",
+      "name": "github",
+      "description": "Triage and orient GitHub repository, pull request, and issue work through the connected GitHub app. Use when the user asks for general GitHub help, wants PR or issue summaries, or needs repository context before choosing a more specific GitHub workflow.",
+      "declared_version": null,
+      "content_sha256": "81dbdd90934fe86a79ddc4790fd211e5fca866302a74090ad153395f56f2bd42"
+    },
+    {
+      "catalog_id": "github:yeet",
+      "skill_id": "yeet",
+      "plugin_id": "github@openai-curated-remote",
+      "plugin_name": "github",
+      "plugin_version": "0.1.8-2841cf9749ae",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.8-2841cf9749ae\\skills\\yeet",
+      "name": "yeet",
+      "description": "Publish local changes to GitHub by confirming scope, committing intentionally, pushing the branch, and opening a draft PR through the GitHub app from this plugin, with `gh` used only as a fallback where connector coverage is insufficient.",
+      "declared_version": null,
+      "content_sha256": "e93c6ea769ba673d30749a981cd8ad75b687f454e3c8e2e45e7cfcbd412df12c"
+    },
+    {
+      "catalog_id": "notion:notion-knowledge-capture",
+      "skill_id": "notion-knowledge-capture",
+      "plugin_id": "notion@openai-curated-remote",
+      "plugin_name": "notion",
+      "plugin_version": "0.1.7",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\skills\\notion-knowledge-capture",
+      "name": "notion-knowledge-capture",
+      "description": "Capture conversations and decisions into structured Notion pages; use when turning chats/notes into wiki entries, how-tos, decisions, or FAQs with proper linking.",
+      "declared_version": null,
+      "content_sha256": "ade7d8902823500f6af26bdf290f2a88e35b34ce9668739eb8807b773648e333"
+    },
+    {
+      "catalog_id": "notion:notion-meeting-intelligence",
+      "skill_id": "notion-meeting-intelligence",
+      "plugin_id": "notion@openai-curated-remote",
+      "plugin_name": "notion",
+      "plugin_version": "0.1.7",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\skills\\notion-meeting-intelligence",
+      "name": "notion-meeting-intelligence",
+      "description": "Prepare meeting materials with Notion context and supplemental research; use when gathering context, drafting agendas/pre-reads, and tailoring materials to attendees.",
+      "declared_version": null,
+      "content_sha256": "1a8647c46cdfab399a1e0199924e0aecb83034e9a1b0957db211a045145b7771"
+    },
+    {
+      "catalog_id": "notion:notion-research-documentation",
+      "skill_id": "notion-research-documentation",
+      "plugin_id": "notion@openai-curated-remote",
+      "plugin_name": "notion",
+      "plugin_version": "0.1.7",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\skills\\notion-research-documentation",
+      "name": "notion-research-documentation",
+      "description": "Research across Notion and synthesize into structured documentation; use when gathering info from multiple Notion sources to produce briefs, comparisons, or reports with citations.",
+      "declared_version": null,
+      "content_sha256": "8ca523535915c1b9016202fa24d120545c60caea5c5545d74bfdec195f0a039a"
+    },
+    {
+      "catalog_id": "notion:notion-spec-to-implementation",
+      "skill_id": "notion-spec-to-implementation",
+      "plugin_id": "notion@openai-curated-remote",
+      "plugin_name": "notion",
+      "plugin_version": "0.1.7",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.7\\skills\\notion-spec-to-implementation",
+      "name": "notion-spec-to-implementation",
+      "description": "Turn Notion specs into implementation plans, tasks, and progress tracking; use when implementing PRDs/feature specs and creating Notion plans + tasks from them.",
+      "declared_version": null,
+      "content_sha256": "43b304aaff38fbd4fd5d81efcefb2fd92f5450649eba8b02a2371edb4599cf3f"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-analytics-dashboard",
+      "skill_id": "artifact-template-analytics-dashboard",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-analytics-dashboard",
+      "name": "artifact-template-analytics-dashboard",
+      "description": "Create a spreadsheet using the Analytics Dashboard template and its retained reference file. Use when the user selects or names Analytics Dashboard. Monitor acquisition, engagement, retention, revenue, and conversion funnel KPIs with charts.",
+      "declared_version": null,
+      "content_sha256": "cf5360fd8b197673bb237c52c603c97fa319c875c3dfa2cd8efff52d4422f513"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-business-review",
+      "skill_id": "artifact-template-business-review",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-business-review",
+      "name": "artifact-template-business-review",
+      "description": "Create a presentation using the Business Review template and its retained reference file. Use when the user selects or names Business Review. Review business performance, KPIs, segment results, strategic priorities, decisions, and outlook.",
+      "declared_version": null,
+      "content_sha256": "27721fc1d67d1b41949caa75ac8f94f81952ff124406878af6524047929e60d2"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-design-report",
+      "skill_id": "artifact-template-design-report",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-design-report",
+      "name": "artifact-template-design-report",
+      "description": "Create a document using the Design Report template and its retained reference file. Use when the user selects or names Design Report. Produce design reports with an executive summary, key findings, implications, recommendations, and appendix.",
+      "declared_version": null,
+      "content_sha256": "563722f53854e606f8a9f87e37e72d7ef70a22d46d5836b8e4d6abfb1b79e9e0"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-experiment-analysis",
+      "skill_id": "artifact-template-experiment-analysis",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-experiment-analysis",
+      "name": "artifact-template-experiment-analysis",
+      "description": "Create a document using the Experiment Analysis template and its retained reference file. Use when the user selects or names Experiment Analysis. Analyze experiments with hypotheses, methodology, results, interpretation, limitations, and next steps.",
+      "declared_version": null,
+      "content_sha256": "0b05effc47df0a14f8e0c3e3597e6722224747435546385d38a2cae279bd20b9"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-financial-budget",
+      "skill_id": "artifact-template-financial-budget",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-financial-budget",
+      "name": "artifact-template-financial-budget",
+      "description": "Create a spreadsheet using the Financial Budget template and its retained reference file. Use when the user selects or names Financial Budget. Model actuals, budget and scenario forecasts, variances, cash runway, and departmental plans.",
+      "declared_version": null,
+      "content_sha256": "c0b6b7a62a15597aaf2b1ec679e21da48f533b756127f0aef957cdfe9f3da738"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-investment-committee-memo",
+      "skill_id": "artifact-template-investment-committee-memo",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-investment-committee-memo",
+      "name": "artifact-template-investment-committee-memo",
+      "description": "Create a document using the Investment Committee Memo template and its retained reference file. Use when the user selects or names Investment Committee Memo. Prepare investment committee memos with the thesis, transaction details, financial analysis, risks, and recommendation.",
+      "declared_version": null,
+      "content_sha256": "68abd08cfe5e073e3c446a3f675f44c5bf98f57434dba679e8acd8a763379a8b"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-legal-memorandum",
+      "skill_id": "artifact-template-legal-memorandum",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-legal-memorandum",
+      "name": "artifact-template-legal-memorandum",
+      "description": "Create a document using the Legal Memorandum template and its retained reference file. Use when the user selects or names Legal Memorandum. Draft legal memoranda with the issue, brief answer, relevant facts, analysis, and conclusion.",
+      "declared_version": null,
+      "content_sha256": "51fb9d21baf6119c4ccb1903638a6bac0e859210de63460fffa7025d52e997e0"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-market-trends-report",
+      "skill_id": "artifact-template-market-trends-report",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-market-trends-report",
+      "name": "artifact-template-market-trends-report",
+      "description": "Create a presentation using the Market Trends Report template and its retained reference file. Use when the user selects or names Market Trends Report. Communicate market or industry trends, supporting evidence, implications, and recommended responses.",
+      "declared_version": null,
+      "content_sha256": "d58d019b89cb6f292ac3ab991d561489eef477ff53ce05fb024a0c936f5af26a"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-minimal-letterhead",
+      "skill_id": "artifact-template-minimal-letterhead",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-minimal-letterhead",
+      "name": "artifact-template-minimal-letterhead",
+      "description": "Create a document using the Minimal Letterhead template and its retained reference file. Use when the user selects or names Minimal Letterhead. Write professional business letters with sender, recipient, message, and signature fields in a minimal letterhead layout.",
+      "declared_version": null,
+      "content_sha256": "880ef094d4d0c89a7bde5ce9bbe4086625c186651e9e6efc8ba8bdd7cc77f9d5"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-operating-calendar",
+      "skill_id": "artifact-template-operating-calendar",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-operating-calendar",
+      "name": "artifact-template-operating-calendar",
+      "description": "Create a spreadsheet using the Operating Calendar template and its retained reference file. Use when the user selects or names Operating Calendar. Plan annual and monthly operating milestones, campaigns, launches, deadlines, and recurring events.",
+      "declared_version": null,
+      "content_sha256": "33bb660791a0b9a21628a42c34934932220203b6aabd84e98cb1b45327d0384c"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-operating-review",
+      "skill_id": "artifact-template-operating-review",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-operating-review",
+      "name": "artifact-template-operating-review",
+      "description": "Create a presentation using the Operating Review template and its retained reference file. Use when the user selects or names Operating Review. Run weekly operating reviews with scorecards, functional updates, risks, decisions, and action items.",
+      "declared_version": null,
+      "content_sha256": "6d63c5cd025ffe936e7bab5db3023672bbaec26af55c2bb8b057d38c202c9c32"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-project-kickoff",
+      "skill_id": "artifact-template-project-kickoff",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-project-kickoff",
+      "name": "artifact-template-project-kickoff",
+      "description": "Create a presentation using the Project Kickoff template and its retained reference file. Use when the user selects or names Project Kickoff. Align teams on project goals, scope, roles, milestones, risks, and the working model.",
+      "declared_version": null,
+      "content_sha256": "aa893ebd89e7c8d1db4261d01cc2b1add35d78d00785871ccaaa5fc8db783ec9"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-project-tracker",
+      "skill_id": "artifact-template-project-tracker",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-project-tracker",
+      "name": "artifact-template-project-tracker",
+      "description": "Create a spreadsheet using the Project Tracker template and its retained reference file. Use when the user selects or names Project Tracker. Manage workstreams, tasks, owners, status, priority, dates, launch pulse, and a Gantt schedule.",
+      "declared_version": null,
+      "content_sha256": "d97d5be20189b7f53dd269b6e1c5f694eaf53e5a72f6559fcb1578911b7cda82"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-sales-pipeline",
+      "skill_id": "artifact-template-sales-pipeline",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-sales-pipeline",
+      "name": "artifact-template-sales-pipeline",
+      "description": "Create a spreadsheet using the Sales Pipeline template and its retained reference file. Use when the user selects or names Sales Pipeline. Track opportunities, stages, owners, deal sizes, probabilities, forecasts, next steps, and risks.",
+      "declared_version": null,
+      "content_sha256": "15cfeeedf440021f16ed3f3ad8c7c1ef6d48898b9447741e223d2fb41cfc9800"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-simple-dark-mode",
+      "skill_id": "artifact-template-simple-dark-mode",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-simple-dark-mode",
+      "name": "artifact-template-simple-dark-mode",
+      "description": "Create a presentation using the Simple Dark Mode template and its retained reference file. Use when the user selects or names Simple Dark Mode. Create clean dark-mode presentations with bold typography, simple sections, charts, and imagery.",
+      "declared_version": null,
+      "content_sha256": "b7c8d0c05f75878b9bc21e56a57c41ec1aa29700aca0a24822be0f9f1bd53207"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-simple-light-mode",
+      "skill_id": "artifact-template-simple-light-mode",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-simple-light-mode",
+      "name": "artifact-template-simple-light-mode",
+      "description": "Create a presentation using the Simple Light Mode template and its retained reference file. Use when the user selects or names Simple Light Mode. Create clean light-mode presentations with spacious typography, simple sections, charts, and imagery.",
+      "declared_version": null,
+      "content_sha256": "7c68430c6cf57b55b457d4735dbd1a46b889bef135a32222902dd0848b6e1752"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-strategy-memorandum",
+      "skill_id": "artifact-template-strategy-memorandum",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-strategy-memorandum",
+      "name": "artifact-template-strategy-memorandum",
+      "description": "Create a document using the Strategy Memorandum template and its retained reference file. Use when the user selects or names Strategy Memorandum. Present strategic context, choices, rationale, risks, milestones, and a clear recommendation.",
+      "declared_version": null,
+      "content_sha256": "51d7882ac94e8e57b323394825728c33925af878806e37277217c2dc12a912e5"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-system-design",
+      "skill_id": "artifact-template-system-design",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-system-design",
+      "name": "artifact-template-system-design",
+      "description": "Create a document using the System Design template and its retained reference file. Use when the user selects or names System Design. Document system architecture, requirements, components, data flows, APIs, tradeoffs, and operational considerations.",
+      "declared_version": null,
+      "content_sha256": "87f7b7ed1b0d8410f5e5971cd7f7db9a4165e2f37069e97e52dbfb469b75a57c"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-team-alignment",
+      "skill_id": "artifact-template-team-alignment",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-team-alignment",
+      "name": "artifact-template-team-alignment",
+      "description": "Create a presentation using the Team Alignment template and its retained reference file. Use when the user selects or names Team Alignment. Facilitate team offsites and planning with context, goals, priorities, decisions, and action items.",
+      "declared_version": null,
+      "content_sha256": "26d7cafdcd1899a937b325c5d02ac57c162d45002153be33a934d35f81eb6110"
+    },
+    {
+      "catalog_id": "openai-templates:artifact-template-three-statement-forecast",
+      "skill_id": "artifact-template-three-statement-forecast",
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "plugin_name": "openai-templates",
+      "plugin_version": "0.1.1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1\\skills\\artifact-template-three-statement-forecast",
+      "name": "artifact-template-three-statement-forecast",
+      "description": "Create a spreadsheet using the Three-Statement Forecast template and its retained reference file. Use when the user selects or names Three-Statement Forecast. Build an integrated income statement, balance sheet, and cash flow forecast with assumptions, checks, and an executive summary.",
+      "declared_version": null,
+      "content_sha256": "74f4a5cccec0107b861548b157e04c51d9b58ec13a990c86394b4c529b8ecf41"
+    },
+    {
+      "catalog_id": "pdf:pdf",
+      "skill_id": "pdf",
+      "plugin_id": "pdf@openai-primary-runtime",
+      "plugin_name": "pdf",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\pdf\\26.731.11130\\skills\\pdf",
+      "name": "pdf",
+      "description": "Read, create, inspect, render, and verify PDF files where visual layout matters, including fillable AcroForms. Use Poppler rendering plus Python tools such as reportlab, pdfplumber, and pypdf for generation and extraction.",
+      "declared_version": null,
+      "content_sha256": "be18be0cf948719b52cc1cf358073bf26ed57b7bb4e09b407506749a5dd0c082"
+    },
+    {
+      "catalog_id": "presentations:presentations",
+      "skill_id": "presentations",
+      "plugin_id": "presentations@openai-primary-runtime",
+      "plugin_name": "presentations",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\presentations\\26.731.11130\\skills\\presentations",
+      "name": "Presentations",
+      "description": "Read, create or edit PowerPoint or Google Slides decks. Use for presentation, slide deck, PowerPoint, PPT, PPTX, or Google Slides requests.",
+      "declared_version": null,
+      "content_sha256": "242cf728bbbe26727cd0c721aa0358aa8b8e063b8c3e387933cbb8bcd4c4b7bd"
+    },
+    {
+      "catalog_id": "product-design:audit",
+      "skill_id": "audit",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\audit",
+      "name": "audit",
+      "description": "Audit or critique a product flow, journey, workflow, funnel, onboarding path, checkout path, settings path, screen, or multi-step product experience by capturing screenshots first, then reporting UX, design, and accessibility findings inline from that evidence. Use Figma only when the user explicitly asks for a board. Use when the user asks to audit, review, critique, inspect, assess, analyze, evaluate, or give feedback on a product experience.",
+      "declared_version": null,
+      "content_sha256": "616e74f59da25ae72f5c853b7c9cfc4317400d224ff162abd67293b6f3ee1c82"
+    },
+    {
+      "catalog_id": "product-design:design-qa",
+      "skill_id": "design-qa",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\design-qa",
+      "name": "design-qa",
+      "description": "Internal prototype QA helper. Use only after a Product Design prototype, URL-to-code build, or image-to-code build has a source visual target and a rendered implementation to compare before handoff. Do not use for broad UX critique, design critique, product audits, or flow reviews; route those user-facing requests to audit.",
+      "declared_version": null,
+      "content_sha256": "19303684c7c84e279f3582d784493a6f09d207d92a29e9b15b7056020bcf306e"
+    },
+    {
+      "catalog_id": "product-design:get-context",
+      "skill_id": "get-context",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\get-context",
+      "name": "get-context",
+      "description": "Mandatory design-brief gate for clarifying the product and outcome. Use before ideation, image-to-code builds, redesigns, or product UI work to clarify missing product information and play back the brief before proceeding.",
+      "declared_version": null,
+      "content_sha256": "151267c873003b7b03715c0842ef798369420464844218492f732edd2f6f7fd1"
+    },
+    {
+      "catalog_id": "product-design:ideate",
+      "skill_id": "ideate",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\ideate",
+      "name": "ideate",
+      "description": "Generate image-based alternatives, remixes, or new design directions from a Product Design brief. Use when the user asks for design variants, visual exploration, remixes, or image-generated approaches from provided context.",
+      "declared_version": null,
+      "content_sha256": "649e8782ca93d5aece712964fae5be2b111cc3143577e1507b98df7f9d8e6bde"
+    },
+    {
+      "catalog_id": "product-design:image-to-code",
+      "skill_id": "image-to-code",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\image-to-code",
+      "name": "image-to-code",
+      "description": "Implement a selected image, screenshot, mockup, or Image Gen reference as a faithful, responsive frontend.",
+      "declared_version": null,
+      "content_sha256": "694b4102bc339e3038173f8063d83a19e08d2a2cfab1f2e478d6412870a61ff0"
+    },
+    {
+      "catalog_id": "product-design:index",
+      "skill_id": "index",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\index",
+      "name": "index",
+      "description": "Use when Product Design is explicitly invoked, or when the user's main goal is to explore a design, research UX, audit or critique a flow, faithfully clone a visual source, check a built design, or share a prototype. Do not use Product Design for ordinary implementation unless the user explicitly asks for it.",
+      "declared_version": null,
+      "content_sha256": "8f9f19273ee34a06298ed93f8d70a9c17b3d4ce66f061b024f6d1038b138e5f7"
+    },
+    {
+      "catalog_id": "product-design:research",
+      "skill_id": "research",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\research",
+      "name": "research",
+      "description": "Run fast, source-grounded UX research on the highest-signal problems users are experiencing with a user-specified digital product. Use when the user asks to research user pain, UX friction, onboarding issues, docs/help problems, developer experience friction, support pain, product workflow issues, or current user complaints for a named product.",
+      "declared_version": null,
+      "content_sha256": "bf824e72dd93941c8d591e4af13bb7e3a09380cd6ed7dd8c1f61a295648fa023"
+    },
+    {
+      "catalog_id": "product-design:share",
+      "skill_id": "share",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\share",
+      "name": "share",
+      "description": "Share a runnable prototype using the user's preferred deployment tool.",
+      "declared_version": null,
+      "content_sha256": "19327c50a52f3b9e2ebfcef47d394d988bd6f4c64524c98f665d43bdf5f02c45"
+    },
+    {
+      "catalog_id": "product-design:url-to-code",
+      "skill_id": "url-to-code",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\url-to-code",
+      "name": "url-to-code",
+      "description": "Clone a live URL as a runnable frontend-only local app.",
+      "declared_version": null,
+      "content_sha256": "2624d0e2ec5f14ba2a4bf74fe05aaa23520b4fb76ca57973c9dadd54fd4b09d2"
+    },
+    {
+      "catalog_id": "product-design:user-context",
+      "skill_id": "user-context",
+      "plugin_id": "product-design@openai-curated-remote",
+      "plugin_name": "product-design",
+      "plugin_version": "0.1.52",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.52\\skills\\user-context",
+      "name": "user-context",
+      "description": "Load or manage Product Design's saved user context. Use when the user asks to set up Product Design, get started, onboard, save product or design sources, see what Product Design remembers, update saved context, or remember Product Design preferences. Examples include product URLs, Figma files, screenshots, reference images, codebase paths, Storybook, tokens, design systems, brand assets, and general product/design notes.",
+      "declared_version": null,
+      "content_sha256": "5690a7f99cf896970493f5d0bd7f35f62ab9cbe21744352acf84dc0ceea4194c"
+    },
+    {
+      "catalog_id": "sites:sites-building",
+      "skill_id": "sites-building",
+      "plugin_id": "sites@openai-bundled",
+      "plugin_name": "sites",
+      "plugin_version": "0.1.33",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\sites\\0.1.33\\skills\\sites-building",
+      "name": "sites-building",
+      "description": "Use Sites to build websites, including landing pages, portfolios, dashboards, portals, trackers, hubs, and internal tools. Always use Sites when the project contains `.openai/hosting.json`.",
+      "declared_version": null,
+      "content_sha256": "b96b18fb76c01f1e8305e88e99c79c899a08b4f8ff85838bfbabb39359369308"
+    },
+    {
+      "catalog_id": "sites:sites-hosting",
+      "skill_id": "sites-hosting",
+      "plugin_id": "sites@openai-bundled",
+      "plugin_name": "sites",
+      "plugin_version": "0.1.33",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\sites\\0.1.33\\skills\\sites-hosting",
+      "name": "sites-hosting",
+      "description": "Host websites with Sites. Always use after `sites-building`, and use for website publishing, deployment, hosting management, or projects containing `.openai/hosting.json`.",
+      "declared_version": null,
+      "content_sha256": "a0af21aae4ef2e675c0423ba928151e3967823883f20fc63ac891e54e7df9a96"
+    },
+    {
+      "catalog_id": "spreadsheets:excel-live-control",
+      "skill_id": "excel-live-control",
+      "plugin_id": "spreadsheets@openai-primary-runtime",
+      "plugin_name": "spreadsheets",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.731.11130\\skills\\excel-live-control",
+      "name": "excel-live-control",
+      "description": "Control an open or active Microsoft Excel workbook through the ChatGPT add-in or connected session. Use when the user tags the Microsoft Excel app in Codex or follows up on an established live Excel task. Do not use for standalone spreadsheet files or Google Sheets.",
+      "declared_version": null,
+      "content_sha256": "0f39bcdd71196888dcf5e68b16968a353bb5dd69e761caa4c1ebbc31ab8981a8"
+    },
+    {
+      "catalog_id": "spreadsheets:spreadsheets",
+      "skill_id": "spreadsheets",
+      "plugin_id": "spreadsheets@openai-primary-runtime",
+      "plugin_name": "spreadsheets",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.731.11130\\skills\\spreadsheets",
+      "name": "Spreadsheets",
+      "description": "Create, edit, analyze, and verify standalone spreadsheet files or Google Sheets-ready workbooks, including .xlsx, .xls, .csv, and .tsv. Do not use for live controlling Microsoft Excel app or a live Excel session.",
+      "declared_version": null,
+      "content_sha256": "0e56117131d8d70bd2b5269d8c3dca6c13bad926014dcbd59f7ef878f6f3264a"
+    },
+    {
+      "catalog_id": "template-creator:template-creator",
+      "skill_id": "template-creator",
+      "plugin_id": "template-creator@openai-primary-runtime",
+      "plugin_name": "template-creator",
+      "plugin_version": "26.731.11130",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\template-creator\\26.731.11130\\skills\\template-creator",
+      "name": "template-creator",
+      "description": "Create or update a reusable personal Codex artifact-template skill. Use when the user invokes $template-creator or asks in natural language to create a reusable template from a reference document, presentation, spreadsheet, ImageGen or Product Design image, email, or Slack message, or explicitly asks to edit or update a passed artifact-template skill. Do not use for one-off creation from an existing template.",
+      "declared_version": null,
+      "content_sha256": "894e7bd9ae5f5de28aa140ef684e4b9514e9eadfb1ec0cceed6a5d0c494d7581"
+    },
+    {
+      "catalog_id": "visualize:visualize",
+      "skill_id": "visualize",
+      "plugin_id": "visualize@openai-bundled",
+      "plugin_name": "visualize",
+      "plugin_version": "1.0.16",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\visualize\\1.0.16\\skills\\visualize",
+      "name": "visualize",
+      "description": "Create visualizations and interactive tools directly in conversation. Use when asked to show how something works, make simulators or labs, maps, plots, charts or graphs, comparisons, UI mockups, scenarios, adjustable inputs, and exploration beyond regular text.",
+      "declared_version": null,
+      "content_sha256": "c540927abe6725c8443ca80a0f847d6d8ee8c3596af8513fac7dbc5975a6c590"
+    },
+    {
+      "catalog_id": "windows-computer-use:windows-computer-use",
+      "skill_id": "windows-computer-use",
+      "plugin_id": "windows-computer-use@brave-cow-windows-tools",
+      "plugin_name": "windows-computer-use",
+      "plugin_version": "0.40.0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\brave-cow-windows-tools\\windows-computer-use\\0.40.0\\skills\\windows-computer-use",
+      "name": "windows-computer-use",
+      "description": "Control Windows desktop applications through the local Windows Computer Use MCP with UI Automation 3, stable semantic control ids, native Unicode keyboard/mouse and reversible clipboard input, window capture, Windows OCR, condition waits, and automatic post-action verification. Use for operating Windows apps, dialogs, settings, File Explorer, Office, WeChat, Electron, CAD, or any visible desktop UI when an app API or browser DOM is unavailable or insufficient.",
+      "declared_version": null,
+      "content_sha256": "a97d081eb97ff46710c0bb89d54ff12b887efd65134fc74d75bbe0c2311c7d3e"
+    }
+  ],
+  "enabled_plugin_ids": [
+    "browser@openai-bundled",
+    "canva@openai-curated",
+    "chrome@openai-bundled",
+    "computer-use@openai-bundled",
+    "documents@openai-primary-runtime",
+    "github@openai-curated",
+    "notion@openai-curated",
+    "pdf@openai-primary-runtime",
+    "presentations@openai-primary-runtime",
+    "sites@openai-bundled",
+    "spreadsheets@openai-primary-runtime",
+    "template-creator@openai-primary-runtime",
+    "visualize@openai-bundled",
+    "windows-computer-use@brave-cow-windows-tools"
+  ]
+}

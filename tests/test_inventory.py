@@ -8,6 +8,28 @@ from pathlib import Path
 from harness.scripts import build_skill_inventory as inventory
 
 class InventoryTests(unittest.TestCase):
+    def test_loads_upstream_observations(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "upstream.json"
+            path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "records": [
+                            {
+                                "id": "codex-cli",
+                                "available_version": "0.146.0",
+                                "source_url": "https://github.com/openai/codex",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            records = inventory.load_upstream_observations(path)
+            self.assertEqual(records["codex-cli"]["available_version"], "0.146.0")
+            self.assertEqual(inventory.normalized_version("codex-cli 0.130.0-alpha.5"), "0.130.0-alpha.5")
+
     def test_multiline_frontmatter_description(self) -> None:
         name, description = inventory.parse_frontmatter(
             "---\nname: example\ndescription: |\n  First line.\n  Second line.\n---\n"
@@ -51,6 +73,9 @@ class InventoryTests(unittest.TestCase):
             self.assertTrue(entries[0].enabled_by_config)
             self.assertTrue(entries[0].resolved)
             self.assertEqual(entries[0].state, "resolved-config")
+            plugin_skills = inventory.discover_resolved_plugin_skills(entries)
+            self.assertEqual(len(plugin_skills), 1)
+            self.assertEqual(plugin_skills[0].catalog_id, "sample-plugin:sample-skill")
 
     def test_remote_install_marker_supersedes_legacy_config_cache(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

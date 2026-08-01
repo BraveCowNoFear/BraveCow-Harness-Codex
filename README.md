@@ -1,6 +1,6 @@
 # BraveCow Harness Codex
 
-Current release: `0.5.0`.
+Current release: `0.6.0`.
 
 BraveCow Harness Codex is a Windows-first control plane for Codex Desktop. It installs auditable skill inventory, provenance locks, safe update boundaries, local Markdown/FTS5 memory retrieval, agent profiles, and harness reports without copying private runtime state.
 
@@ -69,6 +69,17 @@ Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\m
 `harness.lock.json` schema v2 records resolved plugin packages, source/installed component versions, Git remote/branch/commit, license evidence, verification state, local patches, and rollback refs. Unknown fields remain explicit instead of being guessed.
 
 Optional `skill_contracts.py` runs machine-specific positive/negative routing prompts. The repository ships an example; active contracts are local state and are not silently enabled for another machine.
+
+Version 0.6 adds resolved, namespaced plugin skills to the inventory and trigger contracts, records official upstream observations for runtime components, and measures the real Codex startup prompt. The config gate also recognizes the exact `priority` schema mismatch in older desktop-bundled CLIs, validates the remaining config with the legacy `fast` alias, and leaves the user's config unchanged.
+
+Monthly audits can populate `~/.codex/harness/catalog/upstream-observations.json` from the shipped example. Each record must cite an official repository, release, tag, commit, or package integrity value. An observation is evidence only; it never authorizes an automatic update.
+
+Capture a sanitized, reproducible runtime snapshot and measure prompt cost with:
+
+```powershell
+python .\harness\scripts\export_runtime_snapshot.py --output .\reports\runtime-snapshot
+python .\harness\scripts\measure_prompt_baseline.py --output "$env:USERPROFILE\.codex\harness\catalog\prompt-baseline.json"
+```
 
 ## Repository Safety Model
 

@@ -21,7 +21,10 @@ class ExportRuntimeSnapshotTests(unittest.TestCase):
                 json.dumps(
                     {
                         "generated_at": "2026-08-01T00:00:00Z",
-                        "summary": {"valid_counts": {"codex": 2}},
+                        "summary": {
+                            "valid_counts": {"codex": 2},
+                            "shared_path": str(fake_home / ".agents" / "skills"),
+                        },
                         "plugin_summary": {"packages": 1},
                         "entries": [{"real_path": str(fake_home / ".agents" / "skills" / "demo")}],
                     }
@@ -47,7 +50,12 @@ class ExportRuntimeSnapshotTests(unittest.TestCase):
             self.assertIn("%USERPROFILE%", exported)
             self.assertNotIn(str(fake_home), exported)
             self.assertEqual(result["manifest"]["lock_summary"]["skills"], 1)
+            self.assertNotIn(str(fake_home), json.dumps(result))
+            self.assertIn("checksums.json", result["files"])
+            self.assertEqual(result["files"].count("checksums.json"), 1)
             self.assertTrue((output / "checksums.json").exists())
+            checksums = json.loads((output / "checksums.json").read_text(encoding="utf-8"))
+            self.assertNotIn("checksums.json", checksums)
 
     def test_secret_pattern_stops_export(self) -> None:
         secret = "gh" + "o_" + "abcdefghijklmnopqrstuvwxyz123456"

@@ -11,14 +11,14 @@ from pathlib import Path
 try:
     from .config_gate import check_config
     from .lock_diff import diff_locks
-    from .memory_router import route_memory
+    from .memory_router import graphiti_ports_ready, route_memory
     from .memory_search import update_index
     from .memory_write_gate import validate_candidate
     from .skill_contracts import evaluate_contracts
 except ImportError:  # direct script execution
     from config_gate import check_config
     from lock_diff import diff_locks
-    from memory_router import route_memory
+    from memory_router import graphiti_ports_ready, route_memory
     from memory_search import update_index
     from memory_write_gate import validate_candidate
     from skill_contracts import evaluate_contracts
@@ -41,6 +41,7 @@ PREVIOUS_LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.previous
 CONTRACTS_PATH = CODEX_HOME / "harness" / "catalog" / "skill-contracts.json"
 VENDOR_DIR = CODEX_HOME / "harness" / "vendor"
 MEMORY_INDEX_PATH = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
+PROMPT_BASELINE_PATH = CODEX_HOME / "harness" / "catalog" / "prompt-baseline.json"
 DEFAULT_OUTPUT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
 
 
@@ -85,6 +86,15 @@ def load_lock() -> dict:
         return json.loads(read_text(LOCK_PATH))
     except json.JSONDecodeError:
         return {"lock_error": "invalid JSON"}
+
+
+def load_prompt_baseline() -> dict:
+    if not PROMPT_BASELINE_PATH.exists():
+        return {}
+    try:
+        return json.loads(read_text(PROMPT_BASELINE_PATH))
+    except json.JSONDecodeError:
+        return {"prompt_error": "invalid JSON"}
 
 
 def collect_memory_index_status() -> dict:
@@ -234,6 +244,7 @@ def render_report() -> str:
     config_gate = check_config(CONFIG_PATH, run_runtime=True)
     inventory = load_inventory()
     lock = load_lock()
+    prompt_baseline = load_prompt_baseline()
     memory_index = collect_memory_index_status()
     router_status = collect_router_status()
     write_gate_status = collect_write_gate_status()
@@ -279,6 +290,15 @@ def render_report() -> str:
         f"- Config runtime gate: `{config_gate.get('runtime', 'unknown')}`",
         f"- Codex CLI: `{config_gate.get('codex_version', 'unknown')}`",
     ]
+    if prompt_baseline:
+        skill_catalog = prompt_baseline.get("skill_catalog", {})
+        lines.extend(
+            [
+                f"- Last measured startup prompt: `{prompt_baseline.get('total_tokens', 'unknown')}` tokens",
+                f"- Skill descriptions: `{skill_catalog.get('description_tokens', 'unknown')}` tokens across `{skill_catalog.get('entries', 'unknown')}` catalog entries",
+                f"- Prompt probe mode: `{prompt_baseline.get('probe_mode', 'unknown')}`",
+            ]
+        )
     if config.get("config_error"):
         lines.append(f"- Config read error: `{config['config_error']}`")
     if config_gate.get("diagnostic"):
@@ -296,6 +316,7 @@ def render_report() -> str:
             f"- Retrieval router result: `{router_status.get('resolved', 'unknown')}`",
             f"- Retrieval degradation latency: `{router_status.get('latency_ms', 'unknown')} ms`",
             f"- Durable-memory write gate: `{write_gate_status.get('decision', 'unknown')}`; writes performed: `{write_gate_status.get('write_performed', False)}`",
+            f"- Graphiti passive port health: `{'ready' if graphiti_ports_ready() else 'unavailable'}` (no service startup attempted)",
         ]
     )
 
@@ -347,6 +368,7 @@ def render_report() -> str:
             f"- Enabled by config: `{plugin_summary.get('enabled_by_config', 0)}`",
             f"- Installed through remote markers: `{plugin_summary.get('installed_remote', 0)}`",
             f"- Resolved logical plugins: `{plugin_summary.get('resolved', 0)}`",
+            f"- Resolved plugin skill entries: `{plugin_summary.get('resolved_skill_entries', 0)}`",
             f"- Cache-only packages: `{plugin_summary.get('cache_only', 0)}`",
         ]
     )
