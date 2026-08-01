@@ -22,6 +22,8 @@ REQUIRED = [
     "harness/scripts/lock_diff.py",
     "harness/scripts/memory_write_gate.py",
     "harness/scripts/skill_contracts.py",
+    "harness/scripts/export_runtime_snapshot.py",
+    "harness/scripts/measure_prompt_baseline.py",
     "harness/catalog/skill-contracts.example.json",
     "harness/catalog/verification.example.json",
     "harness/scripts/vendor_skill.py",
@@ -56,7 +58,7 @@ TEXT_SUFFIXES = {".md", ".ps1", ".py", ".toml", ".json", ".gitignore", ""}
 def iter_text_files() -> list[Path]:
     files: list[Path] = []
     for path in ROOT.rglob("*"):
-        if any(part in {".git", ".research", "output", "__pycache__"} for part in path.parts):
+        if any(part in {".git", ".research", "output", "tmp", "__pycache__"} for part in path.parts):
             continue
         if path.is_file() and path.suffix in TEXT_SUFFIXES:
             files.append(path)
@@ -77,6 +79,8 @@ def main() -> int:
         ROOT / "harness/scripts/lock_diff.py",
         ROOT / "harness/scripts/memory_write_gate.py",
         ROOT / "harness/scripts/skill_contracts.py",
+        ROOT / "harness/scripts/export_runtime_snapshot.py",
+        ROOT / "harness/scripts/measure_prompt_baseline.py",
         ROOT / "harness/scripts/vendor_skill.py",
     ]:
         try:

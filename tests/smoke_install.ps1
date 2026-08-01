@@ -59,6 +59,8 @@ try {
         (Join-Path $CodexHome "harness\scripts\lock_diff.py"),
         (Join-Path $CodexHome "harness\scripts\memory_write_gate.py"),
         (Join-Path $CodexHome "harness\scripts\skill_contracts.py"),
+        (Join-Path $CodexHome "harness\scripts\export_runtime_snapshot.py"),
+        (Join-Path $CodexHome "harness\scripts\measure_prompt_baseline.py"),
         (Join-Path $CodexHome "harness\reports\agent-harness-audit.md"),
         (Join-Path $CodexHome "harness\index\memory-fts.sqlite3"),
         (Join-Path $CodexHome "memories\MEMORY_POLICY.md"),

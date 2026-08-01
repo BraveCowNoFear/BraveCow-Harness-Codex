@@ -1,0 +1,620 @@
+{
+  "schema_version": 1,
+  "snapshot_generated_at": "2026-08-01T09:28:36.708258+00:00",
+  "baseline_tag": "harness-baseline-2026-08-01",
+  "baseline_commit": "a5dac0814868bc7905a7c2ec17e7fc4b2b50029f",
+  "source_generated_at": "2026-08-01T09:13:19.607253+00:00",
+  "inventory_summary": {
+    "counts": {
+      "shared": 18,
+      "codex": 50,
+      "openclaw": 25
+    },
+    "valid_counts": {
+      "shared": 18,
+      "codex": 47,
+      "openclaw": 25
+    },
+    "unique_discoverable_real_paths": 54,
+    "declared_version_count": 8,
+    "missing_shared_links": {},
+    "shared_mirrors": {
+      "agent-harness-introspect": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+            "is_link": false
+          }
+        ]
+      },
+      "agent-introspection-debugging": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\agent-introspection-debugging",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+            "is_link": true
+          }
+        ]
+      },
+      "bilibili-subtitle": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+            "is_link": false
+          }
+        ]
+      },
+      "bilibili-video-download": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+            "is_link": false
+          }
+        ]
+      },
+      "browser-harness": {
+        "shared_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\browser-harness",
+            "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+            "is_link": true
+          }
+        ]
+      },
+      "codebase-onboarding": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\codebase-onboarding",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+            "is_link": true
+          }
+        ]
+      },
+      "context-budget": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\context-budget",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+            "is_link": true
+          }
+        ]
+      },
+      "find-skills": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+            "is_link": false
+          }
+        ]
+      },
+      "guizang-ppt-skill": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+            "is_link": false
+          }
+        ]
+      },
+      "harness": {
+        "shared_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\harness",
+            "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+            "is_link": true
+          }
+        ]
+      },
+      "local-qwen-tts": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+            "is_link": false
+          }
+        ]
+      },
+      "nextjs-app-router-patterns": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+            "is_link": false
+          }
+        ]
+      },
+      "remotion-best-practices": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+            "is_link": false
+          }
+        ]
+      },
+      "shadcn": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+            "is_link": false
+          }
+        ]
+      },
+      "tailwind-design-system": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+            "is_link": false
+          }
+        ]
+      },
+      "text-to-speech": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+            "is_link": false
+          }
+        ]
+      },
+      "vercel-react-best-practices": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+            "is_link": false
+          }
+        ]
+      },
+      "web-design-engineer": {
+        "shared_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+        "refs": [
+          {
+            "runtime": "codex",
+            "path": "%USERPROFILE%\\.codex\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": true
+          },
+          {
+            "runtime": "openclaw",
+            "path": "%USERPROFILE%\\.openclaw\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": true
+          },
+          {
+            "runtime": "shared",
+            "path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+            "is_link": false
+          }
+        ]
+      }
+    },
+    "shadowed_shared_skills": {}
+  },
+  "plugin_summary": {
+    "packages": 24,
+    "skills": 89,
+    "with_apps": 14,
+    "with_mcp": 1,
+    "invalid_manifests": 0,
+    "enabled_by_config": 14,
+    "installed_remote": 8,
+    "resolved": 19,
+    "cache_only": 2,
+    "sources": {
+      "brave-cow-windows-tools": 1,
+      "openai-bundled": 5,
+      "openai-curated": 5,
+      "openai-curated-remote": 8,
+      "openai-primary-runtime": 5
+    }
+  },
+  "lock_summary": {
+    "schema_version": 2,
+    "skills": 54,
+    "plugins": 24,
+    "components": [
+      {
+        "id": "browser-harness",
+        "declared_version": "0.1.8",
+        "installed_version": "0.1.8",
+        "available_version": "v0.1.8",
+        "state": "installed"
+      },
+      {
+        "id": "graphiti-core",
+        "declared_version": "0.29.1",
+        "installed_version": "0.28.2",
+        "available_version": "v0.29.3",
+        "state": "drift"
+      },
+      {
+        "id": "meta-harness",
+        "declared_version": "0.4",
+        "installed_version": "0.4",
+        "available_version": null,
+        "state": "installed"
+      },
+      {
+        "id": "everything-claude-code-active-slice",
+        "declared_version": "2.0.0-rc.1",
+        "installed_version": "v2.1.0-frontmatter-compatible",
+        "available_version": "v2.1.0",
+        "state": "targeted-local-patch"
+      }
+    ]
+  },
+  "evidence": {
+    "config_gate": {
+      "config_path": "%USERPROFILE%\\.codex\\config.toml",
+      "syntax": "pass",
+      "runtime": "runtime-schema-mismatch",
+      "overall": "fail",
+      "diagnostic": "Error: <local-path>:7:16: unknown variant `priority`, expected `fast` or `flex` | unknown variant `priority`, expected `fast` or `flex`",
+      "codex_version": "codex-cli 0.130.0-alpha.5",
+      "service_tier": "priority",
+      "enabled_plugin_ids": [
+        "browser@openai-bundled",
+        "canva@openai-curated",
+        "chrome@openai-bundled",
+        "computer-use@openai-bundled",
+        "documents@openai-primary-runtime",
+        "github@openai-curated",
+        "notion@openai-curated",
+        "pdf@openai-primary-runtime",
+        "presentations@openai-primary-runtime",
+        "sites@openai-bundled",
+        "spreadsheets@openai-primary-runtime",
+        "template-creator@openai-primary-runtime",
+        "visualize@openai-bundled",
+        "windows-computer-use@brave-cow-windows-tools"
+      ]
+    },
+    "prompt_metrics": {
+      "encoding": "o200k_base",
+      "total_tokens": 11505,
+      "buckets": {
+        "skills": 5687,
+        "memory": 4109,
+        "agents": 600,
+        "plugins": 823,
+        "other": 286
+      },
+      "message_count": 3,
+      "skill_catalog": {
+        "entries": 74,
+        "catalog_line_tokens": 4860,
+        "description_tokens": 3051,
+        "top_descriptions": [
+          {
+            "skill_id": "weixin-thread-bridge",
+            "description_tokens": 87,
+            "description_chars": 162
+          },
+          {
+            "skill_id": "deep-research",
+            "description_tokens": 67,
+            "description_chars": 105
+          },
+          {
+            "skill_id": "bilibili-video-download",
+            "description_tokens": 66,
+            "description_chars": 245
+          },
+          {
+            "skill_id": "local-qwen-tts",
+            "description_tokens": 61,
+            "description_chars": 245
+          },
+          {
+            "skill_id": "cli-creator",
+            "description_tokens": 60,
+            "description_chars": 244
+          },
+          {
+            "skill_id": "documents:documents",
+            "description_tokens": 59,
+            "description_chars": 244
+          },
+          {
+            "skill_id": "playwright",
+            "description_tokens": 54,
+            "description_chars": 241
+          },
+          {
+            "skill_id": "bilibili-subtitle",
+            "description_tokens": 52,
+            "description_chars": 95
+          },
+          {
+            "skill_id": "github:gh-fix-ci",
+            "description_tokens": 52,
+            "description_chars": 245
+          },
+          {
+            "skill_id": "shadcn",
+            "description_tokens": 52,
+            "description_chars": 243
+          },
+          {
+            "skill_id": "skill-installer",
+            "description_tokens": 50,
+            "description_chars": 225
+          },
+          {
+            "skill_id": "delegate-task",
+            "description_tokens": 49,
+            "description_chars": 244
+          },
+          {
+            "skill_id": "github:github",
+            "description_tokens": 49,
+            "description_chars": 243
+          },
+          {
+            "skill_id": "pdf:pdf",
+            "description_tokens": 49,
+            "description_chars": 222
+          },
+          {
+            "skill_id": "web-design-engineer",
+            "description_tokens": 49,
+            "description_chars": 243
+          }
+        ]
+      },
+      "probe_mode": "legacy-fast-alias",
+      "native_probe_diagnostic": "Error: %USERPROFILE%\\.codex\\config.toml:7:16: unknown variant `priority`, expected `fast` or `flex` |  | Caused by: |     unknown variant `priority`, expected `fast` or `flex` |     in `service_tier`"
+    }
+  },
+  "sources": {
+    "skill_inventory_sha256": "d9f9bf6ba7e1c1ed261a862b158cf44fb8482938b5d1c449bcd1e3eb3a48dcf1",
+    "harness_lock_sha256": "543d1e16a158905dc8c71d1cf1013433ee8002cd2d102858fc583675921d42c1",
+    "audit_sha256": "ee067b0481a9507a1b7b1226c41dc41142096979b528eb605bf1251a939f8153"
+  }
+}
