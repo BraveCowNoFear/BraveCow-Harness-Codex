@@ -13,7 +13,7 @@ Use this skill when the user is asking about the agent's own setup rather than a
 - Shared skill pool under `%USERPROFILE%\.agents\skills`
 - OpenClaw cross-reference state under `%USERPROFILE%\.openclaw`
 - Memory loop health under `%USERPROFILE%\.codex\memories`
-- Automation coverage under `%USERPROFILE%\.codex\automations`
+- Automation control-plane coverage under `%USERPROFILE%\.codex\automations`, including continuous technology evolution and memory/RAG indexing
 - Cached plugin packages under `%USERPROFILE%\.codex\plugins\cache`
 - Safe intake of third-party skills/plugins through the local harness catalog and quarantine area
 
@@ -35,6 +35,7 @@ Use this skill when the user is asking about the agent's own setup rather than a
    - Run `python %USERPROFILE%\.codex\harness\scripts\harness_audit.py`
    - Read `catalog\harness.lock.json` to distinguish resolved remote/config plugins, superseded caches, component drift, verification state, and rollback refs.
    - Treat the config runtime gate as authoritative when TOML syntax passes but the installed Codex CLI rejects a value.
+   - Distinguish Harness-owned core automations, managed workspace extensions, and unrelated local automations without copying private prompts into reports or Git.
 4. Retrieve memory through the cheapest sufficient path:
    - Read a known Markdown file directly when the path or section is known.
    - Otherwise run `python %USERPROFILE%\.codex\harness\scripts\memory_router.py "<query>"` and keep the evidence pack bounded.
@@ -56,6 +57,8 @@ Use this skill when the user is asking about the agent's own setup rather than a
 - Do not auto-enable third-party code or plugins merely because they are popular.
 - Treat plugin cache entries as cached packages, not proof that they are enabled.
 - Treat `harness.lock.json` as observed provenance, not permission to auto-update.
+- Treat Harness-owned automation definitions as private runtime state; keep only non-secret architecture, role, acceptance, and rollback contracts in the repository.
+- For technology upgrades, separate what is newly available from what is compatible and measurably beneficial on the current machine; adopt only after a minimal isolated experiment and end-to-end verification.
 - Keep Markdown canonical; FTS5, vector, and graph stores are replaceable indexes.
 - Prefer shared skills in `%USERPROFILE%\.agents\skills` and runtime-specific junctions over copied duplicates.
 - If a skill or plugin comes from an external repository, preserve provenance in a manifest before activation.

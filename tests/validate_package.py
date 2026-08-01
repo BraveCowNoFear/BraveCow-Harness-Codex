@@ -14,6 +14,7 @@ REQUIRED = [
     "README.zh-CN.md",
     "install.ps1",
     "harness/README.md",
+    "docs/automation-subsystems.md",
     "harness/scripts/build_skill_inventory.py",
     "harness/scripts/harness_audit.py",
     "harness/scripts/config_gate.py",

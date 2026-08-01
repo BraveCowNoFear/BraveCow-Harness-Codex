@@ -1,6 +1,6 @@
 # BraveCow Harness Codex
 
-Current release: `0.6.0`.
+Current release: `0.6.1`.
 
 BraveCow Harness Codex is a Windows-first control plane for Codex Desktop. It installs auditable skill inventory, provenance locks, safe update boundaries, local Markdown/FTS5 memory retrieval, agent profiles, and harness reports without copying private runtime state.
 
@@ -15,7 +15,7 @@ For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
 - `~/.codex/agents`: starter `default`, `explorer`, and `worker` profiles.
 - `AGENTS.md` snippets for the global Codex directory and, by default, the current workspace.
 
-It does not install API keys, browser sessions, vault entries, personal profiles, automations, marketplace caches, or vendored third-party code.
+It does not install API keys, browser sessions, vault entries, personal profiles, automation definitions or prompts, marketplace caches, or vendored third-party code. Harness-owned automations remain private local runtime state, but the audit recognizes their non-secret roles as part of the control plane.
 
 ## Quick Start
 
@@ -67,6 +67,10 @@ Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\m
 ```
 
 `harness.lock.json` schema v2 records resolved plugin packages, source/installed component versions, Git remote/branch/commit, license evidence, verification state, local patches, and rollback refs. Unknown fields remain explicit instead of being guessed.
+
+## Automation Subsystems
+
+The monthly evolution automation is the Harness technology radar and safe-upgrade loop: it scouts fast-moving AI capabilities from first-party sources, tests the smallest compatible experiment, and adopts only changes with measurable net benefit. The global memory-to-Graphiti automation and durable Markdown maintenance are the Harness memory/RAG control plane. Their local definitions are not exported; audit output includes only safe role, status, ownership, health, cost, and rollback metadata. See [docs/automation-subsystems.md](docs/automation-subsystems.md).
 
 Optional `skill_contracts.py` runs machine-specific positive/negative routing prompts. The repository ships an example; active contracts are local state and are not silently enabled for another machine.
 

@@ -1,10 +1,10 @@
 # BraveCow Harness Codex
 
-当前版本：`0.6.0`。
+当前版本：`0.6.1`。
 
 BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先控制层：它提供 Skill/插件启用态盘点、来源锁、安全更新边界、Markdown + SQLite FTS5 本地记忆检索、agent profiles 和审计报告。
 
-它不是把某台电脑的 `.codex` 原样打包。它不会包含 API key、浏览器登录态、vault、个人资料、自动化任务、插件缓存或第三方 vendor 源码。
+它不是把某台电脑的 `.codex` 原样打包。它不会包含 API key、浏览器登录态、vault、个人资料、自动化定义或 prompt、插件缓存或第三方 vendor 源码。属于 Harness 的自动化仍保留为本机私有运行状态，但审计器会把它们的非敏感角色纳入控制面。
 
 ## 一键安装
 
@@ -73,6 +73,10 @@ Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\m
 ```
 
 `harness.lock.json` v2 会记录插件解析结果、组件源码/安装版本、Git 远端/分支/提交、许可证证据、验证状态、本地补丁和回滚点；无法确认的字段会明确标为未知，不做猜测。
+
+## 自动化子系统
+
+月度演进自动化是 Harness 的技术雷达与安全升级闭环：它从一手来源侦察快速变化的 AI 能力，先做最小兼容实验，只采纳在当前机器上有可测净收益的变化。全局“记忆 → Graphiti”自动化和 Markdown 记忆维护共同构成 Harness 的记忆/RAG 控制面。本机定义不会被导出；审计只记录安全的角色、状态、归属、健康、成本与回滚元数据。详见 [docs/automation-subsystems.md](docs/automation-subsystems.md)。
 
 可选的 `skill_contracts.py` 会运行本机专属的正/负触发提示回归。仓库只附示例，不会把一台机器的激活契约静默套到另一台机器。
 

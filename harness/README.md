@@ -10,6 +10,10 @@ This directory is the local control plane for Codex harness maintenance.
 - `scripts/`: local audit and maintenance scripts.
 - `vendor/`: quarantined third-party resources before activation.
 
+## Automation Control Plane
+
+Harness-owned automations are private local runtime state, so the installer does not copy their definitions or prompts. The audit still classifies their non-secret role and boundary. The monthly evolution automation continuously scouts and safely applies useful AI advances; the global memory-to-Graphiti automation and durable Markdown maintenance form the memory/RAG subsystem. See `docs/automation-subsystems.md` in the repository for the full contract.
+
 ## Suggested Workflow
 
 Refresh the skill and cached-plugin inventory:

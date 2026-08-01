@@ -17,6 +17,20 @@ $BackupRoot = Join-Path $TempRoot "backups"
 try {
     New-Item -ItemType Directory -Path $TempRoot -Force | Out-Null
     New-Item -ItemType Directory -Path (Join-Path $CodexHome "memories") -Force | Out-Null
+    $MonthlyAutomation = Join-Path $CodexHome "automations\bravecow-harness"
+    $GlobalRagAutomation = Join-Path $CodexHome "automations\session-log-graphiti-sync"
+    New-Item -ItemType Directory -Path $MonthlyAutomation -Force | Out-Null
+    New-Item -ItemType Directory -Path $GlobalRagAutomation -Force | Out-Null
+    Set-Content -LiteralPath (Join-Path $MonthlyAutomation "automation.toml") -Encoding UTF8 -Value @'
+name = "Harness monthly evolution"
+status = "ACTIVE"
+prompt = "Scout and safely adopt useful AI technology."
+'@
+    Set-Content -LiteralPath (Join-Path $GlobalRagAutomation "automation.toml") -Encoding UTF8 -Value @'
+name = "Harness global memory RAG"
+status = "ACTIVE"
+prompt = "Index canonical Markdown memory into Graphiti."
+'@
     Set-Content -LiteralPath (Join-Path $CodexHome "memories\PROFILE.md") -Value "USER-SENTINEL" -Encoding UTF8
     $InitialAgents = "User preface.`r`n`r`n<!-- BraveCow Harness Codex: start -->`r`nold managed block`r`n<!-- BraveCow Harness Codex: end -->"
     Set-Content -LiteralPath (Join-Path $CodexHome "AGENTS.md") -Value $InitialAgents -Encoding UTF8
@@ -96,7 +110,7 @@ try {
     }
 
     $Audit = Get-Content -LiteralPath (Join-Path $CodexHome "harness\reports\agent-harness-audit.md") -Raw -Encoding UTF8
-    if ($Audit -notlike "*## Codex Plugin Cache*" -or $Audit -notlike "*SQLite FTS5 index*" -or $Audit -notlike "*Config runtime gate*" -or $Audit -notlike "*Durable-memory write gate*") {
+    if ($Audit -notlike "*## Codex Plugin Cache*" -or $Audit -notlike "*SQLite FTS5 index*" -or $Audit -notlike "*Config runtime gate*" -or $Audit -notlike "*Durable-memory write gate*" -or $Audit -notlike "*continuous-technology-evolution*" -or $Audit -notlike "*global-memory-rag-index*") {
         throw "Audit report is missing the updated sections."
     }
 

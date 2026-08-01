@@ -44,6 +44,12 @@ MEMORY_INDEX_PATH = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
 PROMPT_BASELINE_PATH = CODEX_HOME / "harness" / "catalog" / "prompt-baseline.json"
 DEFAULT_OUTPUT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
 
+HARNESS_AUTOMATION_ROLES = {
+    "bravecow-harness": ("continuous-technology-evolution", "core"),
+    "session-log-graphiti-sync": ("global-memory-rag-index", "core"),
+    "memory-tidy": ("durable-memory-maintenance", "core"),
+}
+
 
 def read_text(path: Path) -> str:
     raw = path.read_bytes()
@@ -199,10 +205,58 @@ def collect_agent_profiles() -> list[str]:
     return sorted(path.stem for path in AGENTS_DIR.glob("*.toml"))
 
 
-def collect_automations() -> list[str]:
-    if not AUTOMATIONS_DIR.exists():
+def classify_automation(automation_id: str, prompt: str = "") -> dict:
+    known = HARNESS_AUTOMATION_ROLES.get(automation_id)
+    if known:
+        role, boundary = known
+        return {"role": role, "boundary": boundary, "harness_component": True}
+
+    normalized = prompt.casefold()
+    is_workspace_rag = "graphiti" in normalized and any(
+        marker in normalized for marker in ("workspace", "group_id", "rag")
+    )
+    if is_workspace_rag:
+        return {
+            "role": "workspace-memory-rag-index",
+            "boundary": "managed-extension",
+            "harness_component": True,
+        }
+    return {"role": "external-local-automation", "boundary": "external", "harness_component": False}
+
+
+def collect_automations(root: Path = AUTOMATIONS_DIR) -> list[dict]:
+    if not root.exists():
         return []
-    return sorted(path.name for path in AUTOMATIONS_DIR.iterdir() if path.is_dir())
+    automations: list[dict] = []
+    for path in sorted(item for item in root.iterdir() if item.is_dir()):
+        config_path = path / "automation.toml"
+        base = {
+            "id": path.name,
+            "name": path.name,
+            "status": "missing-config",
+            **classify_automation(path.name),
+        }
+        if not config_path.exists():
+            automations.append(base)
+            continue
+        try:
+            config = tomllib.loads(read_text(config_path))
+            prompt = str(config.get("prompt", ""))
+            base.update(classify_automation(path.name, prompt))
+            base.update(
+                {
+                    "name": str(config.get("name", path.name)),
+                    "status": str(config.get("status", "unknown")),
+                }
+            )
+        except (OSError, tomllib.TOMLDecodeError):
+            base["status"] = "invalid-config"
+        automations.append(base)
+    return automations
+
+
+def markdown_inline(value: object) -> str:
+    return str(value).replace("`", "'").replace("\r", " ").replace("\n", " ")
 
 
 def collect_vendor_candidates() -> list[dict]:
@@ -330,7 +384,14 @@ def render_report() -> str:
     lines.extend(["", "## Automations", ""])
     automations = collect_automations()
     if automations:
-        lines.extend(f"- `{automation}`" for automation in automations)
+        harness_automations = [item for item in automations if item["harness_component"]]
+        lines.append(f"- Harness components: `{len(harness_automations)}/{len(automations)}`")
+        for automation in automations:
+            lines.append(
+                f"- `{markdown_inline(automation['id'])}` — `{markdown_inline(automation['name'])}`; "
+                f"role: `{automation['role']}`; boundary: `{automation['boundary']}`; "
+                f"status: `{markdown_inline(automation['status'])}`"
+            )
     else:
         lines.append("- `none`")
 
@@ -430,6 +491,7 @@ def render_report() -> str:
             "- Prefer shared skills and runtime junctions over copied duplicates.",
             "- Catalog external resources before activation.",
             "- Use Markdown plus SQLite FTS5 as the default local memory path; keep graph/vector retrieval optional.",
+            "- Treat Harness-owned automation definitions as private local runtime state while auditing their non-secret role, health, cost, and rollback contract.",
             "- Treat the generated harness lock as observation evidence, not authorization to auto-update.",
             "- Treat this report as local state, not a portable artifact.",
         ]
