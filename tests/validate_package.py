@@ -14,6 +14,7 @@ REQUIRED = [
     "README.zh-CN.md",
     "install.ps1",
     "install.sh",
+    "requirements-dev.txt",
     "harness/README.md",
     "docs/automation-subsystems.md",
     "docs/onboarding.md",
@@ -69,7 +70,7 @@ FORBIDDEN_PATTERNS = [
     r"1649392148@qq\.com",
 ]
 
-TEXT_SUFFIXES = {".md", ".ps1", ".sh", ".py", ".toml", ".json", ".yml", ".yaml", ".csv", ".gitignore", ""}
+TEXT_SUFFIXES = {".md", ".txt", ".ps1", ".sh", ".py", ".toml", ".json", ".yml", ".yaml", ".csv", ".gitignore", ""}
 
 
 def iter_text_files() -> list[Path]:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -47,7 +48,8 @@ class ExportRuntimeSnapshotTests(unittest.TestCase):
             result = export_snapshot(inventory, lock, audit, output, home=fake_home)
 
             exported = (output / "skill-inventory.sanitized.json").read_text(encoding="utf-8")
-            self.assertIn("%USERPROFILE%", exported)
+            expected_home_token = "%USERPROFILE%" if os.name == "nt" else "$HOME"
+            self.assertIn(expected_home_token, exported)
             self.assertNotIn(str(fake_home), exported)
             self.assertEqual(result["manifest"]["lock_summary"]["skills"], 1)
             self.assertNotIn(str(fake_home), json.dumps(result))
