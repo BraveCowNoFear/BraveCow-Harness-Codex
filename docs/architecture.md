@@ -1,27 +1,29 @@
 # Architecture
 
-BraveCow Harness Codex keeps the runtime small, observable, and degradable.
+BraveCow Harness keeps the Codex and ZCode runtime layers small, observable, and degradable.
 
 ## Layers
 
 1. **Memory entry points**
-   - `~/.codex/memories/PROFILE.md`
-   - `~/.codex/memories/ACTIVE.md`
-   - `~/.codex/memories/MEMORY_POLICY.md`
-   - `~/.codex/memories/SESSION_LOG.md`
-   - `~/.codex/memories/LEARNINGS.md`
-   - `~/.codex/memories/ERRORS.md`
-   - `~/.codex/memories/FEATURE_REQUESTS.md`
+   - `~/.bravecow/memories/PROFILE.md`
+   - `~/.bravecow/memories/ACTIVE.md`
+   - `~/.bravecow/memories/MEMORY_POLICY.md`
+   - `~/.bravecow/memories/SESSION_LOG.md`
+   - `~/.bravecow/memories/LEARNINGS.md`
+   - `~/.bravecow/memories/ERRORS.md`
+   - `~/.bravecow/memories/FEATURE_REQUESTS.md`
 
 2. **Harness workspace**
-   - `~/.codex/harness/scripts`: local maintenance scripts.
-   - `~/.codex/harness/catalog`: generated inventories and import backlog.
-   - `~/.codex/harness/reports`: point-in-time audit reports.
-   - `~/.codex/harness/vendor`: quarantine area for third-party resources.
+   - `~/.bravecow/harness/scripts`: local maintenance and onboarding launchers.
+   - `~/.bravecow/harness/catalog`: generated inventories and import backlog.
+   - `~/.bravecow/harness/reports`: point-in-time audit reports.
+   - `~/.bravecow/harness/vendor`: quarantine area for third-party resources.
+   - `~/.codex` and `~/.zcode`: runtime-specific configuration and links into shared state.
 
 3. **Shared skill pool**
    - `~/.agents/skills` is the preferred canonical location for reusable skills.
    - `~/.codex/skills` can link to shared skills or hold Codex-specific wrappers.
+   - `~/.zcode/skills` can link to the same shared skills or hold ZCode-specific wrappers.
 
 4. **Agent profiles**
    - `~/.codex/agents/default.toml`
@@ -43,7 +45,8 @@ BraveCow Harness Codex keeps the runtime small, observable, and degradable.
    - `harness.lock.json` schema v2 records observed skill/plugin hashes, resolved packages, component source/installed versions, Git remote/branch/commit, license evidence, verification status, local patches, and rollback refs.
    - The lock is evidence, not auto-update authorization.
    - A semantic change preserves one previous snapshot for deterministic weekly/local diffing; timestamps alone do not create drift.
-   - Runtime, config, memory initialization, and user-data replacement are separate installer operations.
+- Runtime, config, memory initialization, and user-data replacement are separate installer operations.
+   - Windows uses junctions when allowed; macOS uses symbolic links. Both installers fall back to copies when links are disabled.
 
 ## Operating Principles
 

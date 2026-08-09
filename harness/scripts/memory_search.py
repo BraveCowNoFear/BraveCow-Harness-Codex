@@ -3,17 +3,19 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import re
 import sqlite3
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
+try:
+    from .runtime_paths import HARNESS_HOME, MEMORY_HOME
+except ImportError:  # direct script execution
+    from runtime_paths import HARNESS_HOME, MEMORY_HOME
 
-HOME = Path.home()
-CODEX_HOME = Path(os.environ.get("CODEX_HOME", HOME / ".codex"))
-DEFAULT_MEMORY_DIR = CODEX_HOME / "memories"
-DEFAULT_DB = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
+
+DEFAULT_MEMORY_DIR = MEMORY_HOME
+DEFAULT_DB = HARNESS_HOME / "index" / "memory-fts.sqlite3"
 
 
 @dataclass

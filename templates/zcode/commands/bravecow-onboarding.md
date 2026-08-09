@@ -1,0 +1,1 @@
+Start the BraveCow beginner course in this new task. Invoke `$bravecow-onboarding`, detect ZCode and the current operating system, then teach one lesson per turn in plain language. Use everyday and business examples, wait for the user after every lesson, and do not assume that model names or buttons are present without checking the current interface.

@@ -1,35 +1,115 @@
-# BraveCow Harness Codex
+# BraveCow Harness
 
-当前版本：`0.6.1`。
+当前版本：`0.7.0`。
 
-BraveCow Harness Codex 是一个给 Codex Desktop 用的 Windows 优先控制层：它提供 Skill/插件启用态盘点、来源锁、安全更新边界、Markdown + SQLite FTS5 本地记忆检索、agent profiles 和审计报告。
+BraveCow Harness 是给普通用户准备的跨平台助手工作层。它让同一套 Skills、记忆规则、安全边界和审计能力同时服务于：
 
-它不是把某台电脑的 `.codex` 原样打包。它不会包含 API key、浏览器登录态、vault、个人资料、自动化定义或 prompt、插件缓存或第三方 vendor 源码。属于 Harness 的自动化仍保留为本机私有运行状态，但审计器会把它们的非敏感角色纳入控制面。
+| 系统 | Codex | ZCode |
+| --- | --- | --- |
+| Windows | 支持 | 支持 |
+| macOS | 支持 | 支持 |
+
+安装完成后，安装它的 Codex 或 ZCode 会自动新建一个独立任务，启动 12 课交互式新手指南。课程不要求计算机背景，会用读书会、旅行选择和家庭预算等例子，逐步讲清任务、工作区、计划模式、目标模式、模型、思考等级、工具、Skills 和 Harness；每课都会等用户回答，不会一次扔出一整本说明书。
 
 ## 一键安装
 
-在这个仓库目录打开 PowerShell：
+最简单的方式是把仓库链接交给 Codex 或 ZCode：
+
+```text
+请下载并安装 BraveCow Harness：
+https://github.com/BraveCowNoFear/BraveCow-Harness-Codex
+请按 README.zh-CN.md 为我当前的系统和应用安装。安装完成后不要在当前任务里讲教程，让安装器自动开启一个新的新手指南任务。
+```
+
+也可以自己运行：
+
+Windows PowerShell：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-安装后可以直接让 Codex 执行：
+macOS 终端：
 
-```text
-使用 agent-harness-introspect skill，检查并总结我本机的 Codex harness。
+```sh
+sh ./install.sh
 ```
 
-## 会安装什么
+默认同时为 Codex 和 ZCode 安装。只装一个运行时：
 
-- `~/.codex/harness`：inventory、来源锁、配置语义门、FTS5 检索与审计脚本。
-- `~/.agents/skills/agent-harness-introspect`：共享 skill。
-- `~/.codex/skills/agent-harness-introspect`：默认创建到共享 skill 的 junction；失败时复制。
-- `~/.codex/memories`：七个分层记忆模板，新增 `MEMORY_POLICY.md` 与 `SESSION_LOG.md`。
-- `~/.codex/agents`：`default`、`explorer`、`worker` 三个 agent profile 模板。
-- `~/.codex/AGENTS.md` 和当前 workspace 的 `AGENTS.md`：追加一段 memory/harness 入口规则。
+```powershell
+.\install.ps1 -Targets Codex
+.\install.ps1 -Targets ZCode
+```
 
-## 发布前验证
+```sh
+sh ./install.sh --targets codex
+sh ./install.sh --targets zcode
+```
+
+安装器会优先识别是谁发起安装，并在相同应用中开启教程。也可通过 `-OnboardingRuntime Codex|ZCode` 或 `--onboarding-runtime codex|zcode` 明确指定。若暂时不想开教程，使用 `-SkipOnboarding` 或 `--skip-onboarding`。
+
+## 安装内容
+
+- `~/.bravecow/harness`：跨平台 inventory、来源锁、检查、检索和新手任务启动器。
+- `~/.bravecow/memories`：两套应用共享的 Markdown 记忆模板；升级默认不覆盖用户内容。
+- `~/.agents/skills`：共享 Skills，包括 Harness 审计与新手指南。
+- `~/.codex/skills`、`~/.zcode/skills`：指向共享 Skills 的链接，无法链接时安全复制。
+- `~/.codex/AGENTS.md`、`~/.zcode/AGENTS.md`：各应用的受管入口规则。
+- `~/.zcode/commands/bravecow-onboarding.md`：可手动运行的 ZCode 新手命令。
+- `~/.codex/agents`：Codex 支持的 agent profile 模板。
+
+旧版 `~/.codex/harness` 和 `~/.codex/memories` 会被安全接入新的共享目录，不会偷偷删除或覆盖。
+
+仓库不包含 API key、浏览器登录态、vault、个人资料、自动化 prompt、插件缓存或第三方 vendor 源码。
+
+## 新手指南的 12 课
+
+1. 助手、任务与第一次对话
+2. 当前任务和新任务的区别
+3. 工作区与运行环境
+4. 目标、材料、限制、完成标准
+5. 计划模式何时有用
+6. 执行、权限与对外动作
+7. 目标模式何时有用
+8. 如何按难度选择模型
+9. 如何选择思考等级
+10. 文件、网页、浏览器和桌面工具
+11. Harness、Skills、规则与记忆
+12. 一个完整的非技术毕业小项目
+
+课程会读取当前应用实际显示的模型和选项，不硬编码一份可能过期的名单。Codex 中如果当前可见 Sol，可把它理解为适合困难、多步骤和高要求审查的选择；简单整理通常更适合更快的模型。ZCode 同样以界面当前可见的模型和 Off/High/Max 等思考选项为准。
+
+课程还蒸馏了 [《40分钟成为 Codex 高级玩家 完整教程》](https://www.bilibili.com/video/BV1dFTv6yEcZ/) 中可迁移的工作方法：先澄清再行动、关键选择设检查点、保留可回退版本、长目标拆里程碑、按权限选择工具、真实查看产物后再宣布完成。视频中的开发案例和可能过期的产品结论不会照搬给普通用户。
+
+## 自动开启新任务
+
+- Codex：通过官方 App Server 的 `thread/start`、`thread/name/set` 和 `turn/start` 创建并启动任务。
+- ZCode / Windows：激活 ZCode 后使用官方 `Ctrl+N` 新任务快捷键。
+- ZCode / macOS：激活 ZCode 后使用官方 `Command+N`；首次使用可能需要授予 macOS“辅助功能”权限。
+- 每次尝试都会写入 `~/.bravecow/harness/onboarding/last-launch.json`。如果系统权限阻止自动操作，安装器会明确报错；用户仍可在新任务中输入 `$bravecow-onboarding`，或在 ZCode 运行 `/bravecow-onboarding`。
+
+## 安全更新参数
+
+```powershell
+# 只预览
+.\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
+
+# 更新程序与受管配置，保留已有记忆
+.\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
+
+# 不改当前工作区 AGENTS.md
+.\install.ps1 -NoWorkspaceAgents
+
+# 不建立目录链接，改为复制
+.\install.ps1 -NoJunctions
+```
+
+macOS 使用对应的 `--dry-run`、`--update-runtime`、`--migrate-config`、`--initialize-memory`、`--no-workspace-agents` 和 `--no-links`。只有显式使用 `-ReplaceUserData` / `--replace-user-data` 才会替换记忆模板，而且替换前会备份。
+
+## 验证
+
+Windows：
 
 ```powershell
 python .\tests\validate_package.py
@@ -37,65 +117,24 @@ python -m unittest discover -s .\tests
 powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
 ```
 
-## 常用参数
+macOS：
 
-```powershell
-# 不改当前目录的 AGENTS.md
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoWorkspaceAgents
-
-# 只预览，不写文件
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
-
-# 更新运行时代码和受管 AGENTS 片段；绝不覆盖已有记忆
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
-
-# 高危、显式替换用户数据；覆盖前自动备份
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -ReplaceUserData
-
-# 不创建 junction，直接复制 skill
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoJunctions
+```sh
+python3 ./tests/validate_package.py
+python3 -m unittest discover -s ./tests
+sh ./tests/smoke_install_macos.sh
 ```
 
-`-InitializeMemory` 只创建缺失的记忆文件。兼容参数 `-Force` 现在只等价于 `-UpdateRuntime -MigrateConfig`，不会替换 memory 或其他用户数据。所有被覆盖的受管文件会先备份到 `~/.codex/harness/backups/`。
+四象限 CI 会分别验证 Windows/macOS × Codex/ZCode。Codex 新任务接口另有模拟端到端测试；ZCode 自动开任务依赖真实桌面窗口和系统辅助权限，因此 CI 验证安装契约，真实设备仍应做一次安装验收。
 
-## 记忆检索
+## 官方能力依据
 
-Markdown 永远是可信源。检索路由器会直接读取已知文件，普通查询走本机 SQLite FTS5，只有时间/实体关系问题且现有 Graphiti 端口健康时才建议交给 Graphiti：
-
-```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "Edge 浏览器规则"
-```
-
-返回结果受证据字符预算限制。Graphiti/向量库故障时立即回退到本机检索，不会自动启动或修复外部服务。持久记忆候选可先经过只校验、不写入的门禁：
-
-```powershell
-Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
-```
-
-`harness.lock.json` v2 会记录插件解析结果、组件源码/安装版本、Git 远端/分支/提交、许可证证据、验证状态、本地补丁和回滚点；无法确认的字段会明确标为未知，不做猜测。
-
-## 自动化子系统
-
-月度演进自动化是 Harness 的技术雷达与安全升级闭环：它从一手来源侦察快速变化的 AI 能力，先做最小兼容实验，只采纳在当前机器上有可测净收益的变化。全局“记忆 → Graphiti”自动化和 Markdown 记忆维护共同构成 Harness 的记忆/RAG 控制面。本机定义不会被导出；审计只记录安全的角色、状态、归属、健康、成本与回滚元数据。详见 [docs/automation-subsystems.md](docs/automation-subsystems.md)。
-
-可选的 `skill_contracts.py` 会运行本机专属的正/负触发提示回归。仓库只附示例，不会把一台机器的激活契约静默套到另一台机器。
-
-0.6 版把已解析的插件 Skill 按“插件名:Skill名”纳入 inventory 和触发契约，记录运行时组件的官方上游观测，并测量真实 Codex 启动 prompt。配置门禁也能精确识别旧版桌面 CLI 对 `priority` 的 schema 落后，用兼容别名 `fast` 验证其余配置，不修改用户配置。
-
-月度审计可以从仓库示例生成 `~/.codex/harness/catalog/upstream-observations.json`。每条观测必须指向官方仓库、release、tag、commit 或包完整性值；观测只是证据，绝不会授权自动升级。
-
-可用以下命令保存脱敏、可复现的运行时快照并测量 prompt 成本：
-
-```powershell
-python .\harness\scripts\export_runtime_snapshot.py --output .\reports\runtime-snapshot
-python .\harness\scripts\measure_prompt_baseline.py --output "$env:USERPROFILE\.codex\harness\catalog\prompt-baseline.json"
-```
-
-## 给朋友的最短用法
-
-把这个链接发给朋友，让他丢给 Codex：
-
-```text
-请下载并安装这个 Codex harness：https://github.com/BraveCowNoFear/BraveCow-Harness-Codex
-按 README.zh-CN.md 运行 install.ps1，然后用 agent-harness-introspect 检查安装结果。
-```
+- [Codex App Server](https://learn.chatgpt.com/docs/app-server)
+- [Codex slash commands](https://learn.chatgpt.com/docs/reference/slash-commands)
+- [Codex environments and modes](https://learn.chatgpt.com/docs/environments/modes)
+- [ZCode install](https://zcode.z.ai/en/docs/install)
+- [ZCode skills](https://zcode.z.ai/en/docs/skill)
+- [ZCode commands](https://zcode.z.ai/en/docs/commands)
+- [ZCode agents, modes and thought levels](https://zcode.z.ai/en/docs/agents)
+- [ZCode Goal mode](https://zcode.z.ai/en/docs/goal)
+- [ZCode keyboard shortcuts](https://zcode.z.ai/en/docs/keyboard-shortcuts)

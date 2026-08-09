@@ -1,0 +1,61 @@
+name: four-quadrant-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tests/validate_package.py
+      - run: python -m unittest discover -s tests
+
+  install-quadrant:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            runtime: Codex
+            runtime_home: codex
+          - os: windows-latest
+            runtime: ZCode
+            runtime_home: zcode
+          - os: macos-latest
+            runtime: codex
+            runtime_home: codex
+          - os: macos-latest
+            runtime: zcode
+            runtime_home: zcode
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $tokens = $null; $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path "harness/scripts/start_onboarding.ps1"), [ref]$tokens, [ref]$errors) | Out-Null
+          if ($errors.Count) { throw ($errors | Out-String) }
+          $root = Join-Path $env:RUNNER_TEMP "bravecow-${{ matrix.runtime }}"
+          ./install.ps1 -BraveCowHome "$root/.bravecow" -CodexHome "$root/.codex" -ZCodeHome "$root/.zcode" -SharedSkillsHome "$root/.agents/skills" -Workspace "$root/workspace" -Targets ${{ matrix.runtime }} -UpdateRuntime -MigrateConfig -InitializeMemory -NoJunctions -SkipOnboarding
+          if (!(Test-Path "$root/.bravecow/harness/reports/agent-harness-audit.md")) { throw "Missing audit" }
+          if (!(Test-Path "$root/.${{ matrix.runtime_home }}/skills/bravecow-onboarding/SKILL.md")) { throw "Missing onboarding skill" }
+      - name: Install on macOS
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          sh -n ./install.sh
+          sh -n ./harness/scripts/start_onboarding.sh
+          root="$RUNNER_TEMP/bravecow-${{ matrix.runtime }}"
+          sh ./install.sh --bravecow-home "$root/.bravecow" --codex-home "$root/.codex" --zcode-home "$root/.zcode" --shared-skills-home "$root/.agents/skills" --workspace "$root/workspace" --targets "${{ matrix.runtime }}" --update-runtime --migrate-config --initialize-memory --no-links --skip-onboarding
+          test -f "$root/.bravecow/harness/reports/agent-harness-audit.md"
+          test -f "$root/.${{ matrix.runtime_home }}/skills/bravecow-onboarding/SKILL.md"

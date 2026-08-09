@@ -1,72 +1,63 @@
 ---
 name: agent-harness-introspect
-description: Safely audit or upgrade local Codex, shared, and OpenClaw harness state.
+description: Safely audit or upgrade BraveCow Harness across Codex, ZCode, shared skills, memory, and OpenClaw state.
 ---
 
 # Agent Harness Introspect
 
-Use this skill when the user is asking about the agent's own setup rather than an external project.
+Use this skill when the user asks about the assistant's own setup rather than an external project.
 
 ## What this skill covers
 
-- Codex runtime state under `%USERPROFILE%\.codex`
-- Shared skill pool under `%USERPROFILE%\.agents\skills`
-- OpenClaw cross-reference state under `%USERPROFILE%\.openclaw`
-- Memory loop health under `%USERPROFILE%\.codex\memories`
-- Automation control-plane coverage under `%USERPROFILE%\.codex\automations`, including continuous technology evolution and memory/RAG indexing
-- Cached plugin packages under `%USERPROFILE%\.codex\plugins\cache`
-- Safe intake of third-party skills/plugins through the local harness catalog and quarantine area
+- Shared Harness state under `~/.bravecow/harness`
+- Canonical memory under `~/.bravecow/memories`
+- Codex state under `~/.codex`
+- ZCode state under `~/.zcode`
+- Shared skills under `~/.agents/skills`
+- OpenClaw cross-reference state under `~/.openclaw`
+- Codex automation and plugin-cache coverage, when Codex is installed
+- Safe intake of third-party skills and plugins through the Harness catalog and quarantine area
+
+`~` means the current user's home folder on Windows or macOS. Detect the host before showing platform-specific commands.
 
 ## Default workflow
 
-1. Read the global memory entry points first:
-   - `%USERPROFILE%\.codex\memories\PROFILE.md`
-   - `%USERPROFILE%\.codex\memories\ACTIVE.md`
-2. Inspect these local control points:
-   - `%USERPROFILE%\.codex\config.toml`
-   - `%USERPROFILE%\.codex\agents\`
-   - `%USERPROFILE%\.codex\automations\`
-   - `%USERPROFILE%\.codex\plugins\cache\`
-   - `%USERPROFILE%\.codex\harness\README.md`
-   - `%USERPROFILE%\.codex\harness\catalog\import-backlog.json`
-   - `%USERPROFILE%\.codex\harness\catalog\external-round1.md`
-3. Refresh the local inventory when the answer depends on current state:
-   - Run `python %USERPROFILE%\.codex\harness\scripts\build_skill_inventory.py`
-   - Run `python %USERPROFILE%\.codex\harness\scripts\harness_audit.py`
-   - Read `catalog\harness.lock.json` to distinguish resolved remote/config plugins, superseded caches, component drift, verification state, and rollback refs.
-   - Treat the config runtime gate as authoritative when TOML syntax passes but the installed Codex CLI rejects a value.
-   - Distinguish Harness-owned core automations, managed workspace extensions, and unrelated local automations without copying private prompts into reports or Git.
-4. Retrieve memory through the cheapest sufficient path:
-   - Read a known Markdown file directly when the path or section is known.
-   - Otherwise run `python %USERPROFILE%\.codex\harness\scripts\memory_router.py "<query>"` and keep the evidence pack bounded.
-   - Use Graphiti only for temporal/entity relationship questions and only when it is already healthy; failure must fall back immediately to Markdown/FTS5.
-   - Run `memory_write_gate.py` on any proposed durable-memory candidate; it validates but never writes.
-5. When a user asks to import or migrate outside resources:
-   - Prefer cataloging first
-   - Store third-party items in `%USERPROFILE%\.codex\harness\vendor\`
-   - Keep them quarantined until manually reviewed
-6. Summarize:
-   - what is active now
-   - what is missing or drifting
-   - what is safe to upgrade immediately
-   - what should stay deferred
+1. Read `~/.bravecow/memories/PROFILE.md` and `ACTIVE.md` first.
+2. Inspect the shared control points:
+   - `~/.bravecow/harness/README.md`
+   - `~/.bravecow/harness/catalog/import-backlog.json`
+   - `~/.bravecow/harness/catalog/external-round1.md`
+   - `~/.agents/skills/`
+3. Inspect installed runtime control points only when present:
+   - Codex: `~/.codex/config.toml`, `agents/`, `automations/`, and `plugins/cache/`
+   - ZCode: `~/.zcode/AGENTS.md`, `commands/`, and `skills/`
+4. Refresh current evidence when the answer depends on it:
+   - Run `python ~/.bravecow/harness/scripts/build_skill_inventory.py`
+   - Run `python ~/.bravecow/harness/scripts/harness_audit.py`
+   - Read `catalog/harness.lock.json` for runtime presence, skill links, drift, verification, and rollback evidence.
+5. Retrieve memory through the cheapest sufficient path:
+   - Read known Markdown directly.
+   - Otherwise run `python ~/.bravecow/harness/scripts/memory_router.py "<query>"`.
+   - Use Graphiti only when already healthy and the question genuinely needs temporal or relationship reasoning.
+   - Run `memory_write_gate.py` on proposed durable-memory candidates; it validates but never writes.
+6. For outside resources, catalog first, store third-party material in `~/.bravecow/harness/vendor/`, and keep it quarantined until reviewed.
+7. Summarize what is active, missing or drifting, safe to upgrade, and intentionally deferred.
 
 ## Safe upgrade rules
 
 - Do not auto-edit `AGENTS.md` unless the user explicitly asks.
-- Do not auto-enable third-party code or plugins merely because they are popular.
-- Treat plugin cache entries as cached packages, not proof that they are enabled.
-- Treat `harness.lock.json` as observed provenance, not permission to auto-update.
-- Treat Harness-owned automation definitions as private runtime state; keep only non-secret architecture, role, acceptance, and rollback contracts in the repository.
-- For technology upgrades, separate what is newly available from what is compatible and measurably beneficial on the current machine; adopt only after a minimal isolated experiment and end-to-end verification.
+- Do not auto-enable third-party code merely because it is popular.
+- Treat cache entries as evidence, not proof of activation.
+- Treat `harness.lock.json` as observed provenance, not update permission.
+- Keep private automation prompts and runtime state out of Git.
+- Adopt technology only after a small isolated experiment and end-to-end verification.
 - Keep Markdown canonical; FTS5, vector, and graph stores are replaceable indexes.
-- Prefer shared skills in `%USERPROFILE%\.agents\skills` and runtime-specific junctions over copied duplicates.
-- If a skill or plugin comes from an external repository, preserve provenance in a manifest before activation.
-- For supply-chain-sensitive items, migrate metadata or a quarantined snapshot first, then leave activation as a separate step.
+- Prefer shared skills in `~/.agents/skills` with runtime-specific links over duplicated copies.
+- Preserve source and version metadata before activating external material.
 
 ## Good outputs
 
-- A concise explanation of the current harness architecture
-- A list of drift, duplication, or missing links
-- A safe upgrade plan with immediate changes and deferred items
-- Updated harness reports or backlog files when the user asked for changes
+- A concise map of the current Windows/macOS and Codex/ZCode setup
+- A list of drift, duplication, broken links, or missing runtime pieces
+- A safe upgrade plan with immediate and deferred changes
+- Updated Harness reports or backlog files when the user requested changes

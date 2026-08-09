@@ -3,16 +3,20 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 from datetime import UTC, datetime
 from pathlib import Path
 
+try:
+    from .runtime_paths import HARNESS_HOME, HOME
+except ImportError:  # direct script execution
+    from runtime_paths import HARNESS_HOME, HOME
 
-HOME = Path.home()
-CODEX_HOME = HOME / ".codex"
-DEFAULT_INVENTORY = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
-DEFAULT_LOCK = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
-DEFAULT_AUDIT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
+
+DEFAULT_INVENTORY = HARNESS_HOME / "catalog" / "skill-inventory.json"
+DEFAULT_LOCK = HARNESS_HOME / "catalog" / "harness.lock.json"
+DEFAULT_AUDIT = HARNESS_HOME / "reports" / "agent-harness-audit.md"
 
 SECRET_PATTERNS = (
     re.compile(r"gh[opsu]_[A-Za-z0-9_]{20,}"),
@@ -42,7 +46,8 @@ def sanitize_text(text: str, home: Path = HOME) -> str:
     variants = {home_text, home_text.replace("\\", "/")}
     sanitized = text
     for variant in sorted(variants, key=len, reverse=True):
-        sanitized = re.sub(re.escape(variant), "%USERPROFILE%", sanitized, flags=re.IGNORECASE)
+        replacement = "%USERPROFILE%" if os.name == "nt" else "$HOME"
+        sanitized = re.sub(re.escape(variant), replacement, sanitized, flags=re.IGNORECASE)
     return sanitized
 
 

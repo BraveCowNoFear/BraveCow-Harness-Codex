@@ -5,11 +5,14 @@ import json
 import re
 from pathlib import Path
 
+try:
+    from .runtime_paths import HARNESS_HOME
+except ImportError:  # direct script execution
+    from runtime_paths import HARNESS_HOME
 
-HOME = Path.home()
-CODEX_HOME = Path(__import__("os").environ.get("CODEX_HOME", HOME / ".codex"))
-DEFAULT_INVENTORY = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
-DEFAULT_CONTRACTS = CODEX_HOME / "harness" / "catalog" / "skill-contracts.json"
+
+DEFAULT_INVENTORY = HARNESS_HOME / "catalog" / "skill-inventory.json"
+DEFAULT_CONTRACTS = HARNESS_HOME / "catalog" / "skill-contracts.json"
 
 
 def read_json(path: Path) -> dict:

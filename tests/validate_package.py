@@ -13,8 +13,11 @@ REQUIRED = [
     "README.md",
     "README.zh-CN.md",
     "install.ps1",
+    "install.sh",
     "harness/README.md",
     "docs/automation-subsystems.md",
+    "docs/onboarding.md",
+    ".github/workflows/ci.yml",
     "harness/scripts/build_skill_inventory.py",
     "harness/scripts/harness_audit.py",
     "harness/scripts/config_gate.py",
@@ -29,7 +32,16 @@ REQUIRED = [
     "harness/catalog/verification.example.json",
     "harness/catalog/upstream-observations.example.json",
     "harness/scripts/vendor_skill.py",
+    "harness/scripts/runtime_paths.py",
+    "harness/scripts/start_onboarding.py",
+    "harness/scripts/start_onboarding.ps1",
+    "harness/scripts/start_onboarding.sh",
     "skills/agent-harness-introspect/SKILL.md",
+    "skills/bravecow-onboarding/SKILL.md",
+    "skills/bravecow-onboarding/references/curriculum.md",
+    "skills/bravecow-onboarding/references/video-distillation-BV1dFTv6yEcZ.md",
+    "skills/bravecow-onboarding/assets/community-book-fair.md",
+    "templates/zcode/commands/bravecow-onboarding.md",
     "templates/AGENTS.snippet.md",
     "templates/memories/PROFILE.md",
     "templates/memories/ACTIVE.md",
@@ -39,6 +51,9 @@ REQUIRED = [
     "templates/memories/ERRORS.md",
     "templates/memories/FEATURE_REQUESTS.md",
     "tests/smoke_install.ps1",
+    "tests/smoke_install_macos.sh",
+    "tests/test_onboarding_launcher.py",
+    "tests/test_runtime_paths.py",
 ]
 
 LOCAL_USER = "Clr"
@@ -54,7 +69,7 @@ FORBIDDEN_PATTERNS = [
     r"1649392148@qq\.com",
 ]
 
-TEXT_SUFFIXES = {".md", ".ps1", ".py", ".toml", ".json", ".gitignore", ""}
+TEXT_SUFFIXES = {".md", ".ps1", ".sh", ".py", ".toml", ".json", ".yml", ".yaml", ".csv", ".gitignore", ""}
 
 
 def iter_text_files() -> list[Path]:
@@ -84,6 +99,8 @@ def main() -> int:
         ROOT / "harness/scripts/export_runtime_snapshot.py",
         ROOT / "harness/scripts/measure_prompt_baseline.py",
         ROOT / "harness/scripts/vendor_skill.py",
+        ROOT / "harness/scripts/runtime_paths.py",
+        ROOT / "harness/scripts/start_onboarding.py",
     ]:
         try:
             py_compile.compile(str(path), doraise=True)

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import platform
 import re
 import sqlite3
 import time
@@ -15,6 +16,7 @@ try:
     from .memory_search import update_index
     from .memory_write_gate import validate_candidate
     from .skill_contracts import evaluate_contracts
+    from .runtime_paths import CODEX_HOME, HARNESS_HOME, MEMORY_HOME, ZCODE_HOME
 except ImportError:  # direct script execution
     from config_gate import check_config
     from lock_diff import diff_locks
@@ -22,6 +24,7 @@ except ImportError:  # direct script execution
     from memory_search import update_index
     from memory_write_gate import validate_candidate
     from skill_contracts import evaluate_contracts
+    from runtime_paths import CODEX_HOME, HARNESS_HOME, MEMORY_HOME, ZCODE_HOME
 
 try:
     import tomllib
@@ -29,20 +32,19 @@ except ModuleNotFoundError:  # pragma: no cover
     import tomli as tomllib  # type: ignore
 
 
-HOME = Path.home()
-CODEX_HOME = Path(__import__("os").environ.get("CODEX_HOME", HOME / ".codex"))
 CONFIG_PATH = CODEX_HOME / "config.toml"
-MEMORY_DIR = CODEX_HOME / "memories"
+MEMORY_DIR = MEMORY_HOME
 AGENTS_DIR = CODEX_HOME / "agents"
 AUTOMATIONS_DIR = CODEX_HOME / "automations"
-INVENTORY_PATH = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
-LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
-PREVIOUS_LOCK_PATH = CODEX_HOME / "harness" / "catalog" / "harness.lock.previous.json"
-CONTRACTS_PATH = CODEX_HOME / "harness" / "catalog" / "skill-contracts.json"
-VENDOR_DIR = CODEX_HOME / "harness" / "vendor"
-MEMORY_INDEX_PATH = CODEX_HOME / "harness" / "index" / "memory-fts.sqlite3"
-PROMPT_BASELINE_PATH = CODEX_HOME / "harness" / "catalog" / "prompt-baseline.json"
-DEFAULT_OUTPUT = CODEX_HOME / "harness" / "reports" / "agent-harness-audit.md"
+ZCODE_AGENTS_DIR = ZCODE_HOME / "agents"
+INVENTORY_PATH = HARNESS_HOME / "catalog" / "skill-inventory.json"
+LOCK_PATH = HARNESS_HOME / "catalog" / "harness.lock.json"
+PREVIOUS_LOCK_PATH = HARNESS_HOME / "catalog" / "harness.lock.previous.json"
+CONTRACTS_PATH = HARNESS_HOME / "catalog" / "skill-contracts.json"
+VENDOR_DIR = HARNESS_HOME / "vendor"
+MEMORY_INDEX_PATH = HARNESS_HOME / "index" / "memory-fts.sqlite3"
+PROMPT_BASELINE_PATH = HARNESS_HOME / "catalog" / "prompt-baseline.json"
+DEFAULT_OUTPUT = HARNESS_HOME / "reports" / "agent-harness-audit.md"
 
 HARNESS_AUTOMATION_ROLES = {
     "bravecow-harness": ("continuous-technology-evolution", "core"),
@@ -205,6 +207,12 @@ def collect_agent_profiles() -> list[str]:
     return sorted(path.stem for path in AGENTS_DIR.glob("*.toml"))
 
 
+def collect_zcode_agents() -> list[str]:
+    if not ZCODE_AGENTS_DIR.exists():
+        return []
+    return sorted(path.stem for path in ZCODE_AGENTS_DIR.glob("*.md"))
+
+
 def classify_automation(automation_id: str, prompt: str = "") -> dict:
     known = HARNESS_AUTOMATION_ROLES.get(automation_id)
     if known:
@@ -314,11 +322,17 @@ def render_report() -> str:
     shared_mirrors = summary.get("shared_mirrors", {})
     shadowed_shared = summary.get("shadowed_shared_skills", {})
     codex_shadow_ids = [item["skill_id"] for item in shadowed_shared.get("codex", [])]
+    zcode_shadow_ids = [item["skill_id"] for item in shadowed_shared.get("zcode", [])]
     openclaw_shadow_ids = [item["skill_id"] for item in shadowed_shared.get("openclaw", [])]
     codex_mirrors = [
         skill_id
         for skill_id, payload in shared_mirrors.items()
         if any(ref.get("runtime") == "codex" for ref in payload.get("refs", []))
+    ]
+    zcode_mirrors = [
+        skill_id
+        for skill_id, payload in shared_mirrors.items()
+        if any(ref.get("runtime") == "zcode" for ref in payload.get("refs", []))
     ]
     openclaw_mirrors = [
         skill_id
@@ -330,12 +344,17 @@ def render_report() -> str:
     unmanifested_vendor_dirs = collect_unmanifested_vendor_dirs()
 
     lines = [
-        "# Agent Harness Audit",
+        "# BraveCow Harness Audit",
         "",
         f"Generated: {datetime.now(UTC).isoformat()}",
         "",
         "## Runtime",
         "",
+        f"- Host OS: `{platform.system()} {platform.machine()}`",
+        f"- Shared harness home: `{HARNESS_HOME}`",
+        f"- Shared memory home: `{MEMORY_HOME}`",
+        f"- Codex home: `{CODEX_HOME}`",
+        f"- ZCode home: `{ZCODE_HOME}`",
         f"- Model: `{config.get('model', 'unknown')}`",
         f"- Reasoning effort: `{config.get('model_reasoning_effort', 'unknown')}`",
         f"- Approval policy: `{config.get('approval_policy', 'unknown')}`",
@@ -380,6 +399,8 @@ def render_report() -> str:
         lines.extend(f"- `{profile}`" for profile in profiles)
     else:
         lines.append("- `none`")
+    zcode_agents = collect_zcode_agents()
+    lines.append(f"- ZCode custom agents: `{', '.join(zcode_agents) or 'none'}`")
 
     lines.extend(["", "## Automations", ""])
     automations = collect_automations()
@@ -402,9 +423,11 @@ def render_report() -> str:
             "",
             f"- Shared skills: `{counts.get('shared', 0)}`",
             f"- Codex skill entries: `{counts.get('codex', 0)}`",
+            f"- ZCode skill entries: `{counts.get('zcode', 0)}`",
             f"- OpenClaw skill entries: `{counts.get('openclaw', 0)}`",
             f"- Valid shared skills: `{valid_counts.get('shared', 0)}`",
             f"- Valid Codex skills: `{valid_counts.get('codex', 0)}`",
+            f"- Valid ZCode skills: `{valid_counts.get('zcode', 0)}`",
             f"- Valid OpenClaw skills: `{valid_counts.get('openclaw', 0)}`",
             f"- Unique discoverable real paths: `{summary.get('unique_discoverable_real_paths', 0)}`",
             f"- Entries declaring a version: `{summary.get('declared_version_count', 0)}`",
@@ -456,16 +479,19 @@ def render_report() -> str:
             "## Shared Mirrors",
             "",
             f"- Mirrored into Codex via shared path: `{len(codex_mirrors)}`",
+            f"- Mirrored into ZCode via shared path: `{len(zcode_mirrors)}`",
             f"- Mirrored into OpenClaw via shared path: `{len(openclaw_mirrors)}`",
             "",
             "## Missing Shared Links",
             "",
             f"- Missing in Codex: `{', '.join(missing_links.get('codex', [])) or 'none'}`",
+            f"- Missing in ZCode: `{', '.join(missing_links.get('zcode', [])) or 'none'}`",
             f"- Missing in OpenClaw: `{', '.join(missing_links.get('openclaw', [])) or 'none'}`",
             "",
             "## Shared Skill Shadows",
             "",
             f"- Codex local copies of shared skill ids: `{', '.join(codex_shadow_ids) or 'none'}`",
+            f"- ZCode local copies of shared skill ids: `{', '.join(zcode_shadow_ids) or 'none'}`",
             f"- OpenClaw local copies of shared skill ids: `{', '.join(openclaw_shadow_ids) or 'none'}`",
             "",
             "## Vendor Quarantine",

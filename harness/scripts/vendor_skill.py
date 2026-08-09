@@ -6,10 +6,13 @@ import re
 from datetime import UTC, datetime
 from pathlib import Path
 
+try:
+    from .runtime_paths import HARNESS_HOME
+except ImportError:  # direct script execution
+    from runtime_paths import HARNESS_HOME
 
-HOME = Path.home()
-CODEX_HOME = Path(__import__("os").environ.get("CODEX_HOME", HOME / ".codex"))
-VENDOR_ROOT = CODEX_HOME / "harness" / "vendor"
+
+VENDOR_ROOT = HARNESS_HOME / "vendor"
 
 
 def slugify(value: str) -> str:
@@ -85,4 +88,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

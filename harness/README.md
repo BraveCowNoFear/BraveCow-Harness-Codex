@@ -1,6 +1,6 @@
 # BraveCow Harness Workspace
 
-This directory is the local control plane for Codex harness maintenance.
+This directory is the shared local control plane for Codex and ZCode Harness maintenance on Windows and macOS.
 
 ## Layout
 
@@ -19,49 +19,49 @@ Harness-owned automations are private local runtime state, so the installer does
 Refresh the skill and cached-plugin inventory:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\build_skill_inventory.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\build_skill_inventory.py"
 ```
 
 Generate the audit report:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\harness_audit.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\harness_audit.py"
 ```
 
 Route a memory query and receive a bounded evidence pack without starting external services:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "query"
+python "$env:USERPROFILE\.bravecow\harness\scripts\memory_router.py" "query"
 ```
 
 Validate a durable-memory candidate without writing it:
 
 ```powershell
-Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
+Get-Content .\candidate.json | python "$env:USERPROFILE\.bravecow\harness\scripts\memory_write_gate.py"
 ```
 
 To enable deterministic trigger regression, copy `skill-contracts.example.json` to `skill-contracts.json`, replace the examples with machine-relevant skills, then run:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\skill_contracts.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\skill_contracts.py"
 ```
 
 Each semantic inventory change preserves one previous lock snapshot. Compare it read-only (for example from a weekly task):
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\lock_diff.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\lock_diff.py"
 ```
 
 Validate that the installed Codex CLI can semantically parse the current config:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\config_gate.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\config_gate.py"
 ```
 
 Prepare a quarantined vendor manifest:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\vendor_skill.py" --title "Example" --source-url "https://example.com" --kind skill
+python "$env:USERPROFILE\.bravecow\harness\scripts\vendor_skill.py" --title "Example" --source-url "https://example.com" --kind skill
 ```
 
 Review before activation. Do not auto-enable third-party code merely because it was cataloged.
@@ -73,5 +73,5 @@ For a monthly audit, copy `upstream-observations.example.json` to the active cat
 Measure the actual startup prompt without editing `config.toml`:
 
 ```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\measure_prompt_baseline.py"
+python "$env:USERPROFILE\.bravecow\harness\scripts\measure_prompt_baseline.py"
 ```

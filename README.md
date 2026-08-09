@@ -1,98 +1,81 @@
-# BraveCow Harness Codex
+# BraveCow Harness
 
-Current release: `0.6.1`.
+Current release: `0.7.0`.
 
-BraveCow Harness Codex is a Windows-first control plane for Codex Desktop. It installs auditable skill inventory, provenance locks, safe update boundaries, local Markdown/FTS5 memory retrieval, agent profiles, and harness reports without copying private runtime state.
+BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
+
+| Host | Codex | ZCode |
+| --- | --- | --- |
+| Windows | Supported | Supported |
+| macOS | Supported | Supported |
+
+After installation, the calling app automatically opens a separate task and starts a 12-lesson interactive beginner course. It explains tasks, workspaces, Plan and Goal modes, model and thought-level choices, tools, skills, memory, and the Harness through everyday examples instead of programming exercises.
 
 For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
 
-## What It Installs
-
-- `~/.codex/harness`: audit, config-gate, provenance-lock, and SQLite FTS5 memory scripts.
-- `~/.agents/skills/agent-harness-introspect`: a skill for inspecting the local Codex harness.
-- `~/.codex/skills/agent-harness-introspect`: a junction to the shared skill when possible, otherwise a copy.
-- `~/.codex/memories`: seven starter memory files, including a retention policy and session log.
-- `~/.codex/agents`: starter `default`, `explorer`, and `worker` profiles.
-- `AGENTS.md` snippets for the global Codex directory and, by default, the current workspace.
-
-It does not install API keys, browser sessions, vault entries, personal profiles, automation definitions or prompts, marketplace caches, or vendored third-party code. Harness-owned automations remain private local runtime state, but the audit recognizes their non-secret roles as part of the control plane.
-
 ## Quick Start
 
-Open PowerShell in this repository and run:
+Give this repository URL to Codex or ZCode and ask it to follow the README for the current platform, or run the installer directly:
 
 ```powershell
+# Windows
 powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
-Then ask Codex:
-
-```text
-Use the agent-harness-introspect skill and audit my local Codex harness.
+```sh
+# macOS
+sh ./install.sh
 ```
 
-## Useful Options
+Both runtimes are installed by default. Use `-Targets Codex|ZCode` on Windows or `--targets codex|zcode` on macOS to install one. Use `-SkipOnboarding` or `--skip-onboarding` only when a new course task is not wanted.
+
+## What It Installs
+
+- `~/.bravecow/harness`: portable inventory, audit, retrieval, and onboarding launchers.
+- `~/.bravecow/memories`: shared canonical Markdown memory, preserved by default during upgrades.
+- `~/.agents/skills`: shared Harness skills.
+- `~/.codex/skills` and `~/.zcode/skills`: links to shared skills, or safe copies when links are disabled.
+- Runtime-specific `AGENTS.md` entry rules and a ZCode `/bravecow-onboarding` command.
+- Codex agent profiles where supported.
+
+Legacy `~/.codex/harness` and `~/.codex/memories` data are adopted without deletion. API keys, browser sessions, vaults, personal profiles, private automation prompts, plugin caches, and third-party vendor source are never packaged.
+
+## Post-install Course
+
+The `bravecow-onboarding` skill teaches one lesson per turn and waits for the learner. It adapts to the actual app, OS, visible models, and available thought controls. It uses a community book event, travel options, and a household budget as practice material.
+
+The course also distills the transferable workflow lessons from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, add decision checkpoints, preserve rollback points, split long goals into milestones, choose tools by permission and purpose, and inspect the real output before declaring completion. Its development-specific example and time-sensitive product claims are not copied into the general-audience path.
+
+Codex task creation uses the official App Server. ZCode task creation uses its documented new-task shortcut (`Ctrl+N` on Windows, `Command+N` on macOS). macOS may request Accessibility permission. Every attempt writes `~/.bravecow/harness/onboarding/last-launch.json`; if desktop automation is blocked, start a new task manually and enter `$bravecow-onboarding`, or run `/bravecow-onboarding` in ZCode.
+
+## Safe Update Options
 
 ```powershell
-# Install without editing the current workspace AGENTS.md
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoWorkspaceAgents
-
-# Preview an update without writing anything
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
-
-# Update runtime scripts and the managed AGENTS block; existing memory is preserved
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
-
-# Explicit high-risk user-data replacement; every overwritten file is backed up first
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -ReplaceUserData
-
-# Avoid junction creation and copy the skill into ~/.codex/skills instead
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -NoJunctions
+.\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
+.\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
 ```
 
-`-InitializeMemory` creates only missing memory files. `-Force` is retained as a safe compatibility alias for `-UpdateRuntime -MigrateConfig`; it never replaces memory or other user data. Backups are written under `~/.codex/harness/backups/` before any existing managed file is overwritten.
-
-## Memory Retrieval
-
-Markdown remains canonical. The router reads known files directly, uses SQLite FTS5 for ordinary lookup, and only hands temporal/relationship questions to Graphiti when its existing ports are healthy:
-
-```powershell
-python "$env:USERPROFILE\.codex\harness\scripts\memory_router.py" "browser Edge rule"
+```sh
+sh ./install.sh --update-runtime --migrate-config --initialize-memory
+sh ./install.sh --update-runtime --migrate-config --dry-run
 ```
 
-Every result is a bounded evidence pack. Vector and graph stores are optional indexes; failure falls back locally without starting or repairing services. Proposed durable writes can be checked without mutation:
+Existing memory is replaced only by the explicit `-ReplaceUserData` / `--replace-user-data` option, and managed files are backed up first.
 
-```powershell
-Get-Content .\candidate.json | python "$env:USERPROFILE\.codex\harness\scripts\memory_write_gate.py"
-```
-
-`harness.lock.json` schema v2 records resolved plugin packages, source/installed component versions, Git remote/branch/commit, license evidence, verification state, local patches, and rollback refs. Unknown fields remain explicit instead of being guessed.
-
-## Automation Subsystems
-
-The monthly evolution automation is the Harness technology radar and safe-upgrade loop: it scouts fast-moving AI capabilities from first-party sources, tests the smallest compatible experiment, and adopts only changes with measurable net benefit. The global memory-to-Graphiti automation and durable Markdown maintenance are the Harness memory/RAG control plane. Their local definitions are not exported; audit output includes only safe role, status, ownership, health, cost, and rollback metadata. See [docs/automation-subsystems.md](docs/automation-subsystems.md).
-
-Optional `skill_contracts.py` runs machine-specific positive/negative routing prompts. The repository ships an example; active contracts are local state and are not silently enabled for another machine.
-
-Version 0.6 adds resolved, namespaced plugin skills to the inventory and trigger contracts, records official upstream observations for runtime components, and measures the real Codex startup prompt. The config gate also recognizes the exact `priority` schema mismatch in older desktop-bundled CLIs, validates the remaining config with the legacy `fast` alias, and leaves the user's config unchanged.
-
-Monthly audits can populate `~/.codex/harness/catalog/upstream-observations.json` from the shipped example. Each record must cite an official repository, release, tag, commit, or package integrity value. An observation is evidence only; it never authorizes an automatic update.
-
-Capture a sanitized, reproducible runtime snapshot and measure prompt cost with:
-
-```powershell
-python .\harness\scripts\export_runtime_snapshot.py --output .\reports\runtime-snapshot
-python .\harness\scripts\measure_prompt_baseline.py --output "$env:USERPROFILE\.codex\harness\catalog\prompt-baseline.json"
-```
-
-## Repository Safety Model
-
-This repository is intentionally small. It captures the harness architecture, not a user's private machine state. The installer creates local reports after installation so each user can review their own setup.
-
-Run the package validation check before publishing changes:
+## Verification
 
 ```powershell
 python .\tests\validate_package.py
 python -m unittest discover -s .\tests
 powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
 ```
+
+```sh
+python3 ./tests/validate_package.py
+python3 -m unittest discover -s ./tests
+sh ./tests/smoke_install_macos.sh
+```
+
+CI covers Windows/macOS × Codex/ZCode separately. The Codex App Server launcher also has a simulated end-to-end task creation test. ZCode's desktop launch still requires a real GUI acceptance check because it depends on a visible app window and OS Accessibility permission.
+
+Official capability references: [Codex App Server](https://learn.chatgpt.com/docs/app-server), [Codex commands](https://learn.chatgpt.com/docs/reference/slash-commands), [ZCode install](https://zcode.z.ai/en/docs/install), [ZCode skills](https://zcode.z.ai/en/docs/skill), [ZCode agents](https://zcode.z.ai/en/docs/agents), [ZCode Goal mode](https://zcode.z.ai/en/docs/goal), and [ZCode shortcuts](https://zcode.z.ai/en/docs/keyboard-shortcuts).

@@ -5,6 +5,7 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import plistlib
 import re
 import shutil
 import subprocess
@@ -17,28 +18,29 @@ from pathlib import Path
 from typing import Iterable
 
 try:
+    from .runtime_paths import (
+        CODEX_HOME,
+        HARNESS_HOME,
+        HOME,
+        RUNTIME_SKILL_ROOTS,
+    )
+except ImportError:  # direct script execution
+    from runtime_paths import CODEX_HOME, HARNESS_HOME, HOME, RUNTIME_SKILL_ROOTS
+
+try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover
     import tomli as tomllib  # type: ignore
 
 
-HOME = Path.home()
-CODEX_HOME = Path(os.environ.get("CODEX_HOME", HOME / ".codex"))
-AGENTS_HOME = Path(os.environ.get("AGENTS_HOME", HOME / ".agents"))
-OPENCLAW_HOME = Path(os.environ.get("OPENCLAW_HOME", HOME / ".openclaw"))
-SHARED_SKILLS_HOME = Path(os.environ.get("SHARED_SKILLS_HOME", AGENTS_HOME / "skills"))
 CODEX_PLUGIN_CACHE = Path(os.environ.get("CODEX_PLUGIN_CACHE", CODEX_HOME / "plugins" / "cache"))
 CONFIG_PATH = CODEX_HOME / "config.toml"
 
-ROOTS = {
-    "shared": SHARED_SKILLS_HOME,
-    "codex": CODEX_HOME / "skills",
-    "openclaw": OPENCLAW_HOME / "skills",
-}
+ROOTS = RUNTIME_SKILL_ROOTS
 
-DEFAULT_OUTPUT = CODEX_HOME / "harness" / "catalog" / "skill-inventory.json"
-DEFAULT_LOCK_OUTPUT = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
-UPSTREAM_OBSERVATIONS_PATH = CODEX_HOME / "harness" / "catalog" / "upstream-observations.json"
+DEFAULT_OUTPUT = HARNESS_HOME / "catalog" / "skill-inventory.json"
+DEFAULT_LOCK_OUTPUT = HARNESS_HOME / "catalog" / "harness.lock.json"
+UPSTREAM_OBSERVATIONS_PATH = HARNESS_HOME / "catalog" / "upstream-observations.json"
 
 
 @dataclass
@@ -380,7 +382,7 @@ def summarize(entries: list[SkillEntry]) -> dict:
                 "refs": sorted(mirror_refs, key=lambda ref: str(ref["runtime"])),
             }
 
-        for runtime in ("codex", "openclaw"):
+        for runtime in ("codex", "zcode", "openclaw"):
             if not ROOTS[runtime].exists():
                 continue
             if not any(
@@ -528,7 +530,7 @@ def discover_license(path: Path, git_root: Path | None) -> dict[str, str]:
 
 
 def load_verification_registry() -> dict[str, dict[str, object]]:
-    path = CODEX_HOME / "harness" / "catalog" / "verification.json"
+    path = HARNESS_HOME / "catalog" / "verification.json"
     if not path.exists():
         return {}
     try:
@@ -614,6 +616,82 @@ def codex_cli_component(generated_at: str, observations: dict[str, dict[str, obj
         "verification": verification.get("component:codex-cli", {"status": "not-recorded", "tests": [], "last_verified": None}),
         "update_policy": "desktop-owned; never replace the bundled binary in place",
         "rollback": {"kind": "binary-hash", "ref": sha256_file(executable_path)},
+    }
+
+
+def zcode_desktop_component(
+    generated_at: str,
+    observations: dict[str, dict[str, object]],
+    verification: dict[str, dict[str, object]],
+) -> dict[str, object] | None:
+    candidates: list[Path] = []
+    configured = os.environ.get("ZCODE_EXECUTABLE")
+    if configured:
+        candidates.append(Path(configured))
+    if os.name == "nt":
+        local = Path(os.environ.get("LOCALAPPDATA", HOME / "AppData" / "Local"))
+        program_files = Path(os.environ.get("ProgramFiles", "C:/Program Files"))
+        candidates.extend(
+            [
+                local / "Programs" / "ZCode" / "ZCode.exe",
+                local / "ZCode" / "ZCode.exe",
+                program_files / "ZCode" / "ZCode.exe",
+            ]
+        )
+    else:
+        candidates.extend(
+            [
+                Path("/Applications/ZCode.app"),
+                HOME / "Applications" / "ZCode.app",
+            ]
+        )
+    source = next((path for path in candidates if path.exists()), None)
+    if source is None:
+        return None
+
+    installed_version = "unknown"
+    info_plist = source / "Contents" / "Info.plist" if source.suffix == ".app" else None
+    if info_plist and info_plist.exists():
+        try:
+            with info_plist.open("rb") as handle:
+                payload = plistlib.load(handle)
+            installed_version = str(
+                payload.get("CFBundleShortVersionString") or payload.get("CFBundleVersion") or "unknown"
+            )
+        except (OSError, plistlib.InvalidFileException):
+            pass
+
+    record = observations.get("zcode-desktop", {})
+    available_version = normalized_version(record.get("available_version"))
+    normalized_installed = normalized_version(installed_version)
+    return {
+        "id": "zcode-desktop",
+        "declared_version": installed_version,
+        "installed_version": installed_version,
+        **observed_component_fields(record),
+        "state": (
+            "drift"
+            if available_version and normalized_installed not in {"", "unknown"} and normalized_installed != available_version
+            else "installed"
+        ),
+        "source_path": str(source),
+        "provenance": {
+            "kind": "desktop-application",
+            "path": str(source),
+            "sha256": sha256_file(source) if source.is_file() else None,
+        },
+        "license": {
+            "status": "declared-upstream" if record.get("license") else "unknown",
+            "spdx": record.get("license", ""),
+            "source_url": record.get("source_url", ""),
+        },
+        "last_verified": generated_at,
+        "verification": verification.get(
+            "component:zcode-desktop",
+            {"status": "not-recorded", "tests": [], "last_verified": None},
+        ),
+        "update_policy": "desktop-owned; use the official ZCode installer",
+        "rollback": {"kind": "desktop-version", "ref": installed_version},
     }
 
 
@@ -708,6 +786,7 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
     upstream_observations = load_upstream_observations()
     for component in (
         codex_cli_component(generated_at, upstream_observations, verification_registry),
+        zcode_desktop_component(generated_at, upstream_observations, verification_registry),
         openclaw_component(generated_at, upstream_observations, verification_registry),
     ):
         if component:
@@ -762,7 +841,7 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
             }
         )
 
-    meta_root = CODEX_HOME / "harness" / "vendor" / "meta-harness"
+    meta_root = HARNESS_HOME / "vendor" / "meta-harness"
     if meta_root.exists():
         version = component_declared_version(meta_root)
         provenance = git_provenance(meta_root)
@@ -782,7 +861,7 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or version},
             }
         )
-    ecc_root = CODEX_HOME / "harness" / "vendor" / "everything-claude-code"
+    ecc_root = HARNESS_HOME / "vendor" / "everything-claude-code"
     if ecc_root.exists():
         base_version = component_declared_version(ecc_root)
         provenance = git_provenance(ecc_root)

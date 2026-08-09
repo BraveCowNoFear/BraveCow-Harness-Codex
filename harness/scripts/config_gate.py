@@ -9,13 +9,16 @@ import subprocess
 from pathlib import Path
 
 try:
+    from .runtime_paths import CODEX_HOME
+except ImportError:  # direct script execution
+    from runtime_paths import CODEX_HOME
+
+try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover
     import tomli as tomllib  # type: ignore
 
 
-HOME = Path.home()
-CODEX_HOME = Path(os.environ.get("CODEX_HOME", HOME / ".codex"))
 DEFAULT_CONFIG = CODEX_HOME / "config.toml"
 
 

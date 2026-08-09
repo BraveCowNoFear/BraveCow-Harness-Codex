@@ -4,11 +4,14 @@ import argparse
 import json
 from pathlib import Path
 
+try:
+    from .runtime_paths import HARNESS_HOME
+except ImportError:  # direct script execution
+    from runtime_paths import HARNESS_HOME
 
-HOME = Path.home()
-CODEX_HOME = Path(__import__("os").environ.get("CODEX_HOME", HOME / ".codex"))
-DEFAULT_BEFORE = CODEX_HOME / "harness" / "catalog" / "harness.lock.previous.json"
-DEFAULT_AFTER = CODEX_HOME / "harness" / "catalog" / "harness.lock.json"
+
+DEFAULT_BEFORE = HARNESS_HOME / "catalog" / "harness.lock.previous.json"
+DEFAULT_AFTER = HARNESS_HOME / "catalog" / "harness.lock.json"
 
 
 def identity(section: str, item: dict) -> str:
