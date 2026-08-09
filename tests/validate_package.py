@@ -54,6 +54,7 @@ REQUIRED = [
     "tests/smoke_install.ps1",
     "tests/smoke_install_macos.sh",
     "tests/test_onboarding_launcher.py",
+    "tests/test_onboarding_voice.py",
     "tests/test_runtime_paths.py",
 ]
 

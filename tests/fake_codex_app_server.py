@@ -4,6 +4,10 @@ import json
 import sys
 
 
+sys.stdin.reconfigure(encoding="utf-8")
+sys.stdout.reconfigure(encoding="utf-8")
+
+
 for raw in sys.stdin:
     message = json.loads(raw)
     request_id = message.get("id")
@@ -19,6 +23,7 @@ for raw in sys.stdin:
     elif method == "turn/start":
         inputs = message.get("params", {}).get("input", [])
         assert any(item.get("type") == "skill" and item.get("name") == "bravecow-onboarding" for item in inputs)
+        assert any(item.get("type") == "text" and "勇敢牛牛" in item.get("text", "") for item in inputs)
         result = {"turn": {"id": "turn-test-456"}}
     else:
         result = {}

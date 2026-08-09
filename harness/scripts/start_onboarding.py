@@ -124,7 +124,7 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
     stderr_reader.start()
     deadline = time.monotonic() + args.timeout
     try:
-        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.7.0"}}})
+        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.7.1"}}})
         response_result(wait_for_id(inbox, 1, deadline, process, stderr_lines), "initialize")
         send(process, {"method": "initialized", "params": {}})
         send(
@@ -145,16 +145,18 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
         if not thread_id:
             raise RuntimeError("thread/start returned no thread id")
         if not args.ephemeral:
-            send(process, {"id": 3, "method": "thread/name/set", "params": {"threadId": thread_id, "name": "BraveCow 新手指南 · 从这里开始"}})
+            send(process, {"id": 3, "method": "thread/name/set", "params": {"threadId": thread_id, "name": "勇敢牛牛新手课 · 从这里开始"}})
             response_result(wait_for_id(inbox, 3, deadline, process, stderr_lines), "thread/name/set")
         if args.language in {"auto", "zh-CN"}:
             prompt = (
-                "$bravecow-onboarding\n\n请用简体中文开始安装后的交互式新手课程。"
-                "先检测 Codex 和当前操作系统，每次只教一课，使用普通生活或商科例子，并在每课后等待用户回答。"
+                "$bravecow-onboarding\n\n请以老师“勇敢牛牛”的身份开始安装后的交互式新手课程。"
+                "先亲切地自我介绍，保持耐心、轻松但不幼稚的口吻；检测 Codex 和当前操作系统，"
+                "每次只教一课，使用普通生活或商科例子，并在每课后等待用户回答。"
             )
         else:
             prompt = (
-                "$bravecow-onboarding\n\nStart the post-install interactive beginner course in English. "
+                "$bravecow-onboarding\n\nStart the post-install interactive beginner course in English as the teacher Brave Cow (勇敢牛牛). "
+                "Introduce yourself by name and use a warm, patient, respectful tone without sounding childish. "
                 "Detect Codex and the current operating system, teach one lesson per turn, use everyday or business examples, "
                 "and wait for the learner after each lesson."
             )

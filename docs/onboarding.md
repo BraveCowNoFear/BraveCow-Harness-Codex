@@ -15,7 +15,7 @@ The installer writes a machine-readable receipt to `~/.bravecow/harness/onboardi
 
 ## Course behavior
 
-The portable `bravecow-onboarding` skill detects runtime and host, then teaches one of 12 lessons per turn. The learner can ask for the table of contents, skip, review, change the example, pause, continue, or exit. Model names and UI controls are always read from the current app when possible because product catalogs change over time.
+The portable `bravecow-onboarding` skill detects runtime and host, then teaches as **勇敢牛牛**: a warm, patient teacher who stays concise, respects adult learners, corrects without judgment, and avoids childish language or empty praise. It teaches one of 12 lessons per turn. The learner can ask for the table of contents, skip, review, change the example, pause, continue, or exit. Model names and UI controls are always read from the current app when possible because product catalogs change over time.
 
 Practice materials are non-technical: a community book event, travel options, and a household budget. The final exercise requires the learner to decide whether Plan or Goal mode is appropriate, provide constraints, create an artifact, and check it against an explicit completion standard.
 
