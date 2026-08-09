@@ -1,6 +1,6 @@
 # BraveCow Harness
 
-当前版本：`0.7.1`。
+当前版本：`0.8.0`。
 
 BraveCow Harness 是给普通用户准备的跨平台助手工作层。它让同一套 Skills、记忆规则、安全边界和审计能力同时服务于：
 
@@ -57,6 +57,7 @@ sh ./install.sh --targets zcode
 - `~/.codex/skills`、`~/.zcode/skills`：指向共享 Skills 的链接，无法链接时安全复制。
 - `~/.codex/AGENTS.md`、`~/.zcode/AGENTS.md`：各应用的受管入口规则。
 - `~/.zcode/commands/bravecow-onboarding.md`：可手动运行的 ZCode 新手命令。
+- Windows + ZCode：从锁定提交安装 `$bravecow-windows-computer-use`，为 ZCode 补上本地桌面操作能力，并使用独立 Python 环境。
 - `~/.codex/agents`：Codex 支持的 agent profile 模板。
 
 旧版 `~/.codex/harness` 和 `~/.codex/memories` 会被安全接入新的共享目录，不会偷偷删除或覆盖。
@@ -75,12 +76,14 @@ sh ./install.sh --targets zcode
 8. 如何按难度选择模型
 9. 如何选择思考等级
 10. 文件、网页、浏览器和桌面工具
-11. Harness、Skills、规则与记忆
+11. Harness、Skills、插件、规则与记忆
 12. 一个完整的非技术毕业小项目
 
 课程会读取当前应用实际显示的模型和选项，不硬编码一份可能过期的名单。Codex 中如果当前可见 Sol，可把它理解为适合困难、多步骤和高要求审查的选择；简单整理通常更适合更快的模型。ZCode 同样以界面当前可见的模型和 Off/High/Max 等思考选项为准。
 
 课程还蒸馏了 [《40分钟成为 Codex 高级玩家 完整教程》](https://www.bilibili.com/video/BV1dFTv6yEcZ/) 中可迁移的工作方法：先澄清再行动、关键选择设检查点、保留可回退版本、长目标拆里程碑、按权限选择工具、真实查看产物后再宣布完成。视频中的开发案例和可能过期的产品结论不会照搬给普通用户。
+
+在 Windows + ZCode 组合里，课程会把 [`BraveCowNoFear/desktop-control-for-windows`](https://github.com/BraveCowNoFear/desktop-control-for-windows) 当作真实的插件教学例子：解释来源、精确版本、权限、验证和回退。它技术上是带本地控制器的 Skill 仓库，由 Harness 安装成 ZCode 适配扩展。新手课只运行无副作用的 `--help` 验证，不会擅自截图、读取窗口标题、移动鼠标或输入文字。Codex 使用原生 Computer Use；macOS 上的 ZCode 会明确跳过这份 Windows 专用扩展。
 
 ## 自动开启新任务
 
@@ -115,6 +118,7 @@ Windows：
 python .\tests\validate_package.py
 python -m unittest discover -s .\tests
 powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
+powershell -ExecutionPolicy Bypass -File .\tests\smoke_zcode_computer_use.ps1
 ```
 
 macOS：

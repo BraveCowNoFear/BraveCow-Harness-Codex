@@ -21,7 +21,9 @@ param(
     [switch]$Force,
     [switch]$NoWorkspaceAgents,
     [switch]$NoJunctions,
-    [switch]$SkipAudit
+    [switch]$SkipAudit,
+    [switch]$SkipZCodeComputerUse,
+    [string]$ZCodeComputerUseSource
 )
 
 Set-StrictMode -Version Latest
@@ -131,7 +133,12 @@ function Copy-ManagedTree {
     Ensure-Dir $Destination
     $sourceRoot = [System.IO.Path]::GetFullPath($Source).TrimEnd("\", "/")
     Get-ChildItem -LiteralPath $Source -Recurse -File -Force |
-        Where-Object { $_.Name -notlike "*.pyc" -and $_.FullName -notlike "*\__pycache__\*" } |
+        Where-Object {
+            $_.Name -notlike "*.pyc" -and
+            $_.FullName -notmatch '[\\/]__pycache__[\\/]' -and
+            $_.FullName -notmatch '[\\/]\.git[\\/]' -and
+            $_.FullName -notmatch '[\\/]\.venv[\\/]'
+        } |
         ForEach-Object {
             $relative = $_.FullName.Substring($sourceRoot.Length).TrimStart("\", "/")
             Copy-ManagedFile $_.FullName (Join-Path $Destination $relative) $AllowOverwrite $Category
@@ -252,6 +259,93 @@ function Update-AgentsSnippet {
     }
 }
 
+function Install-ZCodeComputerUse {
+    if ($SkipZCodeComputerUse) {
+        Write-Host "ZCode Computer Use: skipped by -SkipZCodeComputerUse"
+        return
+    }
+
+    $lockPath = Join-Path $RepoRoot "harness\catalog\external-components.lock.json"
+    $lock = Get-Content -LiteralPath $lockPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $component = $lock.components.'desktop-control-for-windows'
+    $repository = [string]$component.repository
+    $fetchSource = if ($ZCodeComputerUseSource) { $ZCodeComputerUseSource } else { $repository }
+    $commit = [string]$component.commit
+    if ($commit -notmatch '^[0-9a-f]{40}$') { throw "Invalid pinned desktop-control-for-windows commit: $commit" }
+
+    $vendorPath = Join-Path $HarnessHome ("vendor\desktop-control-for-windows\" + $commit)
+    $skillPath = Join-Path $ZCodeSkillsHome "bravecow-windows-computer-use"
+    $adapterPath = Join-Path $RepoRoot "templates\zcode\skills\bravecow-windows-computer-use"
+    $receiptPath = Join-Path $HarnessHome "catalog\zcode-computer-use-install.json"
+
+    if ($DryRun) {
+        Write-Plan "Fetch pinned ZCode Computer Use source: $fetchSource@$commit"
+        Write-Plan "Install ZCode Computer Use skill: $skillPath"
+        Write-Plan "Create an isolated Python environment and verify the controller CLI"
+        return
+    }
+
+    $git = Get-Command git -ErrorAction SilentlyContinue
+    if ($null -eq $git) { throw "Git is required to install the ZCode Computer Use extension." }
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if ($null -eq $python) { $python = Get-Command python3 -ErrorAction SilentlyContinue }
+    if ($null -eq $python) { throw "Python 3 is required to install the ZCode Computer Use extension." }
+
+    $invokeGit = {
+        param([string[]]$Arguments, [string]$FailureMessage, [int]$Attempts = 1)
+        for ($attempt = 1; $attempt -le $Attempts; $attempt++) {
+            & $git.Source @Arguments
+            if ($LASTEXITCODE -eq 0) { return }
+            if ($attempt -lt $Attempts) {
+                Write-Warning "$FailureMessage Retrying ($attempt/$Attempts)..."
+                Start-Sleep -Seconds (2 * $attempt)
+            }
+        }
+        throw $FailureMessage
+    }
+
+    if (-not (Test-Path -LiteralPath (Join-Path $vendorPath ".git") -PathType Container)) {
+        Ensure-Dir $vendorPath
+        & $invokeGit -Arguments @("init", $vendorPath) -FailureMessage "Failed to initialize the managed ZCode Computer Use source directory."
+        & $invokeGit -Arguments @("-C", $vendorPath, "remote", "add", "origin", $fetchSource) -FailureMessage "Failed to configure the ZCode Computer Use source remote."
+    } else {
+        & $invokeGit -Arguments @("-C", $vendorPath, "remote", "set-url", "origin", $fetchSource) -FailureMessage "Failed to refresh the ZCode Computer Use source remote."
+    }
+    & $invokeGit -Arguments @("-C", $vendorPath, "fetch", "--filter=blob:none", "--depth", "1", "origin", $commit) -FailureMessage "Failed to fetch pinned ZCode Computer Use commit $commit." -Attempts 3
+    & $invokeGit -Arguments @("-C", $vendorPath, "checkout", "--detach", $commit) -FailureMessage "Failed to check out pinned ZCode Computer Use commit $commit."
+    $installedCommit = (& $git.Source -C $vendorPath rev-parse HEAD).Trim()
+    if ($LASTEXITCODE -ne 0 -or $installedCommit -ne $commit) {
+        throw "ZCode Computer Use source verification failed. Expected $commit, found $installedCommit."
+    }
+
+    Copy-ManagedTree $vendorPath $skillPath $true "zcode-computer-use"
+    Copy-ManagedTree $adapterPath $skillPath $true "zcode-computer-use-adapter"
+
+    $venvPython = Join-Path $skillPath ".venv\Scripts\python.exe"
+    if (-not (Test-Path -LiteralPath $venvPython -PathType Leaf)) {
+        & $python.Source -m venv (Join-Path $skillPath ".venv")
+        if ($LASTEXITCODE -ne 0) { throw "Failed to create the ZCode Computer Use Python environment." }
+    }
+    & $venvPython -m pip install --disable-pip-version-check -r (Join-Path $skillPath "requirements.txt")
+    if ($LASTEXITCODE -ne 0) { throw "Failed to install ZCode Computer Use dependencies." }
+    & $venvPython (Join-Path $skillPath "scripts\ui_control.py") --help | Out-Null
+    if ($LASTEXITCODE -ne 0) { throw "ZCode Computer Use controller verification failed." }
+
+    $receipt = [ordered]@{
+        status = "installed"
+        runtime = "ZCode"
+        platform = "Windows"
+        repository = $repository
+        acquisition_source = $fetchSource
+        commit = $commit
+        vendor_path = $vendorPath
+        skill_path = $skillPath
+        verification = "ui_control.py --help"
+    }
+    $receipt | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $receiptPath -Encoding UTF8
+    Write-Host "Installed ZCode Computer Use extension: $skillPath"
+}
+
 function Resolve-OnboardingRuntime {
     if ($OnboardingRuntime -ne "auto") { return $OnboardingRuntime }
     if ($env:BRAVECOW_CALLER_RUNTIME -match "^(?i)zcode$") { return "ZCode" }
@@ -282,6 +376,7 @@ Copy-ManagedTree (Join-Path $RepoRoot "harness\scripts") (Join-Path $HarnessHome
 Get-ChildItem -LiteralPath (Join-Path $RepoRoot "harness\catalog") -Filter "*.example.*" -File | ForEach-Object {
     Copy-ManagedFile $_.FullName (Join-Path $HarnessHome ("catalog\" + $_.Name)) ([bool]$UpdateRuntime) "runtime"
 }
+Copy-ManagedFile (Join-Path $RepoRoot "harness\catalog\external-components.lock.json") (Join-Path $HarnessHome "catalog\external-components.lock.json") ([bool]$UpdateRuntime) "runtime"
 
 Get-ChildItem -LiteralPath (Join-Path $RepoRoot "skills") -Directory | ForEach-Object {
     $sharedTarget = Join-Path $SharedSkillsHome $_.Name
@@ -316,6 +411,7 @@ if ($TargetSet.Contains("ZCode")) {
     Ensure-Dir (Join-Path $ZCodeHome "commands")
     Copy-ManagedFile (Join-Path $RepoRoot "templates\zcode\commands\bravecow-onboarding.md") (Join-Path $ZCodeHome "commands\bravecow-onboarding.md") $true "zcode-command"
     Update-AgentsSnippet (Join-Path $ZCodeHome "AGENTS.md")
+    Install-ZCodeComputerUse
 }
 if (-not $NoWorkspaceAgents -and $Workspace) {
     Ensure-Dir $Workspace

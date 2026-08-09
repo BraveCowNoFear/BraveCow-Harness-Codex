@@ -1,6 +1,6 @@
 # BraveCow Harness
 
-Current release: `0.7.1`.
+Current release: `0.8.0`.
 
 BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
 
@@ -36,6 +36,7 @@ Both runtimes are installed by default. Use `-Targets Codex|ZCode` on Windows or
 - `~/.agents/skills`: shared Harness skills.
 - `~/.codex/skills` and `~/.zcode/skills`: links to shared skills, or safe copies when links are disabled.
 - Runtime-specific `AGENTS.md` entry rules and a ZCode `/bravecow-onboarding` command.
+- On Windows + ZCode only, the pinned `$bravecow-windows-computer-use` extension and its isolated Python environment.
 - Codex agent profiles where supported.
 
 Legacy `~/.codex/harness` and `~/.codex/memories` data are adopted without deletion. API keys, browser sessions, vaults, personal profiles, private automation prompts, plugin caches, and third-party vendor source are never packaged.
@@ -45,6 +46,8 @@ Legacy `~/.codex/harness` and `~/.codex/memories` data are adopted without delet
 The `bravecow-onboarding` skill teaches one lesson per turn and waits for the learner. It adapts to the actual app, OS, visible models, and available thought controls. It uses a community book event, travel options, and a household budget as practice material.
 
 The course also distills the transferable workflow lessons from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, add decision checkpoints, preserve rollback points, split long goals into milestones, choose tools by permission and purpose, and inspect the real output before declaring completion. Its development-specific example and time-sensitive product claims are not copied into the general-audience path.
+
+On Windows + ZCode, the course uses [`BraveCowNoFear/desktop-control-for-windows`](https://github.com/BraveCowNoFear/desktop-control-for-windows) as a real plugin lesson. Technically it is a Skill repository with a local controller; Harness pins its exact commit, installs a ZCode adapter, isolates dependencies, and verifies the CLI without controlling the desktop. Codex uses native Computer Use. macOS + ZCode correctly skips this Windows-only extension and teaches that compatibility boundary.
 
 Codex task creation uses the official App Server. ZCode task creation uses its documented new-task shortcut (`Ctrl+N` on Windows, `Command+N` on macOS). macOS may request Accessibility permission. Every attempt writes `~/.bravecow/harness/onboarding/last-launch.json`; if desktop automation is blocked, start a new task manually and enter `$bravecow-onboarding`, or run `/bravecow-onboarding` in ZCode.
 
@@ -68,6 +71,7 @@ Existing memory is replaced only by the explicit `-ReplaceUserData` / `--replace
 python .\tests\validate_package.py
 python -m unittest discover -s .\tests
 powershell -ExecutionPolicy Bypass -File .\tests\smoke_install.ps1
+powershell -ExecutionPolicy Bypass -File .\tests\smoke_zcode_computer_use.ps1
 ```
 
 ```sh

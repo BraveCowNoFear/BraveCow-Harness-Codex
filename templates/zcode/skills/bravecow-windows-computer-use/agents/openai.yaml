@@ -1,0 +1,4 @@
+interface:
+  display_name: "BraveCow Windows Computer Use"
+  short_description: "Local Windows desktop control for ZCode"
+  default_prompt: "Use $bravecow-windows-computer-use in ZCode on Windows only. Prefer APIs, commands, and browser tools first. For live desktop work, clarify the authorized outcome, acquire the global UI lock, inspect the exact target, perform the smallest safe action, verify the result, release the lock, and report clearly. Do not require agent delegation when ZCode does not provide it."

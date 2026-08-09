@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "components": {
+    "desktop-control-for-windows": {
+      "kind": "zcode-windows-computer-use-skill",
+      "repository": "https://github.com/BraveCowNoFear/desktop-control-for-windows.git",
+      "commit": "8438207c4b43ea118c18e2d80d7eaf19f2ddc271",
+      "license": "MIT",
+      "platforms": [
+        "windows"
+      ],
+      "runtimes": [
+        "zcode"
+      ]
+    }
+  }
+}

@@ -111,7 +111,7 @@ copy_tree() {
   source_tree=$1 destination_tree=$2 allow_overwrite=$3 category=$4
   [ -d "$source_tree" ] || return 0
   ensure_dir "$destination_tree"
-  find "$source_tree" -type f ! -name '*.pyc' ! -path '*/__pycache__/*' | while IFS= read -r source_file; do
+  find "$source_tree" -type f ! -name '*.pyc' ! -path '*/__pycache__/*' ! -path '*/.git/*' ! -path '*/.venv/*' | while IFS= read -r source_file; do
     relative=${source_file#"$source_tree"/}
     copy_file "$source_file" "$destination_tree/$relative" "$allow_overwrite" "$category"
   done
@@ -186,6 +186,7 @@ for directory in "$BRAVECOW_HOME" "$HARNESS_HOME" "$HARNESS_HOME/catalog" "$HARN
 copy_file "$REPO_ROOT/harness/README.md" "$HARNESS_HOME/README.md" "$UPDATE_RUNTIME" runtime
 copy_tree "$REPO_ROOT/harness/scripts" "$HARNESS_HOME/scripts" "$UPDATE_RUNTIME" runtime
 for source_file in "$REPO_ROOT"/harness/catalog/*.example.*; do [ -f "$source_file" ] && copy_file "$source_file" "$HARNESS_HOME/catalog/$(basename "$source_file")" "$UPDATE_RUNTIME" runtime; done
+copy_file "$REPO_ROOT/harness/catalog/external-components.lock.json" "$HARNESS_HOME/catalog/external-components.lock.json" "$UPDATE_RUNTIME" runtime
 
 for skill_dir in "$REPO_ROOT"/skills/*; do
   [ -d "$skill_dir" ] || continue
@@ -213,6 +214,7 @@ case "$TARGETS" in
     ensure_dir "$ZCODE_HOME"; ensure_link "$ZCODE_HOME/harness" "$HARNESS_HOME"; ensure_link "$ZCODE_HOME/memories" "$MEMORY_HOME"
     copy_file "$REPO_ROOT/templates/zcode/commands/bravecow-onboarding.md" "$ZCODE_HOME/commands/bravecow-onboarding.md" 1 zcode-command
     update_agents "$ZCODE_HOME/AGENTS.md"
+    printf 'ZCode Computer Use extension: not installed because desktop-control-for-windows supports Windows only.\n'
     ;;
 esac
 [ "$NO_WORKSPACE_AGENTS" -eq 1 ] || update_agents "$WORKSPACE/AGENTS.md"

@@ -31,12 +31,13 @@ try {
         -BraveCowHome $BraveCowHome -CodexHome $CodexHome -ZCodeHome $ZCodeHome `
         -SharedSkillsHome $SharedSkillsHome -OpenClawHome $OpenClawHome -Workspace $Workspace `
         -Targets All -UpdateRuntime -MigrateConfig -InitializeMemory -BackupRoot $BackupRoot `
-        -NoJunctions -SkipOnboarding
+        -NoJunctions -SkipOnboarding -SkipZCodeComputerUse
     if ($LASTEXITCODE -ne 0) { throw "Installer exited with code $LASTEXITCODE" }
 
     $RequiredPaths = @(
         (Join-Path $BraveCowHome "harness\catalog\skill-inventory.json"),
         (Join-Path $BraveCowHome "harness\catalog\harness.lock.json"),
+        (Join-Path $BraveCowHome "harness\catalog\external-components.lock.json"),
         (Join-Path $BraveCowHome "harness\reports\agent-harness-audit.md"),
         (Join-Path $BraveCowHome "harness\scripts\start_onboarding.py"),
         (Join-Path $BraveCowHome "harness\index\memory-fts.sqlite3"),

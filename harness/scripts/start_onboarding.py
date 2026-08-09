@@ -124,7 +124,7 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
     stderr_reader.start()
     deadline = time.monotonic() + args.timeout
     try:
-        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.7.1"}}})
+        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.8.0"}}})
         response_result(wait_for_id(inbox, 1, deadline, process, stderr_lines), "initialize")
         send(process, {"method": "initialized", "params": {}})
         send(

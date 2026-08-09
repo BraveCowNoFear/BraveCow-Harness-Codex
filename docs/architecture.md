@@ -24,6 +24,7 @@ BraveCow Harness keeps the Codex and ZCode runtime layers small, observable, and
    - `~/.agents/skills` is the preferred canonical location for reusable skills.
    - `~/.codex/skills` can link to shared skills or hold Codex-specific wrappers.
    - `~/.zcode/skills` can link to the same shared skills or hold ZCode-specific wrappers.
+   - On Windows, `~/.zcode/skills/bravecow-windows-computer-use` is a ZCode-specific adapter built from the exact commit in `external-components.lock.json`; its dependencies stay inside `.venv`.
 
 4. **Agent profiles**
    - `~/.codex/agents/default.toml`
@@ -53,6 +54,7 @@ BraveCow Harness keeps the Codex and ZCode runtime layers small, observable, and
 - Catalog first, activate later.
 - Prefer shared skills and runtime junctions over copied duplicates.
 - Keep external resources quarantined until provenance and safety are reviewed.
+- The BraveCow Windows Computer Use source is an explicit exception requested for ZCode: fetch only its pinned commit, retain the vendor snapshot, install only on Windows + ZCode, and write a verification receipt.
 - Keep private state out of Git.
 - Let each machine generate its own inventory and audit report.
 - Treat plugin cache entries as evidence of downloaded packages, not enabled plugins.

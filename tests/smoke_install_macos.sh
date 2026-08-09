@@ -27,6 +27,8 @@ fi
 test -f "$CODEX_HOME/skills/bravecow-onboarding/SKILL.md"
 test -f "$ZCODE_HOME/skills/bravecow-onboarding/SKILL.md"
 test -f "$ZCODE_HOME/commands/bravecow-onboarding.md"
+test -f "$BRAVECOW_HOME/harness/catalog/external-components.lock.json"
+test ! -e "$ZCODE_HOME/skills/bravecow-windows-computer-use"
 test "$(tr -d '\r\n' < "$BRAVECOW_HOME/memories/PROFILE.md")" = USER-SENTINEL
 grep -q '~/.bravecow/memories' "$CODEX_HOME/AGENTS.md"
 ! grep -q 'old managed block' "$CODEX_HOME/AGENTS.md"

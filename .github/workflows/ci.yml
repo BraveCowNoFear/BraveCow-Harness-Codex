@@ -50,6 +50,16 @@ jobs:
           ./install.ps1 -BraveCowHome "$root/.bravecow" -CodexHome "$root/.codex" -ZCodeHome "$root/.zcode" -SharedSkillsHome "$root/.agents/skills" -Workspace "$root/workspace" -Targets ${{ matrix.runtime }} -UpdateRuntime -MigrateConfig -InitializeMemory -NoJunctions -SkipOnboarding
           if (!(Test-Path "$root/.bravecow/harness/reports/agent-harness-audit.md")) { throw "Missing audit" }
           if (!(Test-Path "$root/.${{ matrix.runtime_home }}/skills/bravecow-onboarding/SKILL.md")) { throw "Missing onboarding skill" }
+          if ("${{ matrix.runtime }}" -eq "ZCode") {
+            $skill = "$root/.zcode/skills/bravecow-windows-computer-use"
+            if (!(Test-Path "$skill/SKILL.md")) { throw "Missing ZCode Computer Use adapter" }
+            if (!(Test-Path "$skill/.venv/Scripts/python.exe")) { throw "Missing isolated Computer Use environment" }
+            if (!(Test-Path "$root/.bravecow/harness/catalog/zcode-computer-use-install.json")) { throw "Missing Computer Use receipt" }
+            & "$skill/.venv/Scripts/python.exe" "$skill/scripts/ui_control.py" --help | Out-Null
+            if ($LASTEXITCODE -ne 0) { throw "Computer Use CLI verification failed" }
+          } elseif (Test-Path "$root/.zcode/skills/bravecow-windows-computer-use") {
+            throw "Codex-only install received the ZCode Computer Use adapter"
+          }
       - name: Install on macOS
         if: runner.os == 'macOS'
         shell: bash
@@ -60,3 +70,4 @@ jobs:
           sh ./install.sh --bravecow-home "$root/.bravecow" --codex-home "$root/.codex" --zcode-home "$root/.zcode" --shared-skills-home "$root/.agents/skills" --workspace "$root/workspace" --targets "${{ matrix.runtime }}" --update-runtime --migrate-config --initialize-memory --no-links --skip-onboarding
           test -f "$root/.bravecow/harness/reports/agent-harness-audit.md"
           test -f "$root/.${{ matrix.runtime_home }}/skills/bravecow-onboarding/SKILL.md"
+          test ! -e "$root/.zcode/skills/bravecow-windows-computer-use"

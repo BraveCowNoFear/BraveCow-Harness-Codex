@@ -4,7 +4,7 @@ This directory is the shared local control plane for Codex and ZCode Harness mai
 
 ## Layout
 
-- `catalog/`: inventory, `harness.lock.json`, resolved namespaced plugin skills, upstream observations, and intake metadata.
+- `catalog/`: inventory, `harness.lock.json`, the external-component source lock, install receipts, resolved namespaced plugin skills, upstream observations, and intake metadata.
 - `index/`: disposable local SQLite FTS5 indexes; Markdown remains canonical.
 - `reports/`: point-in-time audit reports.
 - `scripts/`: local audit and maintenance scripts.
@@ -65,6 +65,8 @@ python "$env:USERPROFILE\.bravecow\harness\scripts\vendor_skill.py" --title "Exa
 ```
 
 Review before activation. Do not auto-enable third-party code merely because it was cataloged.
+
+The Windows + ZCode installer has one explicit managed exception: it fetches the immutable `desktop-control-for-windows` revision from `external-components.lock.json`, verifies the Git commit, installs the ZCode adapter into `~/.zcode/skills/bravecow-windows-computer-use`, keeps dependencies in that skill's `.venv`, and records `catalog/zcode-computer-use-install.json`. It is never installed for Codex or macOS.
 
 Plugin resolution prefers an explicit remote-install marker, then an exact enabled config id. Superseded and cache-only packages remain visible as rollback evidence. No observed state authorizes automatic updates.
 

@@ -20,3 +20,16 @@ The portable `bravecow-onboarding` skill detects runtime and host, then teaches 
 Practice materials are non-technical: a community book event, travel options, and a household budget. The final exercise requires the learner to decide whether Plan or Goal mode is appropriate, provide constraints, create an artifact, and check it against an explicit completion standard.
 
 The workflow lessons also distill the transferable parts of [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, invite useful questions, checkpoint important choices, keep rollback points, split long goals into milestones, choose the least-powerful sufficient tool, and inspect real outputs before calling work complete. Its software-development example and time-sensitive product claims are not copied into the general-audience course.
+
+## Computer Use plugin lesson
+
+The four host/runtime combinations share the course, but they do not pretend to have identical desktop-control implementations:
+
+| Host | Runtime | Course behavior |
+| --- | --- | --- |
+| Windows | Codex | Explain native Computer Use |
+| macOS | Codex | Explain native Computer Use |
+| Windows | ZCode | Teach the pinned `$bravecow-windows-computer-use` Skill-based extension as the real plugin example |
+| macOS | ZCode | Explain why the Windows-only extension was skipped |
+
+The Windows + ZCode installer records provenance and verification in `~/.bravecow/harness/catalog/zcode-computer-use-install.json`. Onboarding verifies only `ui_control.py --help`; it does not capture the screen, enumerate private window titles, move the pointer, type, or click. A live exercise requires a separate explicit request and uses the extension's lock, approval, and screenshot-act-verify workflow.
