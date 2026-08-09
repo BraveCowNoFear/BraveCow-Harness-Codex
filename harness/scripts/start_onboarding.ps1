@@ -60,9 +60,9 @@ $hadClipboard = $false
 try {
     try { $savedClipboard = Get-Clipboard -Raw; $hadClipboard = $true } catch { }
     $prompt = if ($Language -eq "en") {
-        '$bravecow-onboarding Start the interactive beginner course as the teacher named by the skill. Introduce yourself by name and teach warmly, patiently, and respectfully without sounding childish. Teach one lesson per turn.'
+        '$bravecow-onboarding Start the interactive beginner course as the teacher named by the skill. Teach warmly, directly, and respectfully without sounding childish. Use at most five short sentences, one example, and one question per normal lesson. Avoid restating the learner, unnecessary sample answers, or repeated summaries.'
     } else {
-        '$bravecow-onboarding Start the interactive beginner course in Simplified Chinese as the teacher named by the skill. Introduce yourself by name and teach warmly, patiently, and respectfully without sounding childish. Teach one lesson per turn, use everyday or business examples, and wait for my reply.'
+        '$bravecow-onboarding Start the interactive beginner course in Simplified Chinese as the teacher named by the skill. Teach warmly, directly, and respectfully without sounding childish. Use at most five short sentences, one example, and one question per normal lesson. Avoid restating the learner, unnecessary sample answers, or repeated summaries, and wait for my reply.'
     }
     Set-Clipboard -Value $prompt
     $shell.SendKeys("^n")

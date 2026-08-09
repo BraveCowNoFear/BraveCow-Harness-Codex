@@ -30,9 +30,9 @@ fi
 [ "$RUNTIME" = zcode ] || { printf 'Unsupported runtime: %s\n' "$RUNTIME" >&2; exit 2; }
 command -v osascript >/dev/null 2>&1 || { printf 'ZCode automatic task creation requires macOS osascript.\n' >&2; exit 1; }
 if [ "$LANGUAGE" = en ]; then
-  PROMPT='$bravecow-onboarding Start the interactive beginner course as the teacher Brave Cow (勇敢牛牛). Introduce yourself by name and teach warmly and patiently without sounding childish. Teach one lesson per turn.'
+  PROMPT='$bravecow-onboarding Start the interactive beginner course as the teacher Brave Cow (勇敢牛牛). Teach warmly, directly, and respectfully. Use at most five short sentences, one example, and one question per normal lesson. Avoid restating the learner, unnecessary sample answers, or repeated summaries.'
 else
-  PROMPT='$bravecow-onboarding 请以老师“勇敢牛牛”的身份开始安装后的互动新手课。先亲切地自我介绍，保持耐心、轻松但不幼稚的口吻；每次只教一课，使用生活或商科例子，并等待我的回答。'
+  PROMPT='$bravecow-onboarding 请以老师“勇敢牛牛”的身份开始安装后的互动新手课。语气亲切、直接、尊重成年人；每课最多五个短句，只用一个生活或商科例子和一个问题，不复述用户原话，不主动给示范答案，不重复总结，并等待我的回答。'
 fi
 if ! osascript - "$PROMPT" <<'APPLESCRIPT'
 on run argv

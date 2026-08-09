@@ -1,6 +1,6 @@
 # BraveCow Harness
 
-Current release: `0.8.0`.
+Current release: `0.8.1`.
 
 BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
 
@@ -9,7 +9,7 @@ BraveCow Harness is a portable control plane for ordinary Codex and ZCode users.
 | Windows | Supported | Supported |
 | macOS | Supported | Supported |
 
-After installation, the calling app automatically opens a separate task and starts a 12-lesson interactive beginner course taught by **Brave Cow (勇敢牛牛)** in a warm, patient, respectful voice. It explains tasks, workspaces, Plan and Goal modes, model and thought-level choices, tools, skills, memory, and the Harness through everyday examples instead of programming exercises.
+After installation, the calling app automatically opens a separate task and starts a 12-lesson interactive beginner course taught by **Brave Cow (勇敢牛牛)** in a warm, direct, respectful voice. A normal lesson uses at most five short sentences, one example, and one question, without restating the learner, volunteering sample answers, or repeating summaries. It explains tasks, workspaces, Plan and Goal modes, model and thought-level choices, tools, skills, memory, and the Harness through everyday examples instead of programming exercises.
 
 For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
 
