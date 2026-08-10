@@ -31,6 +31,8 @@ Each normal lesson contains exactly:
 
 Keep the progress line plus teaching text to at most five short sentences. Wait for the learner after every lesson. Revise the route and total lesson count when their needs or demonstrated knowledge change.
 
+Read `references/lesson-loop.md` when handling a failed step, pause/resume, `目录`, `跳过`, or a learner who is unsure what to do next.
+
 Prefer an early useful result. Skip demonstrated knowledge. When the learner succeeds twice in a row, increase precision or task openness. When they are stuck, shrink the action, teach one missing prerequisite, or swap to a familiar-domain example.
 
 ## 3. Teach visually without inventing UI
