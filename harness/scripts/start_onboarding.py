@@ -124,7 +124,7 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
     stderr_reader.start()
     deadline = time.monotonic() + args.timeout
     try:
-        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.10.0"}}})
+        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.10.1"}}})
         response_result(wait_for_id(inbox, 1, deadline, process, stderr_lines), "initialize")
         send(process, {"method": "initialized", "params": {}})
         send(
@@ -152,12 +152,14 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
                 "$bravecow-onboarding\n\n请以“勇敢牛牛”的身份，用自然口语开始课程。"
                 "先让我选择：拿真实项目边做边学，或者不定项目、只熟悉软件和背后原理。"
                 "只问当前路线真正需要的信息，每次只给一个小动作。"
+                "只要讲到按钮、菜单、模式或入口，必须先在同一条回复中发送 Skill 自带的对应红圈图，再说点击步骤。"
             )
         else:
             prompt = (
                 "$bravecow-onboarding\n\nStart the adaptive course as Brave Cow (勇敢牛牛). "
                 "First offer two routes: learn through a real project, or learn the software and principles without a project. "
-                "Ask only what the selected route needs, use natural spoken language, and give one small action at a time."
+                "Ask only what the selected route needs, use natural spoken language, and give one small action at a time. "
+                "Whenever a reply mentions a button, menu, mode, or UI location, embed the Skill's matching screenshot before the click instruction."
             )
         inputs: list[dict[str, Any]] = [{"type": "text", "text": prompt}]
         skill_path = Path(args.skill_path).resolve()

@@ -45,6 +45,19 @@ class OnboardingAssetTests(unittest.TestCase):
         self.assertIn("Codex 图片来自 Codex，ZCode 图片来自 ZCode", manifest)
         self.assertIn("不做封面、地图或图片轮播", manifest)
 
+    def test_ui_location_answers_have_a_hard_visual_gate(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        manifest = VISUALS.read_text(encoding="utf-8")
+        spoken = (SKILL_ROOT / "references/spoken-copy.md").read_text(encoding="utf-8")
+
+        self.assertIn("mandatory gate", skill)
+        self.assertIn("before the teaching text", skill)
+        self.assertIn("A file path, clickable file link, verbal description", skill)
+        self.assertIn("Markdown 图片语法直接嵌入聊天", manifest)
+        self.assertIn("图片单独占一行，并放在点击说明之前", manifest)
+        self.assertIn("文件存在不等于已经发给用户", manifest)
+        self.assertIn("只有路径、链接或“我去查一下”都不算发图", spoken)
+
 
 if __name__ == "__main__":
     unittest.main()

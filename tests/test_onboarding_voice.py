@@ -53,6 +53,8 @@ class OnboardingVoiceTests(unittest.TestCase):
         self.assertIn("拿真实项目边做边学", combined)
         self.assertIn("不定项目、只熟悉软件和背后原理", combined)
         self.assertIn("natural spoken", combined)
+        self.assertIn("对应红圈图", combined)
+        self.assertIn("matching screenshot before the click instruction", combined)
         self.assertNotIn("第一条回复先问我的专业或工作、目标和经验", combined)
 
     def test_course_is_adaptive_and_has_no_course_map(self) -> None:

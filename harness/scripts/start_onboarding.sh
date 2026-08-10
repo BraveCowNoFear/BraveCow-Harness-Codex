@@ -30,9 +30,9 @@ fi
 [ "$RUNTIME" = zcode ] || { printf 'Unsupported runtime: %s\n' "$RUNTIME" >&2; exit 2; }
 command -v osascript >/dev/null 2>&1 || { printf 'ZCode automatic task creation requires macOS osascript.\n' >&2; exit 1; }
 if [ "$LANGUAGE" = en ]; then
-  PROMPT='$bravecow-onboarding Start the adaptive course as Brave Cow (勇敢牛牛). First offer two routes: learn through a real project, or learn the software and principles without a project. Ask only what that route needs, use natural spoken language, and give one small action at a time.'
+  PROMPT='$bravecow-onboarding Start the adaptive course as Brave Cow (勇敢牛牛). First offer two routes: learn through a real project, or learn the software and principles without a project. Ask only what that route needs, use natural spoken language, and give one small action at a time. Whenever a reply mentions a button, menu, mode, or UI location, embed the Skill matching screenshot before the click instruction.'
 else
-  PROMPT='$bravecow-onboarding 请以“勇敢牛牛”的身份，用自然口语开始课程。先让我选择：拿真实项目边做边学，或者不定项目、只熟悉软件和背后原理。只问当前路线真正需要的信息，每次只给一个小动作。'
+  PROMPT='$bravecow-onboarding 请以“勇敢牛牛”的身份，用自然口语开始课程。先让我选择：拿真实项目边做边学，或者不定项目、只熟悉软件和背后原理。只问当前路线真正需要的信息，每次只给一个小动作。只要讲到按钮、菜单、模式或入口，必须先在同一条回复中发送 Skill 自带的对应红圈图，再说点击步骤。'
 fi
 if ! osascript - "$PROMPT" <<'APPLESCRIPT'
 on run argv
