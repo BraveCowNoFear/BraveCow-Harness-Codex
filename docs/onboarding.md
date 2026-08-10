@@ -21,7 +21,7 @@ Technical and scientific learners receive engineering terminology, architecture,
 
 A normal lesson stays within the progress line plus five short spoken sentences. It says why the step matters, gives one direct action, and asks what the learner sees. The learner can request the current route, skip, review, change depth or example, pause, continue, or exit. Model names and UI controls are read from the current app when possible because product catalogs change over time.
 
-UI-location replies have a hard visual gate: the same reply must embed the matching privacy-redacted Codex or ZCode screenshot before the click instruction. A path, ordinary link, or promise to look up the control is not accepted as a displayed visual.
+Every UI-action step has a hard visual gate: the reply begins with the matching privacy-redacted Codex or ZCode screenshot, followed by one click instruction and an outcome check. Learners are never asked to find or guess a control. Multi-click operations are split into one pictured target per turn.
 
 The generated route may distill transferable methods from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, invite useful questions, checkpoint important choices, keep rollback points, split long goals into milestones, choose the least-powerful sufficient tool, and inspect real outputs before calling work complete. These are selected only when they advance the learner's goal.
 

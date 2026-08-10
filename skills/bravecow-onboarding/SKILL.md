@@ -42,10 +42,13 @@ Prefer an early useful result. Skip demonstrated knowledge. When the learner suc
 Read `references/ui-visual-coverage.md` before any lesson that asks the learner to click or identify a control.
 
 - Treat the UI visual as a mandatory gate. If a lesson names a button, menu, mode, input area, or click target—or the learner asks where or how to open one—attach exactly one matching image in that same reply before the teaching text. This includes questions such as `在哪`、`怎么开`、`点哪里`、`入口在哪`.
+- For every step whose next action happens in the app UI, make the image the first content block automatically. Then give one click instruction and ask only whether the expected result appeared.
+- Never ask the learner to locate, identify, infer, or guess a control. Button position is not a quiz and does not measure understanding. Do not say `你觉得在哪`、`你找一下`、`你看到了吗` or any equivalent prompt before showing the image.
 - Do not continue with a UI-location answer until the image is visibly embedded. A file path, clickable file link, verbal description, or promise to consult documentation does not count as showing the image.
 - Resolve the asset from this Skill's own directory and emit it as an inline Markdown image on its own line. On Windows, use forward slashes and a leading slash before the drive letter, for example `![Codex 的 Goal 入口](/C:/Users/NAME/.agents/skills/bravecow-onboarding/assets/ui/codex/08-goal-mode.png)`. Replace `NAME` with the real path; never emit the placeholder.
 - If inline Markdown does not render in the current app, attach the same PNG through the app's available image/file mechanism. If neither method works, say the image could not be displayed and stop before giving the click instruction; never skip the visual silently.
 - Use exactly one visual for a UI lesson. A non-UI lesson may use zero visuals or one relevant concept card.
+- If one operation needs several clicks, split it into several turns. Each turn begins with the screenshot for that exact click; never make the learner infer the next target from a previous image.
 - For a click target, show the current runtime's real privacy-redacted screenshot with exactly one primary red circle.
 - For a mechanism without a button, show a shared workflow card without a fake control.
 - If the installed UI differs from the bundled image, inspect the current interface, make a newly redacted image, and teach from that evidence.

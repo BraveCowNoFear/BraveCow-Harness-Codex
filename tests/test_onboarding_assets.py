@@ -57,6 +57,11 @@ class OnboardingAssetTests(unittest.TestCase):
         self.assertIn("图片单独占一行，并放在点击说明之前", manifest)
         self.assertIn("文件存在不等于已经发给用户", manifest)
         self.assertIn("只有路径、链接或“我去查一下”都不算发图", spoken)
+        self.assertIn("image the first content block automatically", skill)
+        self.assertIn("Never ask the learner to locate, identify, infer, or guess a control", skill)
+        self.assertIn("图片 → 一句话点击动作 → 结果确认", manifest)
+        self.assertIn("不得发第一张图后让用户自行猜后面的按钮", manifest)
+        self.assertIn("不要拿按钮位置考用户", spoken)
 
 
 if __name__ == "__main__":

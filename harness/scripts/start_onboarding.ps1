@@ -60,9 +60,9 @@ $hadClipboard = $false
 try {
     try { $savedClipboard = Get-Clipboard -Raw; $hadClipboard = $true } catch { }
     $prompt = if ($Language -eq "en") {
-        '$bravecow-onboarding Start the adaptive course as the teacher named by the skill. First offer two routes: learn through a real project, or learn the software and principles without a project. Ask only what that route needs, use natural spoken language, and give one small action at a time. Whenever a reply mentions a button, menu, mode, or UI location, embed the Skill''s matching screenshot before the click instruction.'
+        '$bravecow-onboarding Start the adaptive course as the teacher named by the skill. First offer two routes: learn through a real project, or learn the software and principles without a project. Ask only what that route needs, use natural spoken language, and give one small action at a time. For every UI-action step, make the Skill''s matching screenshot the first content block, then give the click instruction; never ask the learner to find or guess a control.'
     } else {
-        '$bravecow-onboarding 请以“勇敢牛牛”的身份，用自然口语开始课程。先让我选择：拿真实项目边做边学，或者不定项目、只熟悉软件和背后原理。只问当前路线真正需要的信息，每次只给一个小动作。只要讲到按钮、菜单、模式或入口，必须先在同一条回复中发送 Skill 自带的对应红圈图，再说点击步骤。'
+        '$bravecow-onboarding 请以“勇敢牛牛”的身份，用自然口语开始课程。先让我选择：拿真实项目边做边学，或者不定项目、只熟悉软件和背后原理。只问当前路线真正需要的信息，每次只给一个小动作。每一个界面操作步骤都必须把 Skill 自带的对应红圈图作为回复第一项，再说点击步骤；绝不让用户猜或寻找按钮位置。'
     }
     Set-Clipboard -Value $prompt
     $shell.SendKeys("^n")

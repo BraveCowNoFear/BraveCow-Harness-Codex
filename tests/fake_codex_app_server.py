@@ -26,7 +26,8 @@ for raw in sys.stdin:
         assert any(item.get("type") == "text" and "勇敢牛牛" in item.get("text", "") for item in inputs)
         assert any(item.get("type") == "text" and "拿真实项目边做边学" in item.get("text", "") for item in inputs)
         assert any(item.get("type") == "text" and "不定项目、只熟悉软件和背后原理" in item.get("text", "") for item in inputs)
-        assert any(item.get("type") == "text" and "对应红圈图" in item.get("text", "") for item in inputs)
+        assert any(item.get("type") == "text" and "红圈图作为回复第一项" in item.get("text", "") for item in inputs)
+        assert any(item.get("type") == "text" and "绝不让用户猜或寻找按钮位置" in item.get("text", "") for item in inputs)
         result = {"turn": {"id": "turn-test-456"}}
     else:
         result = {}
