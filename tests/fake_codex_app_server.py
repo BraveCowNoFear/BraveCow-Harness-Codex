@@ -24,7 +24,8 @@ for raw in sys.stdin:
         inputs = message.get("params", {}).get("input", [])
         assert any(item.get("type") == "skill" and item.get("name") == "bravecow-onboarding" for item in inputs)
         assert any(item.get("type") == "text" and "勇敢牛牛" in item.get("text", "") for item in inputs)
-        assert any(item.get("type") == "text" and "专业或工作、目标和经验" in item.get("text", "") for item in inputs)
+        assert any(item.get("type") == "text" and "拿真实项目边做边学" in item.get("text", "") for item in inputs)
+        assert any(item.get("type") == "text" and "不定项目、只熟悉软件和背后原理" in item.get("text", "") for item in inputs)
         result = {"turn": {"id": "turn-test-456"}}
     else:
         result = {}

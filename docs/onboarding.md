@@ -15,11 +15,11 @@ The installer writes a machine-readable receipt to `~/.bravecow/harness/onboardi
 
 ## Course behavior
 
-The portable `bravecow-onboarding` skill detects runtime and host, then asks what the learner studies or does, their experience, and their real goal. **勇敢牛牛** builds a working learner profile and generates the route at runtime instead of following a fixed syllabus. Lesson count, order, terminology, mechanisms, examples, exercises, and the final project change as the learner responds.
+The portable `bravecow-onboarding` skill detects runtime and host, then offers two equal routes: learn through a real project, or learn the software and its principles without a project. **勇敢牛牛** asks only for information needed by the selected route and generates the course at runtime instead of following a fixed syllabus.
 
-Technical and scientific learners receive engineering terminology, architecture, boundaries, trade-offs, failure modes, and verification. Non-technical learners receive the same conceptual truth through defined terms and plain causal explanations; analogies are optional support, never substitutes for the mechanism. Generic practice assets are fallback material only, because exercises should normally come from the learner's own domain.
+Technical and scientific learners receive engineering terminology, architecture, boundaries, trade-offs, failure modes, and verification. Non-technical learners receive the same conceptual truth through defined terms and plain causal explanations. Project-route exercises normally come from the learner's own domain; the principles-only route uses neutral micro-exercises and never pretends a fallback asset is the learner's project.
 
-A normal lesson stays within the progress line plus five short sentences, one relevant example, and one question. The learner can request the current route, skip, review, change depth or example, pause, continue, or exit. Model names and UI controls are read from the current app when possible because product catalogs change over time.
+A normal lesson stays within the progress line plus five short spoken sentences. It says why the step matters, gives one direct action, and asks what the learner sees. The learner can request the current route, skip, review, change depth or example, pause, continue, or exit. Model names and UI controls are read from the current app when possible because product catalogs change over time.
 
 The generated route may distill transferable methods from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, invite useful questions, checkpoint important choices, keep rollback points, split long goals into milestones, choose the least-powerful sufficient tool, and inspect real outputs before calling work complete. These are selected only when they advance the learner's goal.
 

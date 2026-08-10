@@ -1,6 +1,6 @@
 # BraveCow Harness
 
-Current release: `0.9.0`.
+Current release: `0.10.0`.
 
 BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
 
@@ -9,7 +9,7 @@ BraveCow Harness is a portable control plane for ordinary Codex and ZCode users.
 | Windows | Supported | Supported |
 | macOS | Supported | Supported |
 
-After installation, the calling app opens a separate task where **Brave Cow (勇敢牛牛)** first asks about the learner's field or work, experience, and real goal, then generates a personal course. Technical learners receive engineering terminology, mechanisms, boundaries, and failure modes. Non-technical learners still receive accurate concepts and causal explanations, introduced in layers rather than replaced by lifestyle analogies. Lesson count, order, depth, examples, and the final project adapt continuously.
+After installation, the calling app opens a separate task taught by **Brave Cow (勇敢牛牛)**. Learners choose either to work through a real project or to learn the software and its underlying principles without inventing a project. The course asks only for information needed by that route, speaks in concise natural language, and adapts lesson count, order, depth, examples, and completion evidence continuously.
 
 For Chinese instructions, see [README.zh-CN.md](README.zh-CN.md).
 
@@ -43,7 +43,7 @@ Legacy `~/.codex/harness` and `~/.codex/memories` data are adopted without delet
 
 ## Post-install Course
 
-The `bravecow-onboarding` skill treats its curriculum as a learning-outcome pool, not a fixed syllabus. It selects only the concepts the learner needs, skips demonstrated knowledge, adjusts technical depth after every answer, and draws exercises from the learner's own field. Bundled generic examples are fallback material only.
+The `bravecow-onboarding` skill treats its curriculum as a learning-outcome pool, not a fixed syllabus. It selects only the concepts the learner needs, skips demonstrated knowledge, and adjusts depth after every answer. The project route uses the learner's own work; the principles-only route uses tiny neutral exercises and never forces a fake requirement-gathering flow or capstone.
 
 The course also distills the transferable workflow lessons from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, add decision checkpoints, preserve rollback points, split long goals into milestones, choose tools by permission and purpose, and inspect the real output before declaring completion. Its development-specific example and time-sensitive product claims are not copied into the general-audience path.
 

@@ -5,50 +5,66 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SKILL_ROOT = ROOT / "skills/bravecow-onboarding"
 
 
 class OnboardingVoiceTests(unittest.TestCase):
-    def test_teacher_identity_and_tone_are_part_of_the_runtime_contract(self) -> None:
-        skill = (ROOT / "skills/bravecow-onboarding/SKILL.md").read_text(encoding="utf-8")
-        zcode_command = (ROOT / "templates/zcode/commands/bravecow-onboarding.md").read_text(encoding="utf-8")
-        python_launcher = (ROOT / "harness/scripts/start_onboarding.py").read_text(encoding="utf-8")
-        powershell_launcher = (ROOT / "harness/scripts/start_onboarding.ps1").read_text(encoding="utf-8")
-        shell_launcher = (ROOT / "harness/scripts/start_onboarding.sh").read_text(encoding="utf-8")
+    def test_teacher_identity_and_spoken_copy_are_runtime_contracts(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        spoken = (SKILL_ROOT / "references/spoken-copy.md").read_text(encoding="utf-8")
 
         self.assertIn("Teach as **勇敢牛牛**", skill)
-        self.assertIn("technically honest", skill)
-        self.assertIn("adaptive course", zcode_command)
-        self.assertIn("勇敢牛牛", python_launcher)
-        self.assertIn("teacher named by the skill", powershell_launcher)
-        self.assertIn("勇敢牛牛", shell_launcher)
+        self.assertIn("spoken Chinese", skill)
+        self.assertIn("像老师坐在旁边当场说出来", spoken)
+        self.assertIn("现在做什么", spoken)
+        self.assertIn("看到什么算成功", spoken)
+        self.assertIn("如果读起来像说明书", spoken)
 
-    def test_normal_lessons_have_a_concise_language_budget(self) -> None:
-        skill = (ROOT / "skills/bravecow-onboarding/SKILL.md").read_text(encoding="utf-8")
-        zcode_command = (ROOT / "templates/zcode/commands/bravecow-onboarding.md").read_text(encoding="utf-8")
-        python_launcher = (ROOT / "harness/scripts/start_onboarding.py").read_text(encoding="utf-8")
+    def test_first_lesson_offers_project_and_principles_routes(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        route = (SKILL_ROOT / "references/route-builder.md").read_text(encoding="utf-8")
+        personalization = (SKILL_ROOT / "references/project-personalization.md").read_text(encoding="utf-8")
+
+        self.assertIn("带真实项目学习", skill)
+        self.assertIn("暂时不定项目，只熟悉软件与背后原理", skill)
+        self.assertIn("Never require a project idea before teaching", skill)
+        self.assertIn("第二条路线不得继续追问项目需求", personalization)
+        self.assertIn("不发问卷", route)
+        self.assertIn("Do not manufacture a capstone project", skill)
+
+    def test_normal_lessons_stay_short_and_actionable(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        lesson_loop = (SKILL_ROOT / "references/lesson-loop.md").read_text(encoding="utf-8")
 
         self.assertIn("at most five short sentences", skill)
-        self.assertIn("Use one example and one question", skill)
-        self.assertIn("Give the short answer first", skill)
-        self.assertIn("provide a sample answer unless", skill)
-        self.assertIn("Keep it concise", zcode_command)
-        self.assertNotIn("use everyday or business examples", python_launcher)
+        self.assertIn("one direct action", skill)
+        self.assertIn("一轮只要求一个动作", lesson_loop)
+        self.assertIn("先别重复点", (SKILL_ROOT / "references/spoken-copy.md").read_text(encoding="utf-8"))
 
-    def test_course_is_generated_from_the_learner_profile(self) -> None:
-        skill = (ROOT / "skills/bravecow-onboarding/SKILL.md").read_text(encoding="utf-8")
-        curriculum = (ROOT / "skills/bravecow-onboarding/references/curriculum.md").read_text(encoding="utf-8")
-        python_launcher = (ROOT / "harness/scripts/start_onboarding.py").read_text(encoding="utf-8")
+    def test_launchers_request_dual_route_spoken_onboarding(self) -> None:
+        paths = [
+            ROOT / "harness/scripts/start_onboarding.py",
+            ROOT / "harness/scripts/start_onboarding.ps1",
+            ROOT / "harness/scripts/start_onboarding.sh",
+            ROOT / "templates/zcode/commands/bravecow-onboarding.md",
+        ]
+        combined = "\n".join(path.read_text(encoding="utf-8") for path in paths)
 
-        self.assertIn("ask what the learner studies or does", skill)
-        self.assertIn("Build a working learner profile", skill)
-        self.assertIn("not a fixed syllabus", skill)
-        self.assertIn("use accurate engineering language", skill)
-        self.assertIn("must never replace it", skill)
-        self.assertNotIn("Follow the 12 lessons", skill)
-        self.assertNotIn("Use only general-life or business examples", skill)
+        self.assertIn("拿真实项目边做边学", combined)
+        self.assertIn("不定项目、只熟悉软件和背后原理", combined)
+        self.assertIn("natural spoken", combined)
+        self.assertNotIn("第一条回复先问我的专业或工作、目标和经验", combined)
+
+    def test_course_is_adaptive_and_has_no_course_map(self) -> None:
+        skill = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
+        curriculum = (SKILL_ROOT / "references/curriculum.md").read_text(encoding="utf-8")
+        visuals = (SKILL_ROOT / "references/ui-visual-coverage.md").read_text(encoding="utf-8")
+
+        self.assertIn("learning-outcome pool", skill)
         self.assertIn("这不是固定课表", curriculum)
-        self.assertIn("底层机制", curriculum)
-        self.assertIn("专业或工作、目标和经验", python_launcher)
+        self.assertIn("不做封面、地图或图片轮播", visuals)
+        self.assertNotIn("00-course-map", visuals)
+        self.assertFalse((SKILL_ROOT / "assets/ui/shared/00-course-map.png").exists())
 
 
 if __name__ == "__main__":
