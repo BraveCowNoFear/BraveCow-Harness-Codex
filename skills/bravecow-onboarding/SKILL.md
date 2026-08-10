@@ -48,6 +48,8 @@ Read `references/ui-visual-coverage.md` before any lesson that asks the learner 
 
 ## 4. Match depth without hiding mechanisms
 
+Read `references/domain-patterns.md` only when choosing a domain example or exercise. Use one matching pattern, not a mixed catalog.
+
 - Technical or scientific learner: explain system boundaries, context injection, data flow, permissions, failure modes, trade-offs, and verification with accurate terminology.
 - Non-technical learner: keep the same real mechanisms and terms, define them in plain language, and add complexity in layers.
 - Mixed or unknown background: start with `term = concrete meaning`, then adjust from the learner's answers.
