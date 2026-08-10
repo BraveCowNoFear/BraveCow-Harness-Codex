@@ -451,7 +451,7 @@ $resolvedOnboardingRuntime = Resolve-OnboardingRuntime
 if ($SkipOnboarding) {
     Write-Host "Onboarding: skipped by -SkipOnboarding"
 } elseif ($DryRun) {
-    Write-Plan "Create a new $resolvedOnboardingRuntime task and start the 12-lesson BraveCow onboarding course"
+    Write-Plan "Create a new $resolvedOnboardingRuntime task and start the adaptive BraveCow onboarding course"
 } elseif (-not $TargetSet.Contains($resolvedOnboardingRuntime)) {
     Write-Warning "Onboarding runtime $resolvedOnboardingRuntime was not installed; skipping task launch."
 } else {

@@ -15,11 +15,13 @@ The installer writes a machine-readable receipt to `~/.bravecow/harness/onboardi
 
 ## Course behavior
 
-The portable `bravecow-onboarding` skill detects runtime and host, then teaches as **勇敢牛牛**: warm, direct, concise, respectful, and never childish. A normal lesson is limited to the progress line plus five short sentences, one example, and one question. It does not restate the learner, volunteer a sample answer, append repeated summaries, or preview the next lesson. The learner can ask for the table of contents, skip, review, change the example, pause, continue, or exit. Model names and UI controls are read from the current app when possible because product catalogs change over time.
+The portable `bravecow-onboarding` skill detects runtime and host, then asks what the learner studies or does, their experience, and their real goal. **勇敢牛牛** builds a working learner profile and generates the route at runtime instead of following a fixed syllabus. Lesson count, order, terminology, mechanisms, examples, exercises, and the final project change as the learner responds.
 
-Practice materials are non-technical: a community book event, travel options, and a household budget. The final exercise requires the learner to decide whether Plan or Goal mode is appropriate, provide constraints, create an artifact, and check it against an explicit completion standard.
+Technical and scientific learners receive engineering terminology, architecture, boundaries, trade-offs, failure modes, and verification. Non-technical learners receive the same conceptual truth through defined terms and plain causal explanations; analogies are optional support, never substitutes for the mechanism. Generic practice assets are fallback material only, because exercises should normally come from the learner's own domain.
 
-The workflow lessons also distill the transferable parts of [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, invite useful questions, checkpoint important choices, keep rollback points, split long goals into milestones, choose the least-powerful sufficient tool, and inspect real outputs before calling work complete. Its software-development example and time-sensitive product claims are not copied into the general-audience course.
+A normal lesson stays within the progress line plus five short sentences, one relevant example, and one question. The learner can request the current route, skip, review, change depth or example, pause, continue, or exit. Model names and UI controls are read from the current app when possible because product catalogs change over time.
+
+The generated route may distill transferable methods from [BV1dFTv6yEcZ](https://www.bilibili.com/video/BV1dFTv6yEcZ/): clarify before acting, invite useful questions, checkpoint important choices, keep rollback points, split long goals into milestones, choose the least-powerful sufficient tool, and inspect real outputs before calling work complete. These are selected only when they advance the learner's goal.
 
 ## Computer Use plugin lesson
 

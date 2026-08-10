@@ -248,7 +248,7 @@ if [ "$ONBOARDING_RUNTIME" = auto ]; then
   esac
 fi
 if [ "$SKIP_ONBOARDING" -eq 1 ]; then printf 'Onboarding: skipped by --skip-onboarding\n'
-elif [ "$DRY_RUN" -eq 1 ]; then plan "Create a new $ONBOARDING_RUNTIME task and start the 12-lesson BraveCow onboarding course"
+elif [ "$DRY_RUN" -eq 1 ]; then plan "Create a new $ONBOARDING_RUNTIME task and start the adaptive BraveCow onboarding course"
 elif [ "$TARGETS" != all ] && [ "$TARGETS" != "$ONBOARDING_RUNTIME" ]; then printf 'Onboarding runtime was not installed; task launch skipped.\n' >&2
 else
   "$HARNESS_HOME/scripts/start_onboarding.sh" --runtime "$ONBOARDING_RUNTIME" --workspace "$WORKSPACE" --skill-path "$SHARED_SKILLS_HOME/bravecow-onboarding/SKILL.md" --receipt "$HARNESS_HOME/onboarding/last-launch.json" --language "$ONBOARDING_LANGUAGE" --timeout "$ONBOARDING_TIMEOUT"

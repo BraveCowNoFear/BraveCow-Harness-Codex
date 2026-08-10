@@ -124,7 +124,7 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
     stderr_reader.start()
     deadline = time.monotonic() + args.timeout
     try:
-        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.8.1"}}})
+        send(process, {"id": 1, "method": "initialize", "params": {"clientInfo": {"name": "bravecow-harness", "version": "0.9.0"}}})
         response_result(wait_for_id(inbox, 1, deadline, process, stderr_lines), "initialize")
         send(process, {"method": "initialized", "params": {}})
         send(
@@ -149,17 +149,15 @@ def start_codex_task(args: argparse.Namespace) -> dict[str, Any]:
             response_result(wait_for_id(inbox, 3, deadline, process, stderr_lines), "thread/name/set")
         if args.language in {"auto", "zh-CN"}:
             prompt = (
-                "$bravecow-onboarding\n\n请以老师“勇敢牛牛”的身份开始安装后的交互式新手课程。"
-                "先亲切地自我介绍，保持耐心、轻松但不幼稚的口吻；检测 Codex 和当前操作系统，"
-                "每次只教一课，默认不超过五个短句，只用一个生活或商科例子和一个问题；不要复述用户原话、主动给示范答案或重复总结。"
+                "$bravecow-onboarding\n\n请以“勇敢牛牛”的身份开始自适应课程。"
+                "第一条回复先问我的专业或工作、目标和经验，再根据回答现场生成课程。"
+                "技术背景讲工程机制；非技术背景也讲真实原理，不要只用生活比喻。"
             )
         else:
             prompt = (
-                "$bravecow-onboarding\n\nStart the post-install interactive beginner course in English as the teacher Brave Cow (勇敢牛牛). "
-                "Introduce yourself by name and use a warm, patient, respectful tone without sounding childish. "
-                "Detect Codex and the current operating system, teach one lesson per turn, use everyday or business examples, "
-                "use at most five short sentences with one example and one question, avoid restating, sample answers unless needed, or repeated summaries, "
-                "and wait for the learner after each lesson."
+                "$bravecow-onboarding\n\nStart the adaptive course as Brave Cow (勇敢牛牛). "
+                "First ask what I study or do, my goal, and my experience, then generate the course from my answer. "
+                "Use engineering mechanisms for technical learners; still teach real principles rather than only analogies to non-technical learners."
             )
         inputs: list[dict[str, Any]] = [{"type": "text", "text": prompt}]
         skill_path = Path(args.skill_path).resolve()
