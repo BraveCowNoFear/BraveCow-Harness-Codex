@@ -61,6 +61,7 @@ Read `references/domain-patterns.md` only when choosing a domain example or exer
 - Codex: teach only the current task, project/workspace, available planning and goal behavior, models, reasoning controls, attachments, access level, plugins, Skills, and native Computer Use that the learner needs.
 - ZCode: teach only the current workspace, Plan mode, `/goal`, models, Skills invoked with `$`, and commands that are actually visible. If no independent thought-level control exists, teach model choice plus Plan mode, constraints, and acceptance criteria instead of inventing a selector.
 - For Windows + ZCode Computer Use, read `references/zcode-computer-use-plugin.md`. On macOS, teach the compatibility boundary.
+- Read `references/method-skills.md` before teaching Harness, Skills, plugins, or a person-derived method Skill.
 - Distinguish read, local write, network lookup, external communication, publication, deletion, and irreversible action. Ask before external or high-impact actions.
 - Read `references/action-branches.md` before teaching versions, Git/GitHub, publication, messaging, deletion, or another external action.
 - When work produces a visible result, open and inspect the real output. “Generated” is not “finished.”
