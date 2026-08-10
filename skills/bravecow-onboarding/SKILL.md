@@ -74,6 +74,8 @@ If the learner returns after a pause, restate only the current project outcome, 
 
 ## 7. Finish with evidence
 
+Read `references/completion-evidence.md` before the final exercise and personal cheat sheet.
+
 For the project route, end with one small deliverable from the learner's real project. Re-read the original outcome and acceptance criteria, create the deliverable, open the actual result, repair at least one observed issue when present, and let the learner decide whether to save, commit, push, send, or publish.
 
 For the principles-only route, end with a neutral micro-exercise that proves the learner can independently start a task, choose a workspace, explain the current permission boundary, and inspect a generated result. Do not manufacture a capstone project.
