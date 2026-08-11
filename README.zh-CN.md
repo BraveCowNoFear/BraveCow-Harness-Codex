@@ -15,7 +15,7 @@ BraveCow Harness 是给普通用户准备的跨平台助手工作层。它让同
 
 ## 中国大陆 ZCode 接入指南
 
-没有稳定 ChatGPT 账号、计划使用 ZCode 与火山方舟模型服务的用户，可先阅读 [《ZCode + 火山方舟 AI Agent 接入指南》](docs/guides/zcode-volcengine-agent-setup.zh-CN.docx)。文档包含订阅 Agent Plan、添加模型供应商、使用 Responses API、安装 BraveCow Harness 与启动教程的完整截图步骤。
+没有稳定 ChatGPT 账号、计划使用 ZCode 与火山方舟模型服务的用户，可先阅读 [《ZCode + 火山方舟 AI Agent 接入指南》](docs/guides/zcode-volcengine-agent-setup.zh-CN.pdf)。文档包含订阅 Agent Plan、添加模型供应商、使用 Responses API、安装 BraveCow Harness 与启动教程的完整截图步骤。
 
 截图记录于 2026 年 8 月，产品界面、套餐、模型与额度可能调整，请以对应官方页面的当前信息为准。任何 API Key 都不要发送到聊天、截图或公开仓库。
 
