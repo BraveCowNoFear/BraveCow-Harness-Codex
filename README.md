@@ -1,8 +1,10 @@
 # BraveCow Harness
 
-Current release: `0.10.2`.
+Current release: `0.10.3`.
 
 BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
+
+The managed `AGENTS.md` block also carries plain-spoken delivery rules: lead with the answer, translate necessary jargon, write from the audience's perspective, and remove process narration from finished content.
 
 | Host | Codex | ZCode |
 | --- | --- | --- |

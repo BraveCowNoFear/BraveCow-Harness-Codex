@@ -31,5 +31,7 @@ test -f "$BRAVECOW_HOME/harness/catalog/external-components.lock.json"
 test ! -e "$ZCODE_HOME/skills/bravecow-windows-computer-use"
 test "$(tr -d '\r\n' < "$BRAVECOW_HOME/memories/PROFILE.md")" = USER-SENTINEL
 grep -q '~/.bravecow/memories' "$CODEX_HOME/AGENTS.md"
+grep -q 'Plain-Spoken & Perspective Rules (Highest Priority)' "$CODEX_HOME/AGENTS.md"
+grep -q 'Always speak to the end user' "$CODEX_HOME/AGENTS.md"
 ! grep -q 'old managed block' "$CODEX_HOME/AGENTS.md"
 printf 'OK: isolated macOS Codex + ZCode install smoke test passed\n'

@@ -72,6 +72,7 @@ REQUIRED = [
     "tests/test_onboarding_assets.py",
     "tests/test_zcode_computer_use_contract.py",
     "tests/test_runtime_paths.py",
+    "tests/test_agents_snippet.py",
 ]
 
 LOCAL_USER = "Clr"

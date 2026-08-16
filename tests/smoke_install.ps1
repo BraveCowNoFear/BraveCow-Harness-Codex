@@ -57,7 +57,13 @@ try {
         throw "Runtime/config update overwrote existing user memory."
     }
     $Agents = Get-Content -LiteralPath (Join-Path $CodexHome "AGENTS.md") -Raw -Encoding UTF8
-    if ($Agents -notlike "*User preface.*" -or $Agents -like "*old managed block*" -or $Agents -notlike "*~/.bravecow/memories*") {
+    if (
+        $Agents -notlike "*User preface.*" -or
+        $Agents -like "*old managed block*" -or
+        $Agents -notlike "*~/.bravecow/memories*" -or
+        $Agents -notlike "*Plain-Spoken & Perspective Rules (Highest Priority)*" -or
+        $Agents -notlike "*Always speak to the end user*"
+    ) {
         throw "Managed AGENTS block migration failed or modified user content."
     }
     if (-not (Get-ChildItem -LiteralPath $BackupRoot -Recurse -File -ErrorAction SilentlyContinue)) {
