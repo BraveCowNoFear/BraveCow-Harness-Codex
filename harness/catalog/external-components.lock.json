@@ -1,6 +1,36 @@
 {
   "schema_version": 1,
   "components": {
+    "browser-harness": {
+      "kind": "shared-browser-automation-skill",
+      "repository": "https://github.com/BraveCowNoFear/browser-harness.git",
+      "commit": "aa2ecb4e4eb430268eeeb65df5672f50406288aa",
+      "version": "0.1.8",
+      "license": "MIT",
+      "platforms": [
+        "windows",
+        "macos"
+      ],
+      "runtimes": [
+        "codex",
+        "zcode"
+      ]
+    },
+    "windows-computer-use": {
+      "kind": "codex-windows-marketplace-plugin",
+      "repository": "https://github.com/BraveCowNoFear/windows-computer-use.git",
+      "commit": "1449305eccc4e2b339b7ffc7d633bc12a33ba53d",
+      "version": "0.39.0",
+      "license": "MIT",
+      "marketplace_id": "brave-cow-windows-tools",
+      "plugin_id": "windows-computer-use@brave-cow-windows-tools",
+      "platforms": [
+        "windows"
+      ],
+      "runtimes": [
+        "codex"
+      ]
+    },
     "desktop-control-for-windows": {
       "kind": "zcode-windows-computer-use-skill",
       "repository": "https://github.com/BraveCowNoFear/desktop-control-for-windows.git",

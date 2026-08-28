@@ -17,7 +17,7 @@ printf 'User preface.\n\n<!-- BraveCow Harness Codex: start -->\nold managed blo
 
 EXTRA_OPTION=
 case "$(uname -s)" in MINGW*|MSYS*) EXTRA_OPTION=--skip-audit ;; esac
-sh "$REPO_ROOT/install.sh" --bravecow-home "$BRAVECOW_HOME" --codex-home "$CODEX_HOME" --zcode-home "$ZCODE_HOME" --shared-skills-home "$SHARED_SKILLS_HOME" --workspace "$WORKSPACE" --targets all --update-runtime --migrate-config --initialize-memory --no-links --skip-onboarding $EXTRA_OPTION
+sh "$REPO_ROOT/install.sh" --bravecow-home "$BRAVECOW_HOME" --codex-home "$CODEX_HOME" --zcode-home "$ZCODE_HOME" --shared-skills-home "$SHARED_SKILLS_HOME" --workspace "$WORKSPACE" --targets all --update-runtime --migrate-config --initialize-memory --no-links --skip-onboarding --skip-browser-harness $EXTRA_OPTION
 
 test -f "$BRAVECOW_HOME/harness/scripts/harness_audit.py"
 if [ -z "$EXTRA_OPTION" ]; then

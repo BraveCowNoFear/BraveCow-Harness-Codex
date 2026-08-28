@@ -43,6 +43,8 @@ The smoke test installs only into a uniquely named temporary directory and remov
 - The ZCode onboarding launcher automates only the documented new-task shortcut after positively activating the ZCode process. It does not type into an unknown foreground app.
 - macOS may require explicit Accessibility permission before ZCode can receive the automated `Command+N` shortcut.
 - Windows + ZCode downloads only the exact `desktop-control-for-windows` commit recorded in `external-components.lock.json`, verifies `HEAD`, installs dependencies in the extension's own `.venv`, and writes a provenance receipt.
+- BrowserHarness is adopted without overwriting an existing shared checkout; a missing skill is fetched only at the exact commit recorded in `external-components.lock.json`.
+- Windows + Codex keeps the exact locked Windows Computer Use repository snapshot as rollback evidence. The config editor changes only the named marketplace/plugin tables, validates the resulting TOML, and preserves an existing valid local development marketplace.
 - The post-install course validates the controller with `--help` only. It does not take screenshots, read window titles, or perform mouse/keyboard actions.
 
 ## Installing Third-Party Resources
@@ -51,4 +53,4 @@ Use `vendor_skill.py` to create a manifest in `~/.bravecow/harness/vendor/<slug>
 
 Activation should be a separate step after review.
 
-The user-requested BraveCow Windows Computer Use integration is a documented exception to the generic intake flow. Its author, repository, license, platform, runtime, and immutable commit are reviewed in the repository lock; the installer activates it only for Windows + ZCode. macOS and Codex do not receive this external adapter.
+The user-requested BraveCow integrations are documented exceptions to the generic intake flow. Their authors, repositories, licenses, platforms, runtimes, and immutable commits are reviewed in the repository lock. BrowserHarness is shared across selected runtimes, the native Windows Computer Use plugin is Codex/Windows-only, and the legacy `desktop-control-for-windows` adapter remains ZCode/Windows-only.

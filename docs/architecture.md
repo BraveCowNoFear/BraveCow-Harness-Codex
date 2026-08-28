@@ -55,6 +55,8 @@ BraveCow Harness keeps the Codex and ZCode runtime layers small, observable, and
 - Prefer shared skills and runtime junctions over copied duplicates.
 - Keep external resources quarantined until provenance and safety are reviewed.
 - The BraveCow Windows Computer Use source is an explicit exception requested for ZCode: fetch only its pinned commit, retain the vendor snapshot, install only on Windows + ZCode, and write a verification receipt.
+- BrowserHarness is a reviewed shared runtime-skill integration: preserve an existing shared checkout, otherwise fetch and verify the locked commit, then link the skill into Codex/ZCode.
+- The Brave Cow Windows Computer Use Codex plugin is a reviewed Windows-only integration: retain a clean pinned marketplace snapshot, preserve any valid local development marketplace, enable the exact plugin id, and record the effective source.
 - Keep private state out of Git.
 - Let each machine generate its own inventory and audit report.
 - Treat plugin cache entries as evidence of downloaded packages, not enabled plugins.

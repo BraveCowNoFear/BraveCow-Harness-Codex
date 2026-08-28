@@ -39,8 +39,10 @@ Both runtimes are installed by default. Use `-Targets Codex|ZCode` on Windows or
 - `~/.bravecow/memories`: shared canonical Markdown memory, preserved by default during upgrades.
 - `~/.agents/skills`: shared Harness skills.
 - `~/.codex/skills` and `~/.zcode/skills`: links to shared skills, or safe copies when links are disabled.
+- BrowserHarness: adopts an existing shared `browser-harness` skill or installs the reviewed pinned source without overwriting an existing checkout.
 - Runtime-specific `AGENTS.md` entry rules and a ZCode `/bravecow-onboarding` command.
 - On Windows + ZCode only, the pinned `$bravecow-windows-computer-use` extension and its isolated Python environment.
+- On Windows + Codex, a clean pinned Brave Cow Windows Tools marketplace snapshot is built with .NET 8, validated, and enabled as `windows-computer-use`; a valid local development marketplace remains authoritative.
 - Codex agent profiles where supported.
 
 Legacy `~/.codex/harness` and `~/.codex/memories` data are adopted without deletion. API keys, browser sessions, vaults, personal profiles, private automation prompts, plugin caches, and third-party vendor source are never packaged.
@@ -60,6 +62,7 @@ Codex task creation uses the official App Server. ZCode task creation uses its d
 ```powershell
 .\install.ps1 -UpdateRuntime -MigrateConfig -InitializeMemory
 .\install.ps1 -UpdateRuntime -MigrateConfig -DryRun
+.\install.ps1 -SkipBrowserHarness -SkipCodexWindowsComputerUse
 ```
 
 ```sh

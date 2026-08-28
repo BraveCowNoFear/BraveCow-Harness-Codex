@@ -22,6 +22,7 @@ REQUIRED = [
     "harness/scripts/build_skill_inventory.py",
     "harness/scripts/harness_audit.py",
     "harness/scripts/config_gate.py",
+    "harness/scripts/manage_codex_plugin.py",
     "harness/scripts/memory_search.py",
     "harness/scripts/memory_router.py",
     "harness/scripts/lock_diff.py",
@@ -71,6 +72,7 @@ REQUIRED = [
     "tests/test_onboarding_voice.py",
     "tests/test_onboarding_assets.py",
     "tests/test_zcode_computer_use_contract.py",
+    "tests/test_codex_integrations_contract.py",
     "tests/test_runtime_paths.py",
     "tests/test_agents_snippet.py",
 ]
@@ -111,6 +113,8 @@ def main() -> int:
     for path in [
         ROOT / "harness/scripts/build_skill_inventory.py",
         ROOT / "harness/scripts/harness_audit.py",
+        ROOT / "harness/scripts/config_gate.py",
+        ROOT / "harness/scripts/manage_codex_plugin.py",
         ROOT / "harness/scripts/memory_router.py",
         ROOT / "harness/scripts/lock_diff.py",
         ROOT / "harness/scripts/memory_write_gate.py",

@@ -65,9 +65,11 @@ sh ./install.sh --targets zcode
 - `~/.bravecow/memories`：两套应用共享的 Markdown 记忆模板；升级默认不覆盖用户内容。
 - `~/.agents/skills`：共享 Skills，包括 Harness 审计与新手指南。
 - `~/.codex/skills`、`~/.zcode/skills`：指向共享 Skills 的链接，无法链接时安全复制。
+- BrowserHarness：已有共享 `browser-harness` Skill 时直接接入，不覆盖现有源码；缺失时安装经过审查并锁定提交的版本。
 - `~/.codex/AGENTS.md`、`~/.zcode/AGENTS.md`：各应用的受管入口规则。
 - `~/.zcode/commands/bravecow-onboarding.md`：可手动运行的 ZCode 新手命令。
 - Windows + ZCode：从锁定提交安装 `$bravecow-windows-computer-use`，为 ZCode 补上本地桌面操作能力，并使用独立 Python 环境。
+- Windows + Codex：保存 Brave Cow Windows Tools marketplace 的干净锁定副本，用 .NET 8 构建并验证后启用 `windows-computer-use`；若已有有效的本地开发 marketplace，则继续以开发目录为准，不会降级或覆盖。
 - `~/.codex/agents`：Codex 支持的 agent profile 模板。
 
 旧版 `~/.codex/harness` 和 `~/.codex/memories` 会被安全接入新的共享目录，不会偷偷删除或覆盖。
@@ -103,6 +105,9 @@ sh ./install.sh --targets zcode
 
 # 不建立目录链接，改为复制
 .\install.ps1 -NoJunctions
+
+# BrowserHarness 或 Codex Windows Computer Use 由外部维护时跳过
+.\install.ps1 -SkipBrowserHarness -SkipCodexWindowsComputerUse
 ```
 
 macOS 使用对应的 `--dry-run`、`--update-runtime`、`--migrate-config`、`--initialize-memory`、`--no-workspace-agents` 和 `--no-links`。只有显式使用 `-ReplaceUserData` / `--replace-user-data` 才会替换记忆模板，而且替换前会备份。

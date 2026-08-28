@@ -68,6 +68,8 @@ Review before activation. Do not auto-enable third-party code merely because it 
 
 The Windows + ZCode installer has one explicit managed exception: it fetches the immutable `desktop-control-for-windows` revision from `external-components.lock.json`, verifies the Git commit, installs the ZCode adapter into `~/.zcode/skills/bravecow-windows-computer-use`, keeps dependencies in that skill's `.venv`, and records `catalog/zcode-computer-use-install.json`. It is never installed for Codex or macOS.
 
+BrowserHarness and the native Windows Computer Use plugin are also first-class reviewed integrations. The installer adopts an existing valid BrowserHarness shared skill before considering the pinned source, then records `catalog/browser-harness-install.json`. On Windows + Codex it keeps a clean pinned marketplace checkout, enables `windows-computer-use`, preserves an existing valid local development marketplace, and writes `catalog/codex-windows-computer-use-install.json`.
+
 Plugin resolution prefers an explicit remote-install marker, then an exact enabled config id. Superseded and cache-only packages remain visible as rollback evidence. No observed state authorizes automatic updates.
 
 For a monthly audit, copy `upstream-observations.example.json` to the active catalog as `upstream-observations.json` and populate it only from official first-party sources. The inventory compares those observations with installed versions but never executes an upgrade.

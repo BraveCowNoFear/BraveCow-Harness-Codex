@@ -24,8 +24,10 @@ try:
         HOME,
         RUNTIME_SKILL_ROOTS,
     )
+    from .config_gate import resolve_codex_executable
 except ImportError:  # direct script execution
     from runtime_paths import CODEX_HOME, HARNESS_HOME, HOME, RUNTIME_SKILL_ROOTS
+    from config_gate import resolve_codex_executable
 
 try:
     import tomllib
@@ -582,7 +584,13 @@ def observed_component_fields(record: dict[str, object] | None) -> dict[str, obj
 
 
 def codex_cli_component(generated_at: str, observations: dict[str, dict[str, object]], verification: dict[str, dict[str, object]]) -> dict[str, object] | None:
-    executable = shutil.which("codex")
+    parsed_config: dict = {}
+    if CONFIG_PATH.exists():
+        try:
+            parsed_config = tomllib.loads(read_text(CONFIG_PATH))
+        except Exception:  # noqa: BLE001
+            parsed_config = {}
+    executable = resolve_codex_executable(parsed_config, CONFIG_PATH)
     if not executable:
         return None
     try:

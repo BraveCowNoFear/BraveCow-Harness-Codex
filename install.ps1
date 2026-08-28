@@ -22,6 +22,10 @@ param(
     [switch]$NoWorkspaceAgents,
     [switch]$NoJunctions,
     [switch]$SkipAudit,
+    [switch]$SkipBrowserHarness,
+    [string]$BrowserHarnessSource,
+    [switch]$SkipCodexWindowsComputerUse,
+    [string]$CodexWindowsComputerUseSource,
     [switch]$SkipZCodeComputerUse,
     [string]$ZCodeComputerUseSource
 )
@@ -259,6 +263,186 @@ function Update-AgentsSnippet {
     }
 }
 
+function Install-PinnedGitSource {
+    param(
+        [Parameter(Mandatory = $true)][string]$ComponentId,
+        [string]$SourceOverride,
+        [Parameter(Mandatory = $true)][string]$VendorFolder,
+        [Parameter(Mandatory = $true)][string]$Label
+    )
+    $lockPath = Join-Path $RepoRoot "harness\catalog\external-components.lock.json"
+    $lock = Get-Content -LiteralPath $lockPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $component = $lock.components.$ComponentId
+    if ($null -eq $component) { throw "Missing external component lock entry: $ComponentId" }
+    $repository = [string]$component.repository
+    $fetchSource = if ($SourceOverride) { $SourceOverride } else { $repository }
+    $commit = [string]$component.commit
+    if ($commit -notmatch '^[0-9a-f]{40}$') { throw "Invalid pinned $Label commit: $commit" }
+    $vendorPath = Join-Path $HarnessHome ("vendor\" + $VendorFolder + "\" + $commit)
+
+    $result = [ordered]@{
+        component = $component
+        repository = $repository
+        acquisition_source = $fetchSource
+        commit = $commit
+        vendor_path = $vendorPath
+    }
+    if ($DryRun) {
+        Write-Plan "Fetch pinned $Label source: $fetchSource@$commit"
+        return [pscustomobject]$result
+    }
+
+    $git = Get-Command git -ErrorAction SilentlyContinue
+    if ($null -eq $git) { throw "Git is required to install $Label." }
+    $invokeGit = {
+        param([string[]]$Arguments, [string]$FailureMessage, [int]$Attempts = 1)
+        for ($attempt = 1; $attempt -le $Attempts; $attempt++) {
+            & $git.Source @Arguments | Out-Host
+            if ($LASTEXITCODE -eq 0) { return }
+            if ($attempt -lt $Attempts) {
+                Write-Warning "$FailureMessage Retrying ($attempt/$Attempts)..."
+                Start-Sleep -Seconds (2 * $attempt)
+            }
+        }
+        throw $FailureMessage
+    }
+
+    if (-not (Test-Path -LiteralPath (Join-Path $vendorPath ".git") -PathType Container)) {
+        Ensure-Dir $vendorPath
+        & $invokeGit -Arguments @("init", $vendorPath) -FailureMessage "Failed to initialize the managed $Label source directory."
+        & $invokeGit -Arguments @("-C", $vendorPath, "remote", "add", "origin", $fetchSource) -FailureMessage "Failed to configure the $Label source remote."
+    } else {
+        & $invokeGit -Arguments @("-C", $vendorPath, "remote", "set-url", "origin", $fetchSource) -FailureMessage "Failed to refresh the $Label source remote."
+    }
+    & $invokeGit -Arguments @("-C", $vendorPath, "fetch", "--filter=blob:none", "--depth", "1", "origin", $commit) -FailureMessage "Failed to fetch pinned $Label commit $commit." -Attempts 3
+    & $invokeGit -Arguments @("-C", $vendorPath, "checkout", "--detach", $commit) -FailureMessage "Failed to check out pinned $Label commit $commit."
+    $installedCommit = (& $git.Source -C $vendorPath rev-parse HEAD).Trim()
+    if ($LASTEXITCODE -ne 0 -or $installedCommit -ne $commit) {
+        throw "$Label source verification failed. Expected $commit, found $installedCommit."
+    }
+    return [pscustomobject]$result
+}
+
+function Install-BrowserHarness {
+    if ($SkipBrowserHarness) {
+        Write-Host "BrowserHarness: skipped by -SkipBrowserHarness"
+        return
+    }
+
+    $sharedSkillPath = Join-Path $SharedSkillsHome "browser-harness"
+    $skillPath = Join-Path $sharedSkillPath "SKILL.md"
+    $receiptPath = Join-Path $HarnessHome "catalog\browser-harness-install.json"
+    $status = "adopted-existing"
+    $sourcePath = $sharedSkillPath
+    $checkout = $null
+
+    if (-not (Test-Path -LiteralPath $skillPath -PathType Leaf)) {
+        $checkout = Install-PinnedGitSource -ComponentId "browser-harness" -SourceOverride $BrowserHarnessSource -VendorFolder "browser-harness" -Label "BrowserHarness"
+        $sourcePath = [string]$checkout.vendor_path
+        if ($DryRun) {
+            Write-Plan "Install BrowserHarness shared skill: $sharedSkillPath"
+        } elseif ($NoJunctions) {
+            Copy-ManagedTree $sourcePath $sharedSkillPath $true "browser-harness"
+        } else {
+            Ensure-DirectoryAlias $sharedSkillPath $sourcePath "external-skill"
+        }
+        $status = "installed-pinned"
+    }
+
+    if ($TargetSet.Contains("Codex")) { Ensure-SkillRuntimeEntry "browser-harness" $sharedSkillPath $CodexSkillsHome }
+    if ($TargetSet.Contains("ZCode")) { Ensure-SkillRuntimeEntry "browser-harness" $sharedSkillPath $ZCodeSkillsHome }
+    if ($DryRun) { return }
+
+    $command = Get-Command browser-harness -ErrorAction SilentlyContinue
+    $version = "unavailable"
+    $verification = "SKILL.md present; CLI unavailable"
+    if ($null -ne $command) {
+        $versionOutput = (& $command.Source --version 2>&1 | Out-String).Trim()
+        if ($LASTEXITCODE -eq 0) {
+            $version = $versionOutput
+            $verification = "browser-harness --version"
+        }
+    }
+    if ($version -eq "unavailable") {
+        Write-Warning "BrowserHarness skill is active, but its CLI is not installed. Follow the pinned source install.md before browser automation."
+    }
+    $skillItem = Get-Item -LiteralPath $sharedSkillPath -Force
+    $effectiveSource = if ($skillItem.LinkType -in @("Junction", "SymbolicLink")) { [string]$skillItem.Target } else { $sourcePath }
+    $receipt = [ordered]@{
+        status = $status
+        runtime = "shared"
+        repository = if ($null -ne $checkout) { [string]$checkout.repository } else { "existing-local-skill" }
+        commit = if ($null -ne $checkout) { [string]$checkout.commit } else { "observed-by-inventory" }
+        source_path = $effectiveSource
+        skill_path = $sharedSkillPath
+        installed_version = $version
+        verification = $verification
+    }
+    $receipt | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $receiptPath -Encoding UTF8
+    Write-Host "BrowserHarness skill ready: $sharedSkillPath"
+}
+
+function Install-CodexWindowsComputerUse {
+    if ($SkipCodexWindowsComputerUse) {
+        Write-Host "Codex Windows Computer Use: skipped by -SkipCodexWindowsComputerUse"
+        return
+    }
+    $checkout = Install-PinnedGitSource -ComponentId "windows-computer-use" -SourceOverride $CodexWindowsComputerUseSource -VendorFolder "windows-computer-use" -Label "Codex Windows Computer Use"
+    $vendorPath = [string]$checkout.vendor_path
+    $configPath = Join-Path $CodexHome "config.toml"
+    $receiptPath = Join-Path $HarnessHome "catalog\codex-windows-computer-use-install.json"
+    if ($DryRun) {
+        Write-Plan "Enable the Brave Cow Windows Tools marketplace and Windows Computer Use plugin in $configPath"
+        return
+    }
+
+    $required = @(
+        (Join-Path $vendorPath ".agents\plugins\marketplace.json"),
+        (Join-Path $vendorPath "plugins\windows-computer-use\.codex-plugin\plugin.json"),
+        (Join-Path $vendorPath "plugins\windows-computer-use\.mcp.json"),
+        (Join-Path $vendorPath "plugins\windows-computer-use\scripts\build.ps1"),
+        (Join-Path $vendorPath "plugins\windows-computer-use\scripts\validate-plugin.ps1")
+    )
+    foreach ($path in $required) {
+        if (-not (Test-Path -LiteralPath $path)) { throw "Pinned Windows Computer Use package is incomplete: $path" }
+    }
+    $pluginRoot = Join-Path $vendorPath "plugins\windows-computer-use"
+    $mcpOutput = Join-Path $pluginRoot "dist\win-x64\mcp"
+    $brokerOutput = Join-Path $pluginRoot "dist\win-x64\broker"
+    if (-not (Test-Path -LiteralPath $mcpOutput -PathType Container) -or -not (Test-Path -LiteralPath $brokerOutput -PathType Container)) {
+        & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $pluginRoot "scripts\build.ps1") -Configuration Release
+        if ($LASTEXITCODE -ne 0) { throw "Failed to build the pinned Codex Windows Computer Use plugin." }
+    }
+    & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $pluginRoot "scripts\validate-plugin.ps1") | Out-Host
+    if ($LASTEXITCODE -ne 0) { throw "Pinned Codex Windows Computer Use plugin validation failed." }
+
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if ($null -eq $python) { $python = Get-Command python3 -ErrorAction SilentlyContinue }
+    if ($null -eq $python) { throw "Python 3 is required to configure the Codex Windows Computer Use plugin." }
+    if (Test-Path -LiteralPath $configPath -PathType Leaf) { Backup-File $configPath }
+    $configureOutput = & $python.Source (Join-Path $RepoRoot "harness\scripts\manage_codex_plugin.py") `
+        --config $configPath --marketplace-source $vendorPath --preserve-existing-source
+    if ($LASTEXITCODE -ne 0) { throw "Failed to configure the Codex Windows Computer Use plugin." }
+    $configured = ($configureOutput | Out-String) | ConvertFrom-Json
+    $manifest = Get-Content -LiteralPath (Join-Path $vendorPath "plugins\windows-computer-use\.codex-plugin\plugin.json") -Raw -Encoding UTF8 | ConvertFrom-Json
+    $receipt = [ordered]@{
+        status = [string]$configured.status
+        runtime = "Codex"
+        platform = "Windows"
+        repository = [string]$checkout.repository
+        acquisition_source = [string]$checkout.acquisition_source
+        commit = [string]$checkout.commit
+        pinned_vendor_path = $vendorPath
+        pinned_version = [string]$manifest.version
+        effective_marketplace_source = [string]$configured.effective_source
+        preserved_existing_source = [bool]$configured.preserved_existing_source
+        plugin_id = [string]$configured.plugin_id
+        verification = "Release build + plugin validation + marketplace/plugin TOML parse"
+    }
+    $receipt | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath $receiptPath -Encoding UTF8
+    Write-Host "Codex Windows Computer Use plugin configured: $($configured.plugin_id)"
+}
+
 function Install-ZCodeComputerUse {
     if ($SkipZCodeComputerUse) {
         Write-Host "ZCode Computer Use: skipped by -SkipZCodeComputerUse"
@@ -372,6 +556,7 @@ foreach ($path in @($BraveCowHome, $HarnessHome, (Join-Path $HarnessHome "catalo
 }
 
 Copy-ManagedFile (Join-Path $RepoRoot "harness\README.md") (Join-Path $HarnessHome "README.md") ([bool]$UpdateRuntime) "runtime"
+Copy-ManagedFile (Join-Path $RepoRoot "VERSION") (Join-Path $HarnessHome "VERSION") ([bool]$UpdateRuntime) "runtime"
 Copy-ManagedTree (Join-Path $RepoRoot "harness\scripts") (Join-Path $HarnessHome "scripts") ([bool]$UpdateRuntime) "runtime"
 Get-ChildItem -LiteralPath (Join-Path $RepoRoot "harness\catalog") -Filter "*.example.*" -File | ForEach-Object {
     Copy-ManagedFile $_.FullName (Join-Path $HarnessHome ("catalog\" + $_.Name)) ([bool]$UpdateRuntime) "runtime"
@@ -384,6 +569,7 @@ Get-ChildItem -LiteralPath (Join-Path $RepoRoot "skills") -Directory | ForEach-O
     if ($TargetSet.Contains("Codex")) { Ensure-SkillRuntimeEntry $_.Name $sharedTarget $CodexSkillsHome }
     if ($TargetSet.Contains("ZCode")) { Ensure-SkillRuntimeEntry $_.Name $sharedTarget $ZCodeSkillsHome }
 }
+Install-BrowserHarness
 
 Get-ChildItem -LiteralPath (Join-Path $RepoRoot "templates\memories") -Filter "*.md" | ForEach-Object {
     $destination = Join-Path $MemoryHome $_.Name
@@ -402,7 +588,9 @@ if ($TargetSet.Contains("Codex")) {
     Get-ChildItem -LiteralPath (Join-Path $RepoRoot "templates\agents") -Filter "*.toml" | ForEach-Object {
         Copy-ManagedFile $_.FullName (Join-Path $CodexAgentProfilesHome $_.Name) ([bool]$MigrateConfig) "config"
     }
-    Update-AgentsSnippet (Join-Path $CodexHome "AGENTS.md")
+    if ($MigrateConfig) { Update-AgentsSnippet (Join-Path $CodexHome "AGENTS.md") }
+    else { Write-Host "Keep existing Codex AGENTS.md (use -MigrateConfig to update the managed block)" }
+    Install-CodexWindowsComputerUse
 }
 if ($TargetSet.Contains("ZCode")) {
     Ensure-Dir $ZCodeHome
@@ -410,10 +598,11 @@ if ($TargetSet.Contains("ZCode")) {
     Ensure-DirectoryAlias (Join-Path $ZCodeHome "memories") $MemoryHome
     Ensure-Dir (Join-Path $ZCodeHome "commands")
     Copy-ManagedFile (Join-Path $RepoRoot "templates\zcode\commands\bravecow-onboarding.md") (Join-Path $ZCodeHome "commands\bravecow-onboarding.md") $true "zcode-command"
-    Update-AgentsSnippet (Join-Path $ZCodeHome "AGENTS.md")
+    if ($MigrateConfig) { Update-AgentsSnippet (Join-Path $ZCodeHome "AGENTS.md") }
+    else { Write-Host "Keep existing ZCode AGENTS.md (use -MigrateConfig to update the managed block)" }
     Install-ZCodeComputerUse
 }
-if (-not $NoWorkspaceAgents -and $Workspace) {
+if ($MigrateConfig -and -not $NoWorkspaceAgents -and $Workspace) {
     Ensure-Dir $Workspace
     Update-AgentsSnippet (Join-Path $Workspace "AGENTS.md")
 }

@@ -33,6 +33,7 @@ class ConfigGateTests(unittest.TestCase):
             path.write_text('service_tier = "priority"\n', encoding="utf-8")
             responses = [
                 SimpleNamespace(returncode=0, stdout="codex-cli 0.130.0-alpha.5\n", stderr=""),
+                SimpleNamespace(returncode=0, stdout="codex-cli 0.130.0-alpha.5\n", stderr=""),
                 SimpleNamespace(
                     returncode=1,
                     stdout="",

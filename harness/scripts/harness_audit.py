@@ -342,6 +342,8 @@ def render_report() -> str:
     vendor_candidates = collect_vendor_candidates()
     pending_vendor = [item for item in vendor_candidates if item.get("review_status") == "pending"]
     unmanifested_vendor_dirs = collect_unmanifested_vendor_dirs()
+    harness_version_path = HARNESS_HOME / "VERSION"
+    harness_version = read_text(harness_version_path).strip() if harness_version_path.exists() else "unknown"
 
     lines = [
         "# BraveCow Harness Audit",
@@ -351,6 +353,7 @@ def render_report() -> str:
         "## Runtime",
         "",
         f"- Host OS: `{platform.system()} {platform.machine()}`",
+        f"- Harness version: `{harness_version}`",
         f"- Shared harness home: `{HARNESS_HOME}`",
         f"- Shared memory home: `{MEMORY_HOME}`",
         f"- Codex home: `{CODEX_HOME}`",

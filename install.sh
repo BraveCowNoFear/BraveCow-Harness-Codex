@@ -21,6 +21,8 @@ SKIP_ONBOARDING=0
 NO_WORKSPACE_AGENTS=0
 NO_LINKS=0
 SKIP_AUDIT=0
+SKIP_BROWSER_HARNESS=0
+BROWSER_HARNESS_SOURCE=
 RUN_STAMP=$(date '+%Y%m%d-%H%M%S')
 BACKUP_ROOT=
 
@@ -35,6 +37,8 @@ usage() {
   printf '%s\n' "  --initialize-memory        Create missing memory files"
   printf '%s\n' "  --replace-user-data        Replace memory templates after backup"
   printf '%s\n' "  --skip-onboarding          Do not create the post-install task"
+  printf '%s\n' "  --skip-browser-harness     Do not adopt or install the BrowserHarness skill"
+  printf '%s\n' "  --browser-harness-source   Override the pinned BrowserHarness Git source"
   printf '%s\n' "  --dry-run                  Show actions without changing files"
 }
 
@@ -60,6 +64,8 @@ while [ "$#" -gt 0 ]; do
     --no-workspace-agents) NO_WORKSPACE_AGENTS=1; shift ;;
     --no-links) NO_LINKS=1; shift ;;
     --skip-audit) SKIP_AUDIT=1; shift ;;
+    --skip-browser-harness) SKIP_BROWSER_HARNESS=1; shift ;;
+    --browser-harness-source) BROWSER_HARNESS_SOURCE=$2; shift 2 ;;
     -h|--help) usage; exit 0 ;;
     *) printf 'Unknown option: %s\n' "$1" >&2; usage >&2; exit 2 ;;
   esac
@@ -179,11 +185,98 @@ update_agents() {
   if [ "$DRY_RUN" -eq 1 ]; then rm -f "$temporary"; else mv "$temporary" "$destination"; fi
 }
 
+external_component_field() {
+  python3 - "$REPO_ROOT/harness/catalog/external-components.lock.json" "$1" "$2" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+lock = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+print(lock["components"][sys.argv[2]][sys.argv[3]])
+PY
+}
+
+install_browser_harness() {
+  if [ "$SKIP_BROWSER_HARNESS" -eq 1 ]; then
+    printf 'BrowserHarness: skipped by --skip-browser-harness\n'
+    return
+  fi
+
+  shared_skill="$SHARED_SKILLS_HOME/browser-harness"
+  source_path="$shared_skill"
+  status=adopted-existing
+  repository=existing-local-skill
+  commit=observed-by-inventory
+
+  if [ ! -f "$shared_skill/SKILL.md" ]; then
+    command -v python3 >/dev/null 2>&1 || { printf 'Python 3 is required to read the BrowserHarness source lock.\n' >&2; exit 1; }
+    command -v git >/dev/null 2>&1 || { printf 'Git is required to install BrowserHarness.\n' >&2; exit 1; }
+    repository=$(external_component_field browser-harness repository)
+    commit=$(external_component_field browser-harness commit)
+    case "$commit" in *[!0-9a-f]*|'') printf 'Invalid pinned BrowserHarness commit: %s\n' "$commit" >&2; exit 1 ;; esac
+    [ "${#commit}" -eq 40 ] || { printf 'Invalid pinned BrowserHarness commit: %s\n' "$commit" >&2; exit 1; }
+    fetch_source=${BROWSER_HARNESS_SOURCE:-$repository}
+    source_path="$HARNESS_HOME/vendor/browser-harness/$commit"
+    if [ "$DRY_RUN" -eq 1 ]; then
+      plan "Fetch pinned BrowserHarness source: $fetch_source@$commit"
+      plan "Install BrowserHarness shared skill: $shared_skill"
+    else
+      if [ ! -d "$source_path/.git" ]; then
+        ensure_dir "$source_path"
+        git init "$source_path"
+        git -C "$source_path" remote add origin "$fetch_source"
+      else
+        git -C "$source_path" remote set-url origin "$fetch_source"
+      fi
+      attempts=0
+      until git -C "$source_path" fetch --filter=blob:none --depth 1 origin "$commit"; do
+        attempts=$((attempts + 1))
+        [ "$attempts" -lt 3 ] || { printf 'Failed to fetch pinned BrowserHarness commit %s.\n' "$commit" >&2; exit 1; }
+        sleep $((attempts * 2))
+      done
+      git -C "$source_path" checkout --detach "$commit"
+      installed_commit=$(git -C "$source_path" rev-parse HEAD)
+      [ "$installed_commit" = "$commit" ] || { printf 'BrowserHarness source verification failed.\n' >&2; exit 1; }
+      if [ "$NO_LINKS" -eq 1 ]; then copy_tree "$source_path" "$shared_skill" 1 browser-harness
+      else ensure_link "$shared_skill" "$source_path"; fi
+    fi
+    status=installed-pinned
+  fi
+
+  case "$TARGETS" in all|codex) install_skill_entry browser-harness "$CODEX_HOME/skills" "$shared_skill" ;; esac
+  case "$TARGETS" in all|zcode) install_skill_entry browser-harness "$ZCODE_HOME/skills" "$shared_skill" ;; esac
+  [ "$DRY_RUN" -eq 1 ] && return
+
+  installed_version=unavailable
+  verification='SKILL.md present; CLI unavailable'
+  if command -v browser-harness >/dev/null 2>&1; then
+    installed_version=$(browser-harness --version 2>/dev/null || printf unavailable)
+    if [ "$installed_version" != unavailable ]; then verification='browser-harness --version'; fi
+  fi
+  if [ "$installed_version" = unavailable ]; then
+    printf 'BrowserHarness skill is active, but its CLI is not installed. Follow the pinned source install.md before browser automation.\n' >&2
+  fi
+  python3 - "$HARNESS_HOME/catalog/browser-harness-install.json" "$status" "$repository" "$commit" "$source_path" "$shared_skill" "$installed_version" "$verification" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+keys = ("status", "repository", "commit", "source_path", "skill_path", "installed_version", "verification")
+payload = dict(zip(keys, sys.argv[2:]))
+payload["runtime"] = "shared"
+path = Path(sys.argv[1])
+path.parent.mkdir(parents=True, exist_ok=True)
+path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+  printf 'BrowserHarness skill ready: %s\n' "$shared_skill"
+}
+
 ensure_neutral_root "$HARNESS_HOME" "$CODEX_HOME/harness" harness
 ensure_neutral_root "$MEMORY_HOME" "$CODEX_HOME/memories" memory
 for directory in "$BRAVECOW_HOME" "$HARNESS_HOME" "$HARNESS_HOME/catalog" "$HARNESS_HOME/reports" "$HARNESS_HOME/vendor" "$HARNESS_HOME/onboarding" "$MEMORY_HOME" "$SHARED_SKILLS_HOME"; do ensure_dir "$directory"; done
 
 copy_file "$REPO_ROOT/harness/README.md" "$HARNESS_HOME/README.md" "$UPDATE_RUNTIME" runtime
+copy_file "$REPO_ROOT/VERSION" "$HARNESS_HOME/VERSION" "$UPDATE_RUNTIME" runtime
 copy_tree "$REPO_ROOT/harness/scripts" "$HARNESS_HOME/scripts" "$UPDATE_RUNTIME" runtime
 for source_file in "$REPO_ROOT"/harness/catalog/*.example.*; do [ -f "$source_file" ] && copy_file "$source_file" "$HARNESS_HOME/catalog/$(basename "$source_file")" "$UPDATE_RUNTIME" runtime; done
 copy_file "$REPO_ROOT/harness/catalog/external-components.lock.json" "$HARNESS_HOME/catalog/external-components.lock.json" "$UPDATE_RUNTIME" runtime
@@ -195,6 +288,7 @@ for skill_dir in "$REPO_ROOT"/skills/*; do
   case "$TARGETS" in all|codex) install_skill_entry "$skill_name" "$CODEX_HOME/skills" "$shared_target" ;; esac
   case "$TARGETS" in all|zcode) install_skill_entry "$skill_name" "$ZCODE_HOME/skills" "$shared_target" ;; esac
 done
+install_browser_harness
 
 for source_file in "$REPO_ROOT"/templates/memories/*.md; do
   destination="$MEMORY_HOME/$(basename "$source_file")"
@@ -206,18 +300,18 @@ case "$TARGETS" in
   all|codex)
     ensure_dir "$CODEX_HOME"; ensure_link "$CODEX_HOME/harness" "$HARNESS_HOME"; ensure_link "$CODEX_HOME/memories" "$MEMORY_HOME"
     for source_file in "$REPO_ROOT"/templates/agents/*.toml; do [ -f "$source_file" ] && copy_file "$source_file" "$CODEX_HOME/agents/$(basename "$source_file")" "$MIGRATE_CONFIG" config; done
-    update_agents "$CODEX_HOME/AGENTS.md"
+    if [ "$MIGRATE_CONFIG" -eq 1 ]; then update_agents "$CODEX_HOME/AGENTS.md"; else printf 'Keep existing Codex AGENTS.md (use --migrate-config to update the managed block)\n'; fi
     ;;
 esac
 case "$TARGETS" in
   all|zcode)
     ensure_dir "$ZCODE_HOME"; ensure_link "$ZCODE_HOME/harness" "$HARNESS_HOME"; ensure_link "$ZCODE_HOME/memories" "$MEMORY_HOME"
     copy_file "$REPO_ROOT/templates/zcode/commands/bravecow-onboarding.md" "$ZCODE_HOME/commands/bravecow-onboarding.md" 1 zcode-command
-    update_agents "$ZCODE_HOME/AGENTS.md"
+    if [ "$MIGRATE_CONFIG" -eq 1 ]; then update_agents "$ZCODE_HOME/AGENTS.md"; else printf 'Keep existing ZCode AGENTS.md (use --migrate-config to update the managed block)\n'; fi
     printf 'ZCode Computer Use extension: not installed because desktop-control-for-windows supports Windows only.\n'
     ;;
 esac
-[ "$NO_WORKSPACE_AGENTS" -eq 1 ] || update_agents "$WORKSPACE/AGENTS.md"
+if [ "$MIGRATE_CONFIG" -eq 1 ] && [ "$NO_WORKSPACE_AGENTS" -eq 0 ]; then update_agents "$WORKSPACE/AGENTS.md"; fi
 
 if [ "$SKIP_AUDIT" -eq 0 ] && [ "$DRY_RUN" -eq 0 ]; then
   if command -v python3 >/dev/null 2>&1; then

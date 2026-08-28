@@ -45,6 +45,76 @@ def concise_diagnostic(text: str) -> str:
     return value[:600]
 
 
+def codex_executable_candidates(parsed: dict, config_path: Path = DEFAULT_CONFIG) -> list[Path]:
+    candidates: list[Path] = []
+
+    configured_executable = os.environ.get("CODEX_EXECUTABLE")
+    if configured_executable:
+        candidates.append(Path(configured_executable))
+
+    node_repl_env = (
+        ((parsed.get("mcp_servers") or {}).get("node_repl") or {}).get("env") or {}
+    )
+    configured_cli = node_repl_env.get("CODEX_CLI_PATH")
+    if configured_cli:
+        candidates.append(Path(str(configured_cli)))
+
+    if os.name == "nt":
+        local_app_data = Path(
+            os.environ.get("LOCALAPPDATA", Path.home() / "AppData" / "Local")
+        )
+        codex_bin = local_app_data / "OpenAI" / "Codex" / "bin"
+        if codex_bin.exists():
+            candidates.extend(
+                sorted(
+                    codex_bin.glob("*/codex.exe"),
+                    key=lambda path: path.stat().st_mtime,
+                    reverse=True,
+                )
+            )
+            candidates.append(codex_bin / "codex.exe")
+
+    discovered = shutil.which("codex")
+    if discovered:
+        candidates.append(Path(discovered))
+
+    unique: list[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        key = os.path.normcase(os.path.abspath(str(candidate)))
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(candidate)
+    return unique
+
+
+def resolve_codex_executable(
+    parsed: dict,
+    config_path: Path = DEFAULT_CONFIG,
+    env: dict[str, str] | None = None,
+) -> str | None:
+    probe_env = (env or os.environ.copy()).copy()
+    probe_env["CODEX_HOME"] = str(config_path.parent)
+    for candidate in codex_executable_candidates(parsed, config_path):
+        if not candidate.exists():
+            continue
+        try:
+            probe = subprocess.run(
+                [str(candidate), "--version"],
+                capture_output=True,
+                text=True,
+                timeout=8,
+                env=probe_env,
+                check=False,
+            )
+        except (OSError, subprocess.TimeoutExpired):
+            continue
+        if probe.returncode == 0:
+            return str(candidate)
+    return None
+
+
 def check_config(config_path: Path = DEFAULT_CONFIG, run_runtime: bool = True) -> dict:
     result: dict[str, object] = {
         "config_path": str(config_path),
@@ -75,13 +145,13 @@ def check_config(config_path: Path = DEFAULT_CONFIG, run_runtime: bool = True) -
     if not run_runtime:
         return result
 
-    codex = shutil.which("codex")
+    env = os.environ.copy()
+    env["CODEX_HOME"] = str(config_path.parent)
+    codex = resolve_codex_executable(parsed, config_path, env)
     if not codex:
         result.update(runtime="unavailable", overall="partial", diagnostic="codex executable not found")
         return result
 
-    env = os.environ.copy()
-    env["CODEX_HOME"] = str(config_path.parent)
     try:
         version = subprocess.run(
             [codex, "--version"],
