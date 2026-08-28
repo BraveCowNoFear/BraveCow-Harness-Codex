@@ -4,10 +4,27 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from harness.scripts import harness_audit
 from harness.scripts.harness_audit import classify_automation, collect_automations
 
 
 class HarnessAutomationAuditTests(unittest.TestCase):
+    def test_managed_external_vendor_sources_are_not_quarantine_warnings(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            vendor_dir = Path(temp_dir)
+            (vendor_dir / "windows-computer-use").mkdir()
+            (vendor_dir / "unknown-source").mkdir()
+            original_vendor_dir = harness_audit.VENDOR_DIR
+            try:
+                harness_audit.VENDOR_DIR = vendor_dir
+                missing = harness_audit.collect_unmanifested_vendor_dirs(
+                    {"components": {"windows-computer-use": {"kind": "plugin"}}}
+                )
+            finally:
+                harness_audit.VENDOR_DIR = original_vendor_dir
+
+        self.assertEqual(missing, ["unknown-source"])
+
     def test_known_harness_automations_have_explicit_roles(self) -> None:
         monthly = classify_automation("bravecow-harness")
         global_rag = classify_automation("session-log-graphiti-sync")

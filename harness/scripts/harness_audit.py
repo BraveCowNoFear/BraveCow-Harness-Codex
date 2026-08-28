@@ -40,6 +40,7 @@ ZCODE_AGENTS_DIR = ZCODE_HOME / "agents"
 INVENTORY_PATH = HARNESS_HOME / "catalog" / "skill-inventory.json"
 LOCK_PATH = HARNESS_HOME / "catalog" / "harness.lock.json"
 PREVIOUS_LOCK_PATH = HARNESS_HOME / "catalog" / "harness.lock.previous.json"
+EXTERNAL_COMPONENTS_LOCK_PATH = HARNESS_HOME / "catalog" / "external-components.lock.json"
 CONTRACTS_PATH = HARNESS_HOME / "catalog" / "skill-contracts.json"
 VENDOR_DIR = HARNESS_HOME / "vendor"
 MEMORY_INDEX_PATH = HARNESS_HOME / "index" / "memory-fts.sqlite3"
@@ -92,6 +93,15 @@ def load_lock() -> dict:
         return {}
     try:
         return json.loads(read_text(LOCK_PATH))
+    except json.JSONDecodeError:
+        return {"lock_error": "invalid JSON"}
+
+
+def load_external_components_lock() -> dict:
+    if not EXTERNAL_COMPONENTS_LOCK_PATH.exists():
+        return {}
+    try:
+        return json.loads(read_text(EXTERNAL_COMPONENTS_LOCK_PATH))
     except json.JSONDecodeError:
         return {"lock_error": "invalid JSON"}
 
@@ -287,14 +297,18 @@ def collect_vendor_candidates() -> list[dict]:
     return candidates
 
 
-def collect_unmanifested_vendor_dirs() -> list[str]:
+def collect_unmanifested_vendor_dirs(external_components_lock: dict | None = None) -> list[str]:
     if not VENDOR_DIR.exists():
         return []
+    components = (external_components_lock or {}).get("components", {})
+    managed_external_sources = set(components) if isinstance(components, dict) else set()
     missing: list[str] = []
     for path in sorted(VENDOR_DIR.iterdir()):
         if not path.is_dir():
             continue
         if path.name.startswith("."):
+            continue
+        if path.name in managed_external_sources:
             continue
         if not (path / "manifest.json").exists():
             missing.append(path.name)
@@ -306,6 +320,7 @@ def render_report() -> str:
     config_gate = check_config(CONFIG_PATH, run_runtime=True)
     inventory = load_inventory()
     lock = load_lock()
+    external_components_lock = load_external_components_lock()
     prompt_baseline = load_prompt_baseline()
     memory_index = collect_memory_index_status()
     router_status = collect_router_status()
@@ -341,7 +356,7 @@ def render_report() -> str:
     ]
     vendor_candidates = collect_vendor_candidates()
     pending_vendor = [item for item in vendor_candidates if item.get("review_status") == "pending"]
-    unmanifested_vendor_dirs = collect_unmanifested_vendor_dirs()
+    unmanifested_vendor_dirs = collect_unmanifested_vendor_dirs(external_components_lock)
     harness_version_path = HARNESS_HOME / "VERSION"
     harness_version = read_text(harness_version_path).strip() if harness_version_path.exists() else "unknown"
 
