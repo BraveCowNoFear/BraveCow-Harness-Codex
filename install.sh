@@ -169,6 +169,10 @@ update_agents() {
   if [ ! -f "$destination" ]; then copy_file "$snippet" "$destination" 1 config; return; fi
   if grep -q '<!-- BraveCow Harness: start -->' "$destination"; then start='<!-- BraveCow Harness: start -->'; end='<!-- BraveCow Harness: end -->'
   elif grep -q '<!-- BraveCow Harness Codex: start -->' "$destination"; then start='<!-- BraveCow Harness Codex: start -->'; end='<!-- BraveCow Harness Codex: end -->'
+  elif [ "$(sed -n '1{s/\r$//;p;q;}' "$destination")" = '# Brave Cow Agent Instructions' ]; then
+    backup_file "$destination"; plan "Replace legacy BraveCow AGENTS document: $destination"
+    [ "$DRY_RUN" -eq 1 ] || cp "$snippet" "$destination"
+    return
   else
     backup_file "$destination"; plan "Append managed AGENTS block: $destination"
     [ "$DRY_RUN" -eq 1 ] || { printf '\n\n' >> "$destination"; cat "$snippet" >> "$destination"; }

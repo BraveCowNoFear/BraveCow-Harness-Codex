@@ -11,9 +11,10 @@ CODEX_HOME="$TEMP_ROOT/.codex"
 ZCODE_HOME="$TEMP_ROOT/.zcode"
 SHARED_SKILLS_HOME="$TEMP_ROOT/.agents/skills"
 WORKSPACE="$TEMP_ROOT/workspace"
-mkdir -p "$BRAVECOW_HOME/memories" "$CODEX_HOME"
+mkdir -p "$BRAVECOW_HOME/memories" "$CODEX_HOME" "$ZCODE_HOME"
 printf 'USER-SENTINEL\n' > "$BRAVECOW_HOME/memories/PROFILE.md"
 printf 'User preface.\n\n<!-- BraveCow Harness Codex: start -->\nold managed block\n<!-- BraveCow Harness Codex: end -->\n' > "$CODEX_HOME/AGENTS.md"
+printf '# Brave Cow Agent Instructions\n\nlegacy unmarked rules\n' > "$ZCODE_HOME/AGENTS.md"
 
 EXTRA_OPTION=
 case "$(uname -s)" in MINGW*|MSYS*) EXTRA_OPTION=--skip-audit ;; esac
@@ -31,7 +32,11 @@ test -f "$BRAVECOW_HOME/harness/catalog/external-components.lock.json"
 test ! -e "$ZCODE_HOME/skills/bravecow-windows-computer-use"
 test "$(tr -d '\r\n' < "$BRAVECOW_HOME/memories/PROFILE.md")" = USER-SENTINEL
 grep -q '~/.bravecow/memories' "$CODEX_HOME/AGENTS.md"
-grep -q 'Plain-Spoken & Perspective Rules (Highest Priority)' "$CODEX_HOME/AGENTS.md"
-grep -q 'Always speak to the end user' "$CODEX_HOME/AGENTS.md"
+grep -q '## Writing principles' "$CODEX_HOME/AGENTS.md"
+grep -q '## Bilibili scripts and titles' "$CODEX_HOME/AGENTS.md"
+grep -q '## DOM and Unicode debugging' "$CODEX_HOME/AGENTS.md"
 ! grep -q 'old managed block' "$CODEX_HOME/AGENTS.md"
+grep -q '<!-- BraveCow Harness: start -->' "$ZCODE_HOME/AGENTS.md"
+grep -q '## DOM and Unicode debugging' "$ZCODE_HOME/AGENTS.md"
+! grep -q 'legacy unmarked rules' "$ZCODE_HOME/AGENTS.md"
 printf 'OK: isolated macOS Codex + ZCode install smoke test passed\n'

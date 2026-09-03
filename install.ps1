@@ -252,6 +252,10 @@ function Update-AgentsSnippet {
     } elseif ($existing.Contains($legacyStart) -and $existing.Contains($legacyEnd)) {
         $pattern = "(?s)" + [regex]::Escape($legacyStart) + ".*?" + [regex]::Escape($legacyEnd)
         $updated = [regex]::Replace($existing, $pattern, [System.Text.RegularExpressions.MatchEvaluator]{ param($match) $snippet }, 1)
+    } elseif ($existing -match "\A(?:\uFEFF)?# Brave Cow Agent Instructions(?:\r?\n|$)") {
+        # Releases before managed markers installed the full BraveCow rules file.
+        # Replace that known legacy document once instead of appending a duplicate.
+        $updated = $snippet
     } else {
         $updated = $existing.TrimEnd() + "`r`n`r`n" + $snippet
     }

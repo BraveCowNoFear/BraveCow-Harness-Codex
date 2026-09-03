@@ -26,6 +26,9 @@ try {
     New-Item -ItemType Directory -Path $CodexHome -Force | Out-Null
     $InitialAgents = "User preface.`r`n`r`n<!-- BraveCow Harness Codex: start -->`r`nold managed block`r`n<!-- BraveCow Harness Codex: end -->"
     Set-Content -LiteralPath (Join-Path $CodexHome "AGENTS.md") -Value $InitialAgents -Encoding UTF8
+    New-Item -ItemType Directory -Path $ZCodeHome -Force | Out-Null
+    $LegacyAgents = "# Brave Cow Agent Instructions`r`n`r`nlegacy unmarked rules"
+    Set-Content -LiteralPath (Join-Path $ZCodeHome "AGENTS.md") -Value $LegacyAgents -Encoding UTF8
 
     & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoRoot "install.ps1") `
         -BraveCowHome $BraveCowHome -CodexHome $CodexHome -ZCodeHome $ZCodeHome `
@@ -62,10 +65,19 @@ try {
         $Agents -notlike "*User preface.*" -or
         $Agents -like "*old managed block*" -or
         $Agents -notlike "*~/.bravecow/memories*" -or
-        $Agents -notlike "*Plain-Spoken & Perspective Rules (Highest Priority)*" -or
-        $Agents -notlike "*Always speak to the end user*"
+        $Agents -notlike "*## Writing principles*" -or
+        $Agents -notlike "*## Bilibili scripts and titles*" -or
+        $Agents -notlike "*## DOM and Unicode debugging*"
     ) {
         throw "Managed AGENTS block migration failed or modified user content."
+    }
+    $ZCodeAgents = Get-Content -LiteralPath (Join-Path $ZCodeHome "AGENTS.md") -Raw -Encoding UTF8
+    if (
+        $ZCodeAgents -like "*legacy unmarked rules*" -or
+        $ZCodeAgents -notlike "*<!-- BraveCow Harness: start -->*" -or
+        $ZCodeAgents -notlike "*## DOM and Unicode debugging*"
+    ) {
+        throw "Legacy unmarked AGENTS document was not replaced cleanly."
     }
     if (-not (Get-ChildItem -LiteralPath $BackupRoot -Recurse -File -ErrorAction SilentlyContinue)) {
         throw "Expected backup artifacts were not created for overwritten config."
