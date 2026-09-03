@@ -58,6 +58,9 @@ REQUIRED = [
     "templates/zcode/skills/bravecow-windows-computer-use/SKILL.md",
     "templates/zcode/skills/bravecow-windows-computer-use/agents/openai.yaml",
     "templates/AGENTS.snippet.md",
+    "templates/agents/default.toml",
+    "templates/agents/explorer.toml",
+    "templates/agents/worker.toml",
     "templates/memories/PROFILE.md",
     "templates/memories/ACTIVE.md",
     "templates/memories/MEMORY_POLICY.md",
@@ -106,6 +109,14 @@ def iter_text_files() -> list[Path]:
 def main() -> int:
     failures: list[str] = []
 
+    version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    for path, marker in (
+        (ROOT / "README.md", f"Current release: `{version}`."),
+        (ROOT / "README.zh-CN.md", f"当前版本：`{version}`。"),
+    ):
+        if marker not in path.read_text(encoding="utf-8"):
+            failures.append(f"release version mismatch in {path.relative_to(ROOT)}")
+
     for rel in REQUIRED:
         if not (ROOT / rel).exists():
             failures.append(f"missing required file: {rel}")
@@ -139,6 +150,14 @@ def main() -> int:
         for pattern in FORBIDDEN_PATTERNS:
             if re.search(pattern, text):
                 failures.append(f"forbidden pattern {pattern!r} in {path.relative_to(ROOT)}")
+
+    for path in (ROOT / "templates/agents").glob("*.toml"):
+        text = path.read_text(encoding="utf-8")
+        for key in ("model", "model_reasoning_effort"):
+            if re.search(rf"(?m)^\s*{key}\s*=", text):
+                failures.append(
+                    f"subagent template must inherit parent {key}: {path.relative_to(ROOT)}"
+                )
 
     vendor_children = [path for path in (ROOT / "harness/vendor").iterdir() if path.name != ".gitkeep"]
     if vendor_children:

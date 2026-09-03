@@ -43,6 +43,8 @@ Use this skill when the user asks about the assistant's own setup rather than an
 6. For outside resources, catalog first, store third-party material in `~/.bravecow/harness/vendor/`, and keep it quarantined until reviewed.
 7. Summarize what is active, missing or drifting, safe to upgrade, and intentionally deferred.
 
+When an authorized upgrade creates or edits skills, `AGENTS.md`, `CLAUDE.md`, role briefs, or other agent-facing instructions, use `$writing-for-agents` as the writing authority. This skill owns environment discovery, provenance, drift, and upgrade safety only.
+
 ## Safe upgrade rules
 
 - Do not auto-edit `AGENTS.md` unless the user explicitly asks.
