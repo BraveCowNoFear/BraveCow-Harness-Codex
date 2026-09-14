@@ -4,7 +4,6 @@ import tempfile
 import time
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 from harness.scripts import memory_router
 
@@ -27,16 +26,16 @@ class MemoryRouterTests(unittest.TestCase):
             self.assertEqual(payload["decision"]["resolved"], "direct")
             self.assertLessEqual(payload["evidence_chars"], 32)
 
-    def test_graph_failure_falls_back_well_under_five_seconds(self) -> None:
+    def test_temporal_query_uses_local_evidence_without_network(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             memory_dir, db = self.make_memory(Path(temp_dir))
             started = time.perf_counter()
-            with patch.object(memory_router, "graphiti_ports_ready", return_value=False):
-                payload = memory_router.route_memory("what changed before browser setup", memory_dir, db)
+            payload = memory_router.route_memory("what changed before browser setup", memory_dir, db)
             elapsed = time.perf_counter() - started
-            self.assertEqual(payload["decision"]["requested"], "graph")
+            self.assertEqual(payload["decision"]["requested"], "fts")
             self.assertEqual(payload["decision"]["resolved"], "fts")
-            self.assertTrue(payload["decision"]["degraded"])
+            self.assertFalse(payload["decision"]["degraded"])
+            self.assertTrue(payload["evidence"])
             self.assertLess(elapsed, 5)
 
     def test_semantic_query_uses_local_fallback(self) -> None:

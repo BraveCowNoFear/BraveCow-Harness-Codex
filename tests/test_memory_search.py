@@ -42,12 +42,12 @@ class MemorySearchTests(unittest.TestCase):
             memories.mkdir()
             db = root / "index.sqlite3"
             path = memories / "LEARNINGS.md"
-            path.write_text("# Learnings\n\nGraphiti is optional.\n", encoding="utf-8")
+            path.write_text("# Learnings\n\nSearch is optional.\n", encoding="utf-8")
             memory_search.update_index(memories, db)
             path.unlink()
             result = memory_search.update_index(memories, db)
             self.assertEqual(result["removed"], 1)
-            self.assertEqual(memory_search.search("Graphiti", db), [])
+            self.assertEqual(memory_search.search("Search", db), [])
 
 
 if __name__ == "__main__":

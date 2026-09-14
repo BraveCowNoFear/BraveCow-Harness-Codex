@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import socket
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -13,8 +12,6 @@ except ImportError:  # direct script execution
     from memory_search import DEFAULT_DB, DEFAULT_MEMORY_DIR, read_text, search, update_index
 
 
-TEMPORAL_TERMS = ("when", "before", "after", "timeline", "history", "changed", "何时", "之前", "之后", "时间线", "历史", "变化")
-RELATION_TERMS = ("relationship", "related", "depends", "caused", "entity", "关系", "关联", "依赖", "导致", "实体")
 SEMANTIC_TERMS = ("similar", "concept", "meaning", "why", "analogy", "相似", "概念", "含义", "为什么", "类比")
 
 
@@ -24,7 +21,6 @@ class RouteDecision:
     resolved: str
     reason: str
     degraded: bool
-    graphiti_ready: bool | None
     latency_ms: float
 
 
@@ -32,21 +28,9 @@ def classify_query(query: str, source: str | None = None) -> str:
     if source:
         return "direct"
     lowered = query.lower()
-    if any(term in lowered for term in TEMPORAL_TERMS + RELATION_TERMS):
-        return "graph"
     if any(term in lowered for term in SEMANTIC_TERMS):
         return "semantic"
     return "fts"
-
-
-def graphiti_ports_ready(host: str = "127.0.0.1", ports: tuple[int, ...] = (8000, 6379), timeout: float = 0.25) -> bool:
-    for port in ports:
-        try:
-            with socket.create_connection((host, port), timeout=timeout):
-                pass
-        except OSError:
-            return False
-    return True
 
 
 def bounded_hits(hits: list[dict], max_chars: int) -> list[dict]:
@@ -84,7 +68,6 @@ def route_memory(
 ) -> dict:
     started = time.perf_counter()
     requested = classify_query(query, source)
-    graphiti_ready: bool | None = None
     degraded = False
     reason = "canonical Markdown source requested"
 
@@ -98,16 +81,7 @@ def route_memory(
         evidence = []
         resolved = requested
 
-    if requested == "graph":
-        graphiti_ready = graphiti_ports_ready()
-        if graphiti_ready:
-            resolved = "graphiti-ready"
-            reason = "temporal/relationship query; Graphiti ports are already healthy"
-        else:
-            resolved = "fts"
-            degraded = True
-            reason = "Graphiti unavailable; immediate local FTS5 fallback without service startup"
-    elif requested == "semantic":
+    if requested == "semantic":
         resolved = "fts"
         degraded = True
         reason = "no local vector adapter configured; used bounded FTS5 evidence"
@@ -119,14 +93,13 @@ def route_memory(
         evidence = [asdict(hit) for hit in search(query, db_path, limit)]
     evidence = bounded_hits(evidence, max_chars)
     elapsed_ms = (time.perf_counter() - started) * 1000
-    decision = RouteDecision(requested, resolved, reason, degraded, graphiti_ready, round(elapsed_ms, 2))
+    decision = RouteDecision(requested, resolved, reason, degraded, round(elapsed_ms, 2))
     return {
         "decision": asdict(decision),
         "index": index,
         "evidence": evidence,
         "evidence_chars": sum(len(str(item.get("snippet", ""))) for item in evidence),
         "max_evidence_chars": max_chars,
-        "graphiti_handoff_required": resolved == "graphiti-ready",
     }
 
 

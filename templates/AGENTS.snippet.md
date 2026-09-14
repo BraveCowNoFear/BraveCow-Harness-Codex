@@ -29,7 +29,7 @@ A command exit, created file, passing unit test, or tool response is evidence, n
 
 Global memory lives at `~/.bravecow/memories` and the host-specific Codex memory directory. Read the current profile and active rules before substantial work when they are available.
 
-Markdown is the canonical source. Use direct reads or bounded local search first. Use Graphiti only for timeline or relationship questions when it is already healthy; ordinary work must not wait for it or start services to repair it.
+Markdown is the canonical source. Use direct reads or bounded local search first.
 
 Write memory only when the active host policy and the user's authorization allow it. Save durable, reusable facts rather than transcripts, secrets, guesses, or one-off noise.
 

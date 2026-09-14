@@ -12,7 +12,7 @@ This directory is the shared local control plane for Codex and ZCode Harness mai
 
 ## Automation Control Plane
 
-Harness-owned automations are private local runtime state, so the installer does not copy their definitions or prompts. The audit still classifies their non-secret role and boundary. The monthly evolution automation continuously scouts and safely applies useful AI advances; the global memory-to-Graphiti automation and durable Markdown maintenance form the memory/RAG subsystem. See `docs/automation-subsystems.md` in the repository for the full contract.
+Harness-owned automations are private local runtime state, so the installer does not copy their definitions or prompts. The audit still classifies their non-secret role and boundary. The monthly evolution automation continuously scouts and safely applies useful AI advances; durable Markdown maintenance supports local memory retrieval. See `docs/automation-subsystems.md` in the repository for the full contract.
 
 ## Suggested Workflow
 

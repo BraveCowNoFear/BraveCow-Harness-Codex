@@ -19,17 +19,14 @@ Candidates move through one evidence loop:
 
 ## Memory and RAG Control Plane
 
-The global `session-log-graphiti-sync` automation is the Harness global memory/RAG indexing subsystem. `memory-tidy` is its durable Markdown maintenance companion. Project-scoped Markdown-to-RAG jobs are managed extensions when they follow the same contracts.
+`memory-tidy` maintains durable Markdown. Codex manages its own native memory; Harness supports direct Markdown reads and bounded local FTS5 retrieval.
 
 - Markdown remains canonical.
 - SQLite FTS5 is the deterministic default retrieval path.
-- Graphiti, vector, and graph stores are optional indexes used only when semantic or temporal relationships add value.
-- Ordinary tasks do not start Docker or wait for Graphiti recovery; they degrade immediately to Markdown/FTS5.
-- Explicit synchronization may perform one bounded health recovery, deduplicate by stable source and content identity, and must not delete Graphiti data.
 - Prompts, local paths, secrets, waterlines, index state, and user data stay local.
 
 ## Ownership and Audit Boundary
 
-The Harness audit reports an automation's id, display name, status, role, and ownership boundary without copying its prompt. Known core components are classified explicitly; project RAG indexes can be classified as managed extensions; unrelated local automations remain external.
+The Harness audit reports an automation's id, display name, status, role, and ownership boundary without copying its prompt. Known core components are classified explicitly; unrelated local automations remain external.
 
 The monthly evolution subsystem audits schedule and prompt contracts, data boundaries, encoding and secret gates, deduplication and waterlines, passive health, degradation latency, dependency provenance, token and latency cost, backup, and rollback. This makes the automation layer part of the Harness without turning private runtime state into repository content.

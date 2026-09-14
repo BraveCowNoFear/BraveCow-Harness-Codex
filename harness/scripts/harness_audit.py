@@ -12,7 +12,7 @@ from pathlib import Path
 try:
     from .config_gate import check_config
     from .lock_diff import diff_locks
-    from .memory_router import graphiti_ports_ready, route_memory
+    from .memory_router import route_memory
     from .memory_search import update_index
     from .memory_write_gate import validate_candidate
     from .skill_contracts import evaluate_contracts
@@ -20,7 +20,7 @@ try:
 except ImportError:  # direct script execution
     from config_gate import check_config
     from lock_diff import diff_locks
-    from memory_router import graphiti_ports_ready, route_memory
+    from memory_router import route_memory
     from memory_search import update_index
     from memory_write_gate import validate_candidate
     from skill_contracts import evaluate_contracts
@@ -49,7 +49,6 @@ DEFAULT_OUTPUT = HARNESS_HOME / "reports" / "agent-harness-audit.md"
 
 HARNESS_AUTOMATION_ROLES = {
     "bravecow-harness": ("continuous-technology-evolution", "core"),
-    "session-log-graphiti-sync": ("global-memory-rag-index", "core"),
     "memory-tidy": ("durable-memory-maintenance", "core"),
 }
 
@@ -229,16 +228,6 @@ def classify_automation(automation_id: str, prompt: str = "") -> dict:
         role, boundary = known
         return {"role": role, "boundary": boundary, "harness_component": True}
 
-    normalized = prompt.casefold()
-    is_workspace_rag = "graphiti" in normalized and any(
-        marker in normalized for marker in ("workspace", "group_id", "rag")
-    )
-    if is_workspace_rag:
-        return {
-            "role": "workspace-memory-rag-index",
-            "boundary": "managed-extension",
-            "harness_component": True,
-        }
     return {"role": "external-local-automation", "boundary": "external", "harness_component": False}
 
 
@@ -407,7 +396,6 @@ def render_report() -> str:
             f"- Retrieval router result: `{router_status.get('resolved', 'unknown')}`",
             f"- Retrieval degradation latency: `{router_status.get('latency_ms', 'unknown')} ms`",
             f"- Durable-memory write gate: `{write_gate_status.get('decision', 'unknown')}`; writes performed: `{write_gate_status.get('write_performed', False)}`",
-            f"- Graphiti passive port health: `{'ready' if graphiti_ports_ready() else 'unavailable'}` (no service startup attempted)",
         ]
     )
 

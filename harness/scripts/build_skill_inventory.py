@@ -758,18 +758,6 @@ def distribution_source(name: str) -> tuple[str | None, Path | None]:
     return distribution.version, source
 
 
-def graphiti_installed_version(source_root: Path) -> str | None:
-    site_packages = source_root / "mcp_server" / ".venv" / "Lib" / "site-packages"
-    for metadata_path in sorted(site_packages.glob("graphiti_core-*.dist-info/METADATA")):
-        try:
-            for line in read_text(metadata_path).splitlines():
-                if line.startswith("Version: "):
-                    return line.split(":", 1)[1].strip()
-        except OSError:
-            continue
-    return None
-
-
 def latest_stable_tag(source_root: Path) -> str | None:
     tags = git_value(source_root, "tag", "--list", "v*").splitlines()
     stable = [tag for tag in tags if re.fullmatch(r"v?\d+\.\d+\.\d+", tag.strip())]
@@ -817,35 +805,6 @@ def collect_components(generated_at: str) -> list[dict[str, object]]:
                 "last_verified": generated_at,
                 "verification": verification_registry.get("component:browser-harness", {"status": "not-recorded", "tests": [], "last_verified": None}),
                 "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or browser_version},
-            }
-        )
-
-    graphiti_root = CODEX_HOME / "memory" / "graphiti" / "graphiti"
-    if graphiti_root.exists():
-        declared_version = None
-        pyproject = graphiti_root / "pyproject.toml"
-        if pyproject.exists():
-            try:
-                declared_version = str(tomllib.loads(read_text(pyproject)).get("project", {}).get("version") or "") or None
-            except Exception:  # noqa: BLE001
-                pass
-        provenance = git_provenance(graphiti_root)
-        installed_version = graphiti_installed_version(graphiti_root)
-        components.append(
-            {
-                "id": "graphiti-core",
-                "declared_version": declared_version,
-                "installed_version": installed_version,
-                "available_version": upstream_observations.get("graphiti-core", {}).get("available_version") or latest_stable_tag(graphiti_root),
-                "upstream": observed_component_fields(upstream_observations.get("graphiti-core"))["upstream"],
-                "state": "drift" if declared_version and installed_version and declared_version != installed_version else "installed",
-                "source_path": str(graphiti_root),
-                "provenance": provenance,
-                "license": discover_license(graphiti_root, graphiti_root),
-                "last_verified": generated_at,
-                "verification": verification_registry.get("component:graphiti-core", {"status": "not-recorded", "tests": [], "last_verified": None}),
-                "update_policy": "pin-and-defer-while-provider-unhealthy",
-                "rollback": {"kind": "git-commit", "ref": provenance.get("commit") or installed_version},
             }
         )
 

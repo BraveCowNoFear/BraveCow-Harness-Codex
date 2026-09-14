@@ -39,7 +39,7 @@ BraveCow Harness keeps the Codex and ZCode runtime layers small, observable, and
    - Known path: read canonical Markdown directly.
    - Ordinary exact/substring search: local SQLite FTS5.
    - Semantic retrieval: optional vector backend.
-   - Temporal/entity relationships: optional Graphiti backend.
+   - Temporal/entity relationship queries: bounded local FTS5 evidence.
    - Every backend produces a bounded evidence pack; external-service failure falls back to Markdown/FTS5.
 
 7. **Version and update control**

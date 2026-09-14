@@ -38,7 +38,6 @@ Use this skill when the user asks about the assistant's own setup rather than an
 5. Retrieve memory through the cheapest sufficient path:
    - Read known Markdown directly.
    - Otherwise run `python ~/.bravecow/harness/scripts/memory_router.py "<query>"`.
-   - Use Graphiti only when already healthy and the question genuinely needs temporal or relationship reasoning.
    - Run `memory_write_gate.py` on proposed durable-memory candidates; it validates but never writes.
 6. For outside resources, catalog first, store third-party material in `~/.bravecow/harness/vendor/`, and keep it quarantined until reviewed.
 7. Summarize what is active, missing or drifting, safe to upgrade, and intentionally deferred.
