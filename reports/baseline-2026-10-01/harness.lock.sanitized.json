@@ -1,0 +1,3673 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-01T09:01:42.989065+00:00",
+  "skills": [
+    {
+      "id": "bilibili-subtitle",
+      "name": "bilibili-subtitle",
+      "version": null,
+      "content_sha256": "2c91031e75495ecc5badd6f1da6e84bbc59ebad19a3e0496f34e63da98fa8507",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+        "%USERPROFILE%\\.codex\\skills\\bilibili-subtitle",
+        "%USERPROFILE%\\.openclaw\\skills\\bilibili-subtitle"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-subtitle",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "2c91031e75495ecc5badd6f1da6e84bbc59ebad19a3e0496f34e63da98fa8507"
+      }
+    },
+    {
+      "id": "bilibili-video-download",
+      "name": "bilibili-video-download",
+      "version": null,
+      "content_sha256": "05e940a9f0d91ff14b6335fe34341a319ae6cd99db0dc6e094b206a12d146896",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+        "%USERPROFILE%\\.codex\\skills\\bilibili-video-download",
+        "%USERPROFILE%\\.openclaw\\skills\\bilibili-video-download"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\bilibili-video-download",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "05e940a9f0d91ff14b6335fe34341a319ae6cd99db0dc6e094b206a12d146896"
+      }
+    },
+    {
+      "id": "find-skills",
+      "name": "find-skills",
+      "version": null,
+      "content_sha256": "60e8ebc0ea80521ab34106934eb83572caf1843b23cb1846bce2321dc3c4047d",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\find-skills",
+        "%USERPROFILE%\\.codex\\skills\\find-skills",
+        "%USERPROFILE%\\.openclaw\\skills\\find-skills"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\find-skills",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "60e8ebc0ea80521ab34106934eb83572caf1843b23cb1846bce2321dc3c4047d"
+      }
+    },
+    {
+      "id": "guizang-ppt-skill",
+      "name": "guizang-ppt-skill",
+      "version": "2.1.0-local-router",
+      "content_sha256": "2a687104f3fb2f7eccd406e86343d3d1e47b07b426fedb14b8a162363a7a0e67",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+        "%USERPROFILE%\\.codex\\skills\\guizang-ppt-skill",
+        "%USERPROFILE%\\.openclaw\\skills\\guizang-ppt-skill"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.agents\\skills\\guizang-ppt-skill\\LICENSE",
+        "sha256": "e0eedba615d5cd1b986afb6c5b3a4b1ae33713e7e9dc74d19daec5e3221f9d2e"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "2a687104f3fb2f7eccd406e86343d3d1e47b07b426fedb14b8a162363a7a0e67"
+      }
+    },
+    {
+      "id": "local-qwen-tts",
+      "name": "local-qwen-tts",
+      "version": null,
+      "content_sha256": "a3d2aafbb553146a16e208a25df07d3a0ad3d01cb8eed730650f2f45d07954a4",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+        "%USERPROFILE%\\.codex\\skills\\local-qwen-tts",
+        "%USERPROFILE%\\.openclaw\\skills\\local-qwen-tts"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\local-qwen-tts",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "a3d2aafbb553146a16e208a25df07d3a0ad3d01cb8eed730650f2f45d07954a4"
+      }
+    },
+    {
+      "id": "nextjs-app-router-patterns",
+      "name": "nextjs-app-router-patterns",
+      "version": null,
+      "content_sha256": "765c3658be4b573b9a4e79fada3a45227d836146737a4e06b4c9871891afe177",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+        "%USERPROFILE%\\.codex\\skills\\nextjs-app-router-patterns",
+        "%USERPROFILE%\\.openclaw\\skills\\nextjs-app-router-patterns"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\nextjs-app-router-patterns",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "765c3658be4b573b9a4e79fada3a45227d836146737a4e06b4c9871891afe177"
+      }
+    },
+    {
+      "id": "remotion-best-practices",
+      "name": "remotion-best-practices",
+      "version": null,
+      "content_sha256": "2461d2bcaf838175d5f54167b6a894a294a5c3541cadaed53fd77e07554513ba",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+        "%USERPROFILE%\\.codex\\skills\\remotion-best-practices",
+        "%USERPROFILE%\\.openclaw\\skills\\remotion-best-practices"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\remotion-best-practices",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "2461d2bcaf838175d5f54167b6a894a294a5c3541cadaed53fd77e07554513ba"
+      }
+    },
+    {
+      "id": "shadcn",
+      "name": "shadcn",
+      "version": null,
+      "content_sha256": "4f3ab41955c9286633bb216a2ac346cadab28a15893427939360da67bf9eaa78",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\shadcn",
+        "%USERPROFILE%\\.codex\\skills\\shadcn",
+        "%USERPROFILE%\\.openclaw\\skills\\shadcn"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\shadcn",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "4f3ab41955c9286633bb216a2ac346cadab28a15893427939360da67bf9eaa78"
+      }
+    },
+    {
+      "id": "tailwind-design-system",
+      "name": "tailwind-design-system",
+      "version": null,
+      "content_sha256": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+        "%USERPROFILE%\\.codex\\skills\\tailwind-design-system",
+        "%USERPROFILE%\\.openclaw\\skills\\tailwind-design-system"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\tailwind-design-system",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "dc3723ef5db351ff9bd725f121789a4b30c7e73109c6546d7787d7563474d4d6"
+      }
+    },
+    {
+      "id": "text-to-speech",
+      "name": "text-to-speech",
+      "version": null,
+      "content_sha256": "b153df513ce9d8badb233cb038c6e4ed2d61a26eb58c91b611f43ca8ca6eb77c",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+        "%USERPROFILE%\\.codex\\skills\\text-to-speech",
+        "%USERPROFILE%\\.openclaw\\skills\\text-to-speech"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\text-to-speech",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "b153df513ce9d8badb233cb038c6e4ed2d61a26eb58c91b611f43ca8ca6eb77c"
+      }
+    },
+    {
+      "id": "vercel-react-best-practices",
+      "name": "vercel-react-best-practices",
+      "version": null,
+      "content_sha256": "2a54be6e7ddfabf73a53fb1d81b60f3f324ce8b3c5421a4f88b99a9310a18e67",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+        "%USERPROFILE%\\.codex\\skills\\vercel-react-best-practices",
+        "%USERPROFILE%\\.openclaw\\skills\\vercel-react-best-practices"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\vercel-react-best-practices",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "2a54be6e7ddfabf73a53fb1d81b60f3f324ce8b3c5421a4f88b99a9310a18e67"
+      }
+    },
+    {
+      "id": "web-design-engineer",
+      "name": "web-design-engineer",
+      "version": null,
+      "content_sha256": "1cc3b02f7f8abc0faf54b8e602e66c095ddb5f52633a8f6f0c01fd078f3bee3d",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+        "%USERPROFILE%\\.codex\\skills\\web-design-engineer",
+        "%USERPROFILE%\\.openclaw\\skills\\web-design-engineer"
+      ],
+      "real_path": "%USERPROFILE%\\.agents\\skills\\web-design-engineer",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "1cc3b02f7f8abc0faf54b8e602e66c095ddb5f52633a8f6f0c01fd078f3bee3d"
+      }
+    },
+    {
+      "id": "agent-introspection-debugging",
+      "name": "agent-introspection-debugging",
+      "version": null,
+      "content_sha256": "b0aaed9d0bc3b5661247fcef06ec88348eec64b05c0272dd5e38faab38c85b4f",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\agent-introspection-debugging",
+        "%USERPROFILE%\\.codex\\skills\\agent-introspection-debugging",
+        "%USERPROFILE%\\.openclaw\\skills\\agent-introspection-debugging"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\agent-introspection-debugging",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code",
+        "remote_url": "https://github.com/affaan-m/everything-claude-code.git",
+        "branch": "bravecow/targeted-v2.1.0-frontmatter",
+        "upstream": "",
+        "commit": "37d319830d05c3c05786536333915d2712eb4088",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\LICENSE",
+        "sha256": "35a01099b433925db7c9c17b10bcb873f8eba7bcab9858a7f74daeab84aa412a"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "37d319830d05c3c05786536333915d2712eb4088"
+      }
+    },
+    {
+      "id": "codebase-onboarding",
+      "name": "codebase-onboarding",
+      "version": null,
+      "content_sha256": "92f9c1b0d4fa8cb7ee7bcd52ee310bf2756f8755848cdb7c03e938cae6e41e65",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\codebase-onboarding",
+        "%USERPROFILE%\\.codex\\skills\\codebase-onboarding",
+        "%USERPROFILE%\\.openclaw\\skills\\codebase-onboarding"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\codebase-onboarding",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code",
+        "remote_url": "https://github.com/affaan-m/everything-claude-code.git",
+        "branch": "bravecow/targeted-v2.1.0-frontmatter",
+        "upstream": "",
+        "commit": "37d319830d05c3c05786536333915d2712eb4088",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\LICENSE",
+        "sha256": "35a01099b433925db7c9c17b10bcb873f8eba7bcab9858a7f74daeab84aa412a"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "37d319830d05c3c05786536333915d2712eb4088"
+      }
+    },
+    {
+      "id": "context-budget",
+      "name": "context-budget",
+      "version": null,
+      "content_sha256": "1ae2a1758603130528fcbd8fd952a5f50b893c6e7bd3f5c5b473b99c9f118980",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\context-budget",
+        "%USERPROFILE%\\.codex\\skills\\context-budget",
+        "%USERPROFILE%\\.openclaw\\skills\\context-budget"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\skills\\context-budget",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code",
+        "remote_url": "https://github.com/affaan-m/everything-claude-code.git",
+        "branch": "bravecow/targeted-v2.1.0-frontmatter",
+        "upstream": "",
+        "commit": "37d319830d05c3c05786536333915d2712eb4088",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code\\LICENSE",
+        "sha256": "35a01099b433925db7c9c17b10bcb873f8eba7bcab9858a7f74daeab84aa412a"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "37d319830d05c3c05786536333915d2712eb4088"
+      }
+    },
+    {
+      "id": "harness",
+      "name": "harness",
+      "version": null,
+      "content_sha256": "929d411e2dca548161921d453573387c981799a53fa70d79d0ddf1a9c71f72a7",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\harness",
+        "%USERPROFILE%\\.codex\\skills\\harness",
+        "%USERPROFILE%\\.openclaw\\skills\\harness"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\.agents\\skills\\harness",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness",
+        "remote_url": "https://github.com/SaehwanPark/meta-harness.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "eafb74711f6ef54270b78835cf809b24ad650a9f",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness\\LICENSE",
+        "sha256": "cba114433c65086703646550397c6919c571eb2c06757543cb106e8eb82bfd3f"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "eafb74711f6ef54270b78835cf809b24ad650a9f"
+      }
+    },
+    {
+      "id": "bilibili-summary-codex",
+      "name": "bilibili-summary-codex",
+      "version": null,
+      "content_sha256": "1e957f55b8e152cef4c893c0935d3592b2f83a564bb2e7e881ba6cc425297327",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\bilibili-summary-codex"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\bilibili-summary-codex",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "1e957f55b8e152cef4c893c0935d3592b2f83a564bb2e7e881ba6cc425297327"
+      }
+    },
+    {
+      "id": "cli-creator",
+      "name": "cli-creator",
+      "version": null,
+      "content_sha256": "5e7d7d0813c7447e9a2f73896308437be21f90696d2be0ad4a85f72d5bd22c49",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\cli-creator"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\cli-creator",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\skills\\cli-creator\\LICENSE.txt",
+        "sha256": "44e03f7e263eb3ad256440c1eeab5e49168baff5a78ecef9a5447261cf3a91bc"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "5e7d7d0813c7447e9a2f73896308437be21f90696d2be0ad4a85f72d5bd22c49"
+      }
+    },
+    {
+      "id": "company-values",
+      "name": "company-values",
+      "version": null,
+      "content_sha256": "770f712cf6387e3a87806221b393780837ff409cf938428d6b332bd748c2aaa2",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\company-values"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\company-values",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "770f712cf6387e3a87806221b393780837ff409cf938428d6b332bd748c2aaa2"
+      }
+    },
+    {
+      "id": "deep-research",
+      "name": "deep-research",
+      "version": null,
+      "content_sha256": "ec0e9bba16977410a7a8e3883c0d106643cb5307b71e5c3df4ca27f546cf633c",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\deep-research"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\deep-research",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "ec0e9bba16977410a7a8e3883c0d106643cb5307b71e5c3df4ca27f546cf633c"
+      }
+    },
+    {
+      "id": "find-community",
+      "name": "find-community",
+      "version": null,
+      "content_sha256": "ffb75afa28eef08dabf257878d2c55929dbd18fc0a9f0c020784b60f7703345d",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\find-community"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\find-community",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "ffb75afa28eef08dabf257878d2c55929dbd18fc0a9f0c020784b60f7703345d"
+      }
+    },
+    {
+      "id": "first-customers",
+      "name": "first-customers",
+      "version": null,
+      "content_sha256": "bef3c01245a6fcd0ce82888f664738d445968f0eea1dab0fdb813cc82dbee346",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\first-customers"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\first-customers",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "bef3c01245a6fcd0ce82888f664738d445968f0eea1dab0fdb813cc82dbee346"
+      }
+    },
+    {
+      "id": "grow-sustainably",
+      "name": "grow-sustainably",
+      "version": null,
+      "content_sha256": "aee1f31c1128d1342fa16cfaebcd1eef85df3b87be78f09e7869a37543827e55",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\grow-sustainably"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\grow-sustainably",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "aee1f31c1128d1342fa16cfaebcd1eef85df3b87be78f09e7869a37543827e55"
+      }
+    },
+    {
+      "id": "improve-skill",
+      "name": "improve-skill",
+      "version": null,
+      "content_sha256": "247d026bbc95d0da6502bb32d5145b169bd316996d2687f5a10e4f08a7f5018b",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\improve-skill"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\improve-skill",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "247d026bbc95d0da6502bb32d5145b169bd316996d2687f5a10e4f08a7f5018b"
+      }
+    },
+    {
+      "id": "kiro-skill",
+      "name": "kiro-skill",
+      "version": null,
+      "content_sha256": "a0f259622acce32c86b415553d72500c6f2ec9318f044079a155985889b82f2d",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\kiro-skill"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\kiro-skill",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "a0f259622acce32c86b415553d72500c6f2ec9318f044079a155985889b82f2d"
+      }
+    },
+    {
+      "id": "maoxuan-enhanced",
+      "name": "maoxuan-enhanced",
+      "version": "2.1.0-local-router",
+      "content_sha256": "926ead7099ba62df8d2360f0be8a68acda913531e591236fddc05c6d79805fa3",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\maoxuan-enhanced"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\maoxuan-enhanced",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "926ead7099ba62df8d2360f0be8a68acda913531e591236fddc05c6d79805fa3"
+      }
+    },
+    {
+      "id": "marketing-plan",
+      "name": "marketing-plan",
+      "version": null,
+      "content_sha256": "3462fc4bd5e290e56c958fc0cb7230cf00cdcf74fc929a205edbec952d36fdaa",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\marketing-plan"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\marketing-plan",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "3462fc4bd5e290e56c958fc0cb7230cf00cdcf74fc929a205edbec952d36fdaa"
+      }
+    },
+    {
+      "id": "migrate-to-codex",
+      "name": "migrate-to-codex",
+      "version": null,
+      "content_sha256": "401c838329fec064f25b815342bdf11575d9aea00369dbc89a244041a1b52bba",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\migrate-to-codex"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\migrate-to-codex",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\skills\\migrate-to-codex\\LICENSE.txt",
+        "sha256": "49bbe9114e49214df2ccc324cb3ac8d1d1aa1c3a0947f94c286765e86647b32e"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "401c838329fec064f25b815342bdf11575d9aea00369dbc89a244041a1b52bba"
+      }
+    },
+    {
+      "id": "minimalist-entrepreneur",
+      "name": "minimalist-entrepreneur",
+      "version": null,
+      "content_sha256": "dd4747838716cdf2cb628eb4ae75348acc07b322fcf6087f7f687916e966f654",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\minimalist-entrepreneur"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\minimalist-entrepreneur",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "dd4747838716cdf2cb628eb4ae75348acc07b322fcf6087f7f687916e966f654"
+      }
+    },
+    {
+      "id": "minimalist-review",
+      "name": "minimalist-review",
+      "version": null,
+      "content_sha256": "cf1ad29af278176df255d4cd7982c927206c4f8e98dcde84011fc3cc139d1094",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\minimalist-review"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\minimalist-review",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "cf1ad29af278176df255d4cd7982c927206c4f8e98dcde84011fc3cc139d1094"
+      }
+    },
+    {
+      "id": "mvp",
+      "name": "mvp",
+      "version": null,
+      "content_sha256": "5a40fc29075b1bea24778cfc2bb2b6c702a1fc60bb51e6ca9f407602beef5c37",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\mvp"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\mvp",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "5a40fc29075b1bea24778cfc2bb2b6c702a1fc60bb51e6ca9f407602beef5c37"
+      }
+    },
+    {
+      "id": "openspace-delegate-task",
+      "name": "delegate-task",
+      "version": null,
+      "content_sha256": "b528deec284f0dce61ffe629504d84dc16a143ea0e75b4d3823bf0c81b8a5686",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\openspace-delegate-task"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\openspace-delegate-task",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "b528deec284f0dce61ffe629504d84dc16a143ea0e75b4d3823bf0c81b8a5686"
+      }
+    },
+    {
+      "id": "playwright",
+      "name": "playwright",
+      "version": null,
+      "content_sha256": "6ba6cae3ef1ed3dc6e67872aaf8deafa303cb223e88b7e8ca239ca84a9bf7f39",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\playwright"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\playwright",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\skills\\playwright\\LICENSE.txt",
+        "sha256": "9a7110fc2d2f964038e5dc49128f908f29f47a574c961cba16085914e879cbda"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "6ba6cae3ef1ed3dc6e67872aaf8deafa303cb223e88b7e8ca239ca84a9bf7f39"
+      }
+    },
+    {
+      "id": "pricing",
+      "name": "pricing",
+      "version": null,
+      "content_sha256": "9a8b66fa06c2558c75cb26efcde58492462fa496e8320306698c1f4fcd5cdead",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\pricing"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\pricing",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "9a8b66fa06c2558c75cb26efcde58492462fa496e8320306698c1f4fcd5cdead"
+      }
+    },
+    {
+      "id": "processize",
+      "name": "processize",
+      "version": null,
+      "content_sha256": "8015f396512ec198bd8a07e26931b7f9b6edf40d5ba9162456aa9498a37254ec",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\processize"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\processize",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "8015f396512ec198bd8a07e26931b7f9b6edf40d5ba9162456aa9498a37254ec"
+      }
+    },
+    {
+      "id": "self-improving-for-codex",
+      "name": "self-improving-for-codex",
+      "version": null,
+      "content_sha256": "1bdbe57678f23046400c80550d86d7b812febe2bbb5e7ba713389c7a1b4c1d24",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\self-improving-for-codex"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\self-improving-for-codex",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "1bdbe57678f23046400c80550d86d7b812febe2bbb5e7ba713389c7a1b4c1d24"
+      }
+    },
+    {
+      "id": "spec-kit-skill",
+      "name": "spec-kit-skill",
+      "version": "2.1.0-local-router",
+      "content_sha256": "8e12f0b83e92171dfe18deb8dfa207a66dc4c1f61fdf14baec1384d055436bce",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\spec-kit-skill"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\spec-kit-skill",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "8e12f0b83e92171dfe18deb8dfa207a66dc4c1f61fdf14baec1384d055436bce"
+      }
+    },
+    {
+      "id": "validate-idea",
+      "name": "validate-idea",
+      "version": null,
+      "content_sha256": "174055d93b272c45739b7a8dbf79c3641d4ed6a39ca63059c8b2d17dae604319",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\validate-idea"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\validate-idea",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "174055d93b272c45739b7a8dbf79c3641d4ed6a39ca63059c8b2d17dae604319"
+      }
+    },
+    {
+      "id": "weixin-thread-bridge",
+      "name": "weixin-thread-bridge",
+      "version": null,
+      "content_sha256": "386c12354d2a3ee8ea2767ab0efac888822904fd5180f3e34136f2f69f5186d8",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\weixin-thread-bridge"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\weixin-thread-bridge",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "386c12354d2a3ee8ea2767ab0efac888822904fd5180f3e34136f2f69f5186d8"
+      }
+    },
+    {
+      "id": "will-tibo-reset",
+      "name": "will-tibo-reset",
+      "version": null,
+      "content_sha256": "206a0c18a0a0a63ec120bf2a628e1f1d3a95106ad17e0172b38e24e873f5e033",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\will-tibo-reset"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\will-tibo-reset",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.codex\\skills\\will-tibo-reset\\LICENSE",
+        "sha256": "4d01217e75c13938b1c0a27f2bf4e1971762faefca25fd25501a9b7d9db5a8c2"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "206a0c18a0a0a63ec120bf2a628e1f1d3a95106ad17e0172b38e24e873f5e033"
+      }
+    },
+    {
+      "id": "writing-for-agents",
+      "name": "writing-for-agents",
+      "version": null,
+      "content_sha256": "acb7060dba114b2987441c509e131f285c9aa4e961514d66ab28f0835a427a7a",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\writing-for-agents"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\writing-for-agents",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "acb7060dba114b2987441c509e131f285c9aa4e961514d66ab28f0835a427a7a"
+      }
+    },
+    {
+      "id": "youtube-pro-codex",
+      "name": "youtube-pro-codex",
+      "version": null,
+      "content_sha256": "93082cfbf4f37730dae8b4356d5150aa95a23e19f3d8a6f27f638e486609be1a",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\youtube-pro-codex"
+      ],
+      "real_path": "%USERPROFILE%\\.codex\\skills\\youtube-pro-codex",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "93082cfbf4f37730dae8b4356d5150aa95a23e19f3d8a6f27f638e486609be1a"
+      }
+    },
+    {
+      "id": "agentic-coding",
+      "name": "Agentic Coding",
+      "version": "1.0.0",
+      "content_sha256": "0eae8f9c53078c8488c860e1b3c5c1485c182a8358157cb36e603d584617fedc",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\agentic-coding"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\agentic-coding",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "automation-workflows",
+      "name": "automation-workflows",
+      "version": null,
+      "content_sha256": "7e2a1b38c6f3558f8f373e45eee3e70d7c2d531cbe922d36a9c24a507d8ccb43",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\automation-workflows"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\automation-workflows",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "deep-research-pro",
+      "name": "deep-research-pro",
+      "version": "1.0.0",
+      "content_sha256": "a780f8bbec4421982c8276c460f95d1ad82a065182409a730ba952b2dca20015",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\deep-research-pro"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\deep-research-pro",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "file-summary",
+      "name": "file-summary",
+      "version": null,
+      "content_sha256": "cb6f7841d9f36a14b6c2506e01c480588294e74114040cf06133e83d16b1dfd4",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\file-summary"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\file-summary",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "local-file-rag-basic",
+      "name": "local-file-rag-basic",
+      "version": "1.0.0",
+      "content_sha256": "4adb48c25bbe1549e19ce5271b17882b2d0433c79c70695c6455db3cc1778263",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\local-file-rag-basic"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\local-file-rag-basic",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "obsidian",
+      "name": "obsidian",
+      "version": null,
+      "content_sha256": "dc45b522a0f08fa11762b330b5355ccaca789bd645b0c450fe75026f69d728b2",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\obsidian"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\obsidian",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "summarize",
+      "name": "summarize",
+      "version": null,
+      "content_sha256": "e7cdf499cee3e4ffefdbdca842b4716796cdd983b1f11e1314f295895eeb8161",
+      "state": "discoverable",
+      "runtimes": [
+        "openclaw"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.openclaw\\skills\\summarize"
+      ],
+      "real_path": "%USERPROFILE%\\.openclaw\\skills\\summarize",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.openclaw",
+        "remote_url": "",
+        "branch": "master",
+        "upstream": "",
+        "commit": "HEAD",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "HEAD"
+      }
+    },
+    {
+      "id": "bravecow-windows-computer-use",
+      "name": "bravecow-windows-computer-use",
+      "version": null,
+      "content_sha256": "0dec43cbfa26fe7d947976bc65fb578778ad26efd8f07ab6d09f64f8fe408d0d",
+      "state": "discoverable",
+      "runtimes": [
+        "zcode"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.zcode\\skills\\bravecow-windows-computer-use"
+      ],
+      "real_path": "%USERPROFILE%\\.zcode\\skills\\bravecow-windows-computer-use",
+      "provenance": {
+        "kind": "local",
+        "root": "",
+        "remote_url": "",
+        "branch": "",
+        "upstream": "",
+        "commit": "",
+        "tag": "",
+        "dirty": null,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.zcode\\skills\\bravecow-windows-computer-use\\LICENSE",
+        "sha256": "5cf11231cfe93baceedffbdc7e00cd16eba95993ca735f040f9cc4920af935f4"
+      },
+      "local_patches": {
+        "dirty": null,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "content-hash",
+        "ref": "0dec43cbfa26fe7d947976bc65fb578778ad26efd8f07ab6d09f64f8fe408d0d"
+      }
+    },
+    {
+      "id": "agent-harness-introspect",
+      "name": "agent-harness-introspect",
+      "version": null,
+      "content_sha256": "0048d265071c85040d5c364768ac5d1b7bec1f1952372e2b377a31dc6b1a6b02",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared",
+        "zcode"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\agent-harness-introspect",
+        "%USERPROFILE%\\.codex\\skills\\agent-harness-introspect",
+        "%USERPROFILE%\\.openclaw\\skills\\agent-harness-introspect",
+        "%USERPROFILE%\\.zcode\\skills\\agent-harness-introspect"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex\\skills\\agent-harness-introspect",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex",
+        "remote_url": "https://github.com/BraveCowNoFear/BraveCow-Harness-Codex.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "e5c98972d48ca9bc8601fa0edf49f58640d13780",
+        "tag": "harness-baseline-2026-10-01",
+        "dirty": false,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex\\LICENSE",
+        "sha256": "222a242452dc6f92e16dc043acacd748f8deab5576a9697a1081bfe77b0534f7"
+      },
+      "local_patches": {
+        "dirty": false,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "id": "agent-harness-introspect",
+        "status": "passed",
+        "tests": [
+          "package-validation",
+          "17 unit tests",
+          "isolated installer smoke"
+        ],
+        "last_verified": "2026-07-29T00:20:00+08:00"
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "e5c98972d48ca9bc8601fa0edf49f58640d13780"
+      }
+    },
+    {
+      "id": "bravecow-onboarding",
+      "name": "bravecow-onboarding",
+      "version": null,
+      "content_sha256": "9d6964a2c08a4d60e929b01d67c1feb5c040193eb298c045a6758d4c86bde0db",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "shared",
+        "zcode"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\bravecow-onboarding",
+        "%USERPROFILE%\\.codex\\skills\\bravecow-onboarding",
+        "%USERPROFILE%\\.zcode\\skills\\bravecow-onboarding"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex\\skills\\bravecow-onboarding",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex",
+        "remote_url": "https://github.com/BraveCowNoFear/BraveCow-Harness-Codex.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "e5c98972d48ca9bc8601fa0edf49f58640d13780",
+        "tag": "harness-baseline-2026-10-01",
+        "dirty": false,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\BraveCow-Harness-Codex\\LICENSE",
+        "sha256": "222a242452dc6f92e16dc043acacd748f8deab5576a9697a1081bfe77b0534f7"
+      },
+      "local_patches": {
+        "dirty": false,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "e5c98972d48ca9bc8601fa0edf49f58640d13780"
+      }
+    },
+    {
+      "id": "outlook-browser-email-automation",
+      "name": "outlook-browser-email-automation",
+      "version": null,
+      "content_sha256": "bb24e79bcda94f05c93a450b41a99b366015596d6d8269da0878964ff2abf179",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\outlook-browser-email-automation"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\email-automation-based-on-browser\\skills\\outlook-browser-email-automation",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\email-automation-based-on-browser",
+        "remote_url": "https://github.com/BraveCowNoFear/email-automation-based-on-browser.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "2c121c8f8466f9082fe67d880ea39e07ad28ea0d",
+        "tag": "",
+        "dirty": false,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\email-automation-based-on-browser\\LICENSE",
+        "sha256": "d5659c49083c2255dea9cbb5734fdeb60545a38dd8068057d3f572ae1a6b9d7c"
+      },
+      "local_patches": {
+        "dirty": false,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "2c121c8f8466f9082fe67d880ea39e07ad28ea0d"
+      }
+    },
+    {
+      "id": "pdf-bilingual-translator",
+      "name": "pdf-bilingual-translator",
+      "version": null,
+      "content_sha256": "f80cf8a82f3e576863f33dcbde291769b35f032d12caa018c894fad40e9301ee",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\pdf-bilingual-translator"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\pdf-bilingual-translator",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\pdf-bilingual-translator",
+        "remote_url": "https://github.com/BraveCowNoFear/pdf-bilingual-translator.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "8896562b4ee8ef238963b71a69605f29fea41478",
+        "tag": "",
+        "dirty": false,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\pdf-bilingual-translator\\LICENSE",
+        "sha256": "5cf11231cfe93baceedffbdc7e00cd16eba95993ca735f040f9cc4920af935f4"
+      },
+      "local_patches": {
+        "dirty": false,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "8896562b4ee8ef238963b71a69605f29fea41478"
+      }
+    },
+    {
+      "id": "problem-sheet-pdf-answers",
+      "name": "problem-sheet-pdf-answers",
+      "version": null,
+      "content_sha256": "a8fd45df328c6a4404282d8293a2129132dec38b1c689623368a0b7d4daf9085",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\problem-sheet-pdf-answers"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\problem-sheet-pdf-answers",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\problem-sheet-pdf-answers",
+        "remote_url": "https://github.com/BraveCowNoFear/problem-sheet-pdf-answers.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "f6a9e6bb7c61345cfa1636583de66b5f25b65792",
+        "tag": "",
+        "dirty": false,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\problem-sheet-pdf-answers\\LICENSE",
+        "sha256": "5cf11231cfe93baceedffbdc7e00cd16eba95993ca735f040f9cc4920af935f4"
+      },
+      "local_patches": {
+        "dirty": false,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "f6a9e6bb7c61345cfa1636583de66b5f25b65792"
+      }
+    },
+    {
+      "id": "video-maker",
+      "name": "video-maker",
+      "version": null,
+      "content_sha256": "fe87e8113ba47967d95834e8529e4f26246c16cfa0f1c09ed5b0fbbbf4849847",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\video-maker"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\github\\video-maker",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\github\\video-maker",
+        "remote_url": "https://github.com/BraveCowNoFear/video-maker.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "06743c1adaf79f1d1fd1b9f6c1be4c746f044e08",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Desktop\\github\\video-maker\\LICENSE",
+        "sha256": "1126322e2cc8d165adc4c792eeb195717de2bcc7b39be1ce77959d78e87ef685"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "06743c1adaf79f1d1fd1b9f6c1be4c746f044e08"
+      }
+    },
+    {
+      "id": "bilibili-publish",
+      "name": "bilibili-publish",
+      "version": null,
+      "content_sha256": "ebbbd4409269e4abecc985397eddd19de1d8cb748d86719dd6b6e0dc08d04138",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\bilibili-publish"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\Projects\\自媒体开发区\\packages\\platform-bilibili\\skills\\bilibili-publish",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\Projects\\自媒体开发区",
+        "remote_url": "https://github.com/BraveCowNoFear/self-media-agent-harness.git",
+        "branch": "codex/science-svg-imggen-animation",
+        "upstream": "",
+        "commit": "43a9e4c34fb809352e5f800617c02efd6a5fff12",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "43a9e4c34fb809352e5f800617c02efd6a5fff12"
+      }
+    },
+    {
+      "id": "line-art-science-video-generator",
+      "name": "line-art-science-video-generator",
+      "version": null,
+      "content_sha256": "ed22252f183a41a49be0c9b18591891054ed487281b01bacae9bc25a05a3a15c",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\line-art-science-video-generator"
+      ],
+      "real_path": "%USERPROFILE%\\Desktop\\Projects\\自媒体开发区\\packages\\video-pipeline\\skills\\line-art-science-video-generator",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Desktop\\Projects\\自媒体开发区",
+        "remote_url": "https://github.com/BraveCowNoFear/self-media-agent-harness.git",
+        "branch": "codex/science-svg-imggen-animation",
+        "upstream": "",
+        "commit": "43a9e4c34fb809352e5f800617c02efd6a5fff12",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "not-declared",
+        "file": "",
+        "sha256": ""
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": null
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "43a9e4c34fb809352e5f800617c02efd6a5fff12"
+      }
+    },
+    {
+      "id": "browser-harness",
+      "name": "browser-harness",
+      "version": null,
+      "content_sha256": "cf20f2b686b5daa9eb39fe35bf7223fdfe31aee6d4320f0883825c58d3d0ae79",
+      "state": "discoverable",
+      "runtimes": [
+        "codex",
+        "openclaw",
+        "shared",
+        "zcode"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.agents\\skills\\browser-harness",
+        "%USERPROFILE%\\.codex\\skills\\browser-harness",
+        "%USERPROFILE%\\.openclaw\\skills\\browser-harness",
+        "%USERPROFILE%\\.zcode\\skills\\browser-harness"
+      ],
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+        "remote_url": "https://github.com/browser-use/browser-harness.git",
+        "branch": "codex/edge-remote-debugging-auto-allow-v0.1.8",
+        "upstream": "bravecow/codex/edge-remote-debugging-auto-allow-v0.1.8",
+        "commit": "aa2ecb4e4eb430268eeeb65df5672f50406288aa",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Documents\\Playground\\browser-harness\\LICENSE",
+        "sha256": "f77bf226b54339f5a8891f9edcfadf231c9cd9017a9aa3d9f566d4d6264b541d"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "aa2ecb4e4eb430268eeeb65df5672f50406288aa"
+      }
+    },
+    {
+      "id": "claude-to-im",
+      "name": "claude-to-im",
+      "version": null,
+      "content_sha256": "12f066c584740138318aa9ce0208e9b2e16409b889304152adc9451437339469",
+      "state": "discoverable",
+      "runtimes": [
+        "codex"
+      ],
+      "paths": [
+        "%USERPROFILE%\\.codex\\skills\\claude-to-im"
+      ],
+      "real_path": "%USERPROFILE%\\Documents\\Playground\\claude-to-im-plus",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Documents\\Playground\\claude-to-im-plus",
+        "remote_url": "https://github.com/JiangJingC/claude-to-im-plus.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "13c5c698e483ad49b06aedbb05f1a50c39689cbe",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Documents\\Playground\\claude-to-im-plus\\LICENSE",
+        "sha256": "be8a6d371ac5d73cee3343eda6c820a9a59399fc217e2caac70294cbe0f57b3d"
+      },
+      "local_patches": {
+        "dirty": true,
+        "commits_ahead": 0
+      },
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "13c5c698e483ad49b06aedbb05f1a50c39689cbe"
+      }
+    }
+  ],
+  "plugins": [
+    {
+      "plugin_id": "windows-computer-use@brave-cow-windows-tools",
+      "name": "windows-computer-use",
+      "version": "0.40.0",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "brave-cow-windows-tools",
+      "manifest_sha256": "0da834e0b0bf41a701f247e1044a2b4c5e213c4a9576b343aa8325c4c2308e37",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\brave-cow-windows-tools\\windows-computer-use\\0.40.0",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "0da834e0b0bf41a701f247e1044a2b4c5e213c4a9576b343aa8325c4c2308e37"
+      }
+    },
+    {
+      "plugin_id": "browser@openai-bundled",
+      "name": "browser",
+      "version": "26.928.31416",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "22438d9d79760ae22dffd7b925b5e5dd68387e87a5995ebbb1a5f66bdbe2a86c",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\browser\\26.928.31416",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "22438d9d79760ae22dffd7b925b5e5dd68387e87a5995ebbb1a5f66bdbe2a86c"
+      }
+    },
+    {
+      "plugin_id": "chrome@openai-bundled",
+      "name": "chrome",
+      "version": "26.928.31416",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "7d1e31d6d5c3c37df8eaf27ffa47694bc0038c958be985df4b6bdb8a167beba1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\chrome\\26.928.31416",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "7d1e31d6d5c3c37df8eaf27ffa47694bc0038c958be985df4b6bdb8a167beba1"
+      }
+    },
+    {
+      "plugin_id": "code-review@openai-bundled",
+      "name": "code-review",
+      "version": "26.928.31416",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "5f10e164dbbf2049e3f21cb207f7495024473e9a5802ee69b348e383d050270c",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\code-review\\26.928.31416",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "5f10e164dbbf2049e3f21cb207f7495024473e9a5802ee69b348e383d050270c"
+      }
+    },
+    {
+      "plugin_id": "codex-app-tools@openai-bundled",
+      "name": "codex-app-tools",
+      "version": "0.1.5",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "124e429b5e97e242cf3f39750c3decf1ae2ad7c44280f44ad781edd27ea57e31",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\codex-app-tools\\0.1.5",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "124e429b5e97e242cf3f39750c3decf1ae2ad7c44280f44ad781edd27ea57e31"
+      }
+    },
+    {
+      "plugin_id": "computer-use@openai-bundled",
+      "name": "computer-use",
+      "version": "26.928.31416",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "3fe89e4cfe7544e751fe1a656814ebc45690117b4ff2369f10b773225a2ba5ef",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\computer-use\\26.928.31416",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "3fe89e4cfe7544e751fe1a656814ebc45690117b4ff2369f10b773225a2ba5ef"
+      }
+    },
+    {
+      "plugin_id": "unified-computer-use@openai-bundled",
+      "name": "unified-computer-use",
+      "version": "26.928.31416",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "25393b002a91abb84dbf427005978149d67fc1208ccb06ef05a61bbeda3d1a31",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\unified-computer-use\\26.928.31416",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "25393b002a91abb84dbf427005978149d67fc1208ccb06ef05a61bbeda3d1a31"
+      }
+    },
+    {
+      "plugin_id": "visualize@openai-bundled",
+      "name": "visualize",
+      "version": "1.0.45",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-bundled",
+      "manifest_sha256": "e07c15208e75a076033f9ec7489d804219137ac40f5a522da68ae3bc251e7c34",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-bundled\\visualize\\1.0.45",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "e07c15208e75a076033f9ec7489d804219137ac40f5a522da68ae3bc251e7c34"
+      }
+    },
+    {
+      "plugin_id": "canva@openai-curated",
+      "name": "canva",
+      "version": "1.0.2",
+      "state": "cache-only",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "bb49107dbc73b900d936271717ab584d1cae578b0a33ae08fb1eea39d6684a66",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\canva\\11c74d6b",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "bb49107dbc73b900d936271717ab584d1cae578b0a33ae08fb1eea39d6684a66"
+      }
+    },
+    {
+      "plugin_id": "github@openai-curated",
+      "name": "github",
+      "version": "0.1.6",
+      "state": "cache-only",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "cd2f1e84da5e28239936e3867ed1cbd7e0aabae861e3c770098bed00468ef8d0",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\github\\11c74d6b",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "cd2f1e84da5e28239936e3867ed1cbd7e0aabae861e3c770098bed00468ef8d0"
+      }
+    },
+    {
+      "plugin_id": "google-calendar@openai-curated",
+      "name": "google-calendar",
+      "version": "1.2.6",
+      "state": "superseded-config-cache",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "superseded-by:1.2.7@openai-curated-remote",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "7cc815919b3cf6a86e2fc778deae85ed215a10ef063f00b998dd0c02e97bb7e5",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\google-calendar\\1e285826",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "7cc815919b3cf6a86e2fc778deae85ed215a10ef063f00b998dd0c02e97bb7e5"
+      }
+    },
+    {
+      "plugin_id": "notion@openai-curated",
+      "name": "notion",
+      "version": "0.1.5",
+      "state": "cache-only",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "d4b1a4c5be4f3d99bac941c7b730607a47495b8173db67b3c85e5a4c0a030b15",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\notion\\11c74d6b",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "d4b1a4c5be4f3d99bac941c7b730607a47495b8173db67b3c85e5a4c0a030b15"
+      }
+    },
+    {
+      "plugin_id": "outlook-calendar@openai-curated",
+      "name": "outlook-calendar",
+      "version": "0.1.0",
+      "state": "cache-only",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "8b7653fe3ab66373ecffbcb75ee8ea06eb02601a02d99dd029a35404ae15f282",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-calendar\\dc902811",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "8b7653fe3ab66373ecffbcb75ee8ea06eb02601a02d99dd029a35404ae15f282"
+      }
+    },
+    {
+      "plugin_id": "outlook-email@openai-curated",
+      "name": "outlook-email",
+      "version": "0.1.0",
+      "state": "cache-only",
+      "enabled_by_config": false,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": false,
+      "resolution_reason": "unresolved",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "722ba083974b372e246730cf91fab6ff74ceabfd08e33acc05bb5c40d617a15e",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\outlook-email\\dc902811",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "722ba083974b372e246730cf91fab6ff74ceabfd08e33acc05bb5c40d617a15e"
+      }
+    },
+    {
+      "plugin_id": "slack@openai-curated",
+      "name": "slack",
+      "version": "0.1.7",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-curated",
+      "manifest_sha256": "dc7dc809ea221c6a8c9c237c1bb72f080eaf52651342598be829ab4a0fc32b92",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated\\slack\\1e285826",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "dc7dc809ea221c6a8c9c237c1bb72f080eaf52651342598be829ab4a0fc32b92"
+      }
+    },
+    {
+      "plugin_id": "app-69312da8e4dc81919370cb86fd172b6c@openai-curated-remote",
+      "name": "app-69312da8e4dc81919370cb86fd172b6c",
+      "version": "10.0.0",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_69312da8e4dc81919370cb86fd172b6c",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "b848d254ed5067dfe56715839b8f2a7ea1c5c2c10cdc73d3c73ba503b247ed28",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-69312da8e4dc81919370cb86fd172b6c\\10.0.0",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "b848d254ed5067dfe56715839b8f2a7ea1c5c2c10cdc73d3c73ba503b247ed28"
+      }
+    },
+    {
+      "plugin_id": "app-6938a94a61d881918ef32cb999ff937c@openai-curated-remote",
+      "name": "app-6938a94a61d881918ef32cb999ff937c",
+      "version": "1.0.0",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_6938a94a61d881918ef32cb999ff937c",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "6c41351adba05cd2cbc930c5473b7d244dfb7b406e01fa12f2265de65ff152e8",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\app-6938a94a61d881918ef32cb999ff937c\\1.0.0",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "6c41351adba05cd2cbc930c5473b7d244dfb7b406e01fa12f2265de65ff152e8"
+      }
+    },
+    {
+      "plugin_id": "canva@openai-curated-remote",
+      "name": "canva",
+      "version": "17.0.1",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_68df33b1a2d081918778431a9cfca8ba",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "b92c230736821abe89e465a295cf72e627692de7fe72ea4bac439df8db40f631",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\canva\\17.0.1",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "b92c230736821abe89e465a295cf72e627692de7fe72ea4bac439df8db40f631"
+      }
+    },
+    {
+      "plugin_id": "data-analytics@openai-curated-remote",
+      "name": "data-analytics",
+      "version": "1.0.11",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "Plugin_fc9843a6fb34819195d6c7802398a8a7",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "100ee5a9e1387d81276cb1fa40e7e4ebda94f0750cb99465545c540da16d43c4",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\data-analytics\\1.0.11",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "100ee5a9e1387d81276cb1fa40e7e4ebda94f0750cb99465545c540da16d43c4"
+      }
+    },
+    {
+      "plugin_id": "github@openai-curated-remote",
+      "name": "github",
+      "version": "0.1.12-5f7cd798dc99",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_1a69035c238881919c4190932b2df699",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "c7a102ea4c7c06e49976dfc2f150a4fe2ce46b0e66f9b03883dda5d5cc9cb0ad",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\github\\0.1.12-5f7cd798dc99",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "c7a102ea4c7c06e49976dfc2f150a4fe2ce46b0e66f9b03883dda5d5cc9cb0ad"
+      }
+    },
+    {
+      "plugin_id": "gmail@openai-curated-remote",
+      "name": "gmail",
+      "version": "0.1.10",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_95d39881713c8191931482a62d6edff9",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "79332756fee94eb5251c57984c8412d43e31c6716f47f28305f3b556a14ff5c6",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\gmail\\0.1.10",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "79332756fee94eb5251c57984c8412d43e31c6716f47f28305f3b556a14ff5c6"
+      }
+    },
+    {
+      "plugin_id": "google-calendar@openai-curated-remote",
+      "name": "google-calendar",
+      "version": "1.2.7",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_f8509de903288191b14a160c6c5d20b0",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "bdc047151faa4c2c539fe15e6b55bd1cb6e81148606f4efe1b7727ff161cc73f",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\google-calendar\\1.2.7",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "bdc047151faa4c2c539fe15e6b55bd1cb6e81148606f4efe1b7727ff161cc73f"
+      }
+    },
+    {
+      "plugin_id": "google-contacts@openai-curated-remote",
+      "name": "google-contacts",
+      "version": "1.0.0",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_c97194162860819190a6f840a61b9889",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "a8c9a0d3b2a4f9b71af673b4b03ec00de4e6a7f41e7190c9716b4b3e3f513849",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\google-contacts\\1.0.0",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "a8c9a0d3b2a4f9b71af673b4b03ec00de4e6a7f41e7190c9716b4b3e3f513849"
+      }
+    },
+    {
+      "plugin_id": "google-drive@openai-curated-remote",
+      "name": "google-drive",
+      "version": "0.1.16",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_ab21a553bfbc81919ea8fd1858e3ffa7",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "fb76d7ea1eeaf768fd8bd539e6fbd8bd5fb0a911d4bb0b3af3a875c40df9ecb4",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\google-drive\\0.1.16",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "fb76d7ea1eeaf768fd8bd539e6fbd8bd5fb0a911d4bb0b3af3a875c40df9ecb4"
+      }
+    },
+    {
+      "plugin_id": "notion@openai-curated-remote",
+      "name": "notion",
+      "version": "0.1.8",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "c6adffa0d432e4058b55fe45ae74576c93574d013c74c1744a94611f7887d6f1",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\notion\\0.1.8",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "c6adffa0d432e4058b55fe45ae74576c93574d013c74c1744a94611f7887d6f1"
+      }
+    },
+    {
+      "plugin_id": "openai-templates@openai-curated-remote",
+      "name": "openai-templates",
+      "version": "0.1.1",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_2330815c823c8191941e5dc465bb899f",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "d2cbbd434a5c8123a9e1612663f0598cdd13ba71bfb55e172e8132ed9e5d4474",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\openai-templates\\0.1.1",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "d2cbbd434a5c8123a9e1612663f0598cdd13ba71bfb55e172e8132ed9e5d4474"
+      }
+    },
+    {
+      "plugin_id": "pages@openai-curated-remote",
+      "name": "pages",
+      "version": "0.1.18",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_4a72ddeef4c481918f92d8e8df18fb2c",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "01201c9aab2a4a2025b37a32a5ee7e6fd03e8571e62f5c7d988ddb2d73ca44d9",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\pages\\0.1.18",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "01201c9aab2a4a2025b37a32a5ee7e6fd03e8571e62f5c7d988ddb2d73ca44d9"
+      }
+    },
+    {
+      "plugin_id": "plugin-management@openai-curated-remote",
+      "name": "plugin-management",
+      "version": "0.1.0",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_b3438d6beb9081918fba3625bc988128",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "5deb3b2f943fff03a928e1faed2b040bad7dabcf71c11f183fc67dcc0793e3c3",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\plugin-management\\0.1.0",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "5deb3b2f943fff03a928e1faed2b040bad7dabcf71c11f183fc67dcc0793e3c3"
+      }
+    },
+    {
+      "plugin_id": "product-design@openai-curated-remote",
+      "name": "product-design",
+      "version": "0.1.56",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "Plugin_fa77aec24fc08191bc6e57f377126d76",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "ae34a0f8e430014836a88f63ae7d8ac1ce3a28401122676e014c772ee523b77d",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\product-design\\0.1.56",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "ae34a0f8e430014836a88f63ae7d8ac1ce3a28401122676e014c772ee523b77d"
+      }
+    },
+    {
+      "plugin_id": "sites@openai-curated-remote",
+      "name": "sites",
+      "version": "0.1.75",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_689987207de08191979cf68eca2941c6",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "27bed3436c6b7152a3a853cd17b5b1bc1acaa620b5e2c659a5bead25069821f8",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\sites\\0.1.75",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "27bed3436c6b7152a3a853cd17b5b1bc1acaa620b5e2c659a5bead25069821f8"
+      }
+    },
+    {
+      "plugin_id": "work-pets@openai-curated-remote",
+      "name": "work-pets",
+      "version": "0.1.6",
+      "state": "resolved-remote-install",
+      "enabled_by_config": false,
+      "installed_remote": true,
+      "remote_plugin_id": "plugin_connector_1p_bccf6c8660c08191ae4470d9ae4877fa",
+      "resolved": true,
+      "resolution_reason": "remote-install-marker",
+      "cache_source": "openai-curated-remote",
+      "manifest_sha256": "c1f27c0864bec7c88e14d3369da870202e98cff4df4ee786747bd22cc93ac29a",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-curated-remote\\work-pets\\0.1.6",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "c1f27c0864bec7c88e14d3369da870202e98cff4df4ee786747bd22cc93ac29a"
+      }
+    },
+    {
+      "plugin_id": "documents@openai-primary-runtime",
+      "name": "documents",
+      "version": "26.909.12148",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-primary-runtime",
+      "manifest_sha256": "b2e45de331d2600fa29bd3dc97e5e7d40449a6a0e96c694902b8341385f7f37a",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\documents\\26.909.12148",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "b2e45de331d2600fa29bd3dc97e5e7d40449a6a0e96c694902b8341385f7f37a"
+      }
+    },
+    {
+      "plugin_id": "pdf@openai-primary-runtime",
+      "name": "pdf",
+      "version": "26.909.12148",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-primary-runtime",
+      "manifest_sha256": "5af028d38412737696d5ec365bb1bb1de667e8b58a885405e0731c3503a60d57",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\pdf\\26.909.12148",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "5af028d38412737696d5ec365bb1bb1de667e8b58a885405e0731c3503a60d57"
+      }
+    },
+    {
+      "plugin_id": "presentations@openai-primary-runtime",
+      "name": "presentations",
+      "version": "26.909.12148",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-primary-runtime",
+      "manifest_sha256": "0b530d373d1a27435196afa370244b3e30446eafa76d13002aab6e6c985be35d",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\presentations\\26.909.12148",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "0b530d373d1a27435196afa370244b3e30446eafa76d13002aab6e6c985be35d"
+      }
+    },
+    {
+      "plugin_id": "spreadsheets@openai-primary-runtime",
+      "name": "spreadsheets",
+      "version": "26.909.12148",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-primary-runtime",
+      "manifest_sha256": "6aa2bdf9e0b4578488f6332e76bd5c44d0a5c96e7778271c78746ef06d1b437c",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\spreadsheets\\26.909.12148",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "6aa2bdf9e0b4578488f6332e76bd5c44d0a5c96e7778271c78746ef06d1b437c"
+      }
+    },
+    {
+      "plugin_id": "template-creator@openai-primary-runtime",
+      "name": "template-creator",
+      "version": "26.909.12148",
+      "state": "resolved-config",
+      "enabled_by_config": true,
+      "installed_remote": false,
+      "remote_plugin_id": null,
+      "resolved": true,
+      "resolution_reason": "exact-config-id",
+      "cache_source": "openai-primary-runtime",
+      "manifest_sha256": "9ab273f5030c3f63c51c3f6b7a6cedd1c858d7c3e732285ab473a8b4ce7e2284",
+      "path": "%USERPROFILE%\\.codex\\plugins\\cache\\openai-primary-runtime\\template-creator\\26.909.12148",
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "rollback": {
+        "kind": "manifest-hash",
+        "ref": "9ab273f5030c3f63c51c3f6b7a6cedd1c858d7c3e732285ab473a8b4ce7e2284"
+      }
+    }
+  ],
+  "components": [
+    {
+      "id": "codex-cli",
+      "declared_version": "0.159.2",
+      "installed_version": "0.159.2",
+      "available_version": "0.146.0",
+      "upstream": {
+        "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.146.0",
+        "source_ref": "rust-v0.146.0",
+        "source_kind": "official-release-and-npm",
+        "integrity": "sha512-yG3sPWNda/2YAIQIDq9MrrjoCTIQ7rxYM5IasrG3VBcuhCLTkgeg/JzqmJq1V98RE4MJ5jCxDXXQlOjrditFRw==",
+        "license": "Apache-2.0",
+        "observed_at": "2026-08-01T09:22:00Z",
+        "stability": "stable"
+      },
+      "state": "drift",
+      "source_path": "%USERPROFILE%\\AppData\\Local\\OpenAI\\Codex\\bin\\de8a38d2100ae498\\codex.exe",
+      "provenance": {
+        "kind": "desktop-bundled-binary",
+        "path": "%USERPROFILE%\\AppData\\Local\\OpenAI\\Codex\\bin\\de8a38d2100ae498\\codex.exe",
+        "sha256": "34549ded6e2aee87c911c62d025e52e26c488683d0f489cd68f756baef1a6df6"
+      },
+      "license": {
+        "status": "declared-upstream",
+        "spdx": "Apache-2.0",
+        "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.146.0"
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "update_policy": "desktop-owned; never replace the bundled binary in place",
+      "rollback": {
+        "kind": "binary-hash",
+        "ref": "34549ded6e2aee87c911c62d025e52e26c488683d0f489cd68f756baef1a6df6"
+      }
+    },
+    {
+      "id": "zcode-desktop",
+      "declared_version": "unknown",
+      "installed_version": "unknown",
+      "available_version": null,
+      "upstream": {},
+      "state": "installed",
+      "source_path": "%USERPROFILE%\\AppData\\Local\\Programs\\ZCode\\ZCode.exe",
+      "provenance": {
+        "kind": "desktop-application",
+        "path": "%USERPROFILE%\\AppData\\Local\\Programs\\ZCode\\ZCode.exe",
+        "sha256": "5e928a515f78220553e94356f3c2226d142c6fe9e5ec8595c77e5f27a5e36bbc"
+      },
+      "license": {
+        "status": "unknown",
+        "spdx": "",
+        "source_url": ""
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "update_policy": "desktop-owned; use the official ZCode installer",
+      "rollback": {
+        "kind": "desktop-version",
+        "ref": "unknown"
+      }
+    },
+    {
+      "id": "openclaw",
+      "declared_version": "2026.6.5",
+      "installed_version": "2026.6.5",
+      "available_version": "2026.7.1-2",
+      "upstream": {
+        "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.7.1",
+        "source_ref": "v2026.7.1",
+        "source_kind": "official-release-and-npm",
+        "integrity": "sha512-ycF3yPcbjN6bUPeaUx6Mh6vze1hQWoD3CT/wWcmD7a8xaHHHRUaAlaq+lFxMHf1ssEgODVAwjlzYqp2twkYZ7g==",
+        "license": "MIT",
+        "observed_at": "2026-08-01T09:22:00Z",
+        "stability": "stable"
+      },
+      "state": "drift",
+      "source_path": "%USERPROFILE%\\AppData\\Roaming\\npm\\node_modules\\openclaw",
+      "provenance": {
+        "kind": "npm-package",
+        "path": "%USERPROFILE%\\AppData\\Roaming\\npm\\node_modules\\openclaw",
+        "package_json_sha256": "af4e4f145ce5161eeba53c1408ac06c7df183b52edf5d199ddee5b85c492adb0"
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\AppData\\Roaming\\npm\\node_modules\\openclaw\\LICENSE",
+        "sha256": "73571b25326281d369087f469842c02444fe39faaecebda4d82ed21ff3a1c29d"
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "status": "not-recorded",
+        "tests": [],
+        "last_verified": null
+      },
+      "update_policy": "audit release and back up config before package migration",
+      "rollback": {
+        "kind": "npm-version",
+        "ref": "2026.6.5"
+      }
+    },
+    {
+      "id": "browser-harness",
+      "declared_version": "0.1.8",
+      "installed_version": "0.1.8",
+      "available_version": "v0.1.8",
+      "upstream": {
+        "source_url": "https://github.com/browser-use/browser-harness/releases/tag/v0.1.8",
+        "source_ref": "dbe6f8f22ba65170e2d4b8f17754c704d008fe49",
+        "source_kind": "official-release",
+        "license": "MIT",
+        "observed_at": "2026-08-01T09:22:00Z",
+        "stability": "stable"
+      },
+      "state": "installed",
+      "source_path": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\Documents\\Playground\\browser-harness",
+        "remote_url": "https://github.com/browser-use/browser-harness.git",
+        "branch": "codex/edge-remote-debugging-auto-allow-v0.1.8",
+        "upstream": "bravecow/codex/edge-remote-debugging-auto-allow-v0.1.8",
+        "commit": "aa2ecb4e4eb430268eeeb65df5672f50406288aa",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\Documents\\Playground\\browser-harness\\LICENSE",
+        "sha256": "f77bf226b54339f5a8891f9edcfadf231c9cd9017a9aa3d9f566d4d6264b541d"
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "id": "component:browser-harness",
+        "status": "passed",
+        "tests": [
+          "114 unit tests",
+          "3 Windows skips",
+          "real Edge CDP page-load/screenshot/tab-cleanup E2E",
+          "daemon and watcher cleanup"
+        ],
+        "last_verified": "2026-07-28T23:42:00+08:00"
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "aa2ecb4e4eb430268eeeb65df5672f50406288aa"
+      }
+    },
+    {
+      "id": "meta-harness",
+      "declared_version": "0.4",
+      "installed_version": "0.4",
+      "available_version": "0.4",
+      "upstream": {
+        "source_url": "https://github.com/SaehwanPark/meta-harness",
+        "source_ref": "eafb74711f6ef54270b78835cf809b24ad650a9f",
+        "source_kind": "official-main-commit",
+        "license": "MIT",
+        "observed_at": "2026-08-01T09:22:00Z",
+        "stability": "pinned-main"
+      },
+      "state": "installed",
+      "source_path": "%USERPROFILE%\\.bravecow\\harness\\vendor\\meta-harness",
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\meta-harness",
+        "remote_url": "https://github.com/SaehwanPark/meta-harness.git",
+        "branch": "main",
+        "upstream": "origin/main",
+        "commit": "eafb74711f6ef54270b78835cf809b24ad650a9f",
+        "tag": "",
+        "dirty": true,
+        "ahead": 0,
+        "behind": 0
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.bravecow\\harness\\vendor\\meta-harness\\LICENSE",
+        "sha256": "cba114433c65086703646550397c6919c571eb2c06757543cb106e8eb82bfd3f"
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "id": "component:meta-harness",
+        "status": "passed",
+        "tests": [
+          "upstream 0.4 project validation"
+        ],
+        "last_verified": "2026-07-28T23:10:00+08:00"
+      },
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "eafb74711f6ef54270b78835cf809b24ad650a9f"
+      }
+    },
+    {
+      "id": "everything-claude-code-active-slice",
+      "declared_version": "2.0.0-rc.1",
+      "installed_version": "v2.1.0-frontmatter-compatible",
+      "available_version": "v2.1.0",
+      "upstream": {
+        "source_url": "https://github.com/affaan-m/ECC/releases/tag/v2.1.0",
+        "source_ref": "4da6deac1888690e7fb8572d097ee23db630f7a0",
+        "source_kind": "official-release",
+        "license": "MIT",
+        "observed_at": "2026-08-01T09:22:00Z",
+        "stability": "stable"
+      },
+      "state": "targeted-local-patch",
+      "source_path": "%USERPROFILE%\\.bravecow\\harness\\vendor\\everything-claude-code",
+      "active_scope": [
+        "agent-introspection-debugging",
+        "codebase-onboarding",
+        "context-budget"
+      ],
+      "provenance": {
+        "kind": "git",
+        "root": "%USERPROFILE%\\.codex\\harness\\vendor\\everything-claude-code",
+        "remote_url": "https://github.com/affaan-m/everything-claude-code.git",
+        "branch": "bravecow/targeted-v2.1.0-frontmatter",
+        "upstream": "",
+        "commit": "37d319830d05c3c05786536333915d2712eb4088",
+        "tag": "",
+        "dirty": true,
+        "ahead": null,
+        "behind": null
+      },
+      "license": {
+        "status": "present",
+        "file": "%USERPROFILE%\\.bravecow\\harness\\vendor\\everything-claude-code\\LICENSE",
+        "sha256": "35a01099b433925db7c9c17b10bcb873f8eba7bcab9858a7f74daeab84aa412a"
+      },
+      "last_verified": "2026-10-01T09:01:42.989065+00:00",
+      "verification": {
+        "id": "component:everything-claude-code-active-slice",
+        "status": "passed",
+        "tests": [
+          "three active SKILL.md files diff-clean against v2.1.0",
+          "inactive duplicate archived recoverably"
+        ],
+        "last_verified": "2026-07-29T00:15:00+08:00"
+      },
+      "update_policy": "targeted-diff-only",
+      "rollback": {
+        "kind": "git-commit",
+        "ref": "37d319830d05c3c05786536333915d2712eb4088"
+      }
+    }
+  ]
+}
