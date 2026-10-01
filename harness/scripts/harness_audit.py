@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import platform
 import re
@@ -124,7 +125,7 @@ def collect_memory_index_status() -> dict:
             connection.close()
         result["status"] = "ready"
         return result
-    except (OSError, sqlite3.Error) as exc:
+    except (OSError, sqlite3.Error, UnicodeError) as exc:
         return {"status": "error", "diagnostic": str(exc)[:300]}
 
 
@@ -244,6 +245,7 @@ def collect_automations(root: Path = AUTOMATIONS_DIR) -> list[dict]:
             **classify_automation(path.name),
         }
         if not config_path.exists():
+            base["status"] = "retained-state-only"
             automations.append(base)
             continue
         try:
@@ -256,10 +258,49 @@ def collect_automations(root: Path = AUTOMATIONS_DIR) -> list[dict]:
                     "status": str(config.get("status", "unknown")),
                 }
             )
+            base["contract"] = automation_contract(config, path)
         except (OSError, tomllib.TOMLDecodeError):
             base["status"] = "invalid-config"
         automations.append(base)
     return automations
+
+
+def automation_contract(config: dict, path: Path) -> dict:
+    """Audit shape and freshness; never export prompt, schedule, targets, or state contents."""
+    prompt = str(config.get("prompt", ""))
+    schedule = str(config.get("rrule", ""))
+    kind = str(config.get("kind", "unknown"))
+    fields = dict(re.findall(r"(?:^|;)([A-Z]+)=([^;]+)", schedule.removeprefix("RRULE:")))
+    valid_schedule_shape = fields.get("FREQ") in {"MINUTELY", "HOURLY", "DAILY", "WEEKLY", "MONTHLY", "YEARLY"}
+    execution_present = bool(config.get("execution_environment")) if kind == "cron" else bool(config.get("target_thread_id"))
+    issues = []
+    if config.get("id") != path.name:
+        issues.append("identity-mismatch")
+    if not valid_schedule_shape:
+        issues.append("schedule-shape-unverified")
+    if not prompt.strip():
+        issues.append("empty-prompt")
+    if not execution_present:
+        issues.append("execution-target-missing")
+    if kind not in {"cron", "heartbeat"}:
+        issues.append("unknown-kind")
+    state_files = [p for p in path.iterdir() if p.is_file() and p.name != "automation.toml"]
+    return {
+        "identity_matches_directory": config.get("id") == path.name,
+        "kind": kind,
+        "schedule_present": bool(schedule),
+        "schedule_shape_valid": valid_schedule_shape,
+        "definition_sha256": hashlib.sha256((path / "automation.toml").read_bytes()).hexdigest(),
+        "prompt_chars": len(prompt),
+        "prompt_present": bool(prompt.strip()),
+        "execution_target_present": execution_present,
+        "model_explicit": bool(config.get("model")),
+        "state_file_count": len(state_files),
+        "memory_present": (path / "memory.md").is_file(),
+        "health": "static-contract-only; scheduler outcomes not queried",
+        "latency_and_token_usage": "not-observed",
+        "issues": issues,
+    }
 
 
 def markdown_inline(value: object) -> str:
@@ -377,6 +418,7 @@ def render_report() -> str:
                 f"- Last measured startup prompt: `{prompt_baseline.get('total_tokens', 'unknown')}` tokens",
                 f"- Skill descriptions: `{skill_catalog.get('description_tokens', 'unknown')}` tokens across `{skill_catalog.get('entries', 'unknown')}` catalog entries",
                 f"- Prompt probe mode: `{prompt_baseline.get('probe_mode', 'unknown')}`",
+                f"- Prompt measured at: `{prompt_baseline.get('measured_at', 'unknown-legacy')}`; scope: `{prompt_baseline.get('measurement_scope', 'unspecified-legacy')}`",
             ]
         )
     if config.get("config_error"):
@@ -419,6 +461,12 @@ def render_report() -> str:
                 f"role: `{automation['role']}`; boundary: `{automation['boundary']}`; "
                 f"status: `{markdown_inline(automation['status'])}`"
             )
+            if "contract" in automation:
+                contract = automation["contract"]
+                lines.append(f"  - Static contract: `{', '.join(contract['issues']) or 'pass'}`; "
+                             f"identity: `{contract['identity_matches_directory']}`; schedule shape: `{contract['schedule_shape_valid']}`; "
+                             f"memory file: `{contract['memory_present']}`; prompt chars: `{contract['prompt_chars']}`; "
+                             f"health: `{contract['health']}`; usage: `{contract['latency_and_token_usage']}`")
     else:
         lines.append("- `none`")
 

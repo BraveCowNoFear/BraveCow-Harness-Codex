@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "records": [
+    {
+      "id": "codex-cli",
+      "available_version": "0.159.3",
+      "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.159.3",
+      "source_ref": "01fc69f4026735edfdf6789820549727a4867b11",
+      "source_kind": "official-github-release",
+      "license": "Apache-2.0",
+      "observed_at": "2026-10-01T09:09:23.737479+00:00",
+      "stability": "stable",
+      "published_at": "2026-09-30T22:57:34Z",
+      "integrity": "git-commit:01fc69f4026735edfdf6789820549727a4867b11"
+    },
+    {
+      "id": "openclaw",
+      "available_version": "2026.9.7",
+      "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.9.7",
+      "source_ref": "c074824a27c96d3983043f9eeb33823cd1772d8c",
+      "source_kind": "official-github-release",
+      "license": "MIT",
+      "observed_at": "2026-10-01T09:09:27.526642+00:00",
+      "stability": "stable",
+      "published_at": "2026-09-30T04:44:14Z",
+      "integrity": "git-commit:c074824a27c96d3983043f9eeb33823cd1772d8c"
+    },
+    {
+      "id": "browser-harness",
+      "available_version": "0.1.13",
+      "source_url": "https://github.com/browser-use/browser-harness/releases/tag/v0.1.13",
+      "source_ref": "c24e5072ee66f8499bacd663f4f4bcb089bc4492",
+      "source_kind": "official-github-release",
+      "license": "MIT",
+      "observed_at": "2026-10-01T09:09:30.081625+00:00",
+      "stability": "stable",
+      "published_at": "2026-09-04T02:52:52Z",
+      "integrity": "git-commit:c24e5072ee66f8499bacd663f4f4bcb089bc4492"
+    },
+    {
+      "id": "everything-claude-code-active-slice",
+      "available_version": "2.2.2",
+      "source_url": "https://github.com/affaan-m/ECC/releases/tag/v2.2.2",
+      "source_ref": "c70874fae9eb0e5ad0365beb7e2955899fd1d30f",
+      "source_kind": "official-github-release",
+      "license": "MIT",
+      "observed_at": "2026-10-01T09:09:33.744976+00:00",
+      "stability": "stable",
+      "published_at": "2026-09-30T19:04:52Z",
+      "integrity": "git-commit:c70874fae9eb0e5ad0365beb7e2955899fd1d30f"
+    },
+    {
+      "id": "meta-harness",
+      "available_version": "main@b6f543172494",
+      "source_url": "https://github.com/SaehwanPark/meta-harness/commit/b6f54317249478f4c196cabe68e1c948aaa6a404",
+      "source_ref": "b6f54317249478f4c196cabe68e1c948aaa6a404",
+      "source_kind": "official-main-commit",
+      "license": "MIT",
+      "observed_at": "2026-10-01T09:09:35.072945+00:00",
+      "stability": "pinned-main"
+    }
+  ]
+}

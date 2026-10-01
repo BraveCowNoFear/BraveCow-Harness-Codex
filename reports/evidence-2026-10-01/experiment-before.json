@@ -1,0 +1,27 @@
+{
+  "direct_corrupt": {
+    "ok": false,
+    "error": "DatabaseError",
+    "elapsed_ms": 1.99
+  },
+  "fts_corrupt": {
+    "ok": false,
+    "error": "DatabaseError",
+    "elapsed_ms": 0.96
+  },
+  "short_chinese": {
+    "ok": false,
+    "decision": {
+      "requested": "fts",
+      "resolved": "fts",
+      "reason": "ordinary exact/sub-string query",
+      "degraded": false,
+      "latency_ms": 25.6
+    },
+    "elapsed_ms": 25.63
+  },
+  "missing_root": {
+    "preserved": false,
+    "removed": 1
+  }
+}

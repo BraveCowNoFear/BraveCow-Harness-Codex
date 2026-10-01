@@ -1,0 +1,26 @@
+[
+  {
+    "id": "bravecow-harness",
+    "definition_sha256": "4c2359bd14da70828afbfe44d0fa112e71a778fa159013c9a3a762ec1a07e437",
+    "memory_present": true,
+    "memory_utf8_valid": true,
+    "memory_has_bom": false,
+    "memory_modified_utc": "2026-08-01T15:21:30.793293+00:00",
+    "memory_chars": 1927,
+    "prompt_estimated_tokens": 1904,
+    "usage_scope": "static prompt estimate, not billed tokens",
+    "backup_directory_present": true
+  },
+  {
+    "id": "memory-tidy",
+    "definition_sha256": "cea392d11494975feaa21171eb8d5cb5efe7ea093ab8c24bac182ef86a088998",
+    "memory_present": true,
+    "memory_utf8_valid": true,
+    "memory_has_bom": true,
+    "memory_modified_utc": "2026-08-16T07:52:34.677907+00:00",
+    "memory_chars": 12904,
+    "prompt_estimated_tokens": 453,
+    "usage_scope": "static prompt estimate, not billed tokens",
+    "backup_directory_present": false
+  }
+]

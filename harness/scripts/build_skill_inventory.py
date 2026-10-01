@@ -195,7 +195,9 @@ def version_sort_key(value: str) -> tuple[tuple[int, ...], str]:
 def iter_skill_dirs(root: Path) -> Iterable[Path]:
     if not root.exists():
         return []
-    return sorted([path for path in root.iterdir() if path.is_dir()], key=lambda p: p.name.lower())
+    return sorted([path for path in root.iterdir()
+                   if path.is_dir() or path.is_symlink() or getattr(path, "is_junction", lambda: False)()],
+                  key=lambda p: p.name.lower())
 
 
 def discover_plugin_entries(enabled_plugin_ids: set[str] | None = None) -> list[PluginEntry]:
@@ -347,7 +349,7 @@ def build_entries() -> list[SkillEntry]:
                     description=description,
                     declared_version=declared_version,
                     content_sha256=sha256_file(skill_md) if skill_md.exists() else None,
-                    state="discoverable" if skill_md.exists() else "container-only",
+                    state="discoverable" if skill_md.exists() else ("broken-link" if is_link and not skill_dir.exists() else "container-only"),
                 )
             )
     return entries

@@ -1,0 +1,27 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "approval": "never",
+  "sandbox": "danger-full-access",
+  "feature_keys": [
+    "context_management",
+    "goals",
+    "memories"
+  ],
+  "mcp_servers": [
+    {
+      "id": "openaiDeveloperDocs",
+      "transport": "http",
+      "enabled": true,
+      "has_env": false,
+      "has_headers": false
+    },
+    {
+      "id": "node_repl",
+      "transport": "stdio",
+      "enabled": true,
+      "has_env": true,
+      "has_headers": false
+    }
+  ]
+}

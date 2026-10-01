@@ -1,11 +1,17 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
-from harness.scripts.measure_prompt_baseline import bucket_for_text, measure_messages
+from harness.scripts.measure_prompt_baseline import bucket_for_text, measure_messages, default_codex
 
 
 class MeasurePromptBaselineTests(unittest.TestCase):
+    def test_default_uses_config_gate_resolver(self) -> None:
+        with patch("harness.scripts.measure_prompt_baseline.resolve_codex_executable", return_value="desktop-codex") as resolve:
+            self.assertEqual(default_codex(), "desktop-codex")
+            resolve.assert_called_once()
+
     def test_buckets_and_skill_descriptions(self) -> None:
         messages = [
             {

@@ -1,0 +1,19 @@
+{
+  "pages": 9,
+  "renderer": "Poppler pdftoppm, 110 dpi",
+  "visual_review": "all nine pages inspected; no garbling, clipping or unreadable tables/charts",
+  "final_pages_1_through_8_pixel_identical_to_reviewed": true,
+  "final_page_9_reinspected": true,
+  "pdf_sha256": "b6bf4068ab58c87e4287a5f57deb5cf4236e6787b994574302f020456650eaa3",
+  "page_png_sha256": [
+    "cbbcd36adb0b97d5dcabfce42bad80892613a6a73493eb592f592ee59e1e86d6",
+    "fcb69e859d984925e4b28fad367f3eb0efb569daf3ec44ae83a2428dd2814a04",
+    "0280404a9acb93929590860ac84ec22458fa1492ccda244a6634b0a30c8d8a28",
+    "fb05386238eece8b1eb84f12ce204401fba9c12749956d91d285d16a5451ce40",
+    "25a74e6eaeea1c80bdf2e3eb344d75cbd056f5ffd1e2f7e8fecb300b73e78fab",
+    "75d4ddda076f3d1a94624584162e005850f5de1f05006f371ceb3058cd41a893",
+    "5e564403ec395c228f22d33dbba11ad3869e1eaea3849e1e193cae40208a123a",
+    "668b6b1c17fd6e05e1ba65c3cf3efef2d5b80c775745c63f29b179609b5942cf",
+    "3a583f528b1cf34279d88c9eb96a35ea20421c1996417e4ff958f636b667dbc7"
+  ]
+}

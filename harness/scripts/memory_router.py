@@ -2,14 +2,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
+import sqlite3
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 try:
-    from .memory_search import DEFAULT_DB, DEFAULT_MEMORY_DIR, read_text, search, update_index
+    from .memory_search import DEFAULT_DB, DEFAULT_MEMORY_DIR, read_text, search, update_index, normalize_query
 except ImportError:  # direct script execution
-    from memory_search import DEFAULT_DB, DEFAULT_MEMORY_DIR, read_text, search, update_index
+    from memory_search import DEFAULT_DB, DEFAULT_MEMORY_DIR, read_text, search, update_index, normalize_query
 
 
 SEMANTIC_TERMS = ("similar", "concept", "meaning", "why", "analogy", "相似", "概念", "含义", "为什么", "类比")
@@ -58,6 +60,55 @@ def direct_evidence(memory_dir: Path, source: str, max_chars: int) -> list[dict]
     return [{"source": candidate.name, "section": "direct", "score": 0.0, "snippet": text}]
 
 
+def markdown_fallback(query: str, memory_dir: Path, limit: int, max_chars: int) -> tuple[list[dict], dict]:
+    """Bounded literal search: no database, network, writes, or executable query syntax."""
+    terms = re.findall(r'"([^"]+)"', normalize_query(query))
+    terms = [term.casefold() for term in terms if term]
+    hits: list[dict] = []
+    scanned = skipped = total_bytes = attempted = 0
+    max_files, max_bytes = 64, 4 * 1024 * 1024
+    truncated = False
+    root = memory_dir.resolve()
+    try:
+        candidates = sorted(memory_dir.iterdir())
+    except OSError:
+        return [], {"scanned_files": 0, "scanned_bytes": 0, "skipped_files": 0,
+                    "bounded": True, "truncated": False, "root_unavailable": True}
+    for path in candidates:
+        if path.suffix.lower() != ".md":
+            continue
+        if attempted >= max_files or total_bytes >= max_bytes:
+            truncated = True
+            break
+        attempted += 1
+        try:
+            if root not in path.resolve().parents:
+                skipped += 1
+                continue
+            remaining = max_bytes - total_bytes
+            with path.open("rb") as stream:
+                raw = stream.read(remaining)
+                truncated = truncated or bool(stream.read(1))
+            total_bytes += len(raw)
+            scanned += 1
+            text = raw.decode("utf-8-sig")
+        except (OSError, UnicodeError):
+            skipped += 1
+            continue
+        lowered = text.casefold()
+        positions = [lowered.find(term) for term in terms if term in lowered]
+        if not positions:
+            continue
+        start = max(0, min(positions) - 80)
+        hits.append({"source": path.name, "section": "literal-fallback", "score": 0.0,
+                     "snippet": text[start:start + min(512, max_chars)]})
+        if len(hits) >= max(1, min(limit, 50)):
+            truncated = True
+            break
+    return hits, {"scanned_files": scanned, "attempted_files": attempted, "scanned_bytes": total_bytes,
+                  "skipped_files": skipped, "bounded": True, "truncated": truncated}
+
+
 def route_memory(
     query: str,
     memory_dir: Path = DEFAULT_MEMORY_DIR,
@@ -72,7 +123,10 @@ def route_memory(
     reason = "canonical Markdown source requested"
 
     if requested == "direct":
-        evidence = direct_evidence(memory_dir, source or "", max_chars)
+        try:
+            evidence = direct_evidence(memory_dir, source or "", max_chars)
+        except (OSError, UnicodeError):
+            evidence = []
         resolved = "direct" if evidence else "fts"
         if not evidence:
             degraded = True
@@ -88,9 +142,23 @@ def route_memory(
     elif requested == "fts":
         reason = "ordinary exact/sub-string query"
 
-    index = update_index(memory_dir, db_path)
-    if not evidence:
-        evidence = [asdict(hit) for hit in search(query, db_path, limit)]
+    index: dict = {"status": "skipped-direct"}
+    if resolved != "direct":
+        try:
+            index = update_index(memory_dir, db_path)
+            evidence = [asdict(hit) for hit in search(query, db_path, limit, strict=True)]
+        except (OSError, sqlite3.Error, UnicodeError) as exc:
+            index = {"status": "unavailable", "error_type": type(exc).__name__}
+            degraded = True
+            reason = "local index unavailable; used bounded canonical Markdown scan"
+        short_terms = any(0 < len(term) < 3 for term in re.findall(r'"([^"]+)"', normalize_query(query)))
+        if index.get("status") == "unavailable" or (not evidence and short_terms):
+            evidence, scan = markdown_fallback(query, memory_dir, limit, max(1, max_chars))
+            index["fallback"] = scan
+            resolved = "markdown-scan"
+            degraded = True
+            if short_terms and index.get("status") != "unavailable":
+                reason = "trigram cannot match short terms; used bounded literal Markdown scan"
     evidence = bounded_hits(evidence, max_chars)
     elapsed_ms = (time.perf_counter() - started) * 1000
     decision = RouteDecision(requested, resolved, reason, degraded, round(elapsed_ms, 2))

@@ -9,6 +9,28 @@ from harness.scripts.harness_audit import classify_automation, collect_automatio
 
 
 class HarnessAutomationAuditTests(unittest.TestCase):
+    def test_retained_memory_is_not_a_scheduled_automation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            retired = root / "retired"
+            retired.mkdir()
+            (retired / "memory.md").write_text("retained history", encoding="utf-8")
+            result = collect_automations(root)
+            self.assertEqual(result[0]["status"], "retained-state-only")
+
+    def test_contract_detects_identity_without_leaking_private_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            task = root / "memory-tidy"
+            task.mkdir()
+            (task / "automation.toml").write_text('id="wrong"\nkind="cron"\nrrule="FREQ=MONTHLY"\n'
+                'execution_environment="local"\nprompt="private-sentinel"\n', encoding="utf-8")
+            result = collect_automations(root)
+            self.assertIn("identity-mismatch", result[0]["contract"]["issues"])
+            self.assertTrue(result[0]["contract"]["schedule_shape_valid"])
+            self.assertNotIn("private-sentinel", repr(result))
+            self.assertNotIn("FREQ=MONTHLY", repr(result))
+
     def test_managed_external_vendor_sources_are_not_quarantine_warnings(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             vendor_dir = Path(temp_dir)

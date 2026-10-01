@@ -1,6 +1,6 @@
 # BraveCow Harness
 
-Current release: `0.12.0`.
+Current release: `0.13.0`.
 
 BraveCow Harness is a portable control plane for ordinary Codex and ZCode users. The same shared skills, Markdown memory, safety rules, provenance inventory, and audit tooling work across four supported combinations:
 

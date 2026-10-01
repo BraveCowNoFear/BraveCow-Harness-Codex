@@ -1,0 +1,130 @@
+[
+  {
+    "id": "automation-3",
+    "name": "视频生产每日任务",
+    "status": "ACTIVE",
+    "role": "external-local-automation",
+    "boundary": "external",
+    "harness_component": false,
+    "contract": {
+      "identity_matches_directory": true,
+      "kind": "heartbeat",
+      "schedule_present": true,
+      "schedule_shape_valid": true,
+      "definition_sha256": "2b5d5e1a4d136077d207044bbf5cdadf04b4dc415b50a98497aedc0b70bfb7ee",
+      "prompt_chars": 257,
+      "prompt_present": true,
+      "execution_target_present": true,
+      "model_explicit": false,
+      "state_file_count": 0,
+      "memory_present": false,
+      "health": "static-contract-only; scheduler outcomes not queried",
+      "latency_and_token_usage": "not-observed",
+      "issues": []
+    }
+  },
+  {
+    "id": "automation-4",
+    "name": "社区总管每日任务",
+    "status": "ACTIVE",
+    "role": "external-local-automation",
+    "boundary": "external",
+    "harness_component": false,
+    "contract": {
+      "identity_matches_directory": true,
+      "kind": "heartbeat",
+      "schedule_present": true,
+      "schedule_shape_valid": true,
+      "definition_sha256": "9809a6c2cd572a9ae853dad60e6df920153331309c1c6839c5a75b6a5252975c",
+      "prompt_chars": 262,
+      "prompt_present": true,
+      "execution_target_present": true,
+      "model_explicit": false,
+      "state_file_count": 0,
+      "memory_present": false,
+      "health": "static-contract-only; scheduler outcomes not queried",
+      "latency_and_token_usage": "not-observed",
+      "issues": []
+    }
+  },
+  {
+    "id": "automation-5",
+    "name": "视频发布每日任务",
+    "status": "ACTIVE",
+    "role": "external-local-automation",
+    "boundary": "external",
+    "harness_component": false,
+    "contract": {
+      "identity_matches_directory": true,
+      "kind": "heartbeat",
+      "schedule_present": true,
+      "schedule_shape_valid": true,
+      "definition_sha256": "e20caa959bc649d602bb7aac47380bc27f363ff4f41d2278ac39cd45326b9ccf",
+      "prompt_chars": 464,
+      "prompt_present": true,
+      "execution_target_present": true,
+      "model_explicit": false,
+      "state_file_count": 0,
+      "memory_present": false,
+      "health": "static-contract-only; scheduler outcomes not queried",
+      "latency_and_token_usage": "not-observed",
+      "issues": []
+    }
+  },
+  {
+    "id": "bravecow-harness",
+    "name": "BraveCow Harness 月度技术侦察与升级",
+    "status": "ACTIVE",
+    "role": "continuous-technology-evolution",
+    "boundary": "core",
+    "harness_component": true,
+    "contract": {
+      "identity_matches_directory": true,
+      "kind": "cron",
+      "schedule_present": true,
+      "schedule_shape_valid": true,
+      "definition_sha256": "4c2359bd14da70828afbfe44d0fa112e71a778fa159013c9a3a762ec1a07e437",
+      "prompt_chars": 3256,
+      "prompt_present": true,
+      "execution_target_present": true,
+      "model_explicit": true,
+      "state_file_count": 3,
+      "memory_present": true,
+      "health": "static-contract-only; scheduler outcomes not queried",
+      "latency_and_token_usage": "not-observed",
+      "issues": []
+    }
+  },
+  {
+    "id": "memory-tidy",
+    "name": "Memory Tidy",
+    "status": "ACTIVE",
+    "role": "durable-memory-maintenance",
+    "boundary": "core",
+    "harness_component": true,
+    "contract": {
+      "identity_matches_directory": true,
+      "kind": "cron",
+      "schedule_present": true,
+      "schedule_shape_valid": true,
+      "definition_sha256": "cea392d11494975feaa21171eb8d5cb5efe7ea093ab8c24bac182ef86a088998",
+      "prompt_chars": 781,
+      "prompt_present": true,
+      "execution_target_present": true,
+      "model_explicit": true,
+      "state_file_count": 1,
+      "memory_present": true,
+      "health": "static-contract-only; scheduler outcomes not queried",
+      "latency_and_token_usage": "not-observed",
+      "issues": []
+    }
+  },
+  {
+    "id": "session-log-graphiti-sync",
+    "name": "session-log-graphiti-sync",
+    "status": "retained-state-only",
+    "role": "external-local-automation",
+    "boundary": "external",
+    "harness_component": false
+  }
+]

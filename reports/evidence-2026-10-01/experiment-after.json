@@ -1,0 +1,39 @@
+{
+  "direct_corrupt": {
+    "ok": true,
+    "decision": {
+      "requested": "direct",
+      "resolved": "direct",
+      "reason": "canonical Markdown source requested",
+      "degraded": false,
+      "latency_ms": 1.05
+    },
+    "elapsed_ms": 1.07
+  },
+  "fts_corrupt": {
+    "ok": true,
+    "decision": {
+      "requested": "fts",
+      "resolved": "markdown-scan",
+      "reason": "local index unavailable; used bounded canonical Markdown scan",
+      "degraded": true,
+      "latency_ms": 2.33
+    },
+    "elapsed_ms": 2.35
+  },
+  "short_chinese": {
+    "ok": true,
+    "decision": {
+      "requested": "fts",
+      "resolved": "markdown-scan",
+      "reason": "trigram cannot match short terms; used bounded literal Markdown scan",
+      "degraded": true,
+      "latency_ms": 26.98
+    },
+    "elapsed_ms": 27.0
+  },
+  "missing_root": {
+    "preserved": true,
+    "rejected_missing_root": true
+  }
+}

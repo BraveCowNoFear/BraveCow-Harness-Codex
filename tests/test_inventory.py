@@ -3,11 +3,26 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from harness.scripts import build_skill_inventory as inventory
 
 class InventoryTests(unittest.TestCase):
+    def test_broken_skill_link_remains_visible(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            link = root / "retired"
+            try:
+                link.symlink_to(root / "absent", target_is_directory=True)
+            except OSError:
+                self.skipTest("host does not allow creating symbolic links")
+            with patch.object(inventory, "ROOTS", {"test": root}):
+                entries = inventory.build_entries()
+            self.assertEqual(len(entries), 1)
+            self.assertEqual(entries[0].state, "broken-link")
+            self.assertFalse(entries[0].has_skill_md)
+
     def test_loads_upstream_observations(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             path = Path(temp_dir) / "upstream.json"

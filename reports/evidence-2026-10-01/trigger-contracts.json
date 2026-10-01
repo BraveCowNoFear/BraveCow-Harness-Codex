@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "cases": 50,
+  "failed_cases": 0,
+  "failure_percent": 0.0,
+  "max_failure_percent": 5.0,
+  "missing_skills": [],
+  "description_failures": [],
+  "failures": [],
+  "passed": true,
+  "scope_note": "Deterministic trigger-contract regression; this is not a live model-routing benchmark."
+}

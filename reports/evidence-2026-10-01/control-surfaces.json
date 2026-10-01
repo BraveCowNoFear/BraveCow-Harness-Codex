@@ -1,0 +1,866 @@
+{
+  ".codex": {
+    "present": true,
+    "skills": [
+      {
+        "name": ".system",
+        "exists": true,
+        "skill_md": false,
+        "linked": false,
+        "chars": 0,
+        "description_chars": 0
+      },
+      {
+        "name": "agent-harness-introspect",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3500,
+        "description_chars": 104
+      },
+      {
+        "name": "agent-introspection-debugging",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5693,
+        "description_chars": 129
+      },
+      {
+        "name": "bilibili-publish",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 632,
+        "description_chars": 62
+      },
+      {
+        "name": "bilibili-subtitle",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5681,
+        "description_chars": 95
+      },
+      {
+        "name": "bilibili-summary-codex",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 1091,
+        "description_chars": 213
+      },
+      {
+        "name": "bilibili-video-download",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 10090,
+        "description_chars": 433
+      },
+      {
+        "name": "bravecow-onboarding",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 9044,
+        "description_chars": 274
+      },
+      {
+        "name": "browser-harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 9663,
+        "description_chars": 100
+      },
+      {
+        "name": "claude-to-im",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 17538,
+        "description_chars": 213
+      },
+      {
+        "name": "cli-creator",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 10453,
+        "description_chars": 334
+      },
+      {
+        "name": "codebase-onboarding",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 8467,
+        "description_chars": 239
+      },
+      {
+        "name": "codex-primary-runtime",
+        "exists": true,
+        "skill_md": false,
+        "linked": false,
+        "chars": 0,
+        "description_chars": 0
+      },
+      {
+        "name": "company-values",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4261,
+        "description_chars": 190
+      },
+      {
+        "name": "context-budget",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5841,
+        "description_chars": 188
+      },
+      {
+        "name": "deep-research",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 15847,
+        "description_chars": 105
+      },
+      {
+        "name": "find-community",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3015,
+        "description_chars": 206
+      },
+      {
+        "name": "find-skills",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7024,
+        "description_chars": 301
+      },
+      {
+        "name": "first-customers",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4217,
+        "description_chars": 196
+      },
+      {
+        "name": "grow-sustainably",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4704,
+        "description_chars": 180
+      },
+      {
+        "name": "guizang-ppt-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3455,
+        "description_chars": 142
+      },
+      {
+        "name": "harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5023,
+        "description_chars": 184
+      },
+      {
+        "name": "improve-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 2414,
+        "description_chars": 173
+      },
+      {
+        "name": "kiro-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 13437,
+        "description_chars": 315
+      },
+      {
+        "name": "line-art-science-video-generator",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 4007,
+        "description_chars": 173
+      },
+      {
+        "name": "local-qwen-tts",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3646,
+        "description_chars": 274
+      },
+      {
+        "name": "maoxuan-enhanced",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 2728,
+        "description_chars": 57
+      },
+      {
+        "name": "marketing-plan",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4735,
+        "description_chars": 213
+      },
+      {
+        "name": "migrate-to-codex",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 8330,
+        "description_chars": 104
+      },
+      {
+        "name": "minimalist-entrepreneur",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3297,
+        "description_chars": 465
+      },
+      {
+        "name": "minimalist-review",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3477,
+        "description_chars": 218
+      },
+      {
+        "name": "mvp",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3836,
+        "description_chars": 204
+      },
+      {
+        "name": "nextjs-app-router-patterns",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3828,
+        "description_chars": 210
+      },
+      {
+        "name": "openspace-delegate-task",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 5184,
+        "description_chars": 317
+      },
+      {
+        "name": "outlook-browser-email-automation",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3842,
+        "description_chars": 465
+      },
+      {
+        "name": "pdf-bilingual-translator",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 17018,
+        "description_chars": 360
+      },
+      {
+        "name": "playwright",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4097,
+        "description_chars": 282
+      },
+      {
+        "name": "pricing",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3316,
+        "description_chars": 188
+      },
+      {
+        "name": "problem-sheet-pdf-answers",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 4193,
+        "description_chars": 163
+      },
+      {
+        "name": "processize",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4455,
+        "description_chars": 182
+      },
+      {
+        "name": "remotion-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 10016,
+        "description_chars": 53
+      },
+      {
+        "name": "self-improving-for-codex",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4421,
+        "description_chars": 166
+      },
+      {
+        "name": "shadcn",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 18374,
+        "description_chars": 384
+      },
+      {
+        "name": "spec-kit-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3648,
+        "description_chars": 166
+      },
+      {
+        "name": "tailwind-design-system",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5476,
+        "description_chars": 210
+      },
+      {
+        "name": "text-to-speech",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7446,
+        "description_chars": 169
+      },
+      {
+        "name": "validate-idea",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3217,
+        "description_chars": 173
+      },
+      {
+        "name": "vercel-react-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7392,
+        "description_chars": 329
+      },
+      {
+        "name": "video-maker",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5599,
+        "description_chars": 178
+      },
+      {
+        "name": "video-maker-local-artifacts",
+        "exists": true,
+        "skill_md": false,
+        "linked": false,
+        "chars": 0,
+        "description_chars": 0
+      },
+      {
+        "name": "web-design-engineer",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 23569,
+        "description_chars": 266
+      },
+      {
+        "name": "weixin-thread-bridge",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 1842,
+        "description_chars": 162
+      },
+      {
+        "name": "will-tibo-reset",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 6088,
+        "description_chars": 371
+      },
+      {
+        "name": "writing-for-agents",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 11002,
+        "description_chars": 173
+      },
+      {
+        "name": "youtube-pro-codex",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3476,
+        "description_chars": 353
+      }
+    ]
+  },
+  ".agents": {
+    "present": true,
+    "skills": [
+      {
+        "name": "agent-harness-introspect",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3500,
+        "description_chars": 104
+      },
+      {
+        "name": "agent-introspection-debugging",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5693,
+        "description_chars": 129
+      },
+      {
+        "name": "bilibili-subtitle",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 5681,
+        "description_chars": 95
+      },
+      {
+        "name": "bilibili-video-download",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 10090,
+        "description_chars": 433
+      },
+      {
+        "name": "bravecow-onboarding",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 9044,
+        "description_chars": 274
+      },
+      {
+        "name": "browser-harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 9663,
+        "description_chars": 100
+      },
+      {
+        "name": "codebase-onboarding",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 8467,
+        "description_chars": 239
+      },
+      {
+        "name": "context-budget",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5841,
+        "description_chars": 188
+      },
+      {
+        "name": "find-skills",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 7024,
+        "description_chars": 301
+      },
+      {
+        "name": "guizang-ppt-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3455,
+        "description_chars": 142
+      },
+      {
+        "name": "harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5023,
+        "description_chars": 184
+      },
+      {
+        "name": "local-qwen-tts",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3646,
+        "description_chars": 274
+      },
+      {
+        "name": "nextjs-app-router-patterns",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 3828,
+        "description_chars": 210
+      },
+      {
+        "name": "remotion-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 10016,
+        "description_chars": 53
+      },
+      {
+        "name": "shadcn",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 18374,
+        "description_chars": 384
+      },
+      {
+        "name": "tailwind-design-system",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 5476,
+        "description_chars": 210
+      },
+      {
+        "name": "text-to-speech",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 7446,
+        "description_chars": 169
+      },
+      {
+        "name": "vercel-react-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 7392,
+        "description_chars": 329
+      },
+      {
+        "name": "web-design-engineer",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 23569,
+        "description_chars": 266
+      }
+    ]
+  },
+  ".claude": {
+    "present": true,
+    "skills": [
+      {
+        "name": "bilibili-subtitle",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5681,
+        "description_chars": 95
+      },
+      {
+        "name": "bilibili-subtitle-downloader",
+        "exists": false,
+        "skill_md": false,
+        "linked": true,
+        "chars": 0,
+        "description_chars": 0
+      },
+      {
+        "name": "bilibili-video-download",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 10090,
+        "description_chars": 433
+      },
+      {
+        "name": "guizang-ppt-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3455,
+        "description_chars": 142
+      },
+      {
+        "name": "text-to-speech",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7446,
+        "description_chars": 169
+      }
+    ]
+  },
+  ".openclaw": {
+    "present": true,
+    "skills": [
+      {
+        "name": "agent-harness-introspect",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3500,
+        "description_chars": 104
+      },
+      {
+        "name": "agent-introspection-debugging",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5693,
+        "description_chars": 129
+      },
+      {
+        "name": "agentic-coding",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 5332,
+        "description_chars": 134
+      },
+      {
+        "name": "automation-workflows",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 10358,
+        "description_chars": 512
+      },
+      {
+        "name": "bilibili-subtitle",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5681,
+        "description_chars": 95
+      },
+      {
+        "name": "bilibili-video-download",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 10090,
+        "description_chars": 433
+      },
+      {
+        "name": "browser-harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 9663,
+        "description_chars": 100
+      },
+      {
+        "name": "codebase-onboarding",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 8467,
+        "description_chars": 239
+      },
+      {
+        "name": "context-budget",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5841,
+        "description_chars": 188
+      },
+      {
+        "name": "deep-research-pro",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 4419,
+        "description_chars": 123
+      },
+      {
+        "name": "desktop-control-for-windows",
+        "exists": false,
+        "skill_md": false,
+        "linked": true,
+        "chars": 0,
+        "description_chars": 0
+      },
+      {
+        "name": "file-summary",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 2382,
+        "description_chars": 142
+      },
+      {
+        "name": "find-skills",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7024,
+        "description_chars": 301
+      },
+      {
+        "name": "guizang-ppt-skill",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3455,
+        "description_chars": 142
+      },
+      {
+        "name": "harness",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5023,
+        "description_chars": 184
+      },
+      {
+        "name": "local-file-rag-basic",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 969,
+        "description_chars": 54
+      },
+      {
+        "name": "local-qwen-tts",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3646,
+        "description_chars": 274
+      },
+      {
+        "name": "nextjs-app-router-patterns",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 3828,
+        "description_chars": 210
+      },
+      {
+        "name": "obsidian",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 2334,
+        "description_chars": 79
+      },
+      {
+        "name": "remotion-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 10016,
+        "description_chars": 53
+      },
+      {
+        "name": "shadcn",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 18374,
+        "description_chars": 384
+      },
+      {
+        "name": "summarize",
+        "exists": true,
+        "skill_md": true,
+        "linked": false,
+        "chars": 1425,
+        "description_chars": 83
+      },
+      {
+        "name": "tailwind-design-system",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 5476,
+        "description_chars": 210
+      },
+      {
+        "name": "text-to-speech",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7446,
+        "description_chars": 169
+      },
+      {
+        "name": "vercel-react-best-practices",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 7392,
+        "description_chars": 329
+      },
+      {
+        "name": "web-design-engineer",
+        "exists": true,
+        "skill_md": true,
+        "linked": true,
+        "chars": 23569,
+        "description_chars": 266
+      }
+    ]
+  },
+  ".bravecow": {
+    "present": true,
+    "skills": []
+  }
+}

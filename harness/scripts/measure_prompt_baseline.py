@@ -3,11 +3,21 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import shutil
 import subprocess
+from datetime import UTC, datetime
 from pathlib import Path
 
 import tiktoken
+
+try:
+    from .config_gate import DEFAULT_CONFIG, read_text, resolve_codex_executable, tomllib
+except ImportError:
+    from config_gate import DEFAULT_CONFIG, read_text, resolve_codex_executable, tomllib
+
+
+def default_codex() -> str:
+    parsed = tomllib.loads(read_text(DEFAULT_CONFIG)) if DEFAULT_CONFIG.exists() else {}
+    return resolve_codex_executable(parsed, DEFAULT_CONFIG) or ""
 
 
 SKILL_LINE = re.compile(r"^-\s+(.+?):\s+(.+?)\s+\(file:\s+.+\)\s*$")
@@ -92,11 +102,13 @@ def run_prompt_probe(codex: str, sentinel: str, timeout: int) -> tuple[list[dict
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Measure model-visible Codex startup prompt tokens.")
-    parser.add_argument("--codex", default=shutil.which("codex") or "")
+    parser.add_argument("--codex", default=None)
     parser.add_argument("--sentinel", default="harness-audit-sentinel")
     parser.add_argument("--timeout", type=int, default=120)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if args.codex is None:
+        args.codex = default_codex()
     if not args.codex:
         raise SystemExit("codex executable not found")
 
@@ -104,6 +116,9 @@ def main() -> int:
     result = measure_messages(messages)
     result["probe_mode"] = probe_mode
     result["native_probe_diagnostic"] = diagnostic
+    result["measured_at"] = datetime.now(UTC).isoformat()
+    result["measurement_scope"] = "CLI prompt-input; not the active Desktop conversation"
+    result["codex_executable"] = str(Path(args.codex).resolve())
     payload = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)

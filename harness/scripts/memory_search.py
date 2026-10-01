@@ -27,13 +27,7 @@ class SearchHit:
 
 
 def read_text(path: Path) -> str:
-    raw = path.read_bytes()
-    for encoding in ("utf-8-sig", "utf-8"):
-        try:
-            return raw.decode(encoding)
-        except UnicodeDecodeError:
-            continue
-    return raw.decode("utf-8", errors="replace")
+    return path.read_text(encoding="utf-8-sig")
 
 
 def content_hash(text: str) -> str:
@@ -64,10 +58,11 @@ def split_markdown(text: str) -> list[tuple[str, str]]:
 
 def connect(db_path: Path) -> sqlite3.Connection:
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    connection = sqlite3.connect(db_path)
-    connection.execute("PRAGMA journal_mode=WAL")
-    connection.execute("PRAGMA synchronous=NORMAL")
-    connection.executescript(
+    connection = sqlite3.connect(db_path, timeout=0.25)
+    try:
+        connection.execute("PRAGMA journal_mode=WAL")
+        connection.execute("PRAGMA synchronous=NORMAL")
+        connection.executescript(
         """
         CREATE TABLE IF NOT EXISTS files (
             source TEXT PRIMARY KEY,
@@ -82,17 +77,23 @@ def connect(db_path: Path) -> sqlite3.Connection:
             tokenize='trigram'
         );
         """
-    )
+        )
+    except sqlite3.Error:
+        connection.close()
+        raise
     return connection
 
 
 def iter_markdown_files(memory_dir: Path) -> list[Path]:
-    if not memory_dir.exists():
-        return []
-    return sorted(path for path in memory_dir.glob("*.md") if path.is_file())
+    # iterdir propagates access errors; glob may silently treat them as an empty root.
+    root = memory_dir.resolve()
+    return sorted(path for path in memory_dir.iterdir()
+                  if path.suffix.lower() == ".md" and path.is_file() and root in path.resolve().parents)
 
 
 def update_index(memory_dir: Path = DEFAULT_MEMORY_DIR, db_path: Path = DEFAULT_DB, rebuild: bool = False) -> dict:
+    if not memory_dir.is_dir():
+        raise FileNotFoundError("canonical memory directory is unavailable; index preserved")
     if rebuild and db_path.exists():
         db_path.unlink()
     connection = connect(db_path)
@@ -173,10 +174,10 @@ def normalize_query(query: str) -> str:
     return " OR ".join(f'"{token.replace(chr(34), chr(34) * 2)}"' for token in tokens[:12])
 
 
-def search(query: str, db_path: Path = DEFAULT_DB, limit: int = 8) -> list[SearchHit]:
+def search(query: str, db_path: Path = DEFAULT_DB, limit: int = 8, *, strict: bool = False) -> list[SearchHit]:
     if not db_path.exists():
         return []
-    connection = sqlite3.connect(db_path)
+    connection = sqlite3.connect(db_path, timeout=0.25)
     try:
         rows = connection.execute(
             """
@@ -190,6 +191,8 @@ def search(query: str, db_path: Path = DEFAULT_DB, limit: int = 8) -> list[Searc
             (normalize_query(query), max(1, min(limit, 50))),
         ).fetchall()
     except sqlite3.OperationalError:
+        if strict:
+            raise
         rows = []
     finally:
         connection.close()

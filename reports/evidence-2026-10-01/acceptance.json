@@ -1,0 +1,104 @@
+{
+  "installed_cli_cases": [
+    {
+      "case": "direct",
+      "pass": true,
+      "decision": {
+        "requested": "direct",
+        "resolved": "direct",
+        "reason": "canonical Markdown source requested",
+        "degraded": false,
+        "latency_ms": 1.04
+      },
+      "evidence_chars": 67
+    },
+    {
+      "case": "fts",
+      "pass": true,
+      "decision": {
+        "requested": "fts",
+        "resolved": "fts",
+        "reason": "ordinary exact/sub-string query",
+        "degraded": false,
+        "latency_ms": 27.9
+      },
+      "evidence_chars": 31
+    },
+    {
+      "case": "short-chinese",
+      "pass": true,
+      "decision": {
+        "requested": "fts",
+        "resolved": "markdown-scan",
+        "reason": "trigram cannot match short terms; used bounded literal Markdown scan",
+        "degraded": true,
+        "latency_ms": 18.23
+      },
+      "evidence_chars": 70
+    },
+    {
+      "case": "corrupt-direct",
+      "pass": true,
+      "decision": {
+        "requested": "direct",
+        "resolved": "direct",
+        "reason": "canonical Markdown source requested",
+        "degraded": false,
+        "latency_ms": 0.46
+      },
+      "evidence_chars": 67
+    },
+    {
+      "case": "corrupt-fts",
+      "pass": true,
+      "decision": {
+        "requested": "fts",
+        "resolved": "markdown-scan",
+        "reason": "local index unavailable; used bounded canonical Markdown scan",
+        "degraded": true,
+        "latency_ms": 2.26
+      },
+      "evidence_chars": 70
+    }
+  ],
+  "live_known_source_read": {
+    "pass": true,
+    "decision": {
+      "requested": "direct",
+      "resolved": "direct",
+      "reason": "canonical Markdown source requested",
+      "degraded": false,
+      "latency_ms": 0.6
+    },
+    "index_skipped": true
+  },
+  "corrupt_fallback_ms": {
+    "n": 20,
+    "median": 1.315,
+    "max": 1.67
+  },
+  "protected_files": {
+    "count": 33,
+    "unchanged": true
+  },
+  "programmatic_tool_projection": {
+    "fixture": "100 synthetic tool descriptions; select five candidates; not a live routing or billing benchmark",
+    "full_catalog_tokens": 14302,
+    "selected_catalog_tokens": 132
+  },
+  "browser": {
+    "route": "built-in Edge extension",
+    "inventory_result": "nodeRepl.fetch request failed",
+    "session_name_result": "nodeRepl.fetch request failed",
+    "passed": false,
+    "created_tabs": 0,
+    "started_daemons": 0,
+    "browser_harness_changed": false
+  },
+  "automation_update": {
+    "id": "memory-tidy",
+    "result": "API failure; verified unchanged",
+    "target_project_registered": false,
+    "proposal_saved_locally": true
+  }
+}
